@@ -1,0 +1,6 @@
+{
+  "name": "¿Cómo Vamos? - Análisis Macroeconómico",
+  "description": "Visualizador interactivo de indicadores macroeconómicos y análisis de asequibilidad de los EE. UU. (Parte 1).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
