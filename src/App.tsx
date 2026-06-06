@@ -212,6 +212,17 @@ export default function App() {
 
         {/* --------------------- TAB NAVIGATION SYSTEM --------------------- */}
         <div id="navigation-tabs-section" className="mb-8">
+          {/* Helper Note for Reading & Mobile Orientation */}
+          <div className="bg-[#0D0D0D] border-l-4 border-l-[#60A5FA] border-y border-r border-[#262626] rounded-r-xl p-5 mb-6 shadow-inner text-sm text-slate-300 leading-relaxed font-sans max-w-4xl">
+            <div className="text-[#60A5FA] font-mono font-bold uppercase tracking-widest mb-2 text-xs flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#60A5FA] animate-pulse"></span>
+              Nota de Lectura Interactiva
+            </div>
+            <p>
+              <strong>Si estás leyendo en tu teléfono, hazlo de forma horizontal.</strong> Cuando veas una gráfica con puntos, puedes <strong>tocar cualquier punto</strong> para conocer su valor exacto y detalles. Gracias por tu atención.
+            </p>
+          </div>
+
           <p className="text-xs text-[#94A3B8] font-mono uppercase tracking-widest mb-3 text-center sm:text-left">
             Secuencia de Lectura: Selecciona una Sección
           </p>
