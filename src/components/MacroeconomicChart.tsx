@@ -53,8 +53,18 @@ export const MacroeconomicChart: React.FC<ChartProps> = ({
   const [showRawData, setShowRawData] = useState(false);
 
   // Split into Biden & Trump II datasets
-  const transitionKey = isQuarterly ? "2025-Q1" : "Ene 25";
-  const transitionIdx = labels.indexOf(transitionKey) !== -1 ? labels.indexOf(transitionKey) : Math.floor(labels.length * 0.75);
+  let transitionIdx = -1;
+  if (isQuarterly) {
+    transitionIdx = labels.indexOf("2025-Q1");
+  } else {
+    transitionIdx = labels.indexOf("Ene 25");
+    if (transitionIdx === -1) {
+      transitionIdx = labels.findIndex(lbl => lbl.includes("Ene 25") || lbl.includes("Jan 25") || lbl.includes("/01/25"));
+    }
+  }
+  if (transitionIdx === -1) {
+    transitionIdx = Math.floor(labels.length * 0.75);
+  }
 
   const bidenValues = values.map((val, idx) => {
     return idx <= transitionIdx ? val : null;
@@ -248,7 +258,7 @@ export const MacroeconomicChart: React.FC<ChartProps> = ({
   const isPositiveTrend = totalDifference >= 0;
 
   return (
-    <div className="bg-[#141414] border border-[#262626] rounded-xl p-5 shadow-2xl transition-all hover:border-[#404040]">
+    <div className="transition-all w-full flex flex-col">
       {/* Chart Top Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#262626] pb-4 mb-4">
         <div>
@@ -273,7 +283,7 @@ export const MacroeconomicChart: React.FC<ChartProps> = ({
               <div className="flex flex-col items-start bg-[#0E0E0E] border border-l-4 border-l-[#FB7185] border-y border-r border-[#262626] rounded-lg px-3.5 py-1.5 min-w-[125px] shadow-lg">
                 <span className="text-[10px] font-mono uppercase tracking-wider text-[#94A3B8] font-bold">Acum. Trump II</span>
                 <span className="text-lg md:text-xl font-extrabold text-[#FB7185] tracking-tight">
-                  +4.20%
+                  +4.80%
                 </span>
               </div>
 
@@ -282,7 +292,7 @@ export const MacroeconomicChart: React.FC<ChartProps> = ({
                 <span className="text-[10px] font-mono uppercase tracking-wider text-[#94A3B8] opacity-80 font-bold">Acum. Total</span>
                 <div className="flex items-center text-base md:text-lg font-black gap-1 tracking-tight">
                   <TrendingUp className="w-4 h-4 text-rose-400" />
-                  <span>+26.50%</span>
+                  <span>+27.20%</span>
                 </div>
               </div>
             </>
@@ -364,7 +374,7 @@ export const MacroeconomicChart: React.FC<ChartProps> = ({
           </div>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center justify-start sm:justify-end gap-3 w-full sm:w-auto">
           <button
             onClick={() => setShowRawData(!showRawData)}
             className="flex items-center gap-1.5 text-[11px] font-mono text-[#94A3B8] hover:text-[#F8FAFC] bg-[#1a1a1a] hover:bg-[#262626] border border-[#262626] transition-colors rounded-md px-2.5 py-1 cursor-pointer"
@@ -373,9 +383,41 @@ export const MacroeconomicChart: React.FC<ChartProps> = ({
             {showRawData ? "Ver Gráfico" : "Ver Datos"}
           </button>
           
-          <span className="text-[10px] font-mono text-slate-500 italic max-w-[200px] sm:max-w-xs text-right leading-relaxed truncate hover:text-slate-300 transition-colors" title={stats.source}>
-            Fuente: {stats.source.split(" (")[0]}
-          </span>
+          {stats.sources && stats.sources.length > 0 ? (
+            <div className="text-[10px] font-mono text-slate-400 text-left sm:text-right flex flex-wrap items-center gap-1">
+              <span>Fuente: Fórmula FRED </span>
+              <span className="text-slate-500">(</span>
+              {stats.sources.map((src, sIdx) => (
+                <React.Fragment key={sIdx}>
+                  {sIdx > 0 && <span className="text-slate-500">×</span>}
+                  <a
+                    href={src.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-slate-400 hover:text-emerald-400 underline decoration-dotted transition-all font-semibold"
+                    title={`Ver serie oficial en FRED: ${src.label}`}
+                  >
+                    {src.label}
+                  </a>
+                </React.Fragment>
+              ))}
+              <span className="text-slate-500">) / 100</span>
+            </div>
+          ) : stats.sourceUrl ? (
+            <a
+              href={stats.sourceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[10px] font-mono text-slate-400 hover:text-emerald-400 transition-all text-left sm:text-right hover:underline"
+              title={`Ver serie oficial en FRED: ${stats.source}`}
+            >
+              Fuente: <span className="underline decoration-dotted">{stats.source}</span>
+            </a>
+          ) : (
+            <span className="text-[10px] font-mono text-slate-500 text-left sm:text-right" title={stats.source}>
+              Fuente: {stats.source}
+            </span>
+          )}
         </div>
       </div>
     </div>

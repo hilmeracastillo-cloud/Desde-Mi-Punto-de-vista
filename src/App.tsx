@@ -15,6 +15,7 @@ import {
   graph2Data,
   graph3Data,
   graph5Data,
+  graph6Data,
   graph7Data,
   graph8Data,
   graph9Data,
@@ -22,6 +23,7 @@ import {
 } from "./data";
 import { MacroeconomicChart } from "./components/MacroeconomicChart";
 import { RealWageWaterfall } from "./components/RealWageWaterfall";
+import { TaxDeductionChart } from "./components/TaxDeductionChart";
 
 export default function App() {
   // Balanced indicator checklist state
@@ -29,49 +31,49 @@ export default function App() {
     {
       id: "fuerza-laboral",
       title: "Fuerza Laboral No Supervisoria",
-      desc: "Más gente tiene trabajo en posiciones no supervisoras en el sector privado.",
+      desc: "Más gente tiene trabajo en posiciones no supervisoras.",
       status: "Positivo",
-      metric: "+12.11M de nuevos empleados creados.",
+      metric: "Se han creado en el período más de 1 millón de nuevos trabajos no supervisorios",
       checked: true,
     },
     {
       id: "poder-adquisitivo",
       title: "Poder Adquisitivo Efectivo",
-      desc: "El salario real de los trabajadores no supervisores está comenzando a recuperarse del impacto inflacionario acumulado.",
+      desc: "El salario de esos trabajadores se está recuperando respecto al efecto de la inflación.",
       status: "En Recuperación",
-      metric: "Salario nominal sube un 26.2% acumulado contra inflación ponderada.",
+      metric: "El salario real ha subido tan solo un 0.73%",
       checked: true,
     },
     {
       id: "estabilidad-empleo",
       title: "Estabilidad en el Empleo",
-      desc: "El número de personas perdiendo su trabajo y solicitando seguro de desempleo disminuye de forma sostenida.",
+      desc: "El número de personas perdiendo su trabajo está disminuyendo.",
       status: "Favorable",
-      metric: "Mínimo promedio de 221.9K solicitudes.",
+      metric: "Los reclamos de seguro de desempleo se han mantenido en el nivel mínimo promedio de los dos períodos",
       checked: true,
     },
     {
       id: "oportunidades",
       title: "Abundancia de Oportunidades",
-      desc: "El número de posiciones de trabajo abiertas en el mercado laboral norteamericano es sustancialmente alto.",
+      desc: "El número de posiciones de trabajo abiertas son considerables al comparar con el número de personas perdiendo el trabajo.",
       status: "Excelente",
-      metric: "Más de 7.6M puestos de trabajo abiertos vs 215K reclamos.",
+      metric: "Más de 7.6M de puestos de trabajos abiertos contra 225 mil solicitudes de seguro de desempleo",
       checked: true,
     },
     {
       id: "entretenimiento",
       title: "Gasto en Entretenimiento",
-      desc: "La actividad comercial sigue sólida; la gente continúa concurriendo a restaurantes y programando viajes.",
+      desc: "La gente va a restaurantes y viaja más.",
       status: "Expansionista",
-      metric: "Se alcanza un récord de consumo de $1.52B en Q1 2026.",
+      metric: "El consumo en restaurantes y alojamiento se ha incrementado 3.86%",
       checked: true,
     },
     {
       id: "morosidad",
       title: "Reducción de Morosidad",
-      desc: "Los montos de deuda sin pagar a tiempo en tarjetas de crédito muestran una tendencia a disminuir.",
+      desc: "Los montos delincuenciales de las tarjetas de crédito han disminuido.",
       status: "Estabilizado",
-      metric: "Cartera morosa desciende a $31.6B.",
+      metric: "La cartera morosa ha descendido un 2.26% en este período. La gente está pagando para disminuir su deuda",
       checked: true,
     },
   ]);
@@ -102,44 +104,6 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#0A0A0A] text-[#F8FAFC] font-sans selection:bg-[#60A5FA]/30 selection:text-white transition-all overflow-x-hidden">
       
-      {/* Sticky Premium Header */}
-      <header className="sticky top-0 z-50 bg-[#0A0A0A]/85 backdrop-blur-md border-b border-[#262626] px-4 lg:px-8 py-3.5 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="bg-gradient-to-br from-[#60A5FA] to-[#FB7185] p-2 rounded-lg shadow-inner">
-            <Compass className="w-5 h-5 text-black" />
-          </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="text-[10px] bg-[#1a1a1a] text-[#94A3B8] font-mono uppercase tracking-widest px-1.5 py-0.5 rounded border border-[#262626]">
-                Executive Briefing
-              </span>
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-            </div>
-            <h1 className="text-sm font-bold tracking-tight text-[#F8FAFC] uppercase font-sans">
-              Desde mi punto de vista, ¿cómo vamos? — Parte 1
-            </h1>
-          </div>
-        </div>
-
-        {/* Global Key Badges */}
-        <div className="hidden lg:flex items-center gap-4">
-          <div className="text-right">
-            <p className="text-[10px] text-[#94A3B8] font-mono">Autor de la Obra</p>
-            <p className="text-xs font-semibold text-[#F8FAFC]">Hilmer Castillo Bescanza</p>
-          </div>
-          <div className="h-6 w-px bg-[#262626]"></div>
-          <div className="text-right">
-            <p className="text-[10px] text-[#94A3B8] font-mono">Jurisdicción de Datos</p>
-            <p className="text-xs font-semibold text-[#F8FAFC]">Estados Unidos de América</p>
-          </div>
-          <div className="h-6 w-px bg-[#262626]"></div>
-          <div className="text-right">
-            <p className="text-[10px] text-[#94A3B8] font-mono">Frecuencia de Lecturas</p>
-            <span className="text-xs font-semibold text-[#60A5FA] font-mono">Mensual / Trimestral</span>
-          </div>
-        </div>
-      </header>
-
       {/* Main Container */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16">
         
@@ -148,13 +112,12 @@ export default function App() {
           <div className="border-l-2 border-gradient-y border-[#60A5FA] pl-6 md:pl-8 max-w-4xl relative">
             <div className="absolute left-[-2px] top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#60A5FA] via-[#c084fc] to-[#FB7185]"></div>
             
-            <p className="text-xs font-mono uppercase tracking-widest text-[#60A5FA] font-bold mb-2">Editorial Macrocientífica</p>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold tracking-tight text-[#F8FAFC] leading-tight">
-              Desde mi punto de vista, ¿cómo vamos? <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#60A5FA] via-purple-300 to-[#FB7185] font-sans text-2xl sm:text-3xl lg:text-4xl">
-                Un análisis estructurado basados en datos macroeconómicos empíricos
-              </span>
+              Desde mi punto de vista, ¿cómo vamos?
             </h2>
+            <p className="text-2xl sm:text-3xl font-serif font-semibold tracking-tight text-[#F8FAFC] mt-2">
+              Parte&nbsp;&nbsp;<span className="text-4xl sm:text-5xl font-extrabold text-[#F8FAFC]">1</span>.
+            </p>
 
             <div className="flex flex-wrap items-center gap-4 text-xs text-[#94A3B8] mt-4 font-mono">
               <div className="flex items-center gap-1.5">
@@ -165,15 +128,6 @@ export default function App() {
               <div className="flex items-center gap-1.5">
                 <Calendar className="w-3.5 h-3.5 text-slate-500" />
                 <span>Última Actualización: <span className="text-[#F8FAFC]">Junio 2026</span></span>
-              </div>
-              <span className="text-slate-700">•</span>
-              <div className="flex items-center gap-1.5">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#60A5FA]"></div>
-                <span>Administración Biden (Ene 21 - Ene 25)</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#FB7185]"></div>
-                <span>Administración Trump II (Ene 25 - Presente)</span>
               </div>
             </div>
           </div>
@@ -187,12 +141,6 @@ export default function App() {
               <p className="text-base text-slate-300 leading-relaxed font-sans italic">
                 &ldquo;La sobreabundancia de información nos entierra diariamente. Nuestras fuentes de información tienden a alinearse a lo que queremos oír. Pero la realidad es mucho más compleja de lo que parece. La simplificación de que la realidad es lo que yo vivo muchas veces no nos deja valorarla. En mi caso, los números me ayudan a filtrar sentimientos y expandir visiones.&rdquo;
               </p>
-              <div className="mt-4 border-t border-[#262626] pt-3 flex items-center gap-2">
-                <div className="w-6 h-1 bg-[#60A5FA] rounded-full"></div>
-                <span className="text-xs font-mono uppercase tracking-widest text-[#60A5FA] font-semibold">
-                  Premisa de Sostenibilidad Metodológica
-                </span>
-              </div>
             </div>
 
             <div className="bg-[#0A0A0A] border border-[#262626] rounded-xl p-5 flex flex-col justify-between">
@@ -427,7 +375,7 @@ export default function App() {
                     Lectura Analítica • Erosión por Inflación
                   </div>
                   <p className="text-slate-300">
-                    La inflación acumulada durante el período Biden fue extraordinaria (<span className="text-[#FB7185] font-bold">+21.4%</span>), erosionando profundamente el poder adquisitivo del sueldo efectivo de los trabajadores. No obstante, en la etapa Trump II, se acentúa una tendencia de desaceleración gradual, arrojando una cifra mensual estabilizada que acumula un <span className="text-[#FB7185] font-bold">+4.2%</span> hasta la fecha actual.
+                    La inflación acumulada durante el período Biden fue extraordinaria (<span className="text-[#FB7185] font-bold">+21.4%</span>), erosionando profundamente el poder adquisitivo del sueldo efectivo de los trabajadores. No obstante, en la etapa Trump II, se registra un nivel que acumula un <span className="text-[#FB7185] font-bold">+4.8%</span> hasta la fecha actual.
                   </p>
                 </div>
               </div>
@@ -445,6 +393,9 @@ export default function App() {
                   </p>
                 </div>
               </div>
+
+              {/* Card 3: Deducción de Impuestos (No Tax on Tips & No Tax on Overtime) */}
+              <TaxDeductionChart />
             </div>
           </section>
         )}
@@ -492,7 +443,28 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Card 2: Empleados del Gobierno Federal */}
+              {/* Card 2: Total de Personas Empleadas (CE16OV) */}
+              <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
+                <MacroeconomicChart
+                  id="employment_level_chart"
+                  title="Total de Personas Empleadas (CE16OV)"
+                  description="Volumen acumulado en millones de habitantes con empleo en EE. UU. (Serie CE16OV de la BLS)."
+                  labels={graph6Data.labels}
+                  values={graph6Data.values}
+                  stats={graph6Data.stats}
+                />
+                <div className="bg-[#0D0D0D] border-l-4 border-l-emerald-500 border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
+                  <div className="text-emerald-400 font-mono font-bold uppercase tracking-widest mb-2.5 text-xs flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    Lectura Analítica • Nivel de Empleo Total (CE16OV)
+                  </div>
+                  <p className="text-slate-300">
+                    El empleo total en los Estados Unidos (Serie FRED: CE16OV) refleja un mercado laboral extraordinariamente robusto. Durante el período Biden, ascendió de un mínimo inicial de <span className="text-[#F8FAFC] font-bold">149.8M</span> en enero de 2021 hasta culminar estable en <span className="text-[#F8FAFC] font-bold">163.83M</span>. En la presente administración, se ha estabilizado en niveles históricamente elevados con un promedio consolidado de <span className="text-[#F8FAFC] font-bold">163.35M</span>, registrando un pico máximo de <span className="text-[#F8FAFC] font-bold">163.99M</span>. Esta ocupación extendida ratifica que la capacidad de empleo total del país conserva una fortaleza estructural formidable de largo plazo.
+                  </p>
+                </div>
+              </div>
+
+              {/* Card 3: Empleados del Gobierno Federal */}
               <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
                 <MacroeconomicChart
                   id="5"
@@ -508,12 +480,12 @@ export default function App() {
                     Lectura Analítica • Reducción del Gasto Público
                   </div>
                   <p className="text-slate-300">
-                    La nómina del gobierno federal muestra una compresión drástica y sin precedentes, disminuyendo de 3.01 millones a <span className="text-[#FB7185] font-bold">2.665 millones</span> de posiciones públicas activas. Esta reestructuración incide de forma favorable y directa en la reducción del déficit estatal, liberando presiones sobre el mercado laboral privado y mitigando raíces de inflación fiscal.
+                    La nómina del gobierno federal muestra una compresión drástica y sin precedentes, disminuyendo de 3.021 millones (pico) a <span className="text-[#FB7185] font-bold">2.679 millones</span> de posiciones públicas activas. Esta reestructuración incide de forma favorable y directo en la reducción del déficit estatal, liberando presiones sobre el mercado laboral privado y mitigando raíces de inflación fiscal.
                   </p>
                 </div>
               </div>
 
-              {/* Card 3: Trabajos Disponibles */}
+              {/* Card 4: Trabajos Disponibles */}
               <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
                 <MacroeconomicChart
                   id="6"
@@ -586,7 +558,7 @@ export default function App() {
                 <MacroeconomicChart
                   id="8"
                   title="Volumen Estimado Moroso en Tarjetas Personales"
-                  description="Montos sin saldar fuera de plazo en líneas de crédito rotativo personales administradas por bancos comerciales."
+                  description="Monto en mora estimado en miles de millones de dólares. Obtenido cruzando el saldo total (CCLACBW027SBOG) con la tasa de morosidad (DRCCLACBS)."
                   labels={graph10Data.labels}
                   values={graph10Data.values}
                   stats={graph10Data.stats}
@@ -598,7 +570,7 @@ export default function App() {
                     Lectura Analítica • Sostenibilidad de Deuda Personal
                   </div>
                   <p className="text-slate-300">
-                    La delincuencia o falta de pago a término en la cartera de tarjetas de crédito comerciales muestra signos muy alentadores de saneamiento, descendiendo y estabilizándose en <span className="text-[#60A5FA] font-bold">$31.6 mil millones (USD)</span>. Esta tendencia decreciente confirma que las familias están siendo eficientes desapalancándose y gestionando de forma disciplinada sus saldos de crédito.
+                    El volumen delincuencial estimado de tarjetas de crédito comerciales (fórmula personalizada cruzando saldo y tasa de impago) acumuló un incremento constante desde el mínimo de <span className="text-[#60A5FA] font-bold">$11.65 mil millones</span> en el tercer trimestre de 2021 hasta alcanzar un máximo de <span className="text-[#60A5FA] font-bold">$34.05 mil millones</span> a mediados de 2024. No obstante, bajo la gestión Trump II, se ha consolidado un cambio de tendencia con una reducción hacia los <span className="text-[#60A5FA] font-bold">$31.13 mil millones</span> en el primer trimestre de 2026. Esta trayectoria decreciente ratifica un reordenamiento o saneamiento proactivo de los pasivos por parte de los hogares.
                   </p>
                 </div>
               </div>
@@ -619,36 +591,10 @@ export default function App() {
 
             {/* Interactive Checklist Balance Dashboard */}
             <div className="bg-[#141414] border border-[#262626] rounded-xl p-6 shadow-2xl relative overflow-hidden">
-              <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-6 border-b border-[#262626] pb-6 mb-6">
-                <div>
-                  <span className="text-xs font-mono uppercase tracking-widest text-[#60A5FA] font-bold">Matriz de Evaluación Interactiva</span>
-                  <h4 className="text-xl font-bold text-[#F8FAFC] font-sans mt-1">
-                    Balance General de Indicadores Macroeconómicos
-                  </h4>
-                  <p className="text-sm text-[#94A3B8] mt-1 font-sans">
-                    Interactúa con los controles táctiles para marcar como verificados cada uno de los hallazgos descritos por Castillo.
-                  </p>
-                </div>
-
-                {/* Progress gauge visualizer */}
-                <div className="bg-[#0A0A0A] border border-[#262626] p-4 rounded-xl flex items-center gap-4 min-w-[240px]">
-                  <div className="relative flex items-center justify-center">
-                    <svg className="w-16 h-16 transform -rotate-90">
-                      <circle cx="32" cy="32" r="28" stroke="#1A1A1A" strokeWidth="6" fill="transparent" />
-                      <circle cx="32" cy="32" r="28" stroke="#60A5FA" strokeWidth="6" fill="transparent"
-                        strokeDasharray="175.9"
-                        strokeDashoffset={175.9 - (175.9 * healthPercent) / 100}
-                        className="transition-all duration-500 stroke-linecap-round" />
-                    </svg>
-                    <span className="absolute text-xs font-mono font-bold text-[#60A5FA]">{healthPercent}%</span>
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold text-[#F8FAFC] font-sans">Índice Corroborado</p>
-                    <p className="text-[10px] text-[#94A3B8] font-mono mt-0.5">
-                      {completedCount} de {indicators.length} hallazgos revisados
-                    </p>
-                  </div>
-                </div>
+              <div className="border-b border-[#262626] pb-6 mb-6">
+                <h4 className="text-xl font-bold text-[#F8FAFC] font-sans">
+                  Balance General de Indicadores
+                </h4>
               </div>
 
               {/* List of interactive lines */}
@@ -659,7 +605,7 @@ export default function App() {
                     <div
                       key={ind.id}
                       onClick={() => toggleIndicator(ind.id)}
-                      className={`flex flex-col md:flex-row md:items-start justify-between p-5 md:p-6 rounded-xl border transition-all cursor-pointer ${
+                      className={`flex flex-col md:flex-row md:items-stretch justify-between p-5 md:p-6 rounded-xl border transition-all cursor-pointer ${
                         ind.checked
                           ? isGreen
                             ? "bg-[#0E0E0E] border-emerald-500/30 hover:border-emerald-500/50 shadow-inner"
@@ -667,7 +613,7 @@ export default function App() {
                           : "bg-[#0A0A0A]/50 border-[#262626] hover:border-[#404040] opacity-50"
                       }`}
                     >
-                      <div className="flex items-start gap-4 max-w-3xl flex-1">
+                      <div className="w-full md:w-1/2 flex items-start gap-4 pr-0 md:pr-6">
                         <div className="mt-1 shrink-0">
                           <div className={`w-6 h-6 rounded-md flex items-center justify-center border transition-all ${
                             ind.checked 
@@ -680,7 +626,7 @@ export default function App() {
                           </div>
                         </div>
                         <div className="flex-1">
-                          <div className="flex items-center gap-3 flex-wrap md:h-6 mb-2">
+                          <div className="flex items-center gap-3 flex-wrap mb-2">
                             <span className={`text-base font-bold tracking-tight transition-colors font-sans ${
                               ind.checked 
                                 ? isGreen 
@@ -709,9 +655,11 @@ export default function App() {
                       </div>
 
                       {/* Secondary Metrics display */}
-                      <div className="mt-4 md:mt-0 md:text-right shrink-0 pl-10 md:pl-6 font-mono border-t md:border-t-0 border-[#222] md:border-transparent pt-3 md:pt-0 w-full md:w-auto">
-                        <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold block md:h-6 mb-2 md:flex md:items-center md:justify-end leading-none">Estirpe de Datos</span>
-                        <span className={`text-sm md:text-base font-extrabold tracking-tight block leading-relaxed ${
+                      <div className="w-full md:w-1/2 mt-4 md:mt-0 pl-10 md:pl-8 border-t md:border-t-0 md:border-l border-[#262626] pt-4 md:pt-0 flex flex-col justify-start">
+                        <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold block mb-2 leading-none font-mono">
+                          Métrica de Respaldo
+                        </span>
+                        <span className={`text-sm md:text-base font-medium tracking-normal block leading-relaxed ${
                           ind.checked 
                             ? isGreen 
                               ? "text-emerald-400" 

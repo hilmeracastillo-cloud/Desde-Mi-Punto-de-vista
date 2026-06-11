@@ -12,9 +12,9 @@ export const waterfallData: WaterfallItem[] = [
   { label: "Inflación Biden", value: -662, type: "negative" },
   { label: "Ajuste Biden", value: 603, type: "positive" },
   { label: "Salario Ene 25", value: 3692, type: "subtotal" },
-  { label: "Inflación Trump II", value: -149, type: "negative" },
-  { label: "Ajuste Trump II", value: 188, type: "positive" },
-  { label: "Salario Ene 26", value: 3730, type: "final" }
+  { label: "Inflación Trump II", value: -169, type: "negative" },
+  { label: "Ajuste Trump II", value: 196, type: "positive" },
+  { label: "Salario May 26", value: 3719, type: "final" }
 ];
 
 export function RealWageWaterfall() {
@@ -42,9 +42,9 @@ export function RealWageWaterfall() {
     { label: "Inflación Biden", value: -662, start: 3750, end: 3088, type: "negative", desc: "Pérdida de poder de compra por inflación acumulada (+21.4%)" },
     { label: "Ajuste Biden", value: 603, start: 3088, end: 3692, type: "positive", desc: "Ajustes nominales acumulados en la remuneración semanal" },
     { label: "Salario Ene 25", value: 3692, start: 0, end: 3692, type: "subtotal", desc: "Salario real neto al cierre del periodo Biden" },
-    { label: "Inflación Trump II", value: -149, start: 3692, end: 3543, type: "negative", desc: "Pérdida por inflación durante el periodo actual (+4.2%)" },
-    { label: "Ajuste Trump II", value: 188, start: 3543, end: 3730, type: "positive", desc: "Ajustes salariales nominales en el periodo Trump II" },
-    { label: "Salario Ene 26", value: 3730, start: 0, end: 3730, type: "final", desc: "Salario real promedio final de la serie" }
+    { label: "Inflación Trump II", value: -169, start: 3692, end: 3523, type: "negative", desc: "Pérdida por inflación durante el periodo actual (+4.8%)" },
+    { label: "Ajuste Trump II", value: 196, start: 3523, end: 3719, type: "positive", desc: "Ajustes salariales nominales en el periodo Trump II" },
+    { label: "Salario May 26", value: 3719, start: 0, end: 3719, type: "final", desc: "Salario real promedio final de la serie" }
   ];
 
   // Helper to convert value to Y coordinate
@@ -303,9 +303,16 @@ export function RealWageWaterfall() {
         </svg>
       </div>
 
-      <div className="mt-4 flex items-center justify-between text-[11px] font-mono text-slate-500">
-        <span>Fuente: Interpolado desde el documento original</span>
-        <span className="text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/25">Datos Reales</span>
+      <div className="mt-4 flex items-center justify-between text-[11px] font-mono text-slate-400 border-t border-[#262626] pt-3">
+        <a 
+          href="https://www.bls.gov" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="hover:text-emerald-400 transition-colors"
+        >
+          Fuente: <span className="underline decoration-dotted hover:decoration-solid">Interpolado desde el documento original (BLS)</span>
+        </a>
+        <span className="text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/25 text-[10px]">Datos Reales</span>
       </div>
     </div>
   );
