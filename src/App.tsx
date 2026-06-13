@@ -677,7 +677,7 @@ export default function App() {
               {/* Ending editorial note */}
               <div className="mt-8 pt-6 border-t border-[#262626] text-center max-w-2xl mx-auto">
                 <span className="font-serif italic text-base text-slate-300">
-                  &ldquo;Esto es una visión parcial de cómo vamos y luce positiva. ¿Tenemos una crisis de affordability? En el próximo artículo seguiremos agregando dimensiones.&rdquo;
+                  &ldquo;Esto es una visión parcial de cómo vamos y luce positiva. ¿Tenemos una crisis de affordability? En el próximo artículo, el 28 de Junio, seguiremos agregando dimensiones.&rdquo;
                 </span>
                 <div className="mt-4 flex items-center justify-center gap-3">
                   <div className="w-8 h-px bg-[#262626]"></div>
