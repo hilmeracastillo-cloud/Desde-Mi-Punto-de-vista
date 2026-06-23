@@ -9,6 +9,16 @@ import {
   TrendingDown,
   Percent,
   Compass,
+  Building2,
+  Globe,
+  PieChart,
+  ArrowRightLeft,
+  ChevronRight,
+  Sparkles,
+  Info,
+  HelpCircle,
+  Activity,
+  Award,
 } from "lucide-react";
 import {
   graph1Data,
@@ -21,9 +31,26 @@ import {
   graph9Data,
   graph10Data,
 } from "./data";
+import {
+  gdpData,
+  gdpPerCapitaData,
+  consumoTotalData,
+  consumoPctData,
+  gastoPctData,
+  inversionData,
+  investmentsTable,
+  exportsTotalData,
+  exportsBienesData,
+  importsTotalData,
+  importsBienesData,
+  netExportsData,
+  arancelesData,
+  saldoMensualData
+} from "./data_part2";
 import { MacroeconomicChart } from "./components/MacroeconomicChart";
 import { RealWageWaterfall } from "./components/RealWageWaterfall";
 import { TaxDeductionChart } from "./components/TaxDeductionChart";
+import { MacroPart2 } from "./components/MacroPart2";
 
 export default function App() {
   // Balanced indicator checklist state
@@ -89,10 +116,18 @@ export default function App() {
   const completedCount = indicators.filter((i) => i.checked).length;
   const healthPercent = Math.round((completedCount / indicators.length) * 100);
 
-  // Active section/tab state. Restructured sequentially (01 to 06)
+  // Active Part state (P1 for Parte 1, P2 for Parte 2)
+  const [activePart, setActivePart] = useState<"P1" | "P2">("P1");
+  // Active section/tab state.
   const [activeTab, setActiveTab] = useState("01");
 
-  const tabs = [
+  // Selection list for sub-components of GDP in P2 Section 2
+  const [selectedGdpComp, setSelectedGdpComp] = useState<"C" | "I" | "G" | "XM">("C");
+
+  // Active sub-category in Section 6 (Exterior sector) of Parte 2
+  const [activeExteriorTab, setActiveExteriorTab] = useState<"balance" | "exports" | "imports" | "customs">("balance");
+
+  const tabsP1 = [
     { id: "01", label: "01. Concepto de Asequibilidad", desc: "Término rector y bases de estudio" },
     { id: "02", label: "02. Mercado Laboral & Salarios", desc: "Trabajadores y sueldos privados" },
     { id: "03", label: "03. Inflación & Salario Real", desc: "Erosión y recuperación del poder adquisitivo" },
@@ -100,6 +135,18 @@ export default function App() {
     { id: "05", label: "05. Gasto & Consumo", desc: "Viajes, restaurantes y delincuencia de crédito" },
     { id: "06", label: "06. Balance y Conclusión", desc: "Matriz interactiva y cierre analítico" }
   ];
+
+  const tabsP2 = [
+    { id: "01", label: "01. Crecimiento (PIB)", desc: "PIB Total y PIB por Persona" },
+    { id: "02", label: "02. Componentes PIB", desc: "Consumo, Inversión, Gasto, Exportación" },
+    { id: "03", label: "03. Consumo Privado", desc: "Evolución y participación en el PIB" },
+    { id: "04", label: "04. Gasto Público", desc: "Reducción sostenida y gasto fiscal" },
+    { id: "05", label: "05. Inversión Privada", desc: "Reindustrialización y grandes proyectos" },
+    { id: "06", label: "06. Sector Exterior", desc: "Exportaciones, Importaciones y Aranceles" },
+    { id: "07", label: "07. Balance y Conclusión", desc: "Conclusiones macro generales" }
+  ];
+
+  const currentTabs = activePart === "P1" ? tabsP1 : tabsP2;
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] text-[#F8FAFC] font-sans selection:bg-[#60A5FA]/30 selection:text-white transition-all overflow-x-hidden">
@@ -109,17 +156,68 @@ export default function App() {
         
         {/* Author / Editorial Introduction Hero Section */}
         <section className="mb-14">
-          <div className="border-l-2 border-gradient-y border-[#60A5FA] pl-6 md:pl-8 max-w-4xl relative">
+          <div className="border-l-2 border-[#60A5FA] pl-6 md:pl-8 max-w-4xl relative">
             <div className="absolute left-[-2px] top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#60A5FA] via-[#c084fc] to-[#FB7185]"></div>
             
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold tracking-tight text-[#F8FAFC] leading-tight">
               Desde mi punto de vista, ¿cómo vamos?
             </h2>
-            <p className="text-2xl sm:text-3xl font-serif font-semibold tracking-tight text-[#F8FAFC] mt-2">
-              Parte&nbsp;&nbsp;<span className="text-4xl sm:text-5xl font-extrabold text-[#F8FAFC]">1</span>.
+            <p className="text-base sm:text-lg text-[#94A3B8] mt-2 font-sans max-w-2xl leading-relaxed">
+              Un análisis analítico, apolítico y empírico de las variables socioeconómicas y macroeconómicas que moldean a los Estados Unidos.
             </p>
 
-            <div className="flex flex-wrap items-center gap-4 text-xs text-[#94A3B8] mt-4 font-mono">
+            {/* Premium Article Selector Toggle */}
+            <div className="flex flex-col sm:flex-row gap-3.5 mt-8 max-w-3xl">
+              <button
+                id="select-part-1-btn"
+                onClick={() => {
+                  setActivePart("P1");
+                  setActiveTab("01");
+                }}
+                className={`flex-1 flex items-center gap-3.5 p-4 rounded-xl border text-left transition-all duration-300 cursor-pointer relative overflow-hidden group ${
+                  activePart === "P1"
+                    ? "bg-[#141414] border-[#60A5FA]/60 ring-1 ring-[#60A5FA]/30 shadow-lg shadow-blue-500/5 text-white"
+                    : "bg-[#0A0A0A]/40 border-[#222] text-[#94A3B8] hover:border-[#333] hover:text-[#F8FAFC]"
+                }`}
+              >
+                <div className={`w-8 h-8 rounded-lg flex items-center justify-center font-mono text-xs font-bold transition-all ${
+                  activePart === "P1" ? "bg-[#60A5FA]/20 text-[#60A5FA]" : "bg-[#222] text-slate-500"
+                }`}>
+                  I
+                </div>
+                <div>
+                  <div className="text-[10px] font-mono uppercase tracking-widest text-slate-500 font-semibold">Visión individuos</div>
+                  <h3 className="text-sm font-bold font-serif leading-snug mt-0.5">Parte 1: Asequibilidad</h3>
+                </div>
+                <ChevronRight className={`w-4 h-4 ml-auto opacity-40 transition-transform ${activePart === "P1" ? "translate-x-0.5 opacity-100 text-[#60A5FA]" : "group-hover:translate-x-0.5"}`} />
+              </button>
+
+              <button
+                id="select-part-2-btn"
+                onClick={() => {
+                  setActivePart("P2");
+                  setActiveTab("01");
+                }}
+                className={`flex-1 flex items-center gap-3.5 p-4 rounded-xl border text-left transition-all duration-300 cursor-pointer relative overflow-hidden group ${
+                  activePart === "P2"
+                    ? "bg-[#141414] border-[#FB7185]/60 ring-1 ring-[#FB7185]/30 shadow-lg shadow-pink-500/5 text-white"
+                    : "bg-[#0A0A0A]/40 border-[#222] text-[#94A3B8] hover:border-[#333] hover:text-[#F8FAFC]"
+                }`}
+              >
+                <div className={`w-8 h-8 rounded-lg flex items-center justify-center font-mono text-xs font-bold transition-all ${
+                  activePart === "P2" ? "bg-[#FB7185]/20 text-[#FB7185]" : "bg-[#222] text-slate-500"
+                }`}>
+                  II
+                </div>
+                <div>
+                  <div className="text-[10px] font-mono uppercase tracking-widest text-slate-500 font-semibold">Visión de País</div>
+                  <h3 className="text-sm font-bold font-serif leading-snug mt-0.5">Parte 2: Crecimiento Nacional</h3>
+                </div>
+                <ChevronRight className={`w-4 h-4 ml-auto opacity-40 transition-transform ${activePart === "P2" ? "translate-x-0.5 opacity-100 text-[#FB7185]" : "group-hover:translate-x-0.5"}`} />
+              </button>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-4 text-xs text-[#94A3B8] mt-6 font-mono">
               <div className="flex items-center gap-1.5">
                 <User className="w-3.5 h-3.5 text-slate-500" />
                 <span>Por: <span className="text-[#F8FAFC]">Hilmer Castillo Bescanza</span></span>
@@ -147,12 +245,16 @@ export default function App() {
               <div>
                 <h4 className="text-xs font-mono text-[#94A3B8] uppercase tracking-wider mb-2">Visión Global del Análisis</h4>
                 <p className="text-xs text-[#94A3B8] leading-relaxed">
-                  Este informe visualiza mediciones compiladas de fuentes oficiales de los Estados Unidos (BLS, BEA, FED) para configurar una visión templada de la coyuntura contemporánea.
+                  {activePart === "P1"
+                    ? "Este informe visualiza mediciones de asequibilidad familiar e individual compiladas de fuentes oficiales de los Estados Unidos (BLS, BEA, FED)."
+                    : "Esta sección aborda el Producto Interno Bruto (PIB), el consumo nacional, el gasto del estado, la balanza comercial y las inversiones de reindustrialización."}
                 </p>
               </div>
               <div className="mt-4 flex items-center justify-between text-xs font-mono pt-2 border-t border-[#262626]">
-                <span className="text-slate-500">Fuentes combinadas</span>
-                <span className="text-emerald-400 font-bold">8 Gráficas Oficiales</span>
+                <span className="text-slate-500">Métricas analizadas</span>
+                <span className="text-emerald-400 font-bold">
+                  {activePart === "P1" ? "8 Gráficas Oficiales" : "13 Gráficas Macroeconómicas"}
+                </span>
               </div>
             </div>
           </div>
@@ -172,10 +274,10 @@ export default function App() {
           </div>
 
           <p className="text-xs text-[#94A3B8] font-mono uppercase tracking-widest mb-3 text-center sm:text-left">
-            Secuencia de Lectura: Selecciona una Sección
+            Secuencia de Lectura: Selecciona una Sección de la {activePart === "P1" ? "Parte 1" : "Parte 2"}
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-            {tabs.map((tab) => {
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-7 gap-3">
+            {currentTabs.map((tab) => {
               const isActive = activeTab === tab.id;
               return (
                 <button
@@ -183,7 +285,9 @@ export default function App() {
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex flex-col items-start p-3.5 rounded-xl border text-left transition-all cursor-pointer ${
                     isActive
-                      ? "bg-[#141414] border-[#60A5FA] text-[#60A5FA] shadow-lg shadow-blue-500/5 ring-1 ring-[#60A5FA]/30"
+                      ? activePart === "P1"
+                        ? "bg-[#141414] border-[#60A5FA] text-[#60A5FA] shadow-lg shadow-blue-500/5 ring-1 ring-[#60A5FA]/30"
+                        : "bg-[#141414] border-[#FB7185] text-[#FB7185] shadow-lg shadow-pink-500/5 ring-1 ring-[#FB7185]/30"
                       : "bg-[#0A0A0A]/40 border-[#262626] text-[#94A3B8] hover:border-[#404040] hover:text-[#F8FAFC]"
                   }`}
                 >
@@ -200,493 +304,499 @@ export default function App() {
 
         {/* --------------------- SECTION CONTAINERS (TAB-FILTERED) --------------------- */}
 
-        {/* Section 1: Concepto de Asequibilidad */}
-        {activeTab === "01" && (
-          <section className="mb-14 animate-fade-in">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="text-xl font-mono text-[#60A5FA] font-bold">01.</span>
-              <h3 className="text-2xl font-semibold text-[#F8FAFC] tracking-tight font-sans">
-                El Concepto de Asequibilidad (Affordability)
-              </h3>
-              <div className="flex-1 border-b border-dashed border-[#262626]"></div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {/* Box definition */}
-              <div className="md:col-span-2 bg-[#141414] border border-[#262626] rounded-xl p-6 flex flex-col justify-between">
-                <div>
-                  <span className="text-[10px] font-mono uppercase text-[#60A5FA] tracking-wider font-semibold">Término Rector</span>
-                  <h4 className="text-lg font-bold text-[#F8FAFC] font-sans mt-1">Asequibilidad: Precio Razonable sin asfixiarse económicamente</h4>
-                  <p className="text-sm text-[#94A3B8] leading-relaxed mt-3 font-sans">
-                    Lo &ldquo;razonable&rdquo; de un precio lo determina cada persona y está relacionado a la prioridad que le da cada individuo al bien o servicio por el que va a pagar. Por otra parte, el &ldquo;puede pagar sin asfixiarse&rdquo; está referido al poder de compra de cada individuo, el cual depende directamente de la relación entre dos variables constitutivas:
-                  </p>
+        {activePart === "P1" ? (
+          <>
+            {/* Section 1: Concepto de Asequibilidad */}
+            {activeTab === "01" && (
+              <section className="mb-14 animate-fade-in">
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="text-xl font-mono text-[#60A5FA] font-bold">01.</span>
+                  <h3 className="text-2xl font-semibold text-[#F8FAFC] tracking-tight font-sans">
+                    El Concepto de Asequibilidad (Affordability)
+                  </h3>
+                  <div className="flex-1 border-b border-dashed border-[#262626]"></div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6 pt-5 border-t border-[#262626]">
-                  <div className="bg-[#0A0A0A] border border-[#262626] rounded-lg p-3.5">
-                    <div className="flex items-center gap-2 text-[#60A5FA] font-bold text-xs mb-1">
-                      <DollarSign className="w-4 h-4 text-[#60A5FA]" />
-                      <span className="font-sans">Los Ingresos Disponibles</span>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {/* Box definition */}
+                  <div className="md:col-span-2 bg-[#141414] border border-[#262626] rounded-xl p-6 flex flex-col justify-between">
+                    <div>
+                      <span className="text-[10px] font-mono uppercase text-[#60A5FA] tracking-wider font-semibold">Término Rector</span>
+                      <h4 className="text-lg font-bold text-[#F8FAFC] font-sans mt-1">Asequibilidad: Precio Razonable sin asfixiarse económicamente</h4>
+                      <p className="text-sm text-[#94A3B8] leading-relaxed mt-3 font-sans">
+                        Lo &ldquo;razonable&rdquo; de un precio lo determina cada persona y está relacionado a la prioridad que le da cada individuo al bien o servicio por el que va a pagar. Por otra parte, el &ldquo;puede pagar sin asfixiarse&rdquo; está referido al poder de compra de cada individuo, el cual depende directamente de la relación entre dos variables constitutivas:
+                      </p>
                     </div>
-                    <p className="text-xs text-[#94A3B8] leading-relaxed font-sans">
-                      El dinero neto que realmente te queda para gastar o ahorrar después de pagar impuestos y obligaciones fijas.
-                    </p>
-                  </div>
-                  <div className="bg-[#0A0A0A] border border-[#262626] rounded-lg p-3.5">
-                    <div className="flex items-center gap-2 text-[#FB7185] font-bold text-xs mb-1">
-                      <Percent className="w-4 h-4 text-[#FB7185]" />
-                      <span className="font-sans">Nivel de Precios (Costo de Vida)</span>
-                    </div>
-                    <p className="text-xs text-[#94A3B8] leading-relaxed font-sans">
-                      El valor consolidado de las cosas elementales que necesitas o deseas comprar (vivienda, alimentación, energía, transporte).
-                    </p>
-                  </div>
-                </div>
-              </div>
 
-              {/* Prompt Box */}
-              <div className="bg-[#141414] border border-[#262626] rounded-xl p-6 flex flex-col justify-between text-center relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-[150px] h-[150px] bg-red-400/5 blur-[80px] pointer-events-none"></div>
-                <div>
-                  <span className="text-[10px] font-mono uppercase text-[#60A5FA] tracking-widest font-semibold block mb-4">Interrogante Crítica</span>
-                  <h4 className="text-xl font-medium text-[#F8FAFC] italic leading-relaxed font-serif pt-2">
-                    &ldquo;¿Estamos realmente, <br />como país, en una crisis de asequibilidad?&rdquo;
-                  </h4>
-                </div>
-                <div className="mt-8">
-                  <p className="text-xs text-[#94A3B8] leading-relaxed mb-4 font-sans">
-                    Para contestar esta cuestión objetivamente, desplegamos las métricas fundamentales del mercado laboral y de consumo en las siguientes secciones.
-                  </p>
-                  <div className="w-10 h-1 bg-gradient-to-r from-[#60A5FA] to-[#FB7185] rounded-full mx-auto"></div>
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* Section 2: Mercado Laboral y Salarios */}
-        {activeTab === "02" && (
-          <section className="mb-14 animate-fade-in">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="text-xl font-mono text-[#60A5FA] font-bold">02.</span>
-              <h3 className="text-2xl font-semibold text-[#F8FAFC] tracking-tight font-sans">
-                Análisis del Mercado Laboral y Salarios
-              </h3>
-              <div className="flex-1 border-b border-dashed border-[#262626]"></div>
-            </div>
-
-            <div className="bg-[#0D0D0D] border-l-4 border-l-[#60A5FA] border-y border-r border-[#262626] rounded-r-xl p-6 mb-8 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-              <div className="text-[#60A5FA] font-mono font-bold uppercase tracking-widest mb-3 text-xs flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#60A5FA] animate-pulse"></span>
-                Perspectiva de Estudio • Mercado y Salarios
-              </div>
-              <p className="text-slate-300">
-                Comenzamos estudiando los <strong>ingresos disponibles</strong>. Los ingresos de los trabajadores del sector privado que no tienen una posición de supervisión (Personal de producción o no jerárquico) son un excelente punto de partida. Representan un volumen masivo y estructural dentro de la población económicamente activa de la nación.
-              </p>
-              <div className="mt-4 pt-3 border-t border-[#262626] flex items-center gap-2 text-xs font-mono text-slate-500">
-                <span>Segmentación Temporal:</span>
-                <span className="text-[#60A5FA] font-semibold">Biden</span> (Ene 2021 - Ene 2025)
-                <span className="text-slate-600">|</span>
-                <span className="text-[#FB7185] font-semibold">Trump II</span> (Ene 2025 - Mayo 2026)
-              </div>
-            </div>
-
-            <div className="space-y-8">
-              {/* Card 1: Trabajadores Privados */}
-              <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
-                <MacroeconomicChart
-                  id="1"
-                  title="Trabajadores Privados No Supervisores (Producción)"
-                  description="Evolución en millones de los puestos privados no supervisorios. Muestra la expansión de la capacidad laboral real."
-                  labels={graph1Data.labels}
-                  values={graph1Data.values}
-                  stats={graph1Data.stats}
-                />
-                <div className="bg-[#0D0D0D] border-l-4 border-l-[#60A5FA] border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-                  <div className="text-[#60A5FA] font-mono font-bold uppercase tracking-widest mb-2.5 text-xs flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#60A5FA] animate-pulse"></span>
-                    Lectura Analítica • Fuerza Laboral No Supervisora
-                  </div>
-                  <p className="text-slate-300">
-                    Los números oficiales indican un crecimiento robusto. Existen más de <span className="text-[#F8FAFC] font-bold">110 millones</span> de trabajadores activos en puestos no supervisorios, lo que demuestra la resiliencia y la asombrosa expansión de la capacidad laboral real en la economía nacional. En los últimos 18 meses bajo la presente administración, se ha mantenido un nivel alto y estable, asimilando de forma continua la inserción de nuevos trabajadores.
-                  </p>
-                </div>
-              </div>
-
-              {/* Card 2: Ingresos Semanales */}
-              <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
-                <MacroeconomicChart
-                  id="2"
-                  title="Ingresos Semanales Promedio Obtenidos"
-                  description="Sueldos generados semanalmente por el personal no supervisorio del sector privado. El incremento nominal acumulado es del 26.2%."
-                  labels={graph2Data.labels}
-                  values={graph2Data.values}
-                  stats={graph2Data.stats}
-                />
-                <div className="bg-[#0D0D0D] border-l-4 border-l-[#60A5FA] border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-                  <div className="text-[#60A5FA] font-mono font-bold uppercase tracking-widest mb-2.5 text-xs flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#60A5FA] animate-pulse"></span>
-                    Lectura Analítica • Ingresos Semanales
-                  </div>
-                  <p className="text-slate-300">
-                    Los salarios nominales continúan su avance firme. En los últimos 18 meses bajo la presente administración, se ha experimentado un incremento promedio de <span className="text-[#F8FAFC] font-bold">$57.54/semana</span> (un equivalente directo a <span className="text-emerald-400 font-bold">+$249.34 por mes</span> de incremento nominal), consolidando un alza del <span className="text-emerald-400 font-bold">5.6%</span> en esta etapa y acumulando un sólido avance del <span className="text-emerald-400 font-bold">26.2%</span> global.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* Section 3: Impacto de la Inflación y Salario Real */}
-        {activeTab === "03" && (
-          <section className="mb-14 animate-fade-in">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="text-xl font-mono text-[#60A5FA] font-bold">03.</span>
-              <h3 className="text-2xl font-semibold text-[#F8FAFC] tracking-tight font-sans">
-                El Impacto de la Inflación y el Salario Real
-              </h3>
-              <div className="flex-1 border-b border-dashed border-[#262626]"></div>
-            </div>
-
-            <div className="bg-[#0D0D0D] border-l-4 border-l-[#FB7185] border-y border-r border-[#262626] rounded-r-xl p-6 mb-8 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-              <div className="text-[#FB7185] font-mono font-bold uppercase tracking-widest mb-3 text-xs flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#FB7185] animate-pulse"></span>
-                Análisis de Rendimiento • Inflación y Salario Real
-              </div>
-              <p className="text-slate-300">
-                Para discernir objetivamente lo que le ha ocurrido en promedio al salario real de estos más de 110 millones de hogares trabajadores, debemos <strong>contrastar los ingresos con la inflación de bienes y servicios</strong> que experimentan en su vida diaria:
-              </p>
-            </div>
-
-            <div className="space-y-8 max-w-4xl mx-auto">
-              {/* Card 1: Inflación */}
-              <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
-                <MacroeconomicChart
-                  id="3"
-                  title="Inflación Interanual Mensual (CPI-U)"
-                  description="Nivel porcentual histórico de inflación interanual medida de manera mensual. El impacto acumulado anterior se situó en +21.4%."
-                  labels={graph3Data.labels}
-                  values={graph3Data.values}
-                  stats={graph3Data.stats}
-                />
-                <div className="bg-[#0D0D0D] border-l-4 border-l-[#FB7185] border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-                  <div className="text-[#FB7185] font-mono font-bold uppercase tracking-widest mb-2.5 text-xs flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#FB7185] animate-pulse"></span>
-                    Lectura Analítica • Erosión por Inflación
-                  </div>
-                  <p className="text-slate-300">
-                    La inflación acumulada durante el período Biden fue extraordinaria (<span className="text-[#FB7185] font-bold">+21.4%</span>), erosionando profundamente el poder adquisitivo del sueldo efectivo de los trabajadores. No obstante, en la etapa Trump II, se registra un nivel que acumula un <span className="text-[#FB7185] font-bold">+4.8%</span> hasta la fecha actual.
-                  </p>
-                </div>
-              </div>
-
-              {/* Card 2: Salario Real Cascada */}
-              <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
-                <RealWageWaterfall />
-                <div className="bg-[#0D0D0D] border-l-4 border-l-emerald-500 border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-                  <div className="text-emerald-400 font-mono font-bold uppercase tracking-widest mb-2.5 text-xs flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                    Lectura Analítica • Retorno del Poder Adquisitivo
-                  </div>
-                  <p className="text-slate-300">
-                    La gráfica de cascada ilustra la anatomía exacta de cómo el salario real de los trabajadores comenzó a recuperarse del duro desajuste de años anteriores. Al netear los incrementos nominales frente a la inflación acumulada, se observa que en la etapa actual el salario real o poder de compra efectivo ha comenzado a recuperarse de forma modesta pero persistente. Las tendencias reflejan que vamos mejorando en este grupo fundamental.
-                  </p>
-                </div>
-              </div>
-
-              {/* Card 3: Deducción de Impuestos (No Tax on Tips & No Tax on Overtime) */}
-              <TaxDeductionChart />
-            </div>
-          </section>
-        )}
-
-        {/* Section 4: Dinámica del Empleo y Estructura Laboral */}
-        {activeTab === "04" && (
-          <section className="mb-14 animate-fade-in">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="text-xl font-mono text-[#60A5FA] font-bold">04.</span>
-              <h3 className="text-2xl font-semibold text-[#F8FAFC] tracking-tight font-sans">
-                Dinámica del Empleo y Estructura Laboral
-              </h3>
-              <div className="flex-1 border-b border-dashed border-[#262626]"></div>
-            </div>
-
-            <div className="bg-[#0D0D0D] border-l-4 border-l-emerald-500 border-y border-r border-[#262626] rounded-r-xl p-6 mb-8 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-              <div className="text-emerald-400 font-mono font-bold uppercase tracking-widest mb-3 text-xs flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                Dinámica Sectorial • Empleo y Estructura Laboral
-              </div>
-              <p className="text-slate-300">
-                Aunque la situación de los empleados es favorable, hay personas que carecen de trabajo. Veamos la trayectoria estructural de la tasa de despidos y la creación de oportunidades del mercado oficial:
-              </p>
-            </div>
-
-            <div className="space-y-8">
-              {/* Card 1: Solicitudes de Desempleo */}
-              <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
-                <MacroeconomicChart
-                  id="4"
-                  title="Solicitudes Iniciales de Seguro de Desempleo (ICSA)"
-                  description="Nivel semanal promedio medido en miles de solicitudes iniciales. Muestra una senda descendente sostenida y estabilizada."
-                  labels={graph5Data.labels}
-                  values={graph5Data.values}
-                  stats={graph5Data.stats}
-                />
-                <div className="bg-[#0D0D0D] border-l-4 border-l-[#60A5FA] border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-                  <div className="text-[#60A5FA] font-mono font-bold uppercase tracking-widest mb-2.5 text-xs flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#60A5FA] animate-pulse"></span>
-                    Lectura Analítica • Despidos y Solicitudes de Desempleo
-                  </div>
-                  <p className="text-slate-300">
-                    Existe una sólida tendencia a la baja en reclamos de desocupación involuntaria, estabilizado en torno a un óptimo de <span className="text-[#F8FAFC] font-bold">~215K</span> a <span className="text-[#F8FAFC] font-bold">221.9K</span> solicitudes en promedio móvil. El egreso global de personas se asocia más a transiciones demográficas ordinarias (como jubilaciones) que a despidos corporativos masivos, indicando alta seguridad en el puesto laboral actual.
-                  </p>
-                </div>
-              </div>
-
-              {/* Card 2: Total de Personas Empleadas (CE16OV) */}
-              <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
-                <MacroeconomicChart
-                  id="employment_level_chart"
-                  title="Total de Personas Empleadas (CE16OV)"
-                  description="Volumen acumulado en millones de habitantes con empleo en EE. UU. (Serie CE16OV de la BLS)."
-                  labels={graph6Data.labels}
-                  values={graph6Data.values}
-                  stats={graph6Data.stats}
-                />
-                <div className="bg-[#0D0D0D] border-l-4 border-l-emerald-500 border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-                  <div className="text-emerald-400 font-mono font-bold uppercase tracking-widest mb-2.5 text-xs flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                    Lectura Analítica • Nivel de Empleo Total (CE16OV)
-                  </div>
-                  <p className="text-slate-300">
-                    El empleo total en los Estados Unidos (Serie FRED: CE16OV) refleja un mercado laboral extraordinariamente robusto. Durante el período Biden, ascendió de un mínimo inicial de <span className="text-[#F8FAFC] font-bold">149.8M</span> en enero de 2021 hasta culminar estable en <span className="text-[#F8FAFC] font-bold">163.83M</span>. En la presente administración, se ha estabilizado en niveles históricamente elevados con un promedio consolidado de <span className="text-[#F8FAFC] font-bold">163.35M</span>, registrando un pico máximo de <span className="text-[#F8FAFC] font-bold">163.99M</span>. Esta ocupación extendida ratifica que la capacidad de empleo total del país conserva una fortaleza estructural formidable de largo plazo.
-                  </p>
-                </div>
-              </div>
-
-              {/* Card 3: Empleados del Gobierno Federal */}
-              <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
-                <MacroeconomicChart
-                  id="5"
-                  title="Empleados del Gobierno Federal"
-                  description="Volumen acumulado en millones de burócratas federales. Refleja un recorte sustancial del gasto estatal."
-                  labels={graph7Data.labels}
-                  values={graph7Data.values}
-                  stats={graph7Data.stats}
-                />
-                <div className="bg-[#0D0D0D] border-l-4 border-l-[#FB7185] border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-                  <div className="text-[#FB7185] font-mono font-bold uppercase tracking-widest mb-2.5 text-xs flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#FB7185] animate-pulse"></span>
-                    Lectura Analítica • Reducción del Gasto Público
-                  </div>
-                  <p className="text-slate-300">
-                    La nómina del gobierno federal muestra una compresión drástica y sin precedentes, disminuyendo de 3.021 millones (pico) a <span className="text-[#FB7185] font-bold">2.679 millones</span> de posiciones públicas activas. Esta reestructuración incide de forma favorable y directo en la reducción del déficit estatal, liberando presiones sobre el mercado laboral privado y mitigando raíces de inflación fiscal.
-                  </p>
-                </div>
-              </div>
-
-              {/* Card 4: Trabajos Disponibles */}
-              <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
-                <MacroeconomicChart
-                  id="6"
-                  title="Trabajos Disponibles en EE. UU. (JOLTS)"
-                  description="Métrica total en millones de puestos laborales libres y no cubiertos en todos los sectores productivos no agrícolas."
-                  labels={graph8Data.labels}
-                  values={graph8Data.values}
-                  stats={graph8Data.stats}
-                />
-                <div className="bg-[#0D0D0D] border-l-4 border-l-emerald-500 border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-                  <div className="text-emerald-400 font-mono font-bold uppercase tracking-widest mb-2.5 text-xs flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                    Lectura Analítica • Oferta y Vacantes Disponibles
-                  </div>
-                  <p className="text-slate-300">
-                    La demanda de fuerza de trabajo se mantiene sumamente saludable y robusta, consolidando más de <span className="text-emerald-400 font-bold">7.6 millones</span> de puestos de trabajo vacantes y listos para contratar. Esta sobreabundancia de vacantes pendientes actúa como un colchón o amortiguador macroeconómico contra la desocupación involuntaria, garantizando un margen de reempleo extraordinariamente ágil.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* Section 5: Consumo y Comportamiento Financiero */}
-        {activeTab === "05" && (
-          <section className="mb-14 animate-fade-in">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="text-xl font-mono text-[#60A5FA] font-bold">05.</span>
-              <h3 className="text-2xl font-semibold text-[#F8FAFC] tracking-tight font-sans">
-                Consumo y Comportamiento Financiero de los Hogares
-              </h3>
-              <div className="flex-1 border-b border-dashed border-[#262626]"></div>
-            </div>
-
-            <div className="bg-[#0D0D0D] border-l-4 border-l-[#60A5FA] border-y border-r border-[#262626] rounded-r-xl p-6 mb-8 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-              <div className="text-[#60A5FA] font-mono font-bold uppercase tracking-widest mb-3 text-xs flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#60A5FA] animate-pulse"></span>
-                Fundamento de Estudio • Consumo y Finanzas
-              </div>
-              <p className="text-slate-300">
-                Cuando la coyuntura financiera aprieta de manera sofocante, el reacomodo presupuestario se nota primero en recortes en áreas de ocio discrecional: el gasto en restaurantes y viajes de vacaciones suelen ser los primeros objetivos a prescindir. Contrastemos el estado de estos rubros cruciales:
-              </p>
-            </div>
-
-            <div className="space-y-8">
-              {/* Card 1: Gasto en Restaurantes y Viajes */}
-              <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
-                <MacroeconomicChart
-                  id="7"
-                  title="PCE: Servicios de Alimentación y Alojamiento"
-                  description="Gasto acumulado trimestral medido en miles de millones. Récords en turismo y gastronomía sugieren liquidez latente."
-                  labels={graph9Data.labels}
-                  values={graph9Data.values}
-                  stats={graph9Data.stats}
-                  isQuarterly={true}
-                />
-                <div className="bg-[#0D0D0D] border-l-4 border-l-emerald-500 border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-                  <div className="text-emerald-400 font-mono font-bold uppercase tracking-widest mb-2.5 text-xs flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                    Lectura Analítica • Consumo en Ocio Discrecional
-                  </div>
-                  <p className="text-slate-300">
-                    La resiliencia y el deseo de consumo del hogar norteamericano continúan escalando firmemente. En lugar de experimentar recortes, la actividad de ocio en gastronomía y turismo ha registrado un hito histórico de <span className="text-emerald-400 font-bold">$1.52 billones (USD)</span> en tasa anual. Esto denota solidez presupuestaria y una holgura latente que aleja la hipótesis de un consumidor estrangulado financieramente.
-                  </p>
-                </div>
-              </div>
-
-              {/* Card 2: Deuda y Morosidad Tarjetas */}
-              <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
-                <MacroeconomicChart
-                  id="8"
-                  title="Volumen Estimado Moroso en Tarjetas Personales"
-                  description="Monto en mora estimado en miles de millones de dólares. Obtenido cruzando el saldo total (CCLACBW027SBOG) con la tasa de morosidad (DRCCLACBS)."
-                  labels={graph10Data.labels}
-                  values={graph10Data.values}
-                  stats={graph10Data.stats}
-                  isQuarterly={true}
-                />
-                <div className="bg-[#0D0D0D] border-l-4 border-l-[#60A5FA] border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-                  <div className="text-[#60A5FA] font-mono font-bold uppercase tracking-widest mb-2.5 text-xs flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#60A5FA] animate-pulse"></span>
-                    Lectura Analítica • Sostenibilidad de Deuda Personal
-                  </div>
-                  <p className="text-slate-300">
-                    El volumen delincuencial estimado de tarjetas de crédito comerciales (fórmula personalizada cruzando saldo y tasa de impago) acumuló un incremento constante desde el mínimo de <span className="text-[#60A5FA] font-bold">$11.65 mil millones</span> en el tercer trimestre de 2021 hasta alcanzar un máximo de <span className="text-[#60A5FA] font-bold">$34.05 mil millones</span> a mediados de 2024. No obstante, bajo la gestión Trump II, se ha consolidado un cambio de tendencia con una reducción hacia los <span className="text-[#60A5FA] font-bold">$31.13 mil millones</span> en el primer trimestre de 2026. Esta trayectoria decreciente ratifica un reordenamiento o saneamiento proactivo de los pasivos por parte de los hogares.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-        )}
-
-        {/* Section 6: Balance y Conclusión */}
-        {activeTab === "06" && (
-          <section className="mb-14 animate-fade-in">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="text-xl font-mono text-[#60A5FA] font-bold">06.</span>
-              <h3 className="text-2xl font-semibold text-[#F8FAFC] tracking-tight font-sans">
-                Resumen de Hallazgos y Tabla de Balance
-              </h3>
-              <div className="flex-1 border-b border-dashed border-[#262626]"></div>
-            </div>
-
-            {/* Interactive Checklist Balance Dashboard */}
-            <div className="bg-[#141414] border border-[#262626] rounded-xl p-6 shadow-2xl relative overflow-hidden">
-              <div className="border-b border-[#262626] pb-6 mb-6">
-                <h4 className="text-xl font-bold text-[#F8FAFC] font-sans">
-                  Balance General de Indicadores
-                </h4>
-              </div>
-
-              {/* List of interactive lines */}
-              <div className="space-y-4">
-                {indicators.map((ind) => {
-                  const isGreen = ind.status === "Positivo" || ind.status === "Excelente" || ind.status === "Favorable";
-                  return (
-                    <div
-                      key={ind.id}
-                      onClick={() => toggleIndicator(ind.id)}
-                      className={`flex flex-col md:flex-row md:items-stretch justify-between p-5 md:p-6 rounded-xl border transition-all cursor-pointer ${
-                        ind.checked
-                          ? isGreen
-                            ? "bg-[#0E0E0E] border-emerald-500/30 hover:border-emerald-500/50 shadow-inner"
-                            : "bg-[#0E0E0E] border-amber-500/30 hover:border-amber-500/50 shadow-inner"
-                          : "bg-[#0A0A0A]/50 border-[#262626] hover:border-[#404040] opacity-50"
-                      }`}
-                    >
-                      <div className="w-full md:w-1/2 flex items-start gap-4 pr-0 md:pr-6">
-                        <div className="mt-1 shrink-0">
-                          <div className={`w-6 h-6 rounded-md flex items-center justify-center border transition-all ${
-                            ind.checked 
-                              ? isGreen
-                                ? "bg-emerald-500 border-emerald-500 text-black shadow-lg shadow-emerald-500/20" 
-                                : "bg-amber-500 border-amber-500 text-black shadow-lg shadow-amber-500/20"
-                              : "border-slate-600 bg-transparent text-transparent"
-                          }`}>
-                            <CheckCircle2 className="w-4 h-4 stroke-[2.5]" />
-                          </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6 pt-5 border-t border-[#262626]">
+                      <div className="bg-[#0A0A0A] border border-[#262626] rounded-lg p-3.5">
+                        <div className="flex items-center gap-2 text-[#60A5FA] font-bold text-xs mb-1">
+                          <DollarSign className="w-4 h-4 text-[#60A5FA]" />
+                          <span className="font-sans">Los Ingresos Disponibles</span>
                         </div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-3 flex-wrap mb-2">
-                            <span className={`text-base font-bold tracking-tight transition-colors font-sans ${
+                        <p className="text-xs text-[#94A3B8] leading-relaxed font-sans">
+                          El dinero neto que realmente te queda para gastar o ahorrar después de pagar impuestos y obligaciones fijas.
+                        </p>
+                      </div>
+                      <div className="bg-[#0A0A0A] border border-[#262626] rounded-lg p-3.5">
+                        <div className="flex items-center gap-2 text-[#FB7185] font-bold text-xs mb-1">
+                          <Percent className="w-4 h-4 text-[#FB7185]" />
+                          <span className="font-sans">Nivel de Precios (Costo de Vida)</span>
+                        </div>
+                        <p className="text-xs text-[#94A3B8] leading-relaxed font-sans">
+                          El valor consolidado de las cosas elementales que necesitas o deseas comprar (vivienda, alimentación, energía, transporte).
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Prompt Box */}
+                  <div className="bg-[#141414] border border-[#262626] rounded-xl p-6 flex flex-col justify-between text-center relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-[150px] h-[150px] bg-red-400/5 blur-[80px] pointer-events-none"></div>
+                    <div>
+                      <span className="text-[10px] font-mono uppercase text-[#60A5FA] tracking-widest font-semibold block mb-4">Interrogante Crítica</span>
+                      <h4 className="text-xl font-medium text-[#F8FAFC] italic leading-relaxed font-serif pt-2">
+                        &ldquo;¿Estamos realmente, <br />como país, en una crisis de asequibilidad?&rdquo;
+                      </h4>
+                    </div>
+                    <div className="mt-8">
+                      <p className="text-xs text-[#94A3B8] leading-relaxed mb-4 font-sans">
+                        Para contestar esta cuestión objetivamente, desplegamos las métricas fundamentales del mercado laboral y de consumo en las siguientes secciones.
+                      </p>
+                      <div className="w-10 h-1 bg-gradient-to-r from-[#60A5FA] to-[#FB7185] rounded-full mx-auto"></div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            )}
+
+            {/* Section 2: Mercado Laboral y Salarios */}
+            {activeTab === "02" && (
+              <section className="mb-14 animate-fade-in">
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="text-xl font-mono text-[#60A5FA] font-bold">02.</span>
+                  <h3 className="text-2xl font-semibold text-[#F8FAFC] tracking-tight font-sans">
+                    Análisis del Mercado Laboral y Salarios
+                  </h3>
+                  <div className="flex-1 border-b border-dashed border-[#262626]"></div>
+                </div>
+
+                <div className="bg-[#0D0D0D] border-l-4 border-l-[#60A5FA] border-y border-r border-[#262626] rounded-r-xl p-6 mb-8 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
+                  <div className="text-[#60A5FA] font-mono font-bold uppercase tracking-widest mb-3 text-xs flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#60A5FA] animate-pulse"></span>
+                    Perspectiva de Estudio • Mercado y Salarios
+                  </div>
+                  <p className="text-slate-300">
+                    Comenzamos estudiando los <strong>ingresos disponibles</strong>. Los ingresos de los trabajadores del sector privado que no tienen una posición de supervisión (Personal de producción o no jerárquico) son un excelente punto de partida. Representan un volumen masivo y estructural dentro de la población económicamente activa de la nación.
+                  </p>
+                  <div className="mt-4 pt-3 border-t border-[#262626] flex items-center gap-2 text-xs font-mono text-slate-500">
+                    <span>Segmentación Temporal:</span>
+                    <span className="text-[#60A5FA] font-semibold">Biden</span> (Ene 2021 - Ene 2025)
+                    <span className="text-slate-600">|</span>
+                    <span className="text-[#FB7185] font-semibold">Trump II</span> (Ene 2025 - Mayo 2026)
+                  </div>
+                </div>
+
+                <div className="space-y-8">
+                  {/* Card 1: Trabajadores Privados */}
+                  <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
+                    <MacroeconomicChart
+                      id="1"
+                      title="Trabajadores Privados No Supervisores (Producción)"
+                      description="Evolución en millones de los puestos privados no supervisorios. Muestra la expansión de la capacidad laboral real."
+                      labels={graph1Data.labels}
+                      values={graph1Data.values}
+                      stats={graph1Data.stats}
+                    />
+                    <div className="bg-[#0D0D0D] border-l-4 border-l-[#60A5FA] border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
+                      <div className="text-[#60A5FA] font-mono font-bold uppercase tracking-widest mb-2.5 text-xs flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#60A5FA] animate-pulse"></span>
+                        Lectura Analítica • Fuerza Laboral No Supervisora
+                      </div>
+                      <p className="text-slate-300">
+                        Los números oficiales indican un crecimiento robusto. Existen más de <span className="text-[#F8FAFC] font-bold">110 millones</span> de trabajadores activos en puestos no supervisorios, lo que demuestra la resiliencia y la asombrosa expansión de la capacidad laboral real en la economía nacional. En los últimos 18 meses bajo la presente administración, se ha mantenido un nivel alto y estable, asimilando de forma continua la inserción de nuevos trabajadores.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Card 2: Ingresos Semanales */}
+                  <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
+                    <MacroeconomicChart
+                      id="2"
+                      title="Ingresos Semanales Promedio Obtenidos"
+                      description="Sueldos generados semanalmente por el personal no supervisorio del sector privado. El incremento nominal acumulado es del 26.2%."
+                      labels={graph2Data.labels}
+                      values={graph2Data.values}
+                      stats={graph2Data.stats}
+                    />
+                    <div className="bg-[#0D0D0D] border-l-4 border-l-[#60A5FA] border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
+                      <div className="text-[#60A5FA] font-mono font-bold uppercase tracking-widest mb-2.5 text-xs flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#60A5FA] animate-pulse"></span>
+                        Lectura Analítica • Ingresos Semanales
+                      </div>
+                      <p className="text-slate-300">
+                        Los salarios nominales continúan su avance firme. En los últimos 18 meses bajo la presente administración, se ha experimentado un incremento promedio de <span className="text-[#F8FAFC] font-bold">$57.54/semana</span> (un equivalente directo a <span className="text-emerald-400 font-bold">+$249.34 por mes</span> de incremento nominal), consolidando un alza del <span className="text-emerald-400 font-bold">5.6%</span> en esta etapa y acumulando un sólido avance del <span className="text-emerald-400 font-bold">26.2%</span> global.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            )}
+
+            {/* Section 3: Impacto de la Inflación y Salario Real */}
+            {activeTab === "03" && (
+              <section className="mb-14 animate-fade-in">
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="text-xl font-mono text-[#60A5FA] font-bold">03.</span>
+                  <h3 className="text-2xl font-semibold text-[#F8FAFC] tracking-tight font-sans">
+                    El Impacto de la Inflación y el Salario Real
+                  </h3>
+                  <div className="flex-1 border-b border-dashed border-[#262626]"></div>
+                </div>
+
+                <div className="bg-[#0D0D0D] border-l-4 border-l-[#FB7185] border-y border-r border-[#262626] rounded-r-xl p-6 mb-8 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
+                  <div className="text-[#FB7185] font-mono font-bold uppercase tracking-widest mb-3 text-xs flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#FB7185] animate-pulse"></span>
+                    Análisis de Rendimiento • Inflación y Salario Real
+                  </div>
+                  <p className="text-slate-300">
+                    Para discernir objetivamente lo que le ha ocurrido en promedio al salario real de estos más de 110 millones de hogares trabajadores, debemos <strong>contrastar los ingresos con la inflación de bienes y servicios</strong> que experimentan en su vida diaria:
+                  </p>
+                </div>
+
+                <div className="space-y-8 max-w-4xl mx-auto">
+                  {/* Card 1: Inflación */}
+                  <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
+                    <MacroeconomicChart
+                      id="3"
+                      title="Inflación Interanual Mensual (CPI-U)"
+                      description="Nivel porcentual histórico de inflación interanual medida de manera mensual. El impacto acumulado anterior se situó en +21.4%."
+                      labels={graph3Data.labels}
+                      values={graph3Data.values}
+                      stats={graph3Data.stats}
+                    />
+                    <div className="bg-[#0D0D0D] border-l-4 border-l-[#FB7185] border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
+                      <div className="text-[#FB7185] font-mono font-bold uppercase tracking-widest mb-2.5 text-xs flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#FB7185] animate-pulse"></span>
+                        Lectura Analítica • Erosión por Inflación
+                      </div>
+                      <p className="text-slate-300">
+                        La inflación acumulada durante el período Biden fue extraordinaria (<span className="text-[#FB7185] font-bold">+21.4%</span>), erosionando profundamente el poder adquisitivo del sueldo efectivo de los trabajadores. No obstante, en la etapa Trump II, se registra un nivel que acumula un <span className="text-[#FB7185] font-bold">+4.8%</span> hasta la fecha actual.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Card 2: Salario Real Cascada */}
+                  <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
+                    <RealWageWaterfall />
+                    <div className="bg-[#0D0D0D] border-l-4 border-l-emerald-500 border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
+                      <div className="text-emerald-400 font-mono font-bold uppercase tracking-widest mb-2.5 text-xs flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                        Lectura Analítica • Retorno del Poder Adquisitivo
+                      </div>
+                      <p className="text-slate-300">
+                        La gráfica de cascada ilustra la anatomía exacta de cómo el salario real de los trabajadores comenzó a recuperarse del duro desajuste de años anteriores. Al netear los incrementos nominales frente a la inflación acumulada, se observa que en la etapa actual el salario real o poder de compra efectivo ha comenzado a recuperarse de forma modesta pero persistente. Las tendencias reflejan que vamos mejorando en este grupo fundamental.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Card 3: Deducción de Impuestos (No Tax on Tips & No Tax on Overtime) */}
+                  <TaxDeductionChart />
+                </div>
+              </section>
+            )}
+
+            {/* Section 4: Dinámica del Empleo y Estructura Laboral */}
+            {activeTab === "04" && (
+              <section className="mb-14 animate-fade-in">
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="text-xl font-mono text-[#60A5FA] font-bold">04.</span>
+                  <h3 className="text-2xl font-semibold text-[#F8FAFC] tracking-tight font-sans">
+                    Dinámica del Empleo y Estructura Laboral
+                  </h3>
+                  <div className="flex-1 border-b border-dashed border-[#262626]"></div>
+                </div>
+
+                <div className="bg-[#0D0D0D] border-l-4 border-l-emerald-500 border-y border-r border-[#262626] rounded-r-xl p-6 mb-8 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
+                  <div className="text-emerald-400 font-mono font-bold uppercase tracking-widest mb-3 text-xs flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    Dinámica Sectorial • Empleo y Estructura Laboral
+                  </div>
+                  <p className="text-slate-300">
+                    Aunque la situación de los empleados es favorable, hay personas que carecen de trabajo. Veamos la trayectoria estructural de la tasa de despidos y la creación de oportunidades del mercado oficial:
+                  </p>
+                </div>
+
+                <div className="space-y-8">
+                  {/* Card 1: Solicitudes de Desempleo */}
+                  <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
+                    <MacroeconomicChart
+                      id="4"
+                      title="Solicitudes Iniciales de Seguro de Desempleo (ICSA)"
+                      description="Nivel semanal promedio medido en miles de solicitudes iniciales. Muestra una senda descendente sostenida y estabilizada."
+                      labels={graph5Data.labels}
+                      values={graph5Data.values}
+                      stats={graph5Data.stats}
+                    />
+                    <div className="bg-[#0D0D0D] border-l-4 border-l-[#60A5FA] border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
+                      <div className="text-[#60A5FA] font-mono font-bold uppercase tracking-widest mb-2.5 text-xs flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#60A5FA] animate-pulse"></span>
+                        Lectura Analítica • Despidos y Solicitudes de Desempleo
+                      </div>
+                      <p className="text-slate-300">
+                        Existe una sólida tendencia a la baja en reclamos de desocupación involuntaria, estabilizado en torno a un óptimo de <span className="text-[#F8FAFC] font-bold">~215K</span> a <span className="text-[#F8FAFC] font-bold">221.9K</span> solicitudes en promedio móvil. El egreso global de personas se asocia más a transiciones demográficas ordinarias (como jubilaciones) que a despidos corporativos masivos, indicando alta seguridad en el puesto laboral actual.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Card 2: Total de Personas Empleadas (CE16OV) */}
+                  <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
+                    <MacroeconomicChart
+                      id="employment_level_chart"
+                      title="Total de Personas Empleadas (CE16OV)"
+                      description="Volumen acumulado en millones de habitantes con empleo en EE. UU. (Serie CE16OV de la BLS)."
+                      labels={graph6Data.labels}
+                      values={graph6Data.values}
+                      stats={graph6Data.stats}
+                    />
+                    <div className="bg-[#0D0D0D] border-l-4 border-l-emerald-500 border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
+                      <div className="text-emerald-400 font-mono font-bold uppercase tracking-widest mb-2.5 text-xs flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                        Lectura Analítica • Nivel de Empleo Total (CE16OV)
+                      </div>
+                      <p className="text-slate-300">
+                        El empleo total en los Estados Unidos (Serie FRED: CE16OV) refleja un mercado laboral extraordinariamente robusto. Durante el período Biden, ascendió de un mínimo inicial de <span className="text-[#F8FAFC] font-bold">149.8M</span> en enero de 2021 hasta culminar estable en <span className="text-[#F8FAFC] font-bold">163.83M</span>. En la presente administración, se ha estabilizado en niveles históricamente elevados con un promedio consolidado de <span className="text-[#F8FAFC] font-bold">163.35M</span>, registrando un pico máximo de <span className="text-[#F8FAFC] font-bold">163.99M</span>. Esta ocupación extendida ratifica que la capacidad de empleo total del país conserva una fortaleza estructural formidable de largo plazo.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Card 3: Empleados del Gobierno Federal */}
+                  <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
+                    <MacroeconomicChart
+                      id="5"
+                      title="Empleados del Gobierno Federal"
+                      description="Volumen acumulado en millones de burócratas federales. Refleja un recorte sustancial del gasto estatal."
+                      labels={graph7Data.labels}
+                      values={graph7Data.values}
+                      stats={graph7Data.stats}
+                    />
+                    <div className="bg-[#0D0D0D] border-l-4 border-l-[#FB7185] border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
+                      <div className="text-[#FB7185] font-mono font-bold uppercase tracking-widest mb-2.5 text-xs flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#FB7185] animate-pulse"></span>
+                        Lectura Analítica • Reducción del Gasto Público
+                      </div>
+                      <p className="text-slate-300">
+                        La nómina del gobierno federal muestra una compresión drástica y sin precedentes, disminuyendo de 3.021 millones (pico) a <span className="text-[#FB7185] font-bold">2.679 millones</span> de posiciones públicas activas. Esta reestructuración incide de forma favorable y directo en la reducción del déficit estatal, liberando presiones sobre el mercado laboral privado y mitigando raíces de inflación fiscal.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Card 4: Trabajos Disponibles */}
+                  <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
+                    <MacroeconomicChart
+                      id="6"
+                      title="Trabajos Disponibles en EE. UU. (JOLTS)"
+                      description="Métrica total en millones de puestos laborales libres y no cubiertos en todos los sectores productivos no agrícolas."
+                      labels={graph8Data.labels}
+                      values={graph8Data.values}
+                      stats={graph8Data.stats}
+                    />
+                    <div className="bg-[#0D0D0D] border-l-4 border-l-emerald-500 border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
+                      <div className="text-emerald-400 font-mono font-bold uppercase tracking-widest mb-2.5 text-xs flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                        Lectura Analítica • Oferta y Vacantes Disponibles
+                      </div>
+                      <p className="text-slate-300">
+                        La demanda de fuerza de trabajo se mantiene sumamente saludable y robusta, consolidando más de <span className="text-emerald-400 font-bold">7.6 millones</span> de puestos de trabajo vacantes y listos para contratar. Esta sobreabundancia de vacantes pendientes actúa como un colchón o amortiguador macroeconómico contra la desocupación involuntaria, garantizando un margen de reempleo extraordinariamente ágil.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            )}
+
+            {/* Section 5: Consumo y Comportamiento Financiero */}
+            {activeTab === "05" && (
+              <section className="mb-14 animate-fade-in">
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="text-xl font-mono text-[#60A5FA] font-bold">05.</span>
+                  <h3 className="text-2xl font-semibold text-[#F8FAFC] tracking-tight font-sans">
+                    Consumo y Comportamiento Financiero de los Hogares
+                  </h3>
+                  <div className="flex-1 border-b border-dashed border-[#262626]"></div>
+                </div>
+
+                <div className="bg-[#0D0D0D] border-l-4 border-l-[#60A5FA] border-y border-r border-[#262626] rounded-r-xl p-6 mb-8 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
+                  <div className="text-[#60A5FA] font-mono font-bold uppercase tracking-widest mb-3 text-xs flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#60A5FA] animate-pulse"></span>
+                    Fundamento de Estudio • Consumo y Finanzas
+                  </div>
+                  <p className="text-slate-300">
+                    Cuando la coyuntura financiera aprieta de manera sofocante, el reacomodo presupuestario se nota primero en recortes en áreas de ocio discrecional: el gasto en restaurantes y viajes de vacaciones suelen ser los primeros objetivos a prescindir. Contrastemos el estado de estos rubros cruciales:
+                  </p>
+                </div>
+
+                <div className="space-y-8">
+                  {/* Card 1: Gasto en Restaurantes y Viajes */}
+                  <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
+                    <MacroeconomicChart
+                      id="7"
+                      title="PCE: Servicios de Alimentación y Alojamiento"
+                      description="Gasto acumulado trimestral medido en miles de millones. Récords en turismo y gastronomía sugieren liquidez latente."
+                      labels={graph9Data.labels}
+                      values={graph9Data.values}
+                      stats={graph9Data.stats}
+                      isQuarterly={true}
+                    />
+                    <div className="bg-[#0D0D0D] border-l-4 border-l-emerald-500 border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
+                      <div className="text-emerald-400 font-mono font-bold uppercase tracking-widest mb-2.5 text-xs flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                        Lectura Analítica • Consumo en Ocio Discrecional
+                      </div>
+                      <p className="text-slate-300">
+                        La resiliencia y el deseo de consumo del hogar norteamericano continúan escalando firmemente. En lugar de experimentar recortes, la actividad de ocio en gastronomía y turismo ha registrado un hito histórico de <span className="text-emerald-400 font-bold">$1.52 billones (USD)</span> en tasa anual. Esto denota solidez presupuestaria y una holgura latente que aleja la hipótesis de un consumidor estrangulado financieramente.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Card 2: Deuda y Morosidad Tarjetas */}
+                  <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
+                    <MacroeconomicChart
+                      id="8"
+                      title="Volumen Estimado Moroso en Tarjetas Personales"
+                      description="Monto en mora estimado en miles de millones de dólares. Obtenido cruzando el saldo total (CCLACBW027SBOG) con la tasa de morosidad (DRCCLACBS)."
+                      labels={graph10Data.labels}
+                      values={graph10Data.values}
+                      stats={graph10Data.stats}
+                      isQuarterly={true}
+                    />
+                    <div className="bg-[#0D0D0D] border-l-4 border-l-[#60A5FA] border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
+                      <div className="text-[#60A5FA] font-mono font-bold uppercase tracking-widest mb-2.5 text-xs flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#60A5FA] animate-pulse"></span>
+                        Lectura Analítica • Sostenibilidad de Deuda Personal
+                      </div>
+                      <p className="text-slate-300">
+                        El volumen delincuencial estimado de tarjetas de crédito comerciales (fórmula personalizada cruzando saldo y tasa de impago) acumuló un incremento constante desde el mínimo de <span className="text-[#60A5FA] font-bold">$11.65 mil millones</span> en el tercer trimestre de 2021 hasta alcanzar un máximo de <span className="text-[#60A5FA] font-bold">$34.05 mil millones</span> a mediados de 2024. No obstante, bajo la gestión Trump II, se ha consolidado un cambio de tendencia con una reducción hacia los <span className="text-[#60A5FA] font-bold">$31.13 mil millones</span> en el primer trimestre de 2026. Esta trayectoria decreciente ratifica un reordenamiento o saneamiento proactivo de los pasivos por parte de los hogares.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            )}
+
+            {/* Section 6: Balance y Conclusión */}
+            {activeTab === "06" && (
+              <section className="mb-14 animate-fade-in">
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="text-xl font-mono text-[#60A5FA] font-bold">06.</span>
+                  <h3 className="text-2xl font-semibold text-[#F8FAFC] tracking-tight font-sans">
+                    Resumen de Hallazgos y Tabla de Balance
+                  </h3>
+                  <div className="flex-1 border-b border-dashed border-[#262626]"></div>
+                </div>
+
+                {/* Interactive Checklist Balance Dashboard */}
+                <div className="bg-[#141414] border border-[#262626] rounded-xl p-6 shadow-2xl relative overflow-hidden">
+                  <div className="border-b border-[#262626] pb-6 mb-6">
+                    <h4 className="text-xl font-bold text-[#F8FAFC] font-sans">
+                      Balance General de Indicadores
+                    </h4>
+                  </div>
+
+                  {/* List of interactive lines */}
+                  <div className="space-y-4">
+                    {indicators.map((ind) => {
+                      const isGreen = ind.status === "Positivo" || ind.status === "Excelente" || ind.status === "Favorable";
+                      return (
+                        <div
+                          key={ind.id}
+                          onClick={() => toggleIndicator(ind.id)}
+                          className={`flex flex-col md:flex-row md:items-stretch justify-between p-5 md:p-6 rounded-xl border transition-all cursor-pointer ${
+                            ind.checked
+                              ? isGreen
+                                ? "bg-[#0E0E0E] border-emerald-500/30 hover:border-emerald-500/50 shadow-inner"
+                                : "bg-[#0E0E0E] border-amber-500/30 hover:border-amber-500/50 shadow-inner"
+                              : "bg-[#0A0A0A]/50 border-[#262626] hover:border-[#404040] opacity-50"
+                          }`}
+                        >
+                          <div className="w-full md:w-1/2 flex items-start gap-4 pr-0 md:pr-6">
+                            <div className="mt-1 shrink-0">
+                              <div className={`w-6 h-6 rounded-md flex items-center justify-center border transition-all ${
+                                ind.checked 
+                                  ? isGreen
+                                    ? "bg-emerald-500 border-emerald-500 text-black shadow-lg shadow-emerald-500/20" 
+                                    : "bg-amber-500 border-amber-500 text-black shadow-lg shadow-amber-500/20"
+                                  : "border-slate-600 bg-transparent text-transparent"
+                              }`}>
+                                <CheckCircle2 className="w-4 h-4 stroke-[2.5]" />
+                              </div>
+                            </div>
+                            <div className="flex-1">
+                              <div className="flex items-center gap-3 flex-wrap mb-2">
+                                <span className={`text-base font-bold tracking-tight transition-colors font-sans ${
+                                  ind.checked 
+                                    ? isGreen 
+                                      ? "text-emerald-400" 
+                                      : "text-amber-400" 
+                                    : "text-slate-400"
+                                }`}>
+                                  {ind.title}
+                                </span>
+                                <span className={`text-[10px] sm:text-xs font-mono font-bold tracking-wider px-2.5 py-0.5 rounded-full border ${
+                                  ind.checked 
+                                    ? isGreen 
+                                      ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" 
+                                      : "bg-amber-500/10 text-amber-400 border-amber-500/20"
+                                    : "bg-slate-900/80 text-slate-500 border-slate-800"
+                                }`}>
+                                  {ind.status}
+                                </span>
+                              </div>
+                              <p className={`text-sm md:text-base text-slate-300 leading-relaxed font-sans transition-colors ${
+                                ind.checked ? "" : "text-slate-500"
+                              }`}>
+                                {ind.desc}
+                              </p>
+                            </div>
+                          </div>
+
+                          {/* Secondary Metrics display */}
+                          <div className="w-full md:w-1/2 mt-4 md:mt-0 pl-10 md:pl-8 border-t md:border-t-0 md:border-l border-[#262626] pt-4 md:pt-0 flex flex-col justify-start">
+                            <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold block mb-2 leading-none font-mono">
+                              Métrica de Respaldo
+                            </span>
+                            <span className={`text-sm md:text-base font-medium tracking-normal block leading-relaxed ${
                               ind.checked 
                                 ? isGreen 
                                   ? "text-emerald-400" 
                                   : "text-amber-400" 
-                                : "text-slate-400"
+                                : "text-slate-500"
                             }`}>
-                              {ind.title}
-                            </span>
-                            <span className={`text-[10px] sm:text-xs font-mono font-bold tracking-wider px-2.5 py-0.5 rounded-full border ${
-                              ind.checked 
-                                ? isGreen 
-                                  ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" 
-                                  : "bg-amber-500/10 text-amber-400 border-amber-500/20"
-                                : "bg-slate-900/80 text-slate-500 border-slate-800"
-                            }`}>
-                              {ind.status}
+                              {ind.metric}
                             </span>
                           </div>
-                          <p className={`text-sm md:text-base text-slate-300 leading-relaxed font-sans transition-colors ${
-                            ind.checked ? "" : "text-slate-500"
-                          }`}>
-                            {ind.desc}
-                          </p>
                         </div>
-                      </div>
+                      );
+                    })}
+                  </div>
 
-                      {/* Secondary Metrics display */}
-                      <div className="w-full md:w-1/2 mt-4 md:mt-0 pl-10 md:pl-8 border-t md:border-t-0 md:border-l border-[#262626] pt-4 md:pt-0 flex flex-col justify-start">
-                        <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold block mb-2 leading-none font-mono">
-                          Métrica de Respaldo
-                        </span>
-                        <span className={`text-sm md:text-base font-medium tracking-normal block leading-relaxed ${
-                          ind.checked 
-                            ? isGreen 
-                              ? "text-emerald-400" 
-                              : "text-amber-400" 
-                            : "text-slate-500"
-                        }`}>
-                          {ind.metric}
-                        </span>
-                      </div>
+                  {/* Ending editorial note */}
+                  <div className="mt-8 pt-6 border-t border-[#262626] text-center max-w-2xl mx-auto">
+                    <span className="font-serif italic text-base text-slate-300">
+                      &ldquo;Esto es una visión parcial de cómo vamos y luce positiva. ¿Tenemos una crisis de affordability? En el próximo artículo, el 28 de Junio, seguiremos agregando dimensiones.&rdquo;
+                    </span>
+                    <div className="mt-4 flex items-center justify-center gap-3">
+                      <div className="w-8 h-px bg-[#262626]"></div>
+                      <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">Hilmer Castillo Bescanza</p>
+                      <div className="w-8 h-px bg-[#262626]"></div>
                     </div>
-                  );
-                })}
-              </div>
-
-              {/* Ending editorial note */}
-              <div className="mt-8 pt-6 border-t border-[#262626] text-center max-w-2xl mx-auto">
-                <span className="font-serif italic text-base text-slate-300">
-                  &ldquo;Esto es una visión parcial de cómo vamos y luce positiva. ¿Tenemos una crisis de affordability? En el próximo artículo, el 28 de Junio, seguiremos agregando dimensiones.&rdquo;
-                </span>
-                <div className="mt-4 flex items-center justify-center gap-3">
-                  <div className="w-8 h-px bg-[#262626]"></div>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">Hilmer Castillo Bescanza</p>
-                  <div className="w-8 h-px bg-[#262626]"></div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </section>
+              </section>
+            )}
+          </>
+        ) : (
+          <MacroPart2 activeTab={activeTab} />
         )}
 
         {/* --------------------- SEQUENTIAL READING NAVIGATION FOR TABS --------------------- */}
@@ -710,7 +820,7 @@ export default function App() {
             <div />
           )}
 
-          {activeTab !== "06" ? (
+          {((activePart === "P1" && activeTab !== "06") || (activePart === "P2" && activeTab !== "07")) ? (
             <button
               onClick={() => {
                 const nextId = String(Number(activeTab) + 1).padStart(2, "0");
@@ -721,7 +831,11 @@ export default function App() {
                   scrollTarget.scrollIntoView({ behavior: "smooth" });
                 }
               }}
-              className="flex items-center gap-2 text-xs font-mono font-semibold text-[#60A5FA] hover:text-[#F8FAFC] py-2 px-5 rounded-xl bg-[#60A5FA]/10 border border-[#60A5FA]/30 hover:border-[#60A5FA] transition-all cursor-pointer ml-auto"
+              className={`flex items-center gap-2 text-xs font-mono font-semibold py-2 px-5 rounded-xl border transition-all cursor-pointer ml-auto ${
+                activePart === "P1"
+                  ? "text-[#60A5FA] bg-[#60A5FA]/10 border-[#60A5FA]/30 hover:border-[#60A5FA]"
+                  : "text-[#FB7185] bg-[#FB7185]/10 border-[#FB7185]/30 hover:border-[#FB7185]"
+              }`}
             >
               Avanzar a la Sección {String(Number(activeTab) + 1).padStart(2, "0")} &rarr;
             </button>

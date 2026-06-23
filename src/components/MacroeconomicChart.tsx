@@ -9,6 +9,7 @@ import {
   BarController,
   BarElement,
   Tooltip,
+  Legend,
   Filler
 } from "chart.js";
 import { AdminStats } from "../data";
@@ -24,6 +25,7 @@ Chart.register(
   BarController,
   BarElement,
   Tooltip,
+  Legend,
   Filler
 );
 
@@ -77,21 +79,39 @@ export const MacroeconomicChart: React.FC<ChartProps> = ({
   useEffect(() => {
     if (!canvasRef.current) return;
 
-    // Destroy existing instance
+    // Safely retrieve and destroy any existing chart instance on this canvas node to prevent conflicts
+    try {
+      const existingChart = Chart.getChart(canvasRef.current);
+      if (existingChart) {
+        existingChart.destroy();
+      }
+    } catch (err) {
+      console.warn("Could not retrieve existing chart with Chart.getChart:", err);
+    }
+
     if (chartRef.current) {
-      chartRef.current.destroy();
+      try {
+        chartRef.current.destroy();
+      } catch (err) {
+        console.warn("Could not destroy chartRef:", err);
+      }
+      chartRef.current = null;
     }
 
     const ctx = canvasRef.current.getContext("2d");
     if (!ctx) return;
 
-    // Calculate Y-axis scaling buffers
+    // Calculate Y-axis scaling buffers with fallback values if empty
     const nonNullValues = values.filter((v) => v !== null && v !== undefined);
-    const minVal = Math.min(...nonNullValues);
-    const maxVal = Math.max(...nonNullValues);
-    const buffer = (maxVal - minVal) * 0.15;
-    const yMin = Math.max(0, minVal - buffer);
-    const yMax = maxVal + buffer;
+    let yMin = 0;
+    let yMax = 100;
+    if (nonNullValues.length > 0) {
+      const minVal = Math.min(...nonNullValues);
+      const maxVal = Math.max(...nonNullValues);
+      const buffer = (maxVal - minVal) * 0.15 || 1;
+      yMin = minVal >= 0 ? Math.max(0, minVal - buffer) : minVal - buffer;
+      yMax = maxVal + buffer;
+    }
 
     // Theme values matching Sleek Interface Theme
     const gridColor = "rgba(255, 255, 255, 0.03)";
@@ -99,42 +119,61 @@ export const MacroeconomicChart: React.FC<ChartProps> = ({
     const tooltipBg = "#141414";
     const tooltipText = "#F8FAFC";
 
-    // Shading plugin
+    // Shading plugin with full try-catch safety guard
     const adminShadingPlugin = {
       id: "adminShading",
       beforeDraw: (chart: any) => {
-        const { ctx, chartArea, scales } = chart;
-        if (!chartArea) return;
-        const { top, bottom, left, right } = chartArea;
-        const xScale = scales.x;
-        const xOffset = xScale.getPixelForValue(transitionIdx);
+        try {
+          const { ctx, chartArea, scales } = chart;
+          if (!chartArea || !ctx) return;
+          if (!scales || !scales.x) return;
+          if (!labels || labels.length === 0 || transitionIdx < 0 || transitionIdx >= labels.length) return;
 
-        ctx.save();
-        
-        // Biden overlay (soft clear blue)
-        ctx.fillStyle = "rgba(96, 165, 250, 0.08)";
-        ctx.fillRect(left, top, xOffset - left, bottom - top);
+          const { top, bottom, left, right } = chartArea;
+          const xScale = scales.x;
+          
+          let xOffset = left;
+          if (xScale.getPixelForTick) {
+            try {
+              xOffset = xScale.getPixelForTick(transitionIdx);
+            } catch (err) {
+              xOffset = xScale.getPixelForValue(labels[transitionIdx]);
+            }
+          } else {
+            xOffset = xScale.getPixelForValue(labels[transitionIdx]);
+          }
+          
+          if (typeof xOffset !== "number" || isNaN(xOffset)) return;
 
-        // Trump II overlay (soft clear rose)
-        ctx.fillStyle = "rgba(251, 113, 133, 0.08)";
-        ctx.fillRect(xOffset, top, right - xOffset, bottom - top);
+          ctx.save();
+          
+          // Biden overlay (soft clear blue)
+          ctx.fillStyle = "rgba(96, 165, 250, 0.08)";
+          ctx.fillRect(left, top, xOffset - left, bottom - top);
 
-        // Vertical Divider line between administrations
-        ctx.strokeStyle = "rgba(255, 255, 255, 0.2)";
-        ctx.lineWidth = 1.5;
-        ctx.setLineDash([4, 4]);
-        ctx.beginPath();
-        ctx.moveTo(xOffset, top);
-        ctx.lineTo(xOffset, bottom);
-        ctx.stroke();
+          // Trump II overlay (soft clear rose)
+          ctx.fillStyle = "rgba(251, 113, 133, 0.08)";
+          ctx.fillRect(xOffset, top, right - xOffset, bottom - top);
 
-        // Shading Labels Watermark
-        ctx.fillStyle = "rgba(148, 163, 184, 0.4)"; // soft slate-400
-        ctx.font = "bold 9px 'JetBrains Mono', monospace";
-        ctx.fillText("ERA BIDEN", left + 12, top + 18);
-        ctx.fillText("ERA TRUMP II", xOffset + 12, top + 18);
+          // Vertical Divider line between administrations
+          ctx.strokeStyle = "rgba(255, 255, 255, 0.2)";
+          ctx.lineWidth = 1.5;
+          ctx.setLineDash([4, 4]);
+          ctx.beginPath();
+          ctx.moveTo(xOffset, top);
+          ctx.lineTo(xOffset, bottom);
+          ctx.stroke();
 
-        ctx.restore();
+          // Shading Labels Watermark
+          ctx.fillStyle = "rgba(148, 163, 184, 0.4)"; // soft slate-400
+          ctx.font = "bold 9px 'JetBrains Mono', monospace";
+          ctx.fillText("ERA BIDEN", left + 12, top + 18);
+          ctx.fillText("ERA TRUMP II", xOffset + 12, top + 18);
+
+          ctx.restore();
+        } catch (pluginError) {
+          console.warn("Error inside adminShadingPlugin beforeDraw hook:", pluginError);
+        }
       }
     };
 
@@ -248,13 +287,13 @@ export const MacroeconomicChart: React.FC<ChartProps> = ({
         chartRef.current.destroy();
       }
     };
-  }, [labels, values, chartType]);
+  }, [labels, values, chartType, showRawData]);
 
-  // Calculate change percentages or amounts
-  const lastVal = values[values.length - 1];
-  const firstVal = values[0];
+  // Calculate change percentages or amounts with fallback values
+  const lastVal = values && values.length > 0 ? values[values.length - 1] : 0;
+  const firstVal = values && values.length > 0 ? values[0] : 0;
   const totalDifference = lastVal - firstVal;
-  const percentageDiff = ((totalDifference / firstVal) * 100).toFixed(1);
+  const percentageDiff = firstVal !== 0 ? ((totalDifference / firstVal) * 100).toFixed(1) : "0.0";
   const isPositiveTrend = totalDifference >= 0;
 
   return (
@@ -379,29 +418,30 @@ export const MacroeconomicChart: React.FC<ChartProps> = ({
             onClick={() => setShowRawData(!showRawData)}
             className="flex items-center gap-1.5 text-[11px] font-mono text-[#94A3B8] hover:text-[#F8FAFC] bg-[#1a1a1a] hover:bg-[#262626] border border-[#262626] transition-colors rounded-md px-2.5 py-1 cursor-pointer"
           >
-            {showRawData ? <BarChart2 className="w-3.5 h-3.5" /> : <FileText className="w-3.5 h-3.5" />}
-            {showRawData ? "Ver Gráfico" : "Ver Datos"}
+            {showRawData ? <TrendingUp className="w-3.5 h-3.5 text-emerald-400" /> : <FileText className="w-3.5 h-3.5" />}
+            {showRawData ? "Ver Curva" : "Ver Datos"}
           </button>
           
           {stats.sources && stats.sources.length > 0 ? (
             <div className="text-[10px] font-mono text-slate-400 text-left sm:text-right flex flex-wrap items-center gap-1">
-              <span>Fuente: Fórmula FRED </span>
-              <span className="text-slate-500">(</span>
+              <span>Fuente: </span>
+              {stats.source.toLowerCase().includes("fórmula") && <span>Fórmula FRED </span>}
+              {stats.source.toLowerCase().includes("fórmula") && <span className="text-slate-500">(</span>}
               {stats.sources.map((src, sIdx) => (
                 <React.Fragment key={sIdx}>
-                  {sIdx > 0 && <span className="text-slate-500">×</span>}
+                  {sIdx > 0 && <span className="text-slate-500">{stats.source.toLowerCase().includes("fórmula") ? " × " : ", "}</span>}
                   <a
                     href={src.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-slate-400 hover:text-emerald-400 underline decoration-dotted transition-all font-semibold"
-                    title={`Ver serie oficial en FRED: ${src.label}`}
+                    title={`Ver serie oficial: ${src.label}`}
                   >
                     {src.label}
                   </a>
                 </React.Fragment>
               ))}
-              <span className="text-slate-500">) / 100</span>
+              {stats.source.toLowerCase().includes("fórmula") && <span className="text-slate-500">) / 100</span>}
             </div>
           ) : stats.sourceUrl ? (
             <a
