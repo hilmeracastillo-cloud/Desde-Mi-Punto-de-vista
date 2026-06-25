@@ -30,7 +30,7 @@ export function TaxDeductionChart() {
       {/* Main Descriptive Text */}
       <div className="bg-[#0A0A0A] border border-[#222222] rounded-xl p-5 text-sm leading-relaxed text-slate-300 space-y-3">
         <p>
-          Más de <strong className="text-white">7.5 millones</strong> de contribuyentes reclamaron la deducción de <strong className="text-emerald-400">No Tax on Tips</strong> y más de <strong className="text-white">29 millones</strong> reclamaron la de <strong className="text-[#60A5FA]">No Tax on Overtime</strong> en sus declaraciones de impuestos de 2025. Los datos provienen de un análisis oficial publicado por el <a href="https://home.treasury.gov/news/press-releases/sb0517" target="_blank" rel="noopener noreferrer" className="text-[#60A5FA] underline hover:text-blue-400 inline-flex items-center gap-0.5 font-semibold">Departamento del Tesoro de los EE. UU.<ArrowUpRight className="w-3 h-3 inline" /></a> fechado el <strong className="text-neutral-200">2 de junio de 2026</strong>. <span className="text-neutral-500 font-mono text-xs">[1]</span>
+          Más de <strong className="text-white">7.5 millones</strong> de contribuyentes reclamaron la deducción de <strong className="text-emerald-400">No Tax on Tips</strong> y más de <strong className="text-white">29 millones</strong> reclamaron la de <strong className="text-[#60A5FA]">No Tax on Overtime</strong> en sus declaraciones de impuestos de 2025. Los datos provienen de un análisis oficial publicado por el <a href="https://home.treasury.gov/news/press-releases" target="_blank" rel="noopener noreferrer" className="text-[#60A5FA] underline hover:text-blue-400 inline-flex items-center gap-0.5 font-semibold">Departamento del Tesoro de los EE. UU.<ArrowUpRight className="w-3 h-3 inline" /></a> fechado el <strong className="text-neutral-200">2 de junio de 2026</strong>. <span className="text-neutral-500 font-mono text-xs">[1]</span>
         </p>
       </div>
 
@@ -159,9 +159,8 @@ export function TaxDeductionChart() {
 
       {/* Analytical Reading Section */}
       <div className="bg-[#0D0D0D] border-l-4 border-l-[#60A5FA] border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-        <div className="text-[#60A5FA] font-mono font-bold uppercase tracking-widest mb-2.5 text-xs flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#60A5FA] animate-pulse"></span>
-          Lectura Analítica • Protección de Ingresos
+        <div className="text-[#60A5FA] font-mono font-bold uppercase tracking-widest mb-2 text-xs">
+          Protección y Alivio del Ingreso Familiar
         </div>
         <p className="text-slate-300">
           Dentro del grupo de empleados privados no supervisorios existe un subconjunto de <strong className="text-[#F8FAFC]">35.1 millones</strong> de personas que sus ingresos se vieron protegidos por estas nuevas deducciones de <strong className="text-emerald-400 font-bold">No Tax on Tips</strong> y <strong className="text-[#60A5FA] font-bold">No Tax on Overtime</strong>. Con ellos protegieron una importante cantidad para su uso personal.
@@ -281,28 +280,28 @@ export function TaxDeductionChart() {
           <div className="space-y-2">
             <p className="flex items-start gap-1 text-slate-400 hover:text-slate-200 transition-colors">
               <span className="text-[#60A5FA] font-bold shrink-0">[1]</span>
-              <a href="https://home.treasury.gov/news/press-releases/sb0517" target="_blank" rel="noopener noreferrer" className="hover:underline text-slate-300 break-all">
-                https://home.treasury.gov/news/press-releases/sb0517
+              <a href="https://home.treasury.gov/news/press-releases" target="_blank" rel="noopener noreferrer" className="hover:underline text-slate-300 break-all">
+                https://home.treasury.gov/news/press-releases
               </a>
             </p>
             <p className="flex items-start gap-1 text-slate-400 hover:text-slate-200 transition-colors">
               <span className="text-[#60A5FA] font-bold shrink-0">[2]</span>
-              <a href="https://econofact.org/explainer/special-income-tax-treatment-of-tip-and-overtime-income" target="_blank" rel="noopener noreferrer" className="hover:underline text-slate-300 break-all">
-                https://econofact.org/explainer/special-income-tax-treatment-of-tip-and-overtime-income
+              <a href="https://econofact.org" target="_blank" rel="noopener noreferrer" className="hover:underline text-slate-300 break-all">
+                https://econofact.org
               </a>
             </p>
           </div>
           <div className="space-y-2">
             <p className="flex items-start gap-1 text-slate-400 hover:text-slate-200 transition-colors">
               <span className="text-[#60A5FA] font-bold shrink-0">[3]</span>
-              <a href="https://www.libertytax.com/es/blog/qualified-overtime-pay-will-be-tax-deductible-20252028" target="_blank" rel="noopener noreferrer" className="hover:underline text-slate-300 break-all">
-                https://www.libertytax.com/es/blog/qualified-overtime-pay-will-be-tax-deductible-20252028
+              <a href="https://www.libertytax.com" target="_blank" rel="noopener noreferrer" className="hover:underline text-slate-300 break-all">
+                https://www.libertytax.com
               </a>
             </p>
             <p className="flex items-start gap-1 text-slate-400 hover:text-slate-200 transition-colors">
               <span className="text-[#60A5FA] font-bold shrink-0">[4]</span>
-              <a href="https://www.irs.gov/newsroom/treasury-irs-provide-guidance-for-individuals-who-received-tips-or-overtime-during-tax-year-2025" target="_blank" rel="noopener noreferrer" className="hover:underline text-slate-300 break-all">
-                https://www.irs.gov/newsroom/treasury-irs-provide-guidance-for-individuals-who-received-tips-or-overtime-during-tax-year-2025
+              <a href="https://www.irs.gov/newsroom" target="_blank" rel="noopener noreferrer" className="hover:underline text-slate-300 break-all">
+                https://www.irs.gov/newsroom
               </a>
             </p>
           </div>

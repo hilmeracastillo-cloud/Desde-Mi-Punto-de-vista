@@ -17,6 +17,7 @@ import {
   CheckCircle2
 } from "lucide-react";
 import { MacroeconomicChart } from "./MacroeconomicChart";
+import { MoMComparisonChart } from "./MoMComparisonChart";
 import {
   gdpData,
   gdpPerCapitaData,
@@ -31,7 +32,8 @@ import {
   importsBienesData,
   netExportsData,
   arancelesData,
-  saldoMensualData
+  saldoMensualData,
+  momComparisonData
 } from "../data_part2";
 
 interface MacroPart2Props {
@@ -52,15 +54,15 @@ export function MacroPart2({ activeTab }: MacroPart2Props) {
       title: "Crecimiento Económico (PIB)",
       desc: "La economía nacional está creciendo de manera indudable, aunque la velocidad y escala del crecimiento no alcanzan un umbral suficiente para notar cambios inmediatos en el día a día de la totalidad de la población americana.",
       status: "Favorable",
-      metric: "El PIB nominal anualizado alcanzó un máximo histórico de $31,610 Mil Millones (+42.9% de cambio total acumulado)",
+      metric: "El PIB nominal anualizado alcanzó un máximo histórico de $31,865.7 Mil Millones (+40.5% de cambio total acumulado)",
       checked: true,
     },
     {
       id: "consumo-privado",
       title: "Consumo Privado Sólido",
-      desc: "El Consumo de las familias crece de manera constante, actuando como un colchón que mantiene activo el flujo de mercancías y servicios en todas las regiones del país.",
+      desc: "El Consumo de las familias crece de manera constante, actuando como un colchón que mantiene activo el flujo de mercancías y servicios en todas las regiones del país.\n\nAsimismo, el crecimiento del consumo privado ha superado al crecimiento de la inflación, con lo cual es un crecimiento efectivo.",
       status: "Excelente",
-      metric: "El Consumo Personal de Bienes y Servicios superó los $21.6 Billones de dólares anualizados, un aumento de +42.1%",
+      metric: "El Gasto de Consumo Personal superó los $22.06 Billones de dólares anualizados, un aumento de +46.4% de cambio total acumulado\n\nLa inflación ha crecido 5.54% mientras que el consumo ha crecido 8.60% en el mismo período.",
       checked: true,
     },
     {
@@ -76,7 +78,7 @@ export function MacroPart2({ activeTab }: MacroPart2Props) {
       title: "Inversión y Capacidad Industrial",
       desc: "La Inversión Privada mantiene una senda de crecimiento ascendente. Las colosales asignaciones informadas por las corporaciones prometen acelerar el potencial manufacturero del país en las próximas etapas.\n\nAsimismo, diversas compañías privadas líderes han formalizado compromisos de inversión sumamente sustanciales ante sus juntas de accionistas para destinar masivos flujos de capital durante los próximos años, asegurando el desarrollo y la reindustrialización nacional.",
       status: "Excelente",
-      metric: "La Inversión Privada Interna Bruta alcanzó los $5.62 Billones, con una media de $5.49 Billones bajo Trump II vs. $4.84 Billones con Biden.\n\nLos compromisos formales de inversión informados de forma oficial a los accionistas acumulan una suma total de $380.6 Mil Millones ($380.6B) de dólares.",
+      metric: "La Inversión Privada Interna Bruta alcanzó los $5.63 Billones, con una media de $5.49 Billones bajo Trump II vs. $4.84 Billones con Biden.\n\nLos compromisos formales de inversión informados de forma oficial a los accionistas acumulan una suma total de $380.6 Mil Millones ($380.6B) de dólares.",
       checked: true,
     },
     {
@@ -84,7 +86,7 @@ export function MacroPart2({ activeTab }: MacroPart2Props) {
       title: "Sector Exterior y Aranceles",
       desc: "Aunque la balanza comercial sigue arrojando saldos desfavorables crónicos, la combinación de una mayor penetración exportadora junto a los sustanciales aportes tributarios recaudados de los aranceles aduaneros configuran un panorama optimista.",
       status: "Positivo",
-      metric: "Los ingresos arancelarios se dispararon hasta un promedio de $281.3 mil millones en Trump II (frente a $89.2 mil millones con Biden)",
+      metric: "Los ingresos arancelarios se dispararon hasta un promedio de $281.3 mil millones en Trump II (frente a $88.5 mil millones con Biden)",
       checked: true,
     },
     {
@@ -140,9 +142,13 @@ export function MacroPart2({ activeTab }: MacroPart2Props) {
                 stats={gdpData.stats}
                 isQuarterly={true}
               />
-              <div className="bg-[#0D0D0D] border-l-4 border-l-[#FB7185] border-y border-r border-[#262626] rounded-r-xl p-5 text-sm leading-relaxed text-slate-300">
-                <span className="font-semibold text-white block mb-1">Aceleración Global</span>
-                La producción total ha subido de <span className="text-white font-bold">$22.11 Billones</span> en el primer trimestre de 2021 a <span className="text-white font-bold">$31.61 Billones</span> en el primer trimestre de 2026. La velocidad de crecimiento global registra un avance acumulado del <span className="text-emerald-400 font-bold">+42.9%</span> en esta ventana temporal.
+              <div className="bg-[#0D0D0D] border-l-4 border-l-[#FB7185] border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm text-[#E2E8F0] leading-relaxed font-sans">
+                <div className="text-[#FB7185] font-mono font-bold uppercase tracking-widest mb-2 text-xs">
+                  Aceleración Global
+                </div>
+                <p className="text-slate-300 leading-relaxed">
+                  La producción total ha subido de <span className="text-white font-bold">$22.68 Billones</span> en el primer trimestre de 2021 a <span className="text-white font-bold">$31.87 Billones</span> en el primer trimestre de 2026. La velocidad de crecimiento global registra un avance acumulado del <span className="text-emerald-400 font-bold">+40.5%</span> en esta ventana temporal.
+                </p>
               </div>
             </div>
 
@@ -157,9 +163,13 @@ export function MacroPart2({ activeTab }: MacroPart2Props) {
                 stats={gdpPerCapitaData.stats}
                 isQuarterly={true}
               />
-              <div className="bg-[#0D0D0D] border-l-4 border-l-emerald-500 border-y border-r border-[#262626] rounded-r-xl p-5 text-sm leading-relaxed text-slate-300">
-                <span className="font-semibold text-white block mb-1">Apropiación Individual</span>
-                El promedio teórico por ciudadano ascendió de <span className="text-white font-bold">$68,304</span> a <span className="text-white font-bold">$92,881</span>. Esta ganancia acumulada de <span className="text-emerald-400 font-bold">+$24,577 por habitante (+36.0%)</span> representa un ensanchamiento sustancial en el tamaño macroeconómico nacional.
+              <div className="bg-[#0D0D0D] border-l-4 border-l-emerald-500 border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm text-[#E2E8F0] leading-relaxed font-sans">
+                <div className="text-emerald-400 font-mono font-bold uppercase tracking-widest mb-2 text-xs">
+                  Apropiación Individual
+                </div>
+                <p className="text-slate-300 leading-relaxed">
+                  El promedio teórico por ciudadano ascendió de <span className="text-white font-bold">$68,304</span> a <span className="text-white font-bold">$93,016</span>. Esta ganancia acumulada de <span className="text-emerald-400 font-bold">+$24,712 por habitante (+36.2%)</span> representa un ensanchamiento sustancial en el tamaño macroeconómico nacional.
+                </p>
               </div>
             </div>
           </div>
@@ -388,11 +398,15 @@ export function MacroPart2({ activeTab }: MacroPart2Props) {
                 labels={consumoTotalData.labels}
                 values={consumoTotalData.values}
                 stats={consumoTotalData.stats}
-                isQuarterly={true}
+                isQuarterly={false}
               />
               <div className="bg-[#0D0D0D] border-l-4 border-l-[#FB7185] border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm text-[#E2E8F0] leading-relaxed font-sans">
-                <span className="font-semibold text-white block mb-1">Aceleración del Motor</span>
-                El gasto total ha aumentado desde <span className="text-white font-bold">$15.25 Billones</span> al inicio de 2021 hasta alcanzar un máximo histórico de <span className="text-white font-bold">$21.67 Billones</span> en el primer trimestre de 2026. Este incremento refleja la solidez y resiliencia del consumidor promedio.
+                <div className="text-[#FB7185] font-mono font-bold uppercase tracking-widest mb-2 text-xs">
+                  Aceleración del Motor
+                </div>
+                <p className="text-slate-300 leading-relaxed">
+                  El gasto total ha aumentado desde <span className="text-white font-bold">$15.07 Billones</span> al inicio de 2021 hasta alcanzar un máximo histórico de <span className="text-white font-bold">$22.06 Billones</span> en mayo de 2026. Este incremento refleja la solidez y resiliencia del consumidor promedio.
+                </p>
               </div>
             </div>
 
@@ -418,6 +432,11 @@ export function MacroPart2({ activeTab }: MacroPart2Props) {
                   Lo verdaderamente relevante es notar la asombrosa estabilidad del indicador en torno al <strong className="text-white">68%</strong>. Es este masivo volumen de gasto constante lo que otorga a EE. UU. el carácter de <strong className="text-white">&ldquo;gigante centro comercial del planeta&rdquo;</strong>, atrayendo la mirada comercial e industrial de todos los países exportadores del mundo.
                 </p>
               </div>
+            </div>
+
+            {/* Card 3: MoM Comparison (Consumo vs Inflación) */}
+            <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
+              <MoMComparisonChart />
             </div>
           </div>
         </section>
@@ -455,9 +474,8 @@ export function MacroPart2({ activeTab }: MacroPart2Props) {
               isQuarterly={true}
             />
             <div className="bg-[#0D0D0D] border-l-4 border-l-emerald-500 border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm text-[#E2E8F0] leading-relaxed font-sans">
-              <div className="text-emerald-400 font-mono font-bold uppercase tracking-widest mb-2.5 text-xs flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                Lectura Analítica • Convergencia de Datos
+              <div className="text-emerald-400 font-mono font-bold uppercase tracking-widest mb-2 text-xs">
+                Participación del Consumo Público en el Producto Interno
               </div>
               <p className="text-slate-300">
                 El gasto del estado disminuyó del pico inicial del <span className="text-white font-bold">18.3%</span> del PIB en 2021 a tan solo un <span className="text-emerald-400 font-bold">17.0%</span> en la actualidad.
@@ -520,8 +538,13 @@ export function MacroPart2({ activeTab }: MacroPart2Props) {
                   stats={inversionData.stats}
                   isQuarterly={true}
                 />
-                <div className="text-xs text-slate-500 font-mono leading-relaxed bg-[#0A0A0A] p-3 rounded-lg border border-[#222]">
-                  Nota: La tendencia dibuja un repunte sostenido que sobrepasa los <span className="text-white font-semibold">5.62 Billones</span> de dólares anuales en el primer trimestre de 2026.
+                <div className="bg-[#0D0D0D] border-l-4 border-l-emerald-500 border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm text-[#E2E8F0] leading-relaxed font-sans">
+                  <div className="text-emerald-400 font-mono font-bold uppercase tracking-widest mb-2 text-xs">
+                    Comportamiento de la Inversión Privada y Formación de Capital
+                  </div>
+                  <p className="text-slate-300 leading-relaxed">
+                    La inversión privada interna bruta mantiene una sólida tendencia ascendente, alcanzando un récord de <strong className="text-white font-bold">$5.63 Billones</strong> en el primer trimestre de 2026. El promedio acumulado durante la actual gestión (<strong className="text-emerald-400 font-bold">$5.49 Billones</strong>) supera con creces el promedio de la administración anterior (<strong className="text-white font-semibold">$4.84 Billones</strong>), lo que refleja la confianza empresarial, el estímulo de la desregulación y la aceleración de proyectos industriales de gran calado.
+                  </p>
                 </div>
               </div>
             </div>
@@ -611,12 +634,13 @@ export function MacroPart2({ activeTab }: MacroPart2Props) {
                   </table>
                 </div>
 
-                <div className="bg-[#0A0A0A] border border-[#222] rounded-xl p-4 text-xs leading-relaxed text-slate-400">
-                  <span className="font-semibold text-emerald-400 flex items-center gap-1.5 mb-1">
-                    <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+                <div className="bg-[#0D0D0D] border-l-4 border-l-emerald-500 border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm text-[#E2E8F0] leading-relaxed font-sans">
+                  <div className="text-emerald-400 font-mono font-bold uppercase tracking-widest mb-2 text-xs">
                     Impacto Industrial de Larga Duración
-                  </span>
-                  Estos cuantiosos compromisos de capital por parte de líderes de semiconductores (Micron, TSMC) y manufacturas avanzadas prometen una aceleración de la infraestructura nacional y empleo calificado en el transcurso de los siguientes años.
+                  </div>
+                  <p className="text-slate-300 leading-relaxed">
+                    Estos cuantiosos compromisos de capital por parte de líderes de semiconductores (Micron, TSMC) y manufacturas avanzadas prometen una aceleración de la infraestructura nacional y empleo calificado en el transcurso de los siguientes años.
+                  </p>
                 </div>
               </div>
 
@@ -704,9 +728,14 @@ export function MacroPart2({ activeTab }: MacroPart2Props) {
                   stats={netExportsData.stats}
                   isQuarterly={true}
                 />
-                <p className="text-xs text-slate-400 leading-relaxed font-sans bg-[#0D0D0D] p-4 rounded-xl border border-[#222]">
-                  <strong className="text-white">Lectura Analítica:</strong> El tremendo impacto negativo del déficit comercial drena riqueza del engranaje doméstico. No obstante, en el transcurso de la actual gestión se registra una reducción progresiva del déficit, bajando de un pico de <strong className="text-rose-400 font-extrabold">-$1,263.7 Billones</strong> en el primer trimestre de 2025 a <strong className="text-emerald-400 font-extrabold">-$890.9 Billones</strong> en el primer trimestre de 2026 (una mejoría de reducción de déficit del <strong className="text-emerald-400 font-bold">29.2%</strong>).
-                </p>
+                <div className="bg-[#0D0D0D] border-l-4 border-l-emerald-500 border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm text-[#E2E8F0] leading-relaxed font-sans">
+                  <div className="text-emerald-400 font-mono font-bold uppercase tracking-widest mb-2 text-xs">
+                    Evaluación de la Balanza Comercial y Saldos Netos
+                  </div>
+                  <p className="text-slate-300 leading-relaxed">
+                    El tremendo impacto negativo del déficit comercial drena riqueza del engranaje doméstico. No obstante, en el transcurso de la actual gestión se registra una reducción progresiva del déficit, bajando de un pico de <strong className="text-rose-400 font-extrabold">-$1,264.6 Billones</strong> en el primer trimestre de 2025 a <strong className="text-emerald-400 font-extrabold">-$820.0 Billones</strong> en el primer trimestre de 2026 (una mejoría de reducción de déficit del <strong className="text-emerald-400 font-bold">35.2%</strong>).
+                  </p>
+                </div>
               </div>
 
               <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
@@ -718,9 +747,14 @@ export function MacroPart2({ activeTab }: MacroPart2Props) {
                   values={saldoMensualData.values}
                   stats={saldoMensualData.stats}
                 />
-                <p className="text-xs text-slate-400 leading-relaxed font-sans bg-[#0D0D0D] p-4 rounded-xl border border-[#222]">
-                  <strong className="text-white">Impacto en el Déficit Público:</strong> El saldo mensual muestra alta volatilidad ordinaria. El superávit de abril de 2022 representó un hito singular de <strong className="text-emerald-400">+$308.2B</strong>. En la actual etapa, el promedio mensual se sitúa en <strong className="text-white">-$135.9B</strong>, resultando más favorable que el promedio mensual Biden de <strong className="text-white">-$162.7B</strong>, ayudado por la recaudación aduanera.
-                </p>
+                <div className="bg-[#0D0D0D] border-l-4 border-l-[#FB7185] border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm text-[#E2E8F0] leading-relaxed font-sans">
+                  <div className="text-[#FB7185] font-mono font-bold uppercase tracking-widest mb-2 text-xs">
+                    Impacto en el Déficit Público
+                  </div>
+                  <p className="text-slate-300 leading-relaxed">
+                    El saldo mensual muestra alta volatilidad ordinaria. El superávit de abril de 2022 representó un hito singular de <strong className="text-emerald-400">+$308.2B</strong>. En la actual etapa, el promedio mensual se sitúa en <strong className="text-white">-$135.9B</strong>, resultando más favorable que el promedio mensual Biden de <strong className="text-white">-$162.7B</strong>, ayudado por la recaudación aduanera.
+                  </p>
+                </div>
               </div>
             </div>
           )}
@@ -738,9 +772,14 @@ export function MacroPart2({ activeTab }: MacroPart2Props) {
                   stats={exportsTotalData.stats}
                   isQuarterly={true}
                 />
-                <p className="text-xs text-slate-400 leading-relaxed font-sans bg-[#0D0D0D] p-4 rounded-xl border border-[#222]">
-                  Las exportaciones globales registraron un aumento constante, acelerándose en los últimos 18 meses bajo un marco comercial que fomenta la reciprocidad internacional y busca abrir de manera agresiva mercados para los productos estadounidenses.
-                </p>
+                <div className="bg-[#0D0D0D] border-l-4 border-l-emerald-500 border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm text-[#E2E8F0] leading-relaxed font-sans">
+                  <div className="text-emerald-400 font-mono font-bold uppercase tracking-widest mb-2 text-xs">
+                    Desempeño de las Exportaciones Globales
+                  </div>
+                  <p className="text-slate-300 leading-relaxed">
+                    Las exportaciones globales registraron un aumento constante, acelerándose en los últimos 18 meses bajo un marco comercial que fomenta la reciprocidad internacional y busca abrir de manera agresiva mercados para los productos estadounidenses.
+                  </p>
+                </div>
               </div>
 
               <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
@@ -753,9 +792,14 @@ export function MacroPart2({ activeTab }: MacroPart2Props) {
                   stats={exportsBienesData.stats}
                   isQuarterly={true}
                 />
-                <p className="text-xs text-slate-400 leading-relaxed font-sans bg-[#0D0D0D] p-4 rounded-xl border border-[#222]">
-                  La porción de mercancías y productos físicos representa la columna vertebral de las exportaciones, escalando a una tasa de <strong className="text-white">$2.26 Trillones</strong> anuales.
-                </p>
+                <div className="bg-[#0D0D0D] border-l-4 border-l-[#FB7185] border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm text-[#E2E8F0] leading-relaxed font-sans">
+                  <div className="text-[#FB7185] font-mono font-bold uppercase tracking-widest mb-2 text-xs">
+                    Columna Vertebral Comercial
+                  </div>
+                  <p className="text-slate-300 leading-relaxed">
+                    La porción de mercancías y productos físicos representa la columna vertebral de las exportaciones, escalando a una tasa de <strong className="text-white">$2.26 Trillones</strong> anuales.
+                  </p>
+                </div>
               </div>
             </div>
           )}
@@ -773,9 +817,14 @@ export function MacroPart2({ activeTab }: MacroPart2Props) {
                   stats={importsTotalData.stats}
                   isQuarterly={true}
                 />
-                <p className="text-xs text-slate-400 leading-relaxed font-sans bg-[#0D0D0D] p-4 rounded-xl border border-[#222]">
-                  Las importaciones consolidadas experimentaron un declive progresivo desde mediados de 2025, beneficiando la ecuación comercial interna. Esto se vincula a inventarios previos de mercancías acumulados por anticipación empresarial.
-                </p>
+                <div className="bg-[#0D0D0D] border-l-4 border-l-[#FB7185] border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm text-[#E2E8F0] leading-relaxed font-sans">
+                  <div className="text-[#FB7185] font-mono font-bold uppercase tracking-widest mb-2 text-xs">
+                    Evolución de las Importaciones
+                  </div>
+                  <p className="text-slate-300 leading-relaxed">
+                    Las importaciones consolidadas experimentaron un declive progresivo desde mediados de 2025, beneficiando la ecuación comercial interna. Esto se vincula a inventarios previos de mercancías acumulados por anticipación empresarial.
+                  </p>
+                </div>
               </div>
 
               <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
@@ -788,9 +837,14 @@ export function MacroPart2({ activeTab }: MacroPart2Props) {
                   stats={importsBienesData.stats}
                   isQuarterly={true}
                 />
-                <p className="text-xs text-slate-400 leading-relaxed font-sans bg-[#0D0D0D] p-4 rounded-xl border border-[#222]">
-                  <strong className="text-white">Efecto Judicial:</strong> Tras el declive de 2025, se percibe una reciente aceleración hacia <strong className="text-white">$3.48 Trillones</strong>. Este repunte fue provocado fundamentalmente por fallos de la Corte Suprema declarando temporalmente inválidos ciertos aranceles gubernamentales, lo que incentivó un alza momentánea de compras.
-                </p>
+                <div className="bg-[#0D0D0D] border-l-4 border-l-emerald-500 border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm text-[#E2E8F0] leading-relaxed font-sans">
+                  <div className="text-emerald-400 font-mono font-bold uppercase tracking-widest mb-2 text-xs">
+                    Análisis de Importaciones y Efecto Judicial
+                  </div>
+                  <p className="text-slate-300 leading-relaxed">
+                    Tras el declive de 2025, se percibe una reciente aceleración hacia <strong className="text-white">$3.48 Trillones</strong>. Este repunte fue provocado fundamentalmente por fallos de la Corte Suprema declarando temporalmente inválidos ciertos aranceles gubernamentales, lo que incentivó un alza momentánea de compras.
+                  </p>
+                </div>
               </div>
             </div>
           )}
@@ -808,8 +862,7 @@ export function MacroPart2({ activeTab }: MacroPart2Props) {
                 isQuarterly={true}
               />
               <div className="bg-[#0D0D0D] border-l-4 border-l-emerald-500 border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm text-[#E2E8F0] leading-relaxed font-sans">
-                <div className="text-emerald-400 font-mono font-bold uppercase tracking-widest mb-2.5 text-xs flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                <div className="text-emerald-400 font-mono font-bold uppercase tracking-widest mb-2 text-xs">
                   Análisis de Recaudación Arancelaria
                 </div>
                 <p className="text-slate-300">
@@ -821,6 +874,8 @@ export function MacroPart2({ activeTab }: MacroPart2Props) {
               </div>
             </div>
           )}
+
+
         </section>
       )}
 
@@ -955,7 +1010,7 @@ export function MacroPart2({ activeTab }: MacroPart2Props) {
             {/* Closing Editorial Box */}
             <div className="mt-8 pt-6 border-t border-[#262626] text-center max-w-2xl mx-auto space-y-4">
               <p className="text-slate-300 font-serif italic text-base">
-                &ldquo;Podemos decir que esta Parte 2 de nuestro análisis converge con lo que vimos en la Parte 1. En la Parte 3 haremos una profundización por industrias para determinar cómo las tendencias generales se reflejan y desglosan en los distintos sectores. En el próximo artículo, el 28 de Junio, seguiremos agregando dimensiones.&rdquo;
+                &ldquo;Podemos decir que esta Parte 2 de nuestro análisis converge con lo que vimos en la Parte 1. En la Parte 3 haremos una profundización por industrias para determinar cómo las tendencias generales se reflejan y desglosan en los distintos sectores. En el próximo artículo, el 2 de Julio, seguiremos agregando dimensiones.&rdquo;
               </p>
               <div className="flex items-center justify-center gap-3">
                 <div className="w-8 h-px bg-[#262626]"></div>

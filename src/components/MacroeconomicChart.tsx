@@ -29,6 +29,14 @@ Chart.register(
   Filler
 );
 
+const getShortUnit = (unit: string) => {
+  if (!unit) return "";
+  if (unit.startsWith("Miles de Millones")) {
+    return "Mil Millones";
+  }
+  return unit.split(" ")[0];
+};
+
 interface ChartProps {
   id: string;
   title: string;
@@ -234,7 +242,14 @@ export const MacroeconomicChart: React.FC<ChartProps> = ({
               label: (context: any) => {
                 let value = context.raw;
                 if (value === null) return "";
-                return ` ${context.dataset.label}: ${stats.unit === "USD por Semana" ? "$" : ""}${value} ${stats.unit !== "USD por Semana" ? stats.unit.split(" ")[0] : ""}`;
+                const formattedVal = typeof value === "number" ? value.toLocaleString() : value;
+                if (stats.unit === "USD por Semana") {
+                  return ` ${context.dataset.label}: $${formattedVal}`;
+                }
+                if (stats.unit === "USD por Persona") {
+                  return ` ${context.dataset.label}: $${formattedVal} USD`;
+                }
+                return ` ${context.dataset.label}: ${formattedVal} ${stats.unit}`;
               }
             }
           }
@@ -342,8 +357,8 @@ export const MacroeconomicChart: React.FC<ChartProps> = ({
                 <span className="text-[10px] font-mono uppercase tracking-wider text-[#94A3B8] font-bold">Prom. Biden</span>
                 <span className="text-lg md:text-xl font-extrabold text-[#60A5FA] tracking-tight">
                   {stats.unit === "USD por Semana" ? "$" : ""}
-                  {stats.bidenAvg.toFixed(2)}
-                  <span className="text-xs ml-0.5 font-normal text-slate-400"> {stats.unit.split(" ")[0]}</span>
+                  {stats.bidenAvg.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                  <span className="text-xs ml-0.5 font-normal text-slate-400"> {getShortUnit(stats.unit)}</span>
                 </span>
               </div>
 
@@ -352,8 +367,8 @@ export const MacroeconomicChart: React.FC<ChartProps> = ({
                 <span className="text-[10px] font-mono uppercase tracking-wider text-[#94A3B8] font-bold">Prom. Trump II</span>
                 <span className="text-lg md:text-xl font-extrabold text-[#FB7185] tracking-tight">
                   {stats.unit === "USD por Semana" ? "$" : ""}
-                  {stats.trumpAvg.toFixed(2)}
-                  <span className="text-xs ml-0.5 font-normal text-slate-400"> {stats.unit.split(" ")[0]}</span>
+                  {stats.trumpAvg.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                  <span className="text-xs ml-0.5 font-normal text-slate-400"> {getShortUnit(stats.unit)}</span>
                 </span>
               </div>
 

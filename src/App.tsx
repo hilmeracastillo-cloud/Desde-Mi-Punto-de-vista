@@ -409,9 +409,8 @@ export default function App() {
                       stats={graph1Data.stats}
                     />
                     <div className="bg-[#0D0D0D] border-l-4 border-l-[#60A5FA] border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-                      <div className="text-[#60A5FA] font-mono font-bold uppercase tracking-widest mb-2.5 text-xs flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#60A5FA] animate-pulse"></span>
-                        Lectura Analítica • Fuerza Laboral No Supervisora
+                      <div className="text-[#60A5FA] font-mono font-bold uppercase tracking-widest mb-2 text-xs">
+                        Fuerza Laboral No Supervisora y Capacidad Laboral
                       </div>
                       <p className="text-slate-300">
                         Los números oficiales indican un crecimiento robusto. Existen más de <span className="text-[#F8FAFC] font-bold">110 millones</span> de trabajadores activos en puestos no supervisorios, lo que demuestra la resiliencia y la asombrosa expansión de la capacidad laboral real en la economía nacional. En los últimos 18 meses bajo la presente administración, se ha mantenido un nivel alto y estable, asimilando de forma continua la inserción de nuevos trabajadores.
@@ -430,9 +429,8 @@ export default function App() {
                       stats={graph2Data.stats}
                     />
                     <div className="bg-[#0D0D0D] border-l-4 border-l-[#60A5FA] border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-                      <div className="text-[#60A5FA] font-mono font-bold uppercase tracking-widest mb-2.5 text-xs flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#60A5FA] animate-pulse"></span>
-                        Lectura Analítica • Ingresos Semanales
+                      <div className="text-[#60A5FA] font-mono font-bold uppercase tracking-widest mb-2 text-xs">
+                        Evolución y Dinámica de los Ingresos Semanales
                       </div>
                       <p className="text-slate-300">
                         Los salarios nominales continúan su avance firme. En los últimos 18 meses bajo la presente administración, se ha experimentado un incremento promedio de <span className="text-[#F8FAFC] font-bold">$57.54/semana</span> (un equivalente directo a <span className="text-emerald-400 font-bold">+$249.34 por mes</span> de incremento nominal), consolidando un alza del <span className="text-emerald-400 font-bold">5.6%</span> en esta etapa y acumulando un sólido avance del <span className="text-emerald-400 font-bold">26.2%</span> global.
@@ -476,9 +474,8 @@ export default function App() {
                       stats={graph3Data.stats}
                     />
                     <div className="bg-[#0D0D0D] border-l-4 border-l-[#FB7185] border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-                      <div className="text-[#FB7185] font-mono font-bold uppercase tracking-widest mb-2.5 text-xs flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#FB7185] animate-pulse"></span>
-                        Lectura Analítica • Erosión por Inflación
+                      <div className="text-[#FB7185] font-mono font-bold uppercase tracking-widest mb-2 text-xs">
+                        Impacto y Erosión por Inflación de Precios
                       </div>
                       <p className="text-slate-300">
                         La inflación acumulada durante el período Biden fue extraordinaria (<span className="text-[#FB7185] font-bold">+21.4%</span>), erosionando profundamente el poder adquisitivo del sueldo efectivo de los trabajadores. No obstante, en la etapa Trump II, se registra un nivel que acumula un <span className="text-[#FB7185] font-bold">+4.8%</span> hasta la fecha actual.
@@ -490,9 +487,8 @@ export default function App() {
                   <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
                     <RealWageWaterfall />
                     <div className="bg-[#0D0D0D] border-l-4 border-l-emerald-500 border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-                      <div className="text-emerald-400 font-mono font-bold uppercase tracking-widest mb-2.5 text-xs flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                        Lectura Analítica • Retorno del Poder Adquisitivo
+                      <div className="text-emerald-400 font-mono font-bold uppercase tracking-widest mb-2 text-xs">
+                        Recuperación del Poder Adquisitivo de los Trabajadores
                       </div>
                       <p className="text-slate-300">
                         La gráfica de cascada ilustra la anatomía exacta de cómo el salario real de los trabajadores comenzó a recuperarse del duro desajuste de años anteriores. Al netear los incrementos nominales frente a la inflación acumulada, se observa que en la etapa actual el salario real o poder de compra efectivo ha comenzado a recuperarse de forma modesta pero persistente. Las tendencias reflejan que vamos mejorando en este grupo fundamental.
@@ -539,9 +535,8 @@ export default function App() {
                       stats={graph5Data.stats}
                     />
                     <div className="bg-[#0D0D0D] border-l-4 border-l-[#60A5FA] border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-                      <div className="text-[#60A5FA] font-mono font-bold uppercase tracking-widest mb-2.5 text-xs flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#60A5FA] animate-pulse"></span>
-                        Lectura Analítica • Despidos y Solicitudes de Desempleo
+                      <div className="text-[#60A5FA] font-mono font-bold uppercase tracking-widest mb-2 text-xs">
+                        Dinámica de Despidos y Solicitudes de Desempleo
                       </div>
                       <p className="text-slate-300">
                         Existe una sólida tendencia a la baja en reclamos de desocupación involuntaria, estabilizado en torno a un óptimo de <span className="text-[#F8FAFC] font-bold">~215K</span> a <span className="text-[#F8FAFC] font-bold">221.9K</span> solicitudes en promedio móvil. El egreso global de personas se asocia más a transiciones demográficas ordinarias (como jubilaciones) que a despidos corporativos masivos, indicando alta seguridad en el puesto laboral actual.
@@ -560,9 +555,8 @@ export default function App() {
                       stats={graph6Data.stats}
                     />
                     <div className="bg-[#0D0D0D] border-l-4 border-l-emerald-500 border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-                      <div className="text-emerald-400 font-mono font-bold uppercase tracking-widest mb-2.5 text-xs flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                        Lectura Analítica • Nivel de Empleo Total (CE16OV)
+                      <div className="text-emerald-400 font-mono font-bold uppercase tracking-widest mb-2 text-xs">
+                        Análisis del Nivel de Empleo Total Estructural
                       </div>
                       <p className="text-slate-300">
                         El empleo total en los Estados Unidos (Serie FRED: CE16OV) refleja un mercado laboral extraordinariamente robusto. Durante el período Biden, ascendió de un mínimo inicial de <span className="text-[#F8FAFC] font-bold">149.8M</span> en enero de 2021 hasta culminar estable en <span className="text-[#F8FAFC] font-bold">163.83M</span>. En la presente administración, se ha estabilizado en niveles históricamente elevados con un promedio consolidado de <span className="text-[#F8FAFC] font-bold">163.35M</span>, registrando un pico máximo de <span className="text-[#F8FAFC] font-bold">163.99M</span>. Esta ocupación extendida ratifica que la capacidad de empleo total del país conserva una fortaleza estructural formidable de largo plazo.
@@ -581,9 +575,8 @@ export default function App() {
                       stats={graph7Data.stats}
                     />
                     <div className="bg-[#0D0D0D] border-l-4 border-l-[#FB7185] border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-                      <div className="text-[#FB7185] font-mono font-bold uppercase tracking-widest mb-2.5 text-xs flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#FB7185] animate-pulse"></span>
-                        Lectura Analítica • Reducción del Gasto Público
+                      <div className="text-[#FB7185] font-mono font-bold uppercase tracking-widest mb-2 text-xs">
+                        Eficiencia de la Nómina y Reducción del Gasto Público
                       </div>
                       <p className="text-slate-300">
                         La nómina del gobierno federal muestra una compresión drástica y sin precedentes, disminuyendo de 3.021 millones (pico) a <span className="text-[#FB7185] font-bold">2.679 millones</span> de posiciones públicas activas. Esta reestructuración incide de forma favorable y directo en la reducción del déficit estatal, liberando presiones sobre el mercado laboral privado y mitigando raíces de inflación fiscal.
@@ -602,9 +595,8 @@ export default function App() {
                       stats={graph8Data.stats}
                     />
                     <div className="bg-[#0D0D0D] border-l-4 border-l-emerald-500 border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-                      <div className="text-emerald-400 font-mono font-bold uppercase tracking-widest mb-2.5 text-xs flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                        Lectura Analítica • Oferta y Vacantes Disponibles
+                      <div className="text-emerald-400 font-mono font-bold uppercase tracking-widest mb-2 text-xs">
+                        Equilibrio de Oferta Laboral y Vacantes Disponibles
                       </div>
                       <p className="text-slate-300">
                         La demanda de fuerza de trabajo se mantiene sumamente saludable y robusta, consolidando más de <span className="text-emerald-400 font-bold">7.6 millones</span> de puestos de trabajo vacantes y listos para contratar. Esta sobreabundancia de vacantes pendientes actúa como un colchón o amortiguador macroeconómico contra la desocupación involuntaria, garantizando un margen de reempleo extraordinariamente ágil.
@@ -649,9 +641,8 @@ export default function App() {
                       isQuarterly={true}
                     />
                     <div className="bg-[#0D0D0D] border-l-4 border-l-emerald-500 border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-                      <div className="text-emerald-400 font-mono font-bold uppercase tracking-widest mb-2.5 text-xs flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                        Lectura Analítica • Consumo en Ocio Discrecional
+                      <div className="text-emerald-400 font-mono font-bold uppercase tracking-widest mb-2 text-xs">
+                        Tendencia y Dinámica del Consumo en Ocio Discrecional
                       </div>
                       <p className="text-slate-300">
                         La resiliencia y el deseo de consumo del hogar norteamericano continúan escalando firmemente. En lugar de experimentar recortes, la actividad de ocio en gastronomía y turismo ha registrado un hito histórico de <span className="text-emerald-400 font-bold">$1.52 billones (USD)</span> en tasa anual. Esto denota solidez presupuestaria y una holgura latente que aleja la hipótesis de un consumidor estrangulado financieramente.
@@ -671,9 +662,8 @@ export default function App() {
                       isQuarterly={true}
                     />
                     <div className="bg-[#0D0D0D] border-l-4 border-l-[#60A5FA] border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-                      <div className="text-[#60A5FA] font-mono font-bold uppercase tracking-widest mb-2.5 text-xs flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#60A5FA] animate-pulse"></span>
-                        Lectura Analítica • Sostenibilidad de Deuda Personal
+                      <div className="text-[#60A5FA] font-mono font-bold uppercase tracking-widest mb-2 text-xs">
+                        Evaluación y Sostenibilidad de la Deuda Personal
                       </div>
                       <p className="text-slate-300">
                         El volumen delincuencial estimado de tarjetas de crédito comerciales (fórmula personalizada cruzando saldo y tasa de impago) acumuló un incremento constante desde el mínimo de <span className="text-[#60A5FA] font-bold">$11.65 mil millones</span> en el tercer trimestre de 2021 hasta alcanzar un máximo de <span className="text-[#60A5FA] font-bold">$34.05 mil millones</span> a mediados de 2024. No obstante, bajo la gestión Trump II, se ha consolidado un cambio de tendencia con una reducción hacia los <span className="text-[#60A5FA] font-bold">$31.13 mil millones</span> en el primer trimestre de 2026. Esta trayectoria decreciente ratifica un reordenamiento o saneamiento proactivo de los pasivos por parte de los hogares.
@@ -783,7 +773,7 @@ export default function App() {
                   {/* Ending editorial note */}
                   <div className="mt-8 pt-6 border-t border-[#262626] text-center max-w-2xl mx-auto">
                     <span className="font-serif italic text-base text-slate-300">
-                      &ldquo;Esto es una visión parcial de cómo vamos y luce positiva. ¿Tenemos una crisis de affordability? En el próximo artículo, el 28 de Junio, seguiremos agregando dimensiones.&rdquo;
+                      &ldquo;Esto es una visión parcial de cómo vamos y luce positiva. ¿Tenemos una crisis de affordability? En el próximo artículo, el 2 de Julio, seguiremos agregando dimensiones.&rdquo;
                     </span>
                     <div className="mt-4 flex items-center justify-center gap-3">
                       <div className="w-8 h-px bg-[#262626]"></div>
