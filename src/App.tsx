@@ -264,7 +264,7 @@ export default function App() {
               <span className="text-slate-700">•</span>
               <div className="flex items-center gap-1.5">
                 <Calendar className="w-3.5 h-3.5 text-slate-500" />
-                <span>Última Actualización: <span className="text-[#F8FAFC]">Junio 2026</span></span>
+                <span>Última Publicación: <span className="text-[#F8FAFC]">9 de Julio de 2026</span></span>
               </div>
             </div>
           </div>
