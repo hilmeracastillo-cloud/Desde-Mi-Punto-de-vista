@@ -256,6 +256,17 @@ export const MacroeconomicChart: React.FC<ChartProps> = ({
         },
         scales: {
           x: {
+            title: {
+              display: true,
+              text: isQuarterly ? "Trimestre" : "Mes / Año",
+              color: "#94A3B8",
+              font: {
+                family: "'JetBrains Mono', monospace",
+                size: 10,
+                weight: "bold"
+              },
+              padding: { top: 6, bottom: 0 }
+            },
             grid: {
               display: false
             },
@@ -272,6 +283,17 @@ export const MacroeconomicChart: React.FC<ChartProps> = ({
             }
           },
           y: {
+            title: {
+              display: true,
+              text: stats.unit || "Valor",
+              color: "#94A3B8",
+              font: {
+                family: "'JetBrains Mono', monospace",
+                size: 10,
+                weight: "bold"
+              },
+              padding: { top: 0, bottom: 6 }
+            },
             grid: {
               color: gridColor
             },
@@ -284,9 +306,10 @@ export const MacroeconomicChart: React.FC<ChartProps> = ({
                 size: 9
               },
               callback: (value: number) => {
-                // Formatting values cleanly
-                if (value >= 1000) return value.toLocaleString();
-                return value;
+                // Formatting values cleanly with at most 2 decimal places
+                const rounded = Math.round((value + Number.EPSILON) * 100) / 100;
+                if (rounded >= 1000) return rounded.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+                return rounded.toString();
               }
             }
           }

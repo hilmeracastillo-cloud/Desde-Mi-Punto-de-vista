@@ -1010,7 +1010,7 @@ export function MacroPart2({ activeTab }: MacroPart2Props) {
             {/* Closing Editorial Box */}
             <div className="mt-8 pt-6 border-t border-[#262626] text-center max-w-2xl mx-auto space-y-4">
               <p className="text-slate-300 font-serif italic text-base">
-                &ldquo;Podemos decir que esta Parte 2 de nuestro análisis converge con lo que vimos en la Parte 1. En la Parte 3 haremos una profundización por industrias para determinar cómo las tendencias generales se reflejan y desglosan en los distintos sectores. En el próximo artículo, el 2 de Julio, seguiremos agregando dimensiones.&rdquo;
+                &ldquo;Podemos decir que esta Parte 2 de nuestro análisis converge con lo que vimos en la Parte 1. En la Parte 3 haremos una profundización por industrias para determinar cómo las tendencias generales se reflejan y desglosan en los distintos sectores. En el próximo artículo, el 9 de Julio, seguiremos agregando dimensiones.&rdquo;
               </p>
               <div className="flex items-center justify-center gap-3">
                 <div className="w-8 h-px bg-[#262626]"></div>

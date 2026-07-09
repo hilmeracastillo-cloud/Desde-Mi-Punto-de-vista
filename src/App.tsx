@@ -51,6 +51,7 @@ import { MacroeconomicChart } from "./components/MacroeconomicChart";
 import { RealWageWaterfall } from "./components/RealWageWaterfall";
 import { TaxDeductionChart } from "./components/TaxDeductionChart";
 import { MacroPart2 } from "./components/MacroPart2";
+import { MacroPart3 } from "./components/MacroPart3";
 
 export default function App() {
   // Balanced indicator checklist state
@@ -117,7 +118,7 @@ export default function App() {
   const healthPercent = Math.round((completedCount / indicators.length) * 100);
 
   // Active Part state (P1 for Parte 1, P2 for Parte 2)
-  const [activePart, setActivePart] = useState<"P1" | "P2">("P1");
+  const [activePart, setActivePart] = useState<"P1" | "P2" | "P3">("P1");
   // Active section/tab state.
   const [activeTab, setActiveTab] = useState("01");
 
@@ -146,7 +147,21 @@ export default function App() {
     { id: "07", label: "07. Balance y Conclusión", desc: "Conclusiones macro generales" }
   ];
 
-  const currentTabs = activePart === "P1" ? tabsP1 : tabsP2;
+  const tabsP3 = [
+    { id: "01", label: "01. Sector Privado", desc: "% PIB y Utilidades" },
+    { id: "02", label: "02. Finanzas e Inmobiliario", desc: "Finanzas, Seguros & Real Estate" },
+    { id: "03", label: "03. Serv. Profesionales", desc: "Servicios Profesionales & Negocios" },
+    { id: "04", label: "04. Manufactura", desc: "La Industria Manufacturera" },
+    { id: "05", label: "05. Educación y Salud", desc: "Servicios Educativos y Salud" },
+    { id: "06", label: "06. Comercio Mayorista", desc: "Distribución Mayorista" },
+    { id: "07", label: "07. Comercio Minorista", desc: "Comercio Detallista" },
+    { id: "08", label: "08. Sector Información", desc: "Telecomunicaciones e Información" },
+    { id: "09", label: "09. Ocio y Alimentos", desc: "Artes, Recreación y Comida" },
+    { id: "10", label: "10. Construcción", desc: "La Industria de la Construcción" },
+    { id: "11", label: "11. Balance y Conclusión", desc: "Conclusiones sectoriales generales" }
+  ];
+
+  const currentTabs = activePart === "P1" ? tabsP1 : activePart === "P2" ? tabsP2 : tabsP3;
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] text-[#F8FAFC] font-sans selection:bg-[#60A5FA]/30 selection:text-white transition-all overflow-x-hidden">
@@ -167,7 +182,7 @@ export default function App() {
             </p>
 
             {/* Premium Article Selector Toggle */}
-            <div className="flex flex-col sm:flex-row gap-3.5 mt-8 max-w-3xl">
+            <div className="flex flex-col md:flex-row gap-3.5 mt-8 max-w-4xl">
               <button
                 id="select-part-1-btn"
                 onClick={() => {
@@ -186,7 +201,7 @@ export default function App() {
                   I
                 </div>
                 <div>
-                  <div className="text-[10px] font-mono uppercase tracking-widest text-slate-500 font-semibold">Visión individuos</div>
+                  <div className="text-[10px] font-mono uppercase tracking-widest text-slate-500 font-semibold">Visión de los individuos</div>
                   <h3 className="text-sm font-bold font-serif leading-snug mt-0.5">Parte 1: Asequibilidad</h3>
                 </div>
                 <ChevronRight className={`w-4 h-4 ml-auto opacity-40 transition-transform ${activePart === "P1" ? "translate-x-0.5 opacity-100 text-[#60A5FA]" : "group-hover:translate-x-0.5"}`} />
@@ -214,6 +229,30 @@ export default function App() {
                   <h3 className="text-sm font-bold font-serif leading-snug mt-0.5">Parte 2: Crecimiento Nacional</h3>
                 </div>
                 <ChevronRight className={`w-4 h-4 ml-auto opacity-40 transition-transform ${activePart === "P2" ? "translate-x-0.5 opacity-100 text-[#FB7185]" : "group-hover:translate-x-0.5"}`} />
+              </button>
+
+              <button
+                id="select-part-3-btn"
+                onClick={() => {
+                  setActivePart("P3");
+                  setActiveTab("01");
+                }}
+                className={`flex-1 flex items-center gap-3.5 p-4 rounded-xl border text-left transition-all duration-300 cursor-pointer relative overflow-hidden group ${
+                  activePart === "P3"
+                    ? "bg-[#141414] border-emerald-500/60 ring-1 ring-emerald-500/30 shadow-lg shadow-emerald-500/5 text-white"
+                    : "bg-[#0A0A0A]/40 border-[#222] text-[#94A3B8] hover:border-[#333] hover:text-[#F8FAFC]"
+                }`}
+              >
+                <div className={`w-8 h-8 rounded-lg flex items-center justify-center font-mono text-xs font-bold transition-all ${
+                  activePart === "P3" ? "bg-emerald-500/20 text-emerald-400" : "bg-[#222] text-slate-500"
+                }`}>
+                  III
+                </div>
+                <div>
+                  <div className="text-[10px] font-mono uppercase tracking-widest text-slate-500 font-semibold">Desglose Sectorial</div>
+                  <h3 className="text-sm font-bold font-serif leading-snug mt-0.5">Parte 3: Sectores Privados</h3>
+                </div>
+                <ChevronRight className={`w-4 h-4 ml-auto opacity-40 transition-transform ${activePart === "P3" ? "translate-x-0.5 opacity-100 text-emerald-400" : "group-hover:translate-x-0.5"}`} />
               </button>
             </div>
 
@@ -247,13 +286,15 @@ export default function App() {
                 <p className="text-xs text-[#94A3B8] leading-relaxed">
                   {activePart === "P1"
                     ? "Este informe visualiza mediciones de asequibilidad familiar e individual compiladas de fuentes oficiales de los Estados Unidos (BLS, BEA, FED)."
-                    : "Esta sección aborda el Producto Interno Bruto (PIB), el consumo nacional, el gasto del estado, la balanza comercial y las inversiones de reindustrialización."}
+                    : activePart === "P2"
+                    ? "Esta sección aborda el Producto Interno Bruto (PIB), el consumo nacional, el gasto del estado, la balanza comercial y las inversiones de reindustrialización."
+                    : "Esta sección detalla los 9 sectores clave de la industria y servicios privados de EE. UU., analizando su valor agregado bruto, crecimiento intertrimestral y aportes históricos."}
                 </p>
               </div>
               <div className="mt-4 flex items-center justify-between text-xs font-mono pt-2 border-t border-[#262626]">
                 <span className="text-slate-500">Métricas analizadas</span>
                 <span className="text-emerald-400 font-bold">
-                  {activePart === "P1" ? "8 Gráficas Oficiales" : "13 Gráficas Macroeconómicas"}
+                  {activePart === "P1" ? "8 Gráficas Oficiales" : activePart === "P2" ? "13 Gráficas Macroeconómicas" : "20 Gráficas Sectoriales"}
                 </span>
               </div>
             </div>
@@ -274,7 +315,7 @@ export default function App() {
           </div>
 
           <p className="text-xs text-[#94A3B8] font-mono uppercase tracking-widest mb-3 text-center sm:text-left">
-            Secuencia de Lectura: Selecciona una Sección de la {activePart === "P1" ? "Parte 1" : "Parte 2"}
+            Secuencia de Lectura: Selecciona una Sección de la {activePart === "P1" ? "Parte 1" : activePart === "P2" ? "Parte 2" : "Parte 3"}
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-7 gap-3">
             {currentTabs.map((tab) => {
@@ -287,7 +328,9 @@ export default function App() {
                     isActive
                       ? activePart === "P1"
                         ? "bg-[#141414] border-[#60A5FA] text-[#60A5FA] shadow-lg shadow-blue-500/5 ring-1 ring-[#60A5FA]/30"
-                        : "bg-[#141414] border-[#FB7185] text-[#FB7185] shadow-lg shadow-pink-500/5 ring-1 ring-[#FB7185]/30"
+                        : activePart === "P2"
+                        ? "bg-[#141414] border-[#FB7185] text-[#FB7185] shadow-lg shadow-pink-500/5 ring-1 ring-[#FB7185]/30"
+                        : "bg-[#141414] border-emerald-500 text-emerald-400 shadow-lg shadow-emerald-500/5 ring-1 ring-emerald-500/30"
                       : "bg-[#0A0A0A]/40 border-[#262626] text-[#94A3B8] hover:border-[#404040] hover:text-[#F8FAFC]"
                   }`}
                 >
@@ -785,8 +828,10 @@ export default function App() {
               </section>
             )}
           </>
-        ) : (
+        ) : activePart === "P2" ? (
           <MacroPart2 activeTab={activeTab} />
+        ) : (
+          <MacroPart3 activeTab={activeTab} />
         )}
 
         {/* --------------------- SEQUENTIAL READING NAVIGATION FOR TABS --------------------- */}
@@ -810,7 +855,7 @@ export default function App() {
             <div />
           )}
 
-          {((activePart === "P1" && activeTab !== "06") || (activePart === "P2" && activeTab !== "07")) ? (
+          {((activePart === "P1" && activeTab !== "06") || (activePart === "P2" && activeTab !== "07") || (activePart === "P3" && activeTab !== "11")) ? (
             <button
               onClick={() => {
                 const nextId = String(Number(activeTab) + 1).padStart(2, "0");
@@ -824,7 +869,9 @@ export default function App() {
               className={`flex items-center gap-2 text-xs font-mono font-semibold py-2 px-5 rounded-xl border transition-all cursor-pointer ml-auto ${
                 activePart === "P1"
                   ? "text-[#60A5FA] bg-[#60A5FA]/10 border-[#60A5FA]/30 hover:border-[#60A5FA]"
-                  : "text-[#FB7185] bg-[#FB7185]/10 border-[#FB7185]/30 hover:border-[#FB7185]"
+                  : activePart === "P2"
+                  ? "text-[#FB7185] bg-[#FB7185]/10 border-[#FB7185]/30 hover:border-[#FB7185]"
+                  : "text-emerald-400 bg-emerald-500/10 border-emerald-500/30 hover:border-emerald-500"
               }`}
             >
               Avanzar a la Sección {String(Number(activeTab) + 1).padStart(2, "0")} &rarr;
