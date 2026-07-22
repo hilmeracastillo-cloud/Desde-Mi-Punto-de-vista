@@ -52,6 +52,7 @@ import { RealWageWaterfall } from "./components/RealWageWaterfall";
 import { TaxDeductionChart } from "./components/TaxDeductionChart";
 import { MacroPart2 } from "./components/MacroPart2";
 import { MacroPart3 } from "./components/MacroPart3";
+import { MacroPart4 } from "./components/MacroPart4";
 
 export default function App() {
   // Balanced indicator checklist state
@@ -117,8 +118,8 @@ export default function App() {
   const completedCount = indicators.filter((i) => i.checked).length;
   const healthPercent = Math.round((completedCount / indicators.length) * 100);
 
-  // Active Part state (P1 for Parte 1, P2 for Parte 2)
-  const [activePart, setActivePart] = useState<"P1" | "P2" | "P3">("P1");
+  // Active Part state (P1 for Parte 1, P2 for Parte 2, P3 for Parte 3, P4 for Parte 4)
+  const [activePart, setActivePart] = useState<"P1" | "P2" | "P3" | "P4">("P1");
   // Active section/tab state.
   const [activeTab, setActiveTab] = useState("01");
 
@@ -161,7 +162,18 @@ export default function App() {
     { id: "11", label: "11. Balance y Conclusión", desc: "Conclusiones sectoriales generales" }
   ];
 
-  const currentTabs = activePart === "P1" ? tabsP1 : activePart === "P2" ? tabsP2 : tabsP3;
+  const tabsP4 = [
+    { id: "01", label: "01. Estados y RPP", desc: "Regional Price Parity y Selección" },
+    { id: "02", label: "02. Áreas Metropolitanas", desc: "387 MSAs y Desglose Urbano" },
+    { id: "03", label: "03. Gasolina & Regulaciones", desc: "Impuestos, Fórmulas y Logística" },
+    { id: "04", label: "04. Alquileres & Tenencia", desc: "Tenencia, RPP Vivienda y Propuestas" },
+    { id: "05", label: "05. Construcción & Predial", desc: "Barreras HUD y Property Tax" },
+    { id: "06", label: "06. Ventas e Ingresos", desc: "Sales Tax e Income Tax Estadal" },
+    { id: "07", label: "07. Migración Neta", desc: "Flujos Poblacionales y Control 10A" },
+    { id: "08", label: "08. Balance General", desc: "¿Cómo vamos? Cierre de la Serie" }
+  ];
+
+  const currentTabs = activePart === "P1" ? tabsP1 : activePart === "P2" ? tabsP2 : activePart === "P3" ? tabsP3 : tabsP4;
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] text-[#F8FAFC] font-sans selection:bg-[#60A5FA]/30 selection:text-white transition-all overflow-x-hidden">
@@ -182,7 +194,7 @@ export default function App() {
             </p>
 
             {/* Premium Article Selector Toggle */}
-            <div className="flex flex-col md:flex-row gap-3.5 mt-8 max-w-4xl">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 mt-8 max-w-5xl">
               <button
                 id="select-part-1-btn"
                 onClick={() => {
@@ -254,6 +266,30 @@ export default function App() {
                 </div>
                 <ChevronRight className={`w-4 h-4 ml-auto opacity-40 transition-transform ${activePart === "P3" ? "translate-x-0.5 opacity-100 text-emerald-400" : "group-hover:translate-x-0.5"}`} />
               </button>
+
+              <button
+                id="select-part-4-btn"
+                onClick={() => {
+                  setActivePart("P4");
+                  setActiveTab("01");
+                }}
+                className={`flex-1 flex items-center gap-3.5 p-4 rounded-xl border text-left transition-all duration-300 cursor-pointer relative overflow-hidden group ${
+                  activePart === "P4"
+                    ? "bg-[#141414] border-indigo-500/60 ring-1 ring-indigo-500/30 shadow-lg shadow-indigo-500/5 text-white"
+                    : "bg-[#0A0A0A]/40 border-[#222] text-[#94A3B8] hover:border-[#333] hover:text-[#F8FAFC]"
+                }`}
+              >
+                <div className={`w-8 h-8 rounded-lg flex items-center justify-center font-mono text-xs font-bold transition-all ${
+                  activePart === "P4" ? "bg-indigo-500/20 text-indigo-400" : "bg-[#222] text-slate-500"
+                }`}>
+                  IV
+                </div>
+                <div>
+                  <div className="text-[10px] font-mono uppercase tracking-widest text-slate-500 font-semibold">Enfoque Subnacional</div>
+                  <h3 className="text-sm font-bold font-serif leading-snug mt-0.5">Parte 4: Estados y Ciudades</h3>
+                </div>
+                <ChevronRight className={`w-4 h-4 ml-auto opacity-40 transition-transform ${activePart === "P4" ? "translate-x-0.5 opacity-100 text-indigo-400" : "group-hover:translate-x-0.5"}`} />
+              </button>
             </div>
 
             <div className="flex flex-wrap items-center gap-4 text-xs text-[#94A3B8] mt-6 font-mono">
@@ -264,7 +300,7 @@ export default function App() {
               <span className="text-slate-700">•</span>
               <div className="flex items-center gap-1.5">
                 <Calendar className="w-3.5 h-3.5 text-slate-500" />
-                <span>Última Publicación: <span className="text-[#F8FAFC]">9 de Julio de 2026</span></span>
+                <span>Última Publicación: <span className="text-[#F8FAFC]">25 de Julio de 2026</span></span>
               </div>
             </div>
           </div>
@@ -288,13 +324,15 @@ export default function App() {
                     ? "Este informe visualiza mediciones de asequibilidad familiar e individual compiladas de fuentes oficiales de los Estados Unidos (BLS, BEA, FED)."
                     : activePart === "P2"
                     ? "Esta sección aborda el Producto Interno Bruto (PIB), el consumo nacional, el gasto del estado, la balanza comercial y las inversiones de reindustrialización."
-                    : "Esta sección detalla los 9 sectores clave de la industria y servicios privados de EE. UU., analizando su valor agregado bruto, crecimiento intertrimestral y aportes históricos."}
+                    : activePart === "P3"
+                    ? "Esta sección detalla los 9 sectores clave de la industria y servicios privados de EE. UU., analizando su valor agregado bruto, crecimiento intertrimestral y aportes históricos."
+                    : "Esta sección aborda la dimensión estadal y municipal: RPP (Regional Price Parity), alquileres, vivienda, impuestos directos, regulaciones a la gasolina y migración neta."}
                 </p>
               </div>
               <div className="mt-4 flex items-center justify-between text-xs font-mono pt-2 border-t border-[#262626]">
                 <span className="text-slate-500">Métricas analizadas</span>
-                <span className="text-emerald-400 font-bold">
-                  {activePart === "P1" ? "8 Gráficas Oficiales" : activePart === "P2" ? "13 Gráficas Macroeconómicas" : "20 Gráficas Sectoriales"}
+                <span className="text-indigo-400 font-bold">
+                  {activePart === "P1" ? "8 Gráficas Oficiales" : activePart === "P2" ? "13 Gráficas Macroeconómicas" : activePart === "P3" ? "20 Gráficas Sectoriales" : "15 Tablas & Análisis Regionales"}
                 </span>
               </div>
             </div>
@@ -315,7 +353,7 @@ export default function App() {
           </div>
 
           <p className="text-xs text-[#94A3B8] font-mono uppercase tracking-widest mb-3 text-center sm:text-left">
-            Secuencia de Lectura: Selecciona una Sección de la {activePart === "P1" ? "Parte 1" : activePart === "P2" ? "Parte 2" : "Parte 3"}
+            Secuencia de Lectura: Selecciona una Sección de la {activePart === "P1" ? "Parte 1" : activePart === "P2" ? "Parte 2" : activePart === "P3" ? "Parte 3" : "Parte 4"}
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-7 gap-3">
             {currentTabs.map((tab) => {
@@ -830,8 +868,10 @@ export default function App() {
           </>
         ) : activePart === "P2" ? (
           <MacroPart2 activeTab={activeTab} />
-        ) : (
+        ) : activePart === "P3" ? (
           <MacroPart3 activeTab={activeTab} />
+        ) : (
+          <MacroPart4 activeTab={activeTab} />
         )}
 
         {/* --------------------- SEQUENTIAL READING NAVIGATION FOR TABS --------------------- */}
@@ -855,7 +895,7 @@ export default function App() {
             <div />
           )}
 
-          {((activePart === "P1" && activeTab !== "06") || (activePart === "P2" && activeTab !== "07") || (activePart === "P3" && activeTab !== "11")) ? (
+          {((activePart === "P1" && activeTab !== "06") || (activePart === "P2" && activeTab !== "07") || (activePart === "P3" && activeTab !== "11") || (activePart === "P4" && activeTab !== "08")) ? (
             <button
               onClick={() => {
                 const nextId = String(Number(activeTab) + 1).padStart(2, "0");
@@ -871,7 +911,9 @@ export default function App() {
                   ? "text-[#60A5FA] bg-[#60A5FA]/10 border-[#60A5FA]/30 hover:border-[#60A5FA]"
                   : activePart === "P2"
                   ? "text-[#FB7185] bg-[#FB7185]/10 border-[#FB7185]/30 hover:border-[#FB7185]"
-                  : "text-emerald-400 bg-emerald-500/10 border-emerald-500/30 hover:border-emerald-500"
+                  : activePart === "P3"
+                  ? "text-emerald-400 bg-emerald-500/10 border-emerald-500/30 hover:border-emerald-500"
+                  : "text-indigo-400 bg-indigo-500/10 border-indigo-500/30 hover:border-indigo-500"
               }`}
             >
               Avanzar a la Sección {String(Number(activeTab) + 1).padStart(2, "0")} &rarr;
