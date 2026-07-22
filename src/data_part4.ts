@@ -65,24 +65,24 @@ export interface MsaRppItem {
 }
 
 export const MSA_RPP_2024: MsaRppItem[] = [
-  // RPP Mas Bajo (1-5)
-  { grupo: "Alto", rango: 1, area: "Monroe, LA", todos: 83.6, bienes: 93.7, alquileres: 42.8, otrosServicios: 95.7 },
-  { grupo: "Alto", rango: 2, area: "Eagle Pass, TX", todos: 83.8, bienes: 93.8, alquileres: 53.7, otrosServicios: 96.2 },
-  { grupo: "Alto", rango: 3, area: "Dothan, AL", todos: 83.8, bienes: 96.4, alquileres: 46.9, otrosServicios: 96.7 },
-  { grupo: "Alto", rango: 4, area: "Texarkana, TX–AR", todos: 84.0, bienes: 93.7, alquileres: 49.9, otrosServicios: 95.9 },
-  { grupo: "Alto", rango: 5, area: "Enid, OK", todos: 84.3, bienes: 93.8, alquileres: 51.4, otrosServicios: 95.5 },
-  // Mediana (192-196)
-  { grupo: "Intermedio", rango: 192, area: "Monroe, MI", todos: 93.5, bienes: 93.7, alquileres: 74.6, otrosServicios: 99.6 },
-  { grupo: "Intermedio", rango: 193, area: "Billings, MT", todos: 93.5, bienes: 96.0, alquileres: 77.4, otrosServicios: 98.7 },
+  // RPP Mas Alto (1-5) - Grupo Alto
+  { grupo: "Alto", rango: 1, area: "San Francisco–Oakland–Fremont, CA", todos: 115.6, bienes: 108.5, alquileres: 194.7, otrosServicios: 106.2 },
+  { grupo: "Alto", rango: 2, area: "Miami–Fort Lauderdale–West Palm Beach, FL", todos: 114.2, bienes: 103.6, alquileres: 155.6, otrosServicios: 109.1 },
+  { grupo: "Alto", rango: 3, area: "Los Angeles–Long Beach–Anaheim, CA", todos: 113.6, bienes: 106.6, alquileres: 170.4, otrosServicios: 104.4 },
+  { grupo: "Alto", rango: 4, area: "New York–Newark–Jersey City, NY–NJ", todos: 112.6, bienes: 110.3, alquileres: 148.6, otrosServicios: 105.8 },
+  { grupo: "Alto", rango: 5, area: "Napa, CA", todos: 112.6, bienes: 105.2, alquileres: 197.4, otrosServicios: 100.3 },
+  // Mediana (192-196) - Grupo Intermedio
+  { grupo: "Intermedio", rango: 192, area: "Roanoke, VA", todos: 93.6, bienes: 96.8, alquileres: 78.5, otrosServicios: 98.6 },
+  { grupo: "Intermedio", rango: 193, area: "Scranton–Wilkes-Barre, PA", todos: 93.6, bienes: 100.7, alquileres: 67.0, otrosServicios: 97.7 },
   { grupo: "Intermedio", rango: 194, area: "Bloomington, IL", todos: 93.5, bienes: 93.6, alquileres: 74.7, otrosServicios: 99.6 },
-  { grupo: "Intermedio", rango: 195, area: "Scranton–Wilkes-Barre, PA", todos: 93.6, bienes: 100.7, alquileres: 67.0, otrosServicios: 97.7 },
-  { grupo: "Intermedio", rango: 196, area: "Roanoke, VA", todos: 93.6, bienes: 96.8, alquileres: 78.5, otrosServicios: 98.6 },
-  // RPP Mas Alto (383-387)
-  { grupo: "Bajo", rango: 383, area: "Napa, CA", todos: 112.6, bienes: 105.2, alquileres: 197.4, otrosServicios: 100.3 },
-  { grupo: "Bajo", rango: 384, area: "New York–Newark–Jersey City, NY–NJ", todos: 112.6, bienes: 110.3, alquileres: 148.6, otrosServicios: 105.8 },
-  { grupo: "Bajo", rango: 385, area: "Los Angeles–Long Beach–Anaheim, CA", todos: 113.6, bienes: 106.6, alquileres: 170.4, otrosServicios: 104.4 },
-  { grupo: "Bajo", rango: 386, area: "Miami–Fort Lauderdale–West Palm Beach, FL", todos: 114.2, bienes: 103.6, alquileres: 155.6, otrosServicios: 109.1 },
-  { grupo: "Bajo", rango: 387, area: "San Francisco–Oakland–Fremont, CA", todos: 115.6, bienes: 108.5, alquileres: 194.7, otrosServicios: 106.2 },
+  { grupo: "Intermedio", rango: 195, area: "Billings, MT", todos: 93.5, bienes: 96.0, alquileres: 77.4, otrosServicios: 98.7 },
+  { grupo: "Intermedio", rango: 196, area: "Monroe, MI", todos: 93.5, bienes: 93.7, alquileres: 74.6, otrosServicios: 99.6 },
+  // RPP Mas Bajo (383-387) - Grupo Bajo
+  { grupo: "Bajo", rango: 383, area: "Enid, OK", todos: 84.3, bienes: 93.8, alquileres: 51.4, otrosServicios: 95.5 },
+  { grupo: "Bajo", rango: 384, area: "Texarkana, TX–AR", todos: 84.0, bienes: 93.7, alquileres: 49.9, otrosServicios: 95.9 },
+  { grupo: "Bajo", rango: 385, area: "Dothan, AL", todos: 83.8, bienes: 96.4, alquileres: 46.9, otrosServicios: 96.7 },
+  { grupo: "Bajo", rango: 386, area: "Eagle Pass, TX", todos: 83.8, bienes: 93.8, alquileres: 53.7, otrosServicios: 96.2 },
+  { grupo: "Bajo", rango: 387, area: "Monroe, LA", todos: 83.6, bienes: 93.7, alquileres: 42.8, otrosServicios: 95.7 },
 ];
 
 export interface MsaPoliticsItem {
@@ -92,21 +92,21 @@ export interface MsaPoliticsItem {
 }
 
 export const MSA_POLITICS: MsaPoliticsItem[] = [
-  { area: "Napa, CA", codificacion: "Elecciones municipales no partidistas; no se asigna partido formal.", lectura: "No permite una correlación partidista precisa." },
-  { area: "New York–Newark–Jersey City", codificacion: "Predominio demócrata verificable en las principales ciudades durante la mayor parte de la década.", lectura: "Caso de predominio D y alto costo, pero con múltiples gobiernos y mercados." },
-  { area: "Los Angeles–Long Beach–Anaheim", codificacion: "Elecciones locales formalmente no partidistas; liderazgo generalmente centroizquierda en LA y Long Beach; Anaheim más mixto.", lectura: "No existe un único control metropolitano." },
-  { area: "Miami–Fort Lauderdale–West Palm Beach", codificacion: "Elecciones municipales mayormente no partidistas y afiliaciones mixtas.", lectura: "La etiqueta partidista explica poco sin analizar seguros, zonificación y construcción." },
   { area: "San Francisco–Oakland–Fremont", codificacion: "Elecciones no partidistas; orientación centroizquierda/progresista predominante en las ciudades núcleo.", lectura: "Asociación con regulación alta, pero también con demanda, salarios y geografía." },
-  { area: "Monroe, MI", codificacion: "Gobierno municipal no partidista o sin codificación partidista comparable.", lectura: "No asignable con rigor." },
-  { area: "Billings, MT", codificacion: "Elecciones municipales no partidistas.", lectura: "No asignable con rigor." },
-  { area: "Bloomington, IL", codificacion: "Elecciones municipales no partidistas.", lectura: "La carga estatal de Illinois no debe confundirse con control local formal." },
-  { area: "Scranton–Wilkes-Barre, PA", codificacion: "Predominio demócrata en las ciudades núcleo.", lectura: "Costo moderado-bajo pese a predominio D; contradice una regla partidista simple." },
+  { area: "Miami–Fort Lauderdale–West Palm Beach", codificacion: "Elecciones municipales mayormente no partidistas y afiliaciones mixtas.", lectura: "La etiqueta partidista explica poco sin analizar seguros, zonificación y construcción." },
+  { area: "Los Angeles–Long Beach–Anaheim", codificacion: "Elecciones locales formalmente no partidistas; liderazgo generalmente centroizquierda en LA y Long Beach; Anaheim más mixto.", lectura: "No existe un único control metropolitano." },
+  { area: "New York–Newark–Jersey City", codificacion: "Predominio demócrata verificable en las principales ciudades durante la mayor parte de la década.", lectura: "Caso de predominio D y alto costo, pero con múltiples gobiernos y mercados." },
+  { area: "Napa, CA", codificacion: "Elecciones municipales no partidistas; no se asigna partido formal.", lectura: "No permite una correlación partidista precisa." },
   { area: "Roanoke, VA", codificacion: "Predominio demócrata en el gobierno de la ciudad durante buena parte del período.", lectura: "Costo moderado-bajo pese a predominio D." },
-  { area: "Monroe, LA", codificacion: "Cambio de alcalde demócrata a republicano alrededor de 2020.", lectura: "Período mixto; bajo costo antes y después del cambio." },
-  { area: "Eagle Pass, TX", codificacion: "Elecciones locales no partidistas.", lectura: "El predominio estatal R no equivale a una afiliación municipal formal." },
-  { area: "Dothan, AL", codificacion: "Elecciones municipales no partidistas.", lectura: "No asignable con rigor." },
-  { area: "Texarkana, TX–AR", codificacion: "Dos ciudades y dos estados; gobiernos locales no comparables mediante una sola etiqueta.", lectura: "El diseño multiestatal impide una clasificación única." },
+  { area: "Scranton–Wilkes-Barre, PA", codificacion: "Predominio demócrata en las ciudades núcleo.", lectura: "Costo moderado-bajo pese a predominio D; contradice una regla partidista simple." },
+  { area: "Bloomington, IL", codificacion: "Elecciones municipales no partidistas.", lectura: "La carga estatal de Illinois no debe confundirse con control local formal." },
+  { area: "Billings, MT", codificacion: "Elecciones municipales no partidistas.", lectura: "No asignable con rigor." },
+  { area: "Monroe, MI", codificacion: "Gobierno municipal no partidista o sin codificación partidista comparable.", lectura: "No asignable con rigor." },
   { area: "Enid, OK", codificacion: "Elecciones municipales no partidistas.", lectura: "No asignable con rigor." },
+  { area: "Texarkana, TX–AR", codificacion: "Dos ciudades y dos estados; gobiernos locales no comparables mediante una sola etiqueta.", lectura: "El diseño multiestatal impide una clasificación única." },
+  { area: "Dothan, AL", codificacion: "Elecciones municipales no partidistas.", lectura: "No asignable con rigor." },
+  { area: "Eagle Pass, TX", codificacion: "Elecciones locales no partidistas.", lectura: "El predominio estatal R no equivale a una afiliación municipal formal." },
+  { area: "Monroe, LA", codificacion: "Cambio de alcalde demócrata a republicano alrededor de 2020.", lectura: "Período mixto; bajo costo antes y después del cambio." },
 ];
 
 export interface GasolineTaxItem {

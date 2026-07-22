@@ -26,6 +26,7 @@ import {
   Compass,
   Briefcase
 } from "lucide-react";
+import { MigrationLineChart, MigrationSeries } from "./MigrationLineChart";
 import {
   STATES_RPP_2024,
   STATES_POLITICS_2016_2026,
@@ -267,8 +268,8 @@ export function MacroPart4({ activeTab }: MacroPart4Props) {
             </h2>
             <p className="text-slate-300 text-sm sm:text-base leading-relaxed mt-3 max-w-4xl">
               El universo de áreas metropolitanas contiene <strong>387 Metropolitan Statistical Areas (MSA)</strong>.
-              Aplicando el mismo criterio matemático que a los estados: seleccionamos las 5 posiciones con menor RPP (1 a 5),
-              las 5 posiciones centradas alrededor de la mediana (192 a 196, mediana = 194), y las 5 posiciones superiores (383 a 387).
+              Aplicando el mismo criterio matemático que a los estados: seleccionamos las 5 posiciones superiores con mayor RPP (1 a 5),
+              las 5 posiciones centradas alrededor del promedio de la mediana (192 a 196, mediana = 194), y las posiciones de menor RPP (383 a 387).
             </p>
           </div>
 
@@ -870,6 +871,65 @@ export function MacroPart4({ activeTab }: MacroPart4Props) {
             </div>
           </div>
 
+          {/* Three Migration Time-Series Line Charts */}
+          <div className="space-y-8">
+            {/* Chart 1: Alto Costo */}
+            <MigrationLineChart
+              id="chart_migration_high_cost"
+              title="Gráfico 1: Serie de Tiempo — Migración Neta Total (2017 – 2026) en Estados de Alto Costo"
+              subtitle="Evolución anual de la migración doméstica e internacional neta (en miles de personas)."
+              badgeText="Estados de Alto Costo"
+              badgeColor="rose"
+              data={NET_MIGRATION_HIGH_COST}
+              series={[
+                { key: "California", name: "California", color: "#F43F5E" },
+                { key: "NuevaYork", name: "Nueva York", color: "#FB923C" },
+                { key: "NuevaJersey", name: "Nueva Jersey", color: "#10B981" },
+                { key: "Washington", name: "Washington", color: "#60A5FA" },
+                { key: "Hawái", name: "Hawái", color: "#A855F7" }
+              ]}
+              yMin={-360}
+              yMax={60}
+            />
+
+            {/* Chart 2: Intermedio */}
+            <MigrationLineChart
+              id="chart_migration_intermediate_cost"
+              title="Gráfico 2: Serie de Tiempo — Migración Neta Total (2017 – 2026) en Estados Intermedios"
+              subtitle="Evolución anual de la migración doméstica e internacional neta (en miles de personas)."
+              badgeText="Estados Intermedios"
+              badgeColor="amber"
+              data={NET_MIGRATION_INTERMEDIATE_COST}
+              series={[
+                { key: "Texas", name: "Texas", color: "#60A5FA" },
+                { key: "Georgia", name: "Georgia", color: "#F59E0B" },
+                { key: "Maine", name: "Maine", color: "#10B981" },
+                { key: "Michigan", name: "Michigan", color: "#F43F5E" },
+                { key: "Pennsylvania", name: "Pennsylvania", color: "#A855F7" }
+              ]}
+              yMin={-20}
+              yMax={540}
+            />
+
+            {/* Chart 3: Bajo Costo */}
+            <MigrationLineChart
+              id="chart_migration_low_cost"
+              title="Gráfico 3: Serie de Tiempo — Migración Neta Total (2017 – 2026) en Estados de Bajo Costo"
+              subtitle="Evolución anual de la migración doméstica e internacional neta (en miles de personas)."
+              badgeText="Estados de Bajo Costo"
+              badgeColor="emerald"
+              data={NET_MIGRATION_LOW_COST}
+              series={[
+                { key: "Oklahoma", name: "Oklahoma", color: "#60A5FA" },
+                { key: "Iowa", name: "Iowa", color: "#F59E0B" },
+                { key: "Mississippi", name: "Mississippi", color: "#10B981" },
+                { key: "Luisiana", name: "Luisiana", color: "#F43F5E" }
+              ]}
+              yMin={-60}
+              yMax={45}
+            />
+          </div>
+
           {/* Cumulative Migration & Politics Table */}
           <div className="space-y-4">
             <h3 className="text-lg font-serif font-bold text-white flex items-center gap-2">
@@ -914,6 +974,47 @@ export function MacroPart4({ activeTab }: MacroPart4Props) {
             <p className="text-[11px] text-slate-400 italic">
               Fuentes: U.S. Census Bureau (Vintage Population Estimates), Brookings Institution & Cornell Program on Applied Demographics.
             </p>
+          </div>
+
+          {/* Detailed Sources Block */}
+          <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 space-y-4 shadow-lg">
+            <div className="flex items-center gap-2 text-indigo-400 font-mono text-xs uppercase tracking-wider font-bold">
+              <FileText className="w-4 h-4" />
+              Fuentes Metodológicas y Documentales de los Gráficos de Migración (Sección 7)
+            </div>
+            <ul className="space-y-3.5 text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+              <li className="flex items-start gap-2.5">
+                <span className="text-indigo-400 font-bold mt-0.5">•</span>
+                <div>
+                  <strong className="text-white">U.S. Census Bureau (Oficina del Censo de EE. UU.):</strong>{" "}
+                  <span className="italic text-slate-300">Components of Population Change under Vintage estimates</span>
+                  <ul className="mt-1.5 ml-4 space-y-1 text-slate-400 font-mono text-xs">
+                    <li className="flex items-center gap-1.5">
+                      <span className="text-slate-500">–</span>
+                      <span>Census Bureau: Comunicados sobre Crecimiento Poblacional y Componentes Migratorios</span>
+                    </li>
+                    <li className="flex items-center gap-1.5">
+                      <span className="text-slate-500">–</span>
+                      <span>Census Bureau: Tablas Históricas de Flujos Migratorios Estado a Estado</span>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <span className="text-indigo-400 font-bold mt-0.5">•</span>
+                <div>
+                  <strong className="text-white">Brookings Institution:</strong>{" "}
+                  <span className="italic text-slate-300">Análisis del Impacto Migratorio e Inmigración en los Estados</span>
+                </div>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <span className="text-indigo-400 font-bold mt-0.5">•</span>
+                <div>
+                  <strong className="text-white">Cornell Program on Applied Demographics:</strong>{" "}
+                  <span className="italic text-slate-300">Análisis Demográfico de los Datos Vintage del Censo</span>
+                </div>
+              </li>
+            </ul>
           </div>
 
           <div className="p-6 bg-[#141414] border border-[#262626] rounded-2xl text-center space-y-2">
