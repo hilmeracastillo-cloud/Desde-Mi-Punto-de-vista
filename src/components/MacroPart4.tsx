@@ -24,7 +24,8 @@ import {
   Coins,
   Percent,
   Compass,
-  Briefcase
+  Briefcase,
+  ExternalLink
 } from "lucide-react";
 import { MigrationLineChart, MigrationSeries } from "./MigrationLineChart";
 import {
@@ -178,7 +179,17 @@ export function MacroPart4({ activeTab }: MacroPart4Props) {
                 <FileText className="w-5 h-5 text-indigo-400" />
                 Tabla 1. Muestra de 15 Estados por RPP General 2024 (BEA)
               </h3>
-              <span className="text-xs font-mono text-slate-400">Fuente: BEA (Julio 2026)</span>
+              <span className="text-xs font-mono text-slate-400">
+                Fuente:{" "}
+                <a
+                  href="https://www.bea.gov/news/2026/real-personal-consumption-expenditures-state-and-real-personal-income-state-2024"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-indigo-400 hover:text-indigo-300 underline inline-flex items-center gap-1 font-semibold"
+                >
+                  BEA (Julio 2026) <ExternalLink className="w-3 h-3" />
+                </a>
+              </span>
             </div>
 
             <div className="overflow-x-auto border border-[#262626] rounded-xl">
@@ -211,13 +222,42 @@ export function MacroPart4({ activeTab }: MacroPart4Props) {
                 </tbody>
               </table>
             </div>
+            <p className="text-[11px] text-slate-400 italic">
+              Publicación vigente:{" "}
+              <a
+                href="https://www.bea.gov/news/2026/real-personal-consumption-expenditures-state-and-real-personal-income-state-2024"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-indigo-400 hover:underline inline-flex items-center gap-0.5 font-semibold"
+              >
+                BEA — lanzamiento de RPP y consumo personal real por estado, 2024 <ExternalLink className="w-2.5 h-2.5" />
+              </a>
+              {" | "}
+              Datos:{" "}
+              <a
+                href="https://apps.bea.gov/iTable/?ReqID=70&step=1&_gl=1*1h0j6r0*_ga*MTk0MTA0NDA3Ny4xNzM4MDAwMDAw*_ga_J4698JNNFT*MTc2MDAwMDAwMC4xLjAuMTc2MDAwMDAwMC42MC4wLjA."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-indigo-400 hover:underline inline-flex items-center gap-0.5 font-semibold"
+              >
+                BEA — tabla SARPP y página de RPP <ExternalLink className="w-2.5 h-2.5" />
+              </a>.
+            </p>
           </div>
 
           {/* Political Trajectory Table */}
           <div className="space-y-4">
             <h3 className="text-lg font-serif font-bold text-white flex items-center gap-2">
               <Scale className="w-5 h-5 text-indigo-400" />
-              Predominio Político Estadal 2016–2026 (NCSL)
+              Predominio Político Estadal 2016–2026{" "}
+              <a
+                href="https://www.ncsl.org/about-state-legislatures/state-partisan-composition"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-indigo-400 hover:text-indigo-300 underline inline-flex items-center gap-1 font-mono text-xs font-normal"
+              >
+                (NCSL) <ExternalLink className="w-3 h-3" />
+              </a>
             </h3>
 
             <div className="overflow-x-auto border border-[#262626] rounded-xl">
@@ -275,10 +315,23 @@ export function MacroPart4({ activeTab }: MacroPart4Props) {
 
           {/* Table 12.1: MSA RPP Ranking */}
           <div className="space-y-4">
-            <h3 className="text-lg font-serif font-bold text-white flex items-center gap-2">
-              <Building2 className="w-5 h-5 text-indigo-400" />
-              Tabla 12.1. Ranking Metropolitano Estricto por RPP 2024 (Promedio Nacional = 100)
-            </h3>
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <h3 className="text-lg font-serif font-bold text-white flex items-center gap-2">
+                <Building2 className="w-5 h-5 text-indigo-400" />
+                Tabla 12.1. Ranking Metropolitano Estricto por RPP 2024 (Promedio Nacional = 100)
+              </h3>
+              <span className="text-xs font-mono text-slate-400">
+                Fuente:{" "}
+                <a
+                  href="https://www.bea.gov/data/prices-inflation/regional-price-parities-state-and-metro-area"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-indigo-400 hover:text-indigo-300 underline inline-flex items-center gap-1 font-semibold"
+                >
+                  BEA RPP Metropolitano <ExternalLink className="w-3 h-3" />
+                </a>
+              </span>
+            </div>
 
             <div className="overflow-x-auto border border-[#262626] rounded-xl">
               <table className="w-full text-left text-xs font-sans border-collapse min-w-[700px]">
@@ -314,6 +367,35 @@ export function MacroPart4({ activeTab }: MacroPart4Props) {
                 </tbody>
               </table>
             </div>
+            <p className="text-[11px] text-slate-400 italic">
+              Fuentes:{" "}
+              <a
+                href="https://www.bea.gov/data/prices-inflation/regional-price-parities-state-and-metro-area"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-indigo-400 hover:underline inline-flex items-center gap-0.5"
+              >
+                BEA — Regional Price Parities by State and Metro Area <ExternalLink className="w-2.5 h-2.5" />
+              </a>
+              {" | "}
+              <a
+                href="https://www.everycityintheusa.com/cities/by-cost-of-living/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-indigo-400 hover:underline inline-flex items-center gap-0.5"
+              >
+                Tabla metropolitana 2024 derivada de datos BEA <ExternalLink className="w-2.5 h-2.5" />
+              </a>
+              {" | "}
+              <a
+                href="https://www.everycityintheusa.com/data/cost-of-living-by-metro.csv"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-indigo-400 hover:underline inline-flex items-center gap-0.5"
+              >
+                Descarga y clasificación MSA — archivo CSV <ExternalLink className="w-2.5 h-2.5" />
+              </a>.
+            </p>
           </div>
 
           {/* Table 12.4: Municipal Political Codification */}
@@ -343,6 +425,45 @@ export function MacroPart4({ activeTab }: MacroPart4Props) {
                 </tbody>
               </table>
             </div>
+
+            <p className="text-[11px] text-slate-400 italic">
+              Ejemplos de fuentes oficiales de gobierno y elecciones:{" "}
+              <a
+                href="https://www.cityofnapa.org/155/Elections"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-indigo-400 hover:underline inline-flex items-center gap-0.5"
+              >
+                Ciudad de Napa — elecciones <ExternalLink className="w-2.5 h-2.5" />
+              </a>
+              {" | "}
+              <a
+                href="https://clerk.lacity.gov/elections/municipal-elections"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-indigo-400 hover:underline inline-flex items-center gap-0.5"
+              >
+                Ciudad de Los Ángeles — elecciones municipales <ExternalLink className="w-2.5 h-2.5" />
+              </a>
+              {" | "}
+              <a
+                href="https://www.nyc.gov/assets/charter/html/2025-CRC-Final-Report.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-indigo-400 hover:underline inline-flex items-center gap-0.5"
+              >
+                NYC — sistema electoral y carta municipal <ExternalLink className="w-2.5 h-2.5" />
+              </a>
+              {" | "}
+              <a
+                href="https://www.nyc.gov/es/mayors-office"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-indigo-400 hover:underline inline-flex items-center gap-0.5"
+              >
+                NYC — Alcaldía 2026 <ExternalLink className="w-2.5 h-2.5" />
+              </a>
+            </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-mono">
               <div className="p-4 bg-[#141414] border border-[#262626] rounded-xl text-slate-300">
@@ -387,6 +508,30 @@ export function MacroPart4({ activeTab }: MacroPart4Props) {
             </h3>
             <div className="p-4 bg-[#0A0A0A] border border-[#262626] rounded-lg text-center font-mono text-xs sm:text-sm text-indigo-300 font-bold overflow-x-auto">
               Precio Surtidor = Costo Petróleo Crudo + Refinación y Margen + Distribución y Comercialización + Impuestos
+            </div>
+            <div className="p-4 bg-[#0A0A0A]/60 border border-[#262626] rounded-lg text-xs text-slate-300 leading-relaxed font-sans space-y-2">
+              <p>
+                El precio final no es solamente el impuesto. Incluye crudo, refinación, transporte, formulación, almacenamiento, distribución y margen. La EIA identifica la distancia respecto del suministro, la capacidad de refinación, las especificaciones regionales y la competencia como causas de diferencias territoriales.{" "}
+                <a
+                  href="https://www.eia.gov/energyexplained/gasoline/regional-price-differences.php"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-indigo-400 hover:underline inline-flex items-center gap-0.5 font-semibold"
+                >
+                  EIA — diferencias regionales en los precios de la gasolina <ExternalLink className="w-2.5 h-2.5" />
+                </a>.
+              </p>
+              <p>
+                La EPA exige <em>reformulated gasoline</em> en mercados con problemas de calidad del aire; California utiliza además su propia formulación estatal.{" "}
+                <a
+                  href="https://www.epa.gov/gasoline-standards/reformulated-gasoline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-indigo-400 hover:underline inline-flex items-center gap-0.5 font-semibold"
+                >
+                  EPA — gasolina reformulada <ExternalLink className="w-2.5 h-2.5" />
+                </a>.
+              </p>
             </div>
           </div>
 
@@ -447,9 +592,59 @@ export function MacroPart4({ activeTab }: MacroPart4Props) {
                 </tbody>
               </table>
             </div>
-            <p className="text-[11px] text-slate-400 italic">
-              Fuentes: Kiplinger, FTA, Tax Policy Center & Tax Foundation (2025/2026). No incluye necesariamente todos los impuestos porcentuales o locales adicionales.
-            </p>
+            <div className="text-[11px] text-slate-400 italic space-y-1">
+              <p>
+                <strong>Cargas altas:</strong>{" "}
+                <a
+                  href="https://www.kiplinger.com/taxes/state-tax/603259/states-with-the-highest-gas-taxes"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-indigo-400 hover:underline inline-flex items-center gap-0.5"
+                >
+                  Kiplinger — estados con los impuestos de gasolina más altos <ExternalLink className="w-2.5 h-2.5" />
+                </a>
+                , con datos de{" "}
+                <a
+                  href="https://www.taxadmin.org/motor-fuel-tax-rates"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-indigo-400 hover:underline inline-flex items-center gap-0.5"
+                >
+                  FTA <ExternalLink className="w-2.5 h-2.5" />
+                </a>
+                ,{" "}
+                <a
+                  href="https://www.taxpolicycenter.org/statistics/motor-fuel-tax-rates"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-indigo-400 hover:underline inline-flex items-center gap-0.5"
+                >
+                  Tax Policy Center <ExternalLink className="w-2.5 h-2.5" />
+                </a>
+                {" y "}
+                <a
+                  href="https://taxfoundation.org/data/state-data/gas-tax-rates-by-state/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-indigo-400 hover:underline inline-flex items-center gap-0.5"
+                >
+                  Tax Foundation <ExternalLink className="w-2.5 h-2.5" />
+                </a>
+                , septiembre de 2025.
+              </p>
+              <p>
+                <strong>Cargas bajas:</strong>{" "}
+                <a
+                  href="https://www.kiplinger.com/taxes/state-tax/603264/states-with-the-lowest-gas-taxes"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-indigo-400 hover:underline inline-flex items-center gap-0.5"
+                >
+                  Kiplinger — estados con los impuestos de gasolina más bajos <ExternalLink className="w-2.5 h-2.5" />
+                </a>
+                . No incluye necesariamente todos los impuestos porcentuales o locales adicionales.
+              </p>
+            </div>
           </div>
 
           {/* Opportunities by State */}
@@ -461,7 +656,7 @@ export function MacroPart4({ activeTab }: MacroPart4Props) {
               <div className="p-4 bg-[#0A0A0A] border border-[#262626] rounded-lg space-y-2">
                 <span className="text-rose-400 font-bold block font-mono">Estados de Alto Costo</span>
                 <ul className="list-disc list-inside space-y-1 text-slate-400">
-                  <li><strong>California:</strong> impuestos, mezclas exclusivas, LCFS y capacidad de suministro.</li>
+                  <li><strong>California:</strong> impuestos, mezclas exclusivas, LCFS (Low Carbon Fuel Standard / Estándar de Combustible Bajo en Carbono) y capacidad de suministro.</li>
                   <li><strong>Washington:</strong> Clean Fuel Standard e impuestos.</li>
                   <li><strong>Hawái:</strong> logística, almacenamiento y competencia de importación.</li>
                   <li><strong>Nueva York y Nueva Jersey:</strong> impuestos, terminales y coordinación regional.</li>
@@ -531,7 +726,26 @@ export function MacroPart4({ activeTab }: MacroPart4Props) {
                 </tbody>
               </table>
             </div>
-            <p className="text-[11px] text-slate-400 italic">Fuente: USAFacts / Census Bureau Homeownership Rates.</p>
+            <p className="text-[11px] text-slate-400 italic">
+              Fuentes:{" "}
+              <a
+                href="https://usafacts.org/answers/what-is-the-homeownership-rate/country/united-states/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-indigo-400 hover:underline inline-flex items-center gap-0.5"
+              >
+                USAFacts — tasa de propiedad de vivienda <ExternalLink className="w-2.5 h-2.5" />
+              </a>
+              {" / "}
+              <a
+                href="https://www.census.gov/housing/hvs/index.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-indigo-400 hover:underline inline-flex items-center gap-0.5"
+              >
+                Census Bureau Homeownership Rates <ExternalLink className="w-2.5 h-2.5" />
+              </a>.
+            </p>
           </div>
 
           {/* BEA Rent RPP */}
@@ -569,6 +783,17 @@ export function MacroPart4({ activeTab }: MacroPart4Props) {
                 </tbody>
               </table>
             </div>
+            <p className="text-[11px] text-slate-400 italic">
+              Fuente:{" "}
+              <a
+                href="https://apps.bea.gov/itable/?ReqID=70&step=1&_gl=1*1h2rpu4*_ga*MTY2NzgxNzUyNC4xNzg0MzE5NDA2*_ga_J4698JNNFT*czE3ODQzMTk0MDYkbzEkZzEkdDE3ODQzMTk1MTYkajM0JGwwJGgw#eyJhcHBpZCI6NzAsInN0ZXBzIjpbMSwyOSwyNSwzMSwyNiwyNywzMF0sImRhdGEiOltbIlRhYmxlSWQiLCIxMDEiXSxbIk1ham9yX0FyZWEiLCIwIl0sWyJTdGF0ZSIsWyIwIl1dLFsiQXJlYSIsWyJYWCJdXSxbIlN0YXRpc3RpYyIsWyIzIl1dLFsiVW5pdF9vZl9tZWFzdXJlIiwiTGV2ZWxzIl0sWyJZZWFyIixbIjIwMjQiLCIyMDIzIiwiMjAyMiJdXSxbIlllYXJCZWdpbiIsIi0xIl0sWyJZZWFyX0VuZCIsIi0xIl1dfQ=="
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-indigo-400 hover:underline inline-flex items-center gap-0.5 break-all"
+              >
+                BEA iTable — RPP de alquileres y vivienda <ExternalLink className="w-2.5 h-2.5" />
+              </a>.
+            </p>
           </div>
 
           {/* 5 Policy Proposals */}
@@ -632,8 +857,16 @@ export function MacroPart4({ activeTab }: MacroPart4Props) {
 
           {/* Construction Regulatory Pressure Table */}
           <div className="space-y-4">
-            <h3 className="text-lg font-serif font-bold text-white">
-              Sección 4. Presión Regulatoria en Construcción (HUD Clearinghouse)
+            <h3 className="text-lg font-serif font-bold text-white flex items-center gap-2">
+              Sección 4. Presión Regulatoria en Construcción{" "}
+              <a
+                href="https://www.huduser.gov/portal/rbc/home.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-indigo-400 hover:text-indigo-300 underline inline-flex items-center gap-1 font-mono text-xs font-normal"
+              >
+                (HUD — Regulatory Barriers Clearinghouse) <ExternalLink className="w-3 h-3" />
+              </a>
             </h3>
 
             <div className="overflow-x-auto border border-[#262626] rounded-xl">
@@ -718,7 +951,17 @@ export function MacroPart4({ activeTab }: MacroPart4Props) {
                 </tbody>
               </table>
             </div>
-            <p className="text-[11px] text-slate-400 italic">Fuente: Tax Foundation.</p>
+            <p className="text-[11px] text-slate-400 italic">
+              Fuente:{" "}
+              <a
+                href="https://taxfoundation.org/data/all/state/property-taxes-by-state-county/?utm_source=chatgpt.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-indigo-400 hover:underline inline-flex items-center gap-0.5"
+              >
+                Tax Foundation — Property Taxes by State and County <ExternalLink className="w-2.5 h-2.5" />
+              </a>.
+            </p>
           </div>
 
           {/* Key Findings on Property Tax */}
@@ -811,7 +1054,17 @@ export function MacroPart4({ activeTab }: MacroPart4Props) {
                 </tbody>
               </table>
             </div>
-            <p className="text-[11px] text-slate-400 italic">Fuente: Tax Foundation (Midyear Sales Tax Rates 2026).</p>
+            <p className="text-[11px] text-slate-400 italic">
+              Fuente:{" "}
+              <a
+                href="https://taxfoundation.org/data/all/state/2026-sales-tax-rates-midyear/?utm_source=chatgpt.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-indigo-400 hover:underline inline-flex items-center gap-0.5"
+              >
+                Tax Foundation — 2026 Sales Tax Rates, Midyear <ExternalLink className="w-2.5 h-2.5" />
+              </a>.
+            </p>
           </div>
 
           <div className="p-5 bg-[#141414] border border-[#262626] rounded-xl text-xs text-slate-300 leading-relaxed font-sans">
@@ -972,7 +1225,33 @@ export function MacroPart4({ activeTab }: MacroPart4Props) {
               </table>
             </div>
             <p className="text-[11px] text-slate-400 italic">
-              Fuentes: U.S. Census Bureau (Vintage Population Estimates), Brookings Institution & Cornell Program on Applied Demographics.
+              Fuentes:{" "}
+              <a
+                href="https://www.census.gov/programs-surveys/popest.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-indigo-400 hover:underline inline-flex items-center gap-0.5"
+              >
+                U.S. Census Bureau (Vintage Population Estimates) <ExternalLink className="w-2.5 h-2.5" />
+              </a>
+              ,{" "}
+              <a
+                href="https://www.brookings.edu/research/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-indigo-400 hover:underline inline-flex items-center gap-0.5"
+              >
+                Brookings Institution <ExternalLink className="w-2.5 h-2.5" />
+              </a>
+              {" & "}
+              <a
+                href="https://pad.human.cornell.edu/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-indigo-400 hover:underline inline-flex items-center gap-0.5"
+              >
+                Cornell Program on Applied Demographics <ExternalLink className="w-2.5 h-2.5" />
+              </a>.
             </p>
           </div>
 
@@ -986,16 +1265,37 @@ export function MacroPart4({ activeTab }: MacroPart4Props) {
               <li className="flex items-start gap-2.5">
                 <span className="text-indigo-400 font-bold mt-0.5">•</span>
                 <div>
-                  <strong className="text-white">U.S. Census Bureau (Oficina del Censo de EE. UU.):</strong>{" "}
-                  <span className="italic text-slate-300">Components of Population Change under Vintage estimates</span>
+                  <a
+                    href="https://www.census.gov/programs-surveys/popest.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="strong text-white hover:text-indigo-300 underline font-bold inline-flex items-center gap-1"
+                  >
+                    U.S. Census Bureau (Oficina del Censo de EE. UU.) <ExternalLink className="w-3 h-3 text-indigo-400" />
+                  </a>
+                  : <span className="italic text-slate-300">Components of Population Change under Vintage estimates</span>
                   <ul className="mt-1.5 ml-4 space-y-1 text-slate-400 font-mono text-xs">
                     <li className="flex items-center gap-1.5">
                       <span className="text-slate-500">–</span>
-                      <span>Census Bureau: Comunicados sobre Crecimiento Poblacional y Componentes Migratorios</span>
+                      <a
+                        href="https://www.census.gov/newsroom/press-releases/2026/population-growth-slows.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-indigo-300 hover:underline inline-flex items-center gap-1"
+                      >
+                        Census Bureau — Crecimiento poblacional y componentes migratorios <ExternalLink className="w-2.5 h-2.5 text-indigo-400" />
+                      </a>
                     </li>
                     <li className="flex items-center gap-1.5">
                       <span className="text-slate-500">–</span>
-                      <span>Census Bureau: Tablas Históricas de Flujos Migratorios Estado a Estado</span>
+                      <a
+                        href="https://www.census.gov/data/tables/time-series/demo/geographic-mobility/state-to-state-migration.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-indigo-300 hover:underline inline-flex items-center gap-1"
+                      >
+                        Census Bureau — tablas históricas de migración entre estados <ExternalLink className="w-2.5 h-2.5 text-indigo-400" />
+                      </a>
                     </li>
                   </ul>
                 </div>
@@ -1003,15 +1303,27 @@ export function MacroPart4({ activeTab }: MacroPart4Props) {
               <li className="flex items-start gap-2.5">
                 <span className="text-indigo-400 font-bold mt-0.5">•</span>
                 <div>
-                  <strong className="text-white">Brookings Institution:</strong>{" "}
-                  <span className="italic text-slate-300">Análisis del Impacto Migratorio e Inmigración en los Estados</span>
+                  <a
+                    href="https://www.brookings.edu/articles/reduced-immigration-slowed-population-growth-for-the-nation-and-most-states-new-census-data-show/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="strong text-white hover:text-indigo-300 underline font-bold inline-flex items-center gap-1"
+                  >
+                    Brookings — impacto de la inmigración en el crecimiento de los estados <ExternalLink className="w-3 h-3 text-indigo-400" />
+                  </a>
                 </div>
               </li>
               <li className="flex items-start gap-2.5">
                 <span className="text-indigo-400 font-bold mt-0.5">•</span>
                 <div>
-                  <strong className="text-white">Cornell Program on Applied Demographics:</strong>{" "}
-                  <span className="italic text-slate-300">Análisis Demográfico de los Datos Vintage del Censo</span>
+                  <a
+                    href="https://pad.human.cornell.edu/papers/downloads/V2025StateHighlights.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="strong text-white hover:text-indigo-300 underline font-bold inline-flex items-center gap-1"
+                  >
+                    Cornell — análisis demográfico de los datos Vintage del Censo <ExternalLink className="w-3 h-3 text-indigo-400" />
+                  </a>
                 </div>
               </li>
             </ul>
@@ -1054,6 +1366,56 @@ export function MacroPart4({ activeTab }: MacroPart4Props) {
                 <p className="text-xs text-slate-300 leading-relaxed font-sans">{fb.interpretacion}</p>
               </div>
             ))}
+          </div>
+
+          <p className="text-[11px] text-slate-400 italic">
+            Fuentes para la estimación del presupuesto familiar:{" "}
+            <a
+              href="https://www.bls.gov/opub/ted/2026/housing-and-transportation-accounted-for-50-percent-of-household-spending-in-2024.htm?utm_source=chatgpt.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-indigo-400 hover:underline inline-flex items-center gap-0.5"
+            >
+              Bureau of Labor Statistics <ExternalLink className="w-2.5 h-2.5" />
+            </a>
+            {" | "}
+            <a
+              href="https://www.cbo.gov/publication/62300?utm_source=chatgpt.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-indigo-400 hover:underline inline-flex items-center gap-0.5"
+            >
+              Congressional Budget Office <ExternalLink className="w-2.5 h-2.5" />
+            </a>
+            {" | "}
+            <a
+              href="https://itep.org/whopays-7th-edition/?utm_source=chatgpt.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-indigo-400 hover:underline inline-flex items-center gap-0.5"
+            >
+              ITEP — Who Pays?, séptima edición <ExternalLink className="w-2.5 h-2.5" />
+            </a>
+            {" | "}
+            <a
+              href="https://www.bea.gov/news/2026/real-personal-consumption-expenditures-state-and-real-personal-income-state-2024?utm_source=chatgpt.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-indigo-400 hover:underline inline-flex items-center gap-0.5"
+            >
+              Bureau of Economic Analysis <ExternalLink className="w-2.5 h-2.5" />
+            </a>.
+          </p>
+
+          {/* Key Conclusion Callout Rectangle */}
+          <div className="bg-[#18181B] border border-indigo-500/30 rounded-2xl p-5 sm:p-6 shadow-xl relative overflow-hidden space-y-2">
+            <div className="flex items-center gap-2 text-indigo-400 font-mono text-xs uppercase tracking-wider font-bold">
+              <Info className="w-4 h-4" />
+              Conclusión Clave de Asequibilidad
+            </div>
+            <p className="text-sm sm:text-base text-slate-200 font-sans leading-relaxed font-medium">
+              La asequibilidad de los ciudadanos y familias depende mayoritariamente de las políticas, regulaciones e impuestos a nivel estadal y local (vivienda 33.4%, Impuestos estadales y locales 10.5%) que de los de la Federación. La Federación crea entornos económicos para la creación de trabajos, empresas y regulación de los participantes.
+            </p>
           </div>
 
           {/* Reform Priorities Matrix */}

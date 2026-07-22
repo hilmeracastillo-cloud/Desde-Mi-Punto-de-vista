@@ -203,20 +203,20 @@ export default function App() {
                 }}
                 className={`flex-1 flex items-center gap-3.5 p-4 rounded-xl border text-left transition-all duration-300 cursor-pointer relative overflow-hidden group ${
                   activePart === "P1"
-                    ? "bg-[#141414] border-[#60A5FA]/60 ring-1 ring-[#60A5FA]/30 shadow-lg shadow-blue-500/5 text-white"
-                    : "bg-[#0A0A0A]/40 border-[#222] text-[#94A3B8] hover:border-[#333] hover:text-[#F8FAFC]"
+                    ? "bg-[#0d1b2a] border-blue-500 border-l-4 border-l-blue-400 ring-1 ring-blue-500/40 shadow-lg shadow-blue-500/10 text-white"
+                    : "bg-[#0d1b2a]/50 border-blue-900/60 border-l-4 border-l-blue-600/50 text-[#94A3B8] hover:border-blue-500/60 hover:text-[#F8FAFC]"
                 }`}
               >
-                <div className={`w-8 h-8 rounded-lg flex items-center justify-center font-mono text-xs font-bold transition-all ${
-                  activePart === "P1" ? "bg-[#60A5FA]/20 text-[#60A5FA]" : "bg-[#222] text-slate-500"
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-mono text-xs font-bold transition-all shrink-0 ${
+                  activePart === "P1" ? "bg-blue-500 text-slate-950" : "bg-blue-500/20 text-blue-400 border border-blue-500/30"
                 }`}>
-                  I
+                  1
                 </div>
                 <div>
-                  <div className="text-[10px] font-mono uppercase tracking-widest text-slate-500 font-semibold">Visión de los individuos</div>
-                  <h3 className="text-sm font-bold font-serif leading-snug mt-0.5">Parte 1: Asequibilidad</h3>
+                  <div className="text-[10px] font-mono uppercase tracking-widest text-blue-400 font-semibold">Visión de los individuos</div>
+                  <h3 className="text-sm font-bold font-serif leading-snug mt-0.5 text-white">Asequibilidad</h3>
                 </div>
-                <ChevronRight className={`w-4 h-4 ml-auto opacity-40 transition-transform ${activePart === "P1" ? "translate-x-0.5 opacity-100 text-[#60A5FA]" : "group-hover:translate-x-0.5"}`} />
+                <ChevronRight className={`w-4 h-4 ml-auto opacity-40 transition-transform ${activePart === "P1" ? "translate-x-0.5 opacity-100 text-blue-400" : "group-hover:translate-x-0.5"}`} />
               </button>
 
               <button
@@ -227,20 +227,20 @@ export default function App() {
                 }}
                 className={`flex-1 flex items-center gap-3.5 p-4 rounded-xl border text-left transition-all duration-300 cursor-pointer relative overflow-hidden group ${
                   activePart === "P2"
-                    ? "bg-[#141414] border-[#FB7185]/60 ring-1 ring-[#FB7185]/30 shadow-lg shadow-pink-500/5 text-white"
-                    : "bg-[#0A0A0A]/40 border-[#222] text-[#94A3B8] hover:border-[#333] hover:text-[#F8FAFC]"
+                    ? "bg-[#2a0d17] border-rose-500 border-l-4 border-l-rose-400 ring-1 ring-rose-500/40 shadow-lg shadow-rose-500/10 text-white"
+                    : "bg-[#2a0d17]/50 border-rose-900/60 border-l-4 border-l-rose-600/50 text-[#94A3B8] hover:border-rose-500/60 hover:text-[#F8FAFC]"
                 }`}
               >
-                <div className={`w-8 h-8 rounded-lg flex items-center justify-center font-mono text-xs font-bold transition-all ${
-                  activePart === "P2" ? "bg-[#FB7185]/20 text-[#FB7185]" : "bg-[#222] text-slate-500"
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-mono text-xs font-bold transition-all shrink-0 ${
+                  activePart === "P2" ? "bg-rose-500 text-slate-950" : "bg-rose-500/20 text-rose-400 border border-rose-500/30"
                 }`}>
-                  II
+                  2
                 </div>
                 <div>
-                  <div className="text-[10px] font-mono uppercase tracking-widest text-slate-500 font-semibold">Visión de País</div>
-                  <h3 className="text-sm font-bold font-serif leading-snug mt-0.5">Parte 2: Crecimiento Nacional</h3>
+                  <div className="text-[10px] font-mono uppercase tracking-widest text-rose-400 font-semibold">Visión de País</div>
+                  <h3 className="text-sm font-bold font-serif leading-snug mt-0.5 text-white">Crecimiento Nacional</h3>
                 </div>
-                <ChevronRight className={`w-4 h-4 ml-auto opacity-40 transition-transform ${activePart === "P2" ? "translate-x-0.5 opacity-100 text-[#FB7185]" : "group-hover:translate-x-0.5"}`} />
+                <ChevronRight className={`w-4 h-4 ml-auto opacity-40 transition-transform ${activePart === "P2" ? "translate-x-0.5 opacity-100 text-rose-400" : "group-hover:translate-x-0.5"}`} />
               </button>
 
               <button
@@ -251,18 +251,18 @@ export default function App() {
                 }}
                 className={`flex-1 flex items-center gap-3.5 p-4 rounded-xl border text-left transition-all duration-300 cursor-pointer relative overflow-hidden group ${
                   activePart === "P3"
-                    ? "bg-[#141414] border-emerald-500/60 ring-1 ring-emerald-500/30 shadow-lg shadow-emerald-500/5 text-white"
-                    : "bg-[#0A0A0A]/40 border-[#222] text-[#94A3B8] hover:border-[#333] hover:text-[#F8FAFC]"
+                    ? "bg-[#0d2a1b] border-emerald-500 border-l-4 border-l-emerald-400 ring-1 ring-emerald-500/40 shadow-lg shadow-emerald-500/10 text-white"
+                    : "bg-[#0d2a1b]/50 border-emerald-900/60 border-l-4 border-l-emerald-600/50 text-[#94A3B8] hover:border-emerald-500/60 hover:text-[#F8FAFC]"
                 }`}
               >
-                <div className={`w-8 h-8 rounded-lg flex items-center justify-center font-mono text-xs font-bold transition-all ${
-                  activePart === "P3" ? "bg-emerald-500/20 text-emerald-400" : "bg-[#222] text-slate-500"
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-mono text-xs font-bold transition-all shrink-0 ${
+                  activePart === "P3" ? "bg-emerald-500 text-slate-950" : "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
                 }`}>
-                  III
+                  3
                 </div>
                 <div>
-                  <div className="text-[10px] font-mono uppercase tracking-widest text-slate-500 font-semibold">Desglose Sectorial</div>
-                  <h3 className="text-sm font-bold font-serif leading-snug mt-0.5">Parte 3: Sectores Privados</h3>
+                  <div className="text-[10px] font-mono uppercase tracking-widest text-emerald-400 font-semibold">Desglose Sectorial</div>
+                  <h3 className="text-sm font-bold font-serif leading-snug mt-0.5 text-white">Sectores Privados</h3>
                 </div>
                 <ChevronRight className={`w-4 h-4 ml-auto opacity-40 transition-transform ${activePart === "P3" ? "translate-x-0.5 opacity-100 text-emerald-400" : "group-hover:translate-x-0.5"}`} />
               </button>
@@ -275,20 +275,20 @@ export default function App() {
                 }}
                 className={`flex-1 flex items-center gap-3.5 p-4 rounded-xl border text-left transition-all duration-300 cursor-pointer relative overflow-hidden group ${
                   activePart === "P4"
-                    ? "bg-[#141414] border-indigo-500/60 ring-1 ring-indigo-500/30 shadow-lg shadow-indigo-500/5 text-white"
-                    : "bg-[#0A0A0A]/40 border-[#222] text-[#94A3B8] hover:border-[#333] hover:text-[#F8FAFC]"
+                    ? "bg-[#2a1f0d] border-amber-500 border-l-4 border-l-amber-400 ring-1 ring-amber-500/40 shadow-lg shadow-amber-500/10 text-white"
+                    : "bg-[#2a1f0d]/50 border-amber-900/60 border-l-4 border-l-amber-600/50 text-[#94A3B8] hover:border-amber-500/60 hover:text-[#F8FAFC]"
                 }`}
               >
-                <div className={`w-8 h-8 rounded-lg flex items-center justify-center font-mono text-xs font-bold transition-all ${
-                  activePart === "P4" ? "bg-indigo-500/20 text-indigo-400" : "bg-[#222] text-slate-500"
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-mono text-xs font-bold transition-all shrink-0 ${
+                  activePart === "P4" ? "bg-amber-500 text-slate-950" : "bg-amber-500/20 text-amber-400 border border-amber-500/30"
                 }`}>
-                  IV
+                  4
                 </div>
                 <div>
-                  <div className="text-[10px] font-mono uppercase tracking-widest text-slate-500 font-semibold">Enfoque Subnacional</div>
-                  <h3 className="text-sm font-bold font-serif leading-snug mt-0.5">Parte 4: Estados y Ciudades</h3>
+                  <div className="text-[10px] font-mono uppercase tracking-widest text-amber-400 font-semibold">Enfoque Subnacional</div>
+                  <h3 className="text-sm font-bold font-serif leading-snug mt-0.5 text-white">Estados y Ciudades</h3>
                 </div>
-                <ChevronRight className={`w-4 h-4 ml-auto opacity-40 transition-transform ${activePart === "P4" ? "translate-x-0.5 opacity-100 text-indigo-400" : "group-hover:translate-x-0.5"}`} />
+                <ChevronRight className={`w-4 h-4 ml-auto opacity-40 transition-transform ${activePart === "P4" ? "translate-x-0.5 opacity-100 text-amber-400" : "group-hover:translate-x-0.5"}`} />
               </button>
             </div>
 
