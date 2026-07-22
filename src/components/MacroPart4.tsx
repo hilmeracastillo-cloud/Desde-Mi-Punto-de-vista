@@ -1414,7 +1414,7 @@ export function MacroPart4({ activeTab }: MacroPart4Props) {
               Conclusión Clave de Asequibilidad
             </div>
             <p className="text-sm sm:text-base text-slate-200 font-sans leading-relaxed font-medium">
-              La asequibilidad de los ciudadanos y familias depende mayoritariamente de las políticas, regulaciones e impuestos a nivel estadal y local (vivienda 33.4%, Impuestos estadales y locales 10.5%) que de los de la Federación. La Federación crea entornos económicos para la creación de trabajos, empresas y regulación de los participantes.
+              La asequibilidad de los ciudadanos y familias depende mayoritariamente de las políticas, regulaciones e impuestos a nivel estadal y local (vivienda 33.4%, Impuestos estadales y locales 10.5%). La Federación crea entornos económicos para la creación de trabajos, empresas y regulación de los participantes.
             </p>
           </div>
 
@@ -1488,8 +1488,8 @@ export function MacroPart4({ activeTab }: MacroPart4Props) {
             </ul>
 
             <div className="pt-4 border-t border-[#262626] text-center space-y-4">
-              <p className="text-lg sm:text-2xl font-serif font-bold text-indigo-300 leading-relaxed max-w-3xl mx-auto">
-                Podemos afirmar que VAMOS BIEN, no como todos quisiéramos pero sí en una dirección y velocidad que lucen prometedoras.
+              <p className="text-base sm:text-xl font-serif font-bold text-indigo-300 leading-relaxed max-w-3xl mx-auto">
+                Podemos afirmar que el entorno económico creado por la actual administración federal esta mejorando respecto a los 4 años previos, no es como a todos nos gustaría pero sí en una dirección y velocidad que lucen prometedoras. El problema de asequibilidad reside en impuestos, y regulaciones del nivel estadal y local. Esas causas además tiene mucha variabilidad del estado y ciudad donde se viva.
               </p>
               <p className="text-sm sm:text-base font-serif italic text-slate-300">
                 Hay muchas cosas por mejorar, pero Roma no se construyó en 18 meses.
