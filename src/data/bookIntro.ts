@@ -4,7 +4,7 @@ export const bookMetadata = {
   subtitle: "Un nuevo marco para diseñar escuelas, universidades y organizaciones en la era de la inteligencia artificial",
   type: "Borrador de trabajo para revisión académica",
   version: "Versión 0.1",
-  totalPages: 58,
+  totalPages: 65,
 };
 
 export const invitationText = {
@@ -44,7 +44,7 @@ export const purposeText = {
 export const scopeText = {
   title: "Alcance de este manuscrito",
   paragraphs: [
-    "El documento que acompaña esta introducción corresponde al borrador de los primeros capítulos de la investigación.",
+    "El documento que acompaña esta introducción corresponde únicamente al Capítulo 1.",
     "Su objetivo no es desarrollar toda la teoría, sino responder tres preguntas fundamentales:",
   ],
   bullets: [
