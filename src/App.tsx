@@ -1,938 +1,175 @@
-import React, { useState } from "react";
-import {
-  Briefcase,
-  TrendingUp,
-  DollarSign,
-  User,
-  Calendar,
-  CheckCircle2,
-  TrendingDown,
-  Percent,
-  Compass,
-  Building2,
-  Globe,
-  PieChart,
-  ArrowRightLeft,
-  ChevronRight,
-  Sparkles,
-  Info,
-  HelpCircle,
-  Activity,
-  Award,
-} from "lucide-react";
-import {
-  graph1Data,
-  graph2Data,
-  graph3Data,
-  graph5Data,
-  graph6Data,
-  graph7Data,
-  graph8Data,
-  graph9Data,
-  graph10Data,
-} from "./data";
-import {
-  gdpData,
-  gdpPerCapitaData,
-  consumoTotalData,
-  consumoPctData,
-  gastoPctData,
-  inversionData,
-  investmentsTable,
-  exportsTotalData,
-  exportsBienesData,
-  importsTotalData,
-  importsBienesData,
-  netExportsData,
-  arancelesData,
-  saldoMensualData
-} from "./data_part2";
-import { MacroeconomicChart } from "./components/MacroeconomicChart";
-import { RealWageWaterfall } from "./components/RealWageWaterfall";
-import { TaxDeductionChart } from "./components/TaxDeductionChart";
-import { MacroPart2 } from "./components/MacroPart2";
-import { MacroPart3 } from "./components/MacroPart3";
-import { MacroPart4 } from "./components/MacroPart4";
+import React, { useState, useEffect } from "react";
+import { Header } from "./components/Header";
+import { TableOfContentsModal } from "./components/TableOfContentsModal";
+import { FootnoteModal } from "./components/FootnoteModal";
+import { SearchModal } from "./components/SearchModal";
+import { IntroView } from "./components/IntroView";
+import { Chapter1View } from "./components/Chapter1View";
+import { Chapter2View } from "./components/Chapter2View";
+import { StructureView } from "./components/StructureView";
+import { ChapterFooterNav } from "./components/ChapterFooterNav";
+import { ViewTab, Footnote } from "./types";
 
 export default function App() {
-  // Balanced indicator checklist state
-  const [indicators, setIndicators] = useState([
-    {
-      id: "fuerza-laboral",
-      title: "Fuerza Laboral No Supervisoria",
-      desc: "Más gente tiene trabajo en posiciones no supervisoras.",
-      status: "Positivo",
-      metric: "Se han creado en el período más de 1 millón de nuevos trabajos no supervisorios",
-      checked: true,
-    },
-    {
-      id: "poder-adquisitivo",
-      title: "Poder Adquisitivo Efectivo",
-      desc: "El salario de esos trabajadores se está recuperando respecto al efecto de la inflación.",
-      status: "En Recuperación",
-      metric: "El salario real ha subido tan solo un 0.73%",
-      checked: true,
-    },
-    {
-      id: "estabilidad-empleo",
-      title: "Estabilidad en el Empleo",
-      desc: "El número de personas perdiendo su trabajo está disminuyendo.",
-      status: "Favorable",
-      metric: "Los reclamos de seguro de desempleo se han mantenido en el nivel mínimo promedio de los dos períodos",
-      checked: true,
-    },
-    {
-      id: "oportunidades",
-      title: "Abundancia de Oportunidades",
-      desc: "El número de posiciones de trabajo abiertas son considerables al comparar con el número de personas perdiendo el trabajo.",
-      status: "Excelente",
-      metric: "Más de 7.6M de puestos de trabajos abiertos contra 225 mil solicitudes de seguro de desempleo",
-      checked: true,
-    },
-    {
-      id: "entretenimiento",
-      title: "Gasto en Entretenimiento",
-      desc: "La gente va a restaurantes y viaja más.",
-      status: "Expansionista",
-      metric: "El consumo en restaurantes y alojamiento se ha incrementado 3.86%",
-      checked: true,
-    },
-    {
-      id: "morosidad",
-      title: "Reducción de Morosidad",
-      desc: "Los montos delincuenciales de las tarjetas de crédito han disminuido.",
-      status: "Estabilizado",
-      metric: "La cartera morosa ha descendido un 2.26% en este período. La gente está pagando para disminuir su deuda",
-      checked: true,
-    },
-  ]);
+  const [activeView, setActiveView] = useState<ViewTab>("intro");
+  const [fontSizeLevel, setFontSizeLevel] = useState<number>(0);
+  const [isContentsOpen, setIsContentsOpen] = useState<boolean>(false);
+  const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
+  const [selectedFootnote, setSelectedFootnote] = useState<Footnote | null>(null);
 
-  const toggleIndicator = (id: string) => {
-    setIndicators(
-      indicators.map((ind) =>
-        ind.id === id ? { ...ind, checked: !ind.checked } : ind
-      )
-    );
+  // Font size classes
+  const getFontSizeClass = () => {
+    switch (fontSizeLevel) {
+      case 1:
+        return "text-base sm:text-lg";
+      case 2:
+        return "text-lg sm:text-xl";
+      default:
+        return "text-sm sm:text-base";
+    }
   };
 
-  const completedCount = indicators.filter((i) => i.checked).length;
-  const healthPercent = Math.round((completedCount / indicators.length) * 100);
+  // Scroll to section when requested
+  const handleSelectView = (view: ViewTab, sectionId?: string) => {
+    setActiveView(view);
+    if (sectionId) {
+      setTimeout(() => {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
 
-  // Active Part state (P1 for Parte 1, P2 for Parte 2, P3 for Parte 3, P4 for Parte 4)
-  const [activePart, setActivePart] = useState<"P1" | "P2" | "P3" | "P4">("P1");
-  // Active section/tab state.
-  const [activeTab, setActiveTab] = useState("01");
+  // Navigation handlers for next / prev chapter
+  const getNextView = (): ViewTab | null => {
+    if (activeView === "intro") return "cap1";
+    if (activeView === "cap1") return "cap2";
+    if (activeView === "cap2") return "estructura";
+    return null;
+  };
 
-  // Selection list for sub-components of GDP in P2 Section 2
-  const [selectedGdpComp, setSelectedGdpComp] = useState<"C" | "I" | "G" | "XM">("C");
+  const getPrevView = (): ViewTab | null => {
+    if (activeView === "cap1") return "intro";
+    if (activeView === "cap2") return "cap1";
+    if (activeView === "estructura") return "cap2";
+    return null;
+  };
 
-  // Active sub-category in Section 6 (Exterior sector) of Parte 2
-  const [activeExteriorTab, setActiveExteriorTab] = useState<"balance" | "exports" | "imports" | "customs">("balance");
+  const getNextLabel = (): string => {
+    if (activeView === "intro") return "Capítulo 1: La arquitectura invisible";
+    if (activeView === "cap1") return "Capítulo 2: Cuando el diseño deja de responder...";
+    if (activeView === "cap2") return "Estructura general del libro";
+    return "Próximo Capítulo";
+  };
 
-  const tabsP1 = [
-    { id: "01", label: "01. Concepto de Asequibilidad", desc: "Término rector y bases de estudio" },
-    { id: "02", label: "02. Mercado Laboral & Salarios", desc: "Trabajadores y sueldos privados" },
-    { id: "03", label: "03. Inflación & Salario Real", desc: "Erosión y recuperación del poder adquisitivo" },
-    { id: "04", label: "04. Estructura Laboral", desc: "Desempleo, plazas vacantes y nómina pública" },
-    { id: "05", label: "05. Gasto & Consumo", desc: "Viajes, restaurantes y delincuencia de crédito" },
-    { id: "06", label: "06. Balance y Conclusión", desc: "Matriz interactiva y cierre analítico" }
-  ];
+  const getPrevLabel = (): string => {
+    if (activeView === "cap1") return "Presentación e Introducción";
+    if (activeView === "cap2") return "Capítulo 1: La arquitectura invisible";
+    if (activeView === "estructura") return "Capítulo 2: Cuando el diseño deja...";
+    return "Capítulo Anterior";
+  };
 
-  const tabsP2 = [
-    { id: "01", label: "01. Crecimiento (PIB)", desc: "PIB Total y PIB por Persona" },
-    { id: "02", label: "02. Componentes PIB", desc: "Consumo, Inversión, Gasto, Exportación" },
-    { id: "03", label: "03. Consumo Privado", desc: "Evolución y participación en el PIB" },
-    { id: "04", label: "04. Gasto Público", desc: "Reducción sostenida y gasto fiscal" },
-    { id: "05", label: "05. Inversión Privada", desc: "Reindustrialización y grandes proyectos" },
-    { id: "06", label: "06. Sector Exterior", desc: "Exportaciones, Importaciones y Aranceles" },
-    { id: "07", label: "07. Balance y Conclusión", desc: "Conclusiones macro generales" }
-  ];
+  const handleNavigateNext = () => {
+    const next = getNextView();
+    if (next) {
+      handleSelectView(next);
+    }
+  };
 
-  const tabsP3 = [
-    { id: "01", label: "01. Sector Privado", desc: "% PIB y Utilidades" },
-    { id: "02", label: "02. Finanzas e Inmobiliario", desc: "Finanzas, Seguros & Real Estate" },
-    { id: "03", label: "03. Serv. Profesionales", desc: "Servicios Profesionales & Negocios" },
-    { id: "04", label: "04. Manufactura", desc: "La Industria Manufacturera" },
-    { id: "05", label: "05. Educación y Salud", desc: "Servicios Educativos y Salud" },
-    { id: "06", label: "06. Comercio Mayorista", desc: "Distribución Mayorista" },
-    { id: "07", label: "07. Comercio Minorista", desc: "Comercio Detallista" },
-    { id: "08", label: "08. Sector Información", desc: "Telecomunicaciones e Información" },
-    { id: "09", label: "09. Ocio y Alimentos", desc: "Artes, Recreación y Comida" },
-    { id: "10", label: "10. Construcción", desc: "La Industria de la Construcción" },
-    { id: "11", label: "11. Balance y Conclusión", desc: "Conclusiones sectoriales generales" }
-  ];
-
-  const tabsP4 = [
-    { id: "01", label: "01. Estados y RPP", desc: "Regional Price Parity y Selección" },
-    { id: "02", label: "02. Áreas Metropolitanas", desc: "387 MSAs y Desglose Urbano" },
-    { id: "03", label: "03. Gasolina & Regulaciones", desc: "Impuestos, Fórmulas y Logística" },
-    { id: "04", label: "04. Alquileres & Tenencia", desc: "Tenencia, RPP Vivienda y Propuestas" },
-    { id: "05", label: "05. Construcción & Predial", desc: "Barreras HUD y Property Tax" },
-    { id: "06", label: "06. Ventas e Ingresos", desc: "Sales Tax e Income Tax Estadal" },
-    { id: "07", label: "07. Migración Neta", desc: "Flujos Poblacionales y Control 10A" },
-    { id: "08", label: "08. Balance General", desc: "¿Cómo vamos? Cierre de la Serie" }
-  ];
-
-  const currentTabs = activePart === "P1" ? tabsP1 : activePart === "P2" ? tabsP2 : activePart === "P3" ? tabsP3 : tabsP4;
+  const handleNavigatePrev = () => {
+    const prev = getPrevView();
+    if (prev) {
+      handleSelectView(prev);
+    }
+  };
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-[#F8FAFC] font-sans selection:bg-[#60A5FA]/30 selection:text-white transition-all overflow-x-hidden">
+    <div className="min-h-screen bg-[#0A0A0A] text-[#F8FAFC] font-sans selection:bg-indigo-500/30 selection:text-white transition-all overflow-x-hidden">
       
-      {/* Main Container */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-16">
+      {/* Header Bar with Single "Contenidos" Button */}
+      <Header
+        activeView={activeView}
+        onOpenContents={() => setIsContentsOpen(true)}
+        fontSizeLevel={fontSizeLevel}
+        onChangeFontSize={(lvl) => setFontSizeLevel(lvl)}
+        onOpenSearch={() => setIsSearchOpen(true)}
+      />
+
+      {/* Main Reading Container */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         
-        {/* Author / Editorial Introduction Hero Section */}
-        <section className="mb-14">
-          <div className="border-l-2 border-[#60A5FA] pl-6 md:pl-8 max-w-4xl relative">
-            <div className="absolute left-[-2px] top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#60A5FA] via-[#c084fc] to-[#FB7185]"></div>
-            
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold tracking-tight text-[#F8FAFC] leading-tight">
-              Desde mi punto de vista, ¿cómo vamos?
-            </h2>
-            <p className="text-base sm:text-lg text-[#94A3B8] mt-2 font-sans max-w-2xl leading-relaxed">
-              Un análisis analítico, apolítico y empírico de las variables socioeconómicas y macroeconómicas que moldean a los Estados Unidos.
-            </p>
-
-            {/* Premium Article Selector Toggle */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 mt-8 max-w-5xl">
-              <button
-                id="select-part-1-btn"
-                onClick={() => {
-                  setActivePart("P1");
-                  setActiveTab("01");
-                }}
-                className={`flex-1 flex items-center gap-3.5 p-4 rounded-xl border text-left transition-all duration-300 cursor-pointer relative overflow-hidden group ${
-                  activePart === "P1"
-                    ? "bg-[#0d1b2a] border-blue-500 border-l-4 border-l-blue-400 ring-1 ring-blue-500/40 shadow-lg shadow-blue-500/10 text-white"
-                    : "bg-[#0d1b2a]/50 border-blue-900/60 border-l-4 border-l-blue-600/50 text-[#94A3B8] hover:border-blue-500/60 hover:text-[#F8FAFC]"
-                }`}
-              >
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-mono text-xs font-bold transition-all shrink-0 ${
-                  activePart === "P1" ? "bg-blue-500 text-slate-950" : "bg-blue-500/20 text-blue-400 border border-blue-500/30"
-                }`}>
-                  1
-                </div>
-                <div>
-                  <div className="text-[10px] font-mono uppercase tracking-widest text-blue-400 font-semibold">Visión de los individuos</div>
-                  <h3 className="text-sm font-bold font-serif leading-snug mt-0.5 text-white">Asequibilidad</h3>
-                </div>
-                <ChevronRight className={`w-4 h-4 ml-auto opacity-40 transition-transform ${activePart === "P1" ? "translate-x-0.5 opacity-100 text-blue-400" : "group-hover:translate-x-0.5"}`} />
-              </button>
-
-              <button
-                id="select-part-2-btn"
-                onClick={() => {
-                  setActivePart("P2");
-                  setActiveTab("01");
-                }}
-                className={`flex-1 flex items-center gap-3.5 p-4 rounded-xl border text-left transition-all duration-300 cursor-pointer relative overflow-hidden group ${
-                  activePart === "P2"
-                    ? "bg-[#2a0d17] border-rose-500 border-l-4 border-l-rose-400 ring-1 ring-rose-500/40 shadow-lg shadow-rose-500/10 text-white"
-                    : "bg-[#2a0d17]/50 border-rose-900/60 border-l-4 border-l-rose-600/50 text-[#94A3B8] hover:border-rose-500/60 hover:text-[#F8FAFC]"
-                }`}
-              >
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-mono text-xs font-bold transition-all shrink-0 ${
-                  activePart === "P2" ? "bg-rose-500 text-slate-950" : "bg-rose-500/20 text-rose-400 border border-rose-500/30"
-                }`}>
-                  2
-                </div>
-                <div>
-                  <div className="text-[10px] font-mono uppercase tracking-widest text-rose-400 font-semibold">Visión de País</div>
-                  <h3 className="text-sm font-bold font-serif leading-snug mt-0.5 text-white">Crecimiento Nacional</h3>
-                </div>
-                <ChevronRight className={`w-4 h-4 ml-auto opacity-40 transition-transform ${activePart === "P2" ? "translate-x-0.5 opacity-100 text-rose-400" : "group-hover:translate-x-0.5"}`} />
-              </button>
-
-              <button
-                id="select-part-3-btn"
-                onClick={() => {
-                  setActivePart("P3");
-                  setActiveTab("01");
-                }}
-                className={`flex-1 flex items-center gap-3.5 p-4 rounded-xl border text-left transition-all duration-300 cursor-pointer relative overflow-hidden group ${
-                  activePart === "P3"
-                    ? "bg-[#0d2a1b] border-emerald-500 border-l-4 border-l-emerald-400 ring-1 ring-emerald-500/40 shadow-lg shadow-emerald-500/10 text-white"
-                    : "bg-[#0d2a1b]/50 border-emerald-900/60 border-l-4 border-l-emerald-600/50 text-[#94A3B8] hover:border-emerald-500/60 hover:text-[#F8FAFC]"
-                }`}
-              >
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-mono text-xs font-bold transition-all shrink-0 ${
-                  activePart === "P3" ? "bg-emerald-500 text-slate-950" : "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
-                }`}>
-                  3
-                </div>
-                <div>
-                  <div className="text-[10px] font-mono uppercase tracking-widest text-emerald-400 font-semibold">Desglose Sectorial</div>
-                  <h3 className="text-sm font-bold font-serif leading-snug mt-0.5 text-white">Sectores Privados</h3>
-                </div>
-                <ChevronRight className={`w-4 h-4 ml-auto opacity-40 transition-transform ${activePart === "P3" ? "translate-x-0.5 opacity-100 text-emerald-400" : "group-hover:translate-x-0.5"}`} />
-              </button>
-
-              <button
-                id="select-part-4-btn"
-                onClick={() => {
-                  setActivePart("P4");
-                  setActiveTab("01");
-                }}
-                className={`flex-1 flex items-center gap-3.5 p-4 rounded-xl border text-left transition-all duration-300 cursor-pointer relative overflow-hidden group ${
-                  activePart === "P4"
-                    ? "bg-[#2a1f0d] border-amber-500 border-l-4 border-l-amber-400 ring-1 ring-amber-500/40 shadow-lg shadow-amber-500/10 text-white"
-                    : "bg-[#2a1f0d]/50 border-amber-900/60 border-l-4 border-l-amber-600/50 text-[#94A3B8] hover:border-amber-500/60 hover:text-[#F8FAFC]"
-                }`}
-              >
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-mono text-xs font-bold transition-all shrink-0 ${
-                  activePart === "P4" ? "bg-amber-500 text-slate-950" : "bg-amber-500/20 text-amber-400 border border-amber-500/30"
-                }`}>
-                  4
-                </div>
-                <div>
-                  <div className="text-[10px] font-mono uppercase tracking-widest text-amber-400 font-semibold">Enfoque Subnacional</div>
-                  <h3 className="text-sm font-bold font-serif leading-snug mt-0.5 text-white">Estados y Ciudades</h3>
-                </div>
-                <ChevronRight className={`w-4 h-4 ml-auto opacity-40 transition-transform ${activePart === "P4" ? "translate-x-0.5 opacity-100 text-amber-400" : "group-hover:translate-x-0.5"}`} />
-              </button>
-            </div>
-
-            <div className="flex flex-wrap items-center gap-4 text-xs text-[#94A3B8] mt-6 font-mono">
-              <div className="flex items-center gap-1.5">
-                <User className="w-3.5 h-3.5 text-slate-500" />
-                <span>Por: <span className="text-[#F8FAFC]">Hilmer Castillo Bescanza</span></span>
-              </div>
-              <span className="text-slate-700">•</span>
-              <div className="flex items-center gap-1.5">
-                <Calendar className="w-3.5 h-3.5 text-slate-500" />
-                <span>Última Publicación: <span className="text-[#F8FAFC]">25 de Julio de 2026</span></span>
-              </div>
-            </div>
-          </div>
-
-          {/* Philosophy Quotes */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-10 p-6 bg-[#141414] border border-[#262626] rounded-2xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-blue-500/5 blur-[120px] rounded-full pointer-events-none"></div>
-            <div className="absolute bottom-0 left-0 w-[200px] h-[200px] bg-red-500/5 blur-[100px] rounded-full pointer-events-none"></div>
-
-            <div className="lg:col-span-2 flex flex-col justify-between">
-              <p className="text-base text-slate-300 leading-relaxed font-sans italic">
-                &ldquo;La sobreabundancia de información nos entierra diariamente. Nuestras fuentes de información tienden a alinearse a lo que queremos oír. Pero la realidad es mucho más compleja de lo que parece. La simplificación de que la realidad es lo que yo vivo muchas veces no nos deja valorarla. En mi caso, los números me ayudan a filtrar sentimientos y expandir visiones.&rdquo;
-              </p>
-            </div>
-
-            <div className="bg-[#0A0A0A] border border-[#262626] rounded-xl p-5 flex flex-col justify-between">
-              <div>
-                <h4 className="text-xs font-mono text-[#94A3B8] uppercase tracking-wider mb-2">Visión Global del Análisis</h4>
-                <p className="text-xs text-[#94A3B8] leading-relaxed">
-                  {activePart === "P1"
-                    ? "Este informe visualiza mediciones de asequibilidad familiar e individual compiladas de fuentes oficiales de los Estados Unidos (BLS, BEA, FED)."
-                    : activePart === "P2"
-                    ? "Esta sección aborda el Producto Interno Bruto (PIB), el consumo nacional, el gasto del estado, la balanza comercial y las inversiones de reindustrialización."
-                    : activePart === "P3"
-                    ? "Esta sección detalla los 9 sectores clave de la industria y servicios privados de EE. UU., analizando su valor agregado bruto, crecimiento intertrimestral y aportes históricos."
-                    : "Esta sección aborda la dimensión estadal y municipal: RPP (Regional Price Parity), alquileres, vivienda, impuestos directos, regulaciones a la gasolina y migración neta."}
-                </p>
-              </div>
-              <div className="mt-4 flex items-center justify-between text-xs font-mono pt-2 border-t border-[#262626]">
-                <span className="text-slate-500">Métricas analizadas</span>
-                <span className="text-indigo-400 font-bold">
-                  {activePart === "P1" ? "8 Gráficas Oficiales" : activePart === "P2" ? "13 Gráficas Macroeconómicas" : activePart === "P3" ? "20 Gráficas Sectoriales" : "15 Tablas & Análisis Regionales"}
-                </span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* --------------------- TAB NAVIGATION SYSTEM --------------------- */}
-        <div id="navigation-tabs-section" className="mb-8">
-          {/* Helper Note for Reading & Mobile Orientation */}
-          <div className="bg-[#0D0D0D] border-l-4 border-l-[#60A5FA] border-y border-r border-[#262626] rounded-r-xl p-5 mb-6 shadow-inner text-sm text-slate-300 leading-relaxed font-sans max-w-4xl">
-            <div className="text-[#60A5FA] font-mono font-bold uppercase tracking-widest mb-2 text-xs flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#60A5FA] animate-pulse"></span>
-              Nota de Lectura Interactiva
-            </div>
-            <p>
-              <strong>Si estás leyendo en tu teléfono, hazlo de forma horizontal.</strong> Cuando veas una gráfica con puntos, puedes <strong>tocar cualquier punto</strong> para conocer su valor exacto y detalles. Gracias por tu atención.
-            </p>
-          </div>
-
-          <p className="text-xs text-[#94A3B8] font-mono uppercase tracking-widest mb-3 text-center sm:text-left">
-            Secuencia de Lectura: Selecciona una Sección de la {activePart === "P1" ? "Parte 1" : activePart === "P2" ? "Parte 2" : activePart === "P3" ? "Parte 3" : "Parte 4"}
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-7 gap-3">
-            {currentTabs.map((tab) => {
-              const isActive = activeTab === tab.id;
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`flex flex-col items-start p-3.5 rounded-xl border text-left transition-all cursor-pointer ${
-                    isActive
-                      ? activePart === "P1"
-                        ? "bg-[#141414] border-[#60A5FA] text-[#60A5FA] shadow-lg shadow-blue-500/5 ring-1 ring-[#60A5FA]/30"
-                        : activePart === "P2"
-                        ? "bg-[#141414] border-[#FB7185] text-[#FB7185] shadow-lg shadow-pink-500/5 ring-1 ring-[#FB7185]/30"
-                        : "bg-[#141414] border-emerald-500 text-emerald-400 shadow-lg shadow-emerald-500/5 ring-1 ring-emerald-500/30"
-                      : "bg-[#0A0A0A]/40 border-[#262626] text-[#94A3B8] hover:border-[#404040] hover:text-[#F8FAFC]"
-                  }`}
-                >
-                  <span className="text-xs font-mono font-extrabold tracking-wider opacity-80">{tab.id}.</span>
-                  <span className="text-xs font-bold tracking-tight mt-1 line-clamp-1">{tab.label.split(". ")[1]}</span>
-                  <span className="text-[10px] text-slate-500 font-sans tracking-tight mt-auto pt-0.5 line-clamp-1 truncate block w-full">
-                    {tab.desc}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* --------------------- SECTION CONTAINERS (TAB-FILTERED) --------------------- */}
-
-        {activePart === "P1" ? (
-          <>
-            {/* Section 1: Concepto de Asequibilidad */}
-            {activeTab === "01" && (
-              <section className="mb-14 animate-fade-in">
-                <div className="flex items-center gap-3 mb-6">
-                  <span className="text-xl font-mono text-[#60A5FA] font-bold">01.</span>
-                  <h3 className="text-2xl font-semibold text-[#F8FAFC] tracking-tight font-sans">
-                    El Concepto de Asequibilidad (Affordability)
-                  </h3>
-                  <div className="flex-1 border-b border-dashed border-[#262626]"></div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {/* Box definition */}
-                  <div className="md:col-span-2 bg-[#141414] border border-[#262626] rounded-xl p-6 flex flex-col justify-between">
-                    <div>
-                      <span className="text-[10px] font-mono uppercase text-[#60A5FA] tracking-wider font-semibold">Término Rector</span>
-                      <h4 className="text-lg font-bold text-[#F8FAFC] font-sans mt-1">Asequibilidad: Precio Razonable sin asfixiarse económicamente</h4>
-                      <p className="text-sm text-[#94A3B8] leading-relaxed mt-3 font-sans">
-                        Lo &ldquo;razonable&rdquo; de un precio lo determina cada persona y está relacionado a la prioridad que le da cada individuo al bien o servicio por el que va a pagar. Por otra parte, el &ldquo;puede pagar sin asfixiarse&rdquo; está referido al poder de compra de cada individuo, el cual depende directamente de la relación entre dos variables constitutivas:
-                      </p>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6 pt-5 border-t border-[#262626]">
-                      <div className="bg-[#0A0A0A] border border-[#262626] rounded-lg p-3.5">
-                        <div className="flex items-center gap-2 text-[#60A5FA] font-bold text-xs mb-1">
-                          <DollarSign className="w-4 h-4 text-[#60A5FA]" />
-                          <span className="font-sans">Los Ingresos Disponibles</span>
-                        </div>
-                        <p className="text-xs text-[#94A3B8] leading-relaxed font-sans">
-                          El dinero neto que realmente te queda para gastar o ahorrar después de pagar impuestos y obligaciones fijas.
-                        </p>
-                      </div>
-                      <div className="bg-[#0A0A0A] border border-[#262626] rounded-lg p-3.5">
-                        <div className="flex items-center gap-2 text-[#FB7185] font-bold text-xs mb-1">
-                          <Percent className="w-4 h-4 text-[#FB7185]" />
-                          <span className="font-sans">Nivel de Precios (Costo de Vida)</span>
-                        </div>
-                        <p className="text-xs text-[#94A3B8] leading-relaxed font-sans">
-                          El valor consolidado de las cosas elementales que necesitas o deseas comprar (vivienda, alimentación, energía, transporte).
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Prompt Box */}
-                  <div className="bg-[#141414] border border-[#262626] rounded-xl p-6 flex flex-col justify-between text-center relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-[150px] h-[150px] bg-red-400/5 blur-[80px] pointer-events-none"></div>
-                    <div>
-                      <span className="text-[10px] font-mono uppercase text-[#60A5FA] tracking-widest font-semibold block mb-4">Interrogante Crítica</span>
-                      <h4 className="text-xl font-medium text-[#F8FAFC] italic leading-relaxed font-serif pt-2">
-                        &ldquo;¿Estamos realmente, <br />como país, en una crisis de asequibilidad?&rdquo;
-                      </h4>
-                    </div>
-                    <div className="mt-8">
-                      <p className="text-xs text-[#94A3B8] leading-relaxed mb-4 font-sans">
-                        Para contestar esta cuestión objetivamente, desplegamos las métricas fundamentales del mercado laboral y de consumo en las siguientes secciones.
-                      </p>
-                      <div className="w-10 h-1 bg-gradient-to-r from-[#60A5FA] to-[#FB7185] rounded-full mx-auto"></div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            )}
-
-            {/* Section 2: Mercado Laboral y Salarios */}
-            {activeTab === "02" && (
-              <section className="mb-14 animate-fade-in">
-                <div className="flex items-center gap-3 mb-6">
-                  <span className="text-xl font-mono text-[#60A5FA] font-bold">02.</span>
-                  <h3 className="text-2xl font-semibold text-[#F8FAFC] tracking-tight font-sans">
-                    Análisis del Mercado Laboral y Salarios
-                  </h3>
-                  <div className="flex-1 border-b border-dashed border-[#262626]"></div>
-                </div>
-
-                <div className="bg-[#0D0D0D] border-l-4 border-l-[#60A5FA] border-y border-r border-[#262626] rounded-r-xl p-6 mb-8 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-                  <div className="text-[#60A5FA] font-mono font-bold uppercase tracking-widest mb-3 text-xs flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#60A5FA] animate-pulse"></span>
-                    Perspectiva de Estudio • Mercado y Salarios
-                  </div>
-                  <p className="text-slate-300">
-                    Comenzamos estudiando los <strong>ingresos disponibles</strong>. Los ingresos de los trabajadores del sector privado que no tienen una posición de supervisión (Personal de producción o no jerárquico) son un excelente punto de partida. Representan un volumen masivo y estructural dentro de la población económicamente activa de la nación.
-                  </p>
-                  <div className="mt-4 pt-3 border-t border-[#262626] flex items-center gap-2 text-xs font-mono text-slate-500">
-                    <span>Segmentación Temporal:</span>
-                    <span className="text-[#60A5FA] font-semibold">Biden</span> (Ene 2021 - Ene 2025)
-                    <span className="text-slate-600">|</span>
-                    <span className="text-[#FB7185] font-semibold">Trump II</span> (Ene 2025 - Mayo 2026)
-                  </div>
-                </div>
-
-                <div className="space-y-8">
-                  {/* Card 1: Trabajadores Privados */}
-                  <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
-                    <MacroeconomicChart
-                      id="1"
-                      title="Trabajadores Privados No Supervisores (Producción)"
-                      description="Evolución en millones de los puestos privados no supervisorios. Muestra la expansión de la capacidad laboral real."
-                      labels={graph1Data.labels}
-                      values={graph1Data.values}
-                      stats={graph1Data.stats}
-                    />
-                    <div className="bg-[#0D0D0D] border-l-4 border-l-[#60A5FA] border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-                      <div className="text-[#60A5FA] font-mono font-bold uppercase tracking-widest mb-2 text-xs">
-                        Fuerza Laboral No Supervisora y Capacidad Laboral
-                      </div>
-                      <p className="text-slate-300">
-                        Los números oficiales indican un crecimiento robusto. Existen más de <span className="text-[#F8FAFC] font-bold">110 millones</span> de trabajadores activos en puestos no supervisorios, lo que demuestra la resiliencia y la asombrosa expansión de la capacidad laboral real en la economía nacional. En los últimos 18 meses bajo la presente administración, se ha mantenido un nivel alto y estable, asimilando de forma continua la inserción de nuevos trabajadores.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Card 2: Ingresos Semanales */}
-                  <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
-                    <MacroeconomicChart
-                      id="2"
-                      title="Ingresos Semanales Promedio Obtenidos"
-                      description="Sueldos generados semanalmente por el personal no supervisorio del sector privado. El incremento nominal acumulado es del 26.2%."
-                      labels={graph2Data.labels}
-                      values={graph2Data.values}
-                      stats={graph2Data.stats}
-                    />
-                    <div className="bg-[#0D0D0D] border-l-4 border-l-[#60A5FA] border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-                      <div className="text-[#60A5FA] font-mono font-bold uppercase tracking-widest mb-2 text-xs">
-                        Evolución y Dinámica de los Ingresos Semanales
-                      </div>
-                      <p className="text-slate-300">
-                        Los salarios nominales continúan su avance firme. En los últimos 18 meses bajo la presente administración, se ha experimentado un incremento promedio de <span className="text-[#F8FAFC] font-bold">$57.54/semana</span> (un equivalente directo a <span className="text-emerald-400 font-bold">+$249.34 por mes</span> de incremento nominal), consolidando un alza del <span className="text-emerald-400 font-bold">5.6%</span> en esta etapa y acumulando un sólido avance del <span className="text-emerald-400 font-bold">26.2%</span> global.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            )}
-
-            {/* Section 3: Impacto de la Inflación y Salario Real */}
-            {activeTab === "03" && (
-              <section className="mb-14 animate-fade-in">
-                <div className="flex items-center gap-3 mb-6">
-                  <span className="text-xl font-mono text-[#60A5FA] font-bold">03.</span>
-                  <h3 className="text-2xl font-semibold text-[#F8FAFC] tracking-tight font-sans">
-                    El Impacto de la Inflación y el Salario Real
-                  </h3>
-                  <div className="flex-1 border-b border-dashed border-[#262626]"></div>
-                </div>
-
-                <div className="bg-[#0D0D0D] border-l-4 border-l-[#FB7185] border-y border-r border-[#262626] rounded-r-xl p-6 mb-8 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-                  <div className="text-[#FB7185] font-mono font-bold uppercase tracking-widest mb-3 text-xs flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#FB7185] animate-pulse"></span>
-                    Análisis de Rendimiento • Inflación y Salario Real
-                  </div>
-                  <p className="text-slate-300">
-                    Para discernir objetivamente lo que le ha ocurrido en promedio al salario real de estos más de 110 millones de hogares trabajadores, debemos <strong>contrastar los ingresos con la inflación de bienes y servicios</strong> que experimentan en su vida diaria:
-                  </p>
-                </div>
-
-                <div className="space-y-8 max-w-4xl mx-auto">
-                  {/* Card 1: Inflación */}
-                  <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
-                    <MacroeconomicChart
-                      id="3"
-                      title="Inflación Interanual Mensual (CPI-U)"
-                      description="Nivel porcentual histórico de inflación interanual medida de manera mensual. El impacto acumulado anterior se situó en +21.4%."
-                      labels={graph3Data.labels}
-                      values={graph3Data.values}
-                      stats={graph3Data.stats}
-                    />
-                    <div className="bg-[#0D0D0D] border-l-4 border-l-[#FB7185] border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-                      <div className="text-[#FB7185] font-mono font-bold uppercase tracking-widest mb-2 text-xs">
-                        Impacto y Erosión por Inflación de Precios
-                      </div>
-                      <p className="text-slate-300">
-                        La inflación acumulada durante el período Biden fue extraordinaria (<span className="text-[#FB7185] font-bold">+21.4%</span>), erosionando profundamente el poder adquisitivo del sueldo efectivo de los trabajadores. No obstante, en la etapa Trump II, se registra un nivel que acumula un <span className="text-[#FB7185] font-bold">+4.8%</span> hasta la fecha actual.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Card 2: Salario Real Cascada */}
-                  <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
-                    <RealWageWaterfall />
-                    <div className="bg-[#0D0D0D] border-l-4 border-l-emerald-500 border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-                      <div className="text-emerald-400 font-mono font-bold uppercase tracking-widest mb-2 text-xs">
-                        Recuperación del Poder Adquisitivo de los Trabajadores
-                      </div>
-                      <p className="text-slate-300">
-                        La gráfica de cascada ilustra la anatomía exacta de cómo el salario real de los trabajadores comenzó a recuperarse del duro desajuste de años anteriores. Al netear los incrementos nominales frente a la inflación acumulada, se observa que en la etapa actual el salario real o poder de compra efectivo ha comenzado a recuperarse de forma modesta pero persistente. Las tendencias reflejan que vamos mejorando en este grupo fundamental.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Card 3: Deducción de Impuestos (No Tax on Tips & No Tax on Overtime) */}
-                  <TaxDeductionChart />
-                </div>
-              </section>
-            )}
-
-            {/* Section 4: Dinámica del Empleo y Estructura Laboral */}
-            {activeTab === "04" && (
-              <section className="mb-14 animate-fade-in">
-                <div className="flex items-center gap-3 mb-6">
-                  <span className="text-xl font-mono text-[#60A5FA] font-bold">04.</span>
-                  <h3 className="text-2xl font-semibold text-[#F8FAFC] tracking-tight font-sans">
-                    Dinámica del Empleo y Estructura Laboral
-                  </h3>
-                  <div className="flex-1 border-b border-dashed border-[#262626]"></div>
-                </div>
-
-                <div className="bg-[#0D0D0D] border-l-4 border-l-emerald-500 border-y border-r border-[#262626] rounded-r-xl p-6 mb-8 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-                  <div className="text-emerald-400 font-mono font-bold uppercase tracking-widest mb-3 text-xs flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                    Dinámica Sectorial • Empleo y Estructura Laboral
-                  </div>
-                  <p className="text-slate-300">
-                    Aunque la situación de los empleados es favorable, hay personas que carecen de trabajo. Veamos la trayectoria estructural de la tasa de despidos y la creación de oportunidades del mercado oficial:
-                  </p>
-                </div>
-
-                <div className="space-y-8">
-                  {/* Card 1: Solicitudes de Desempleo */}
-                  <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
-                    <MacroeconomicChart
-                      id="4"
-                      title="Solicitudes Iniciales de Seguro de Desempleo (ICSA)"
-                      description="Nivel semanal promedio medido en miles de solicitudes iniciales. Muestra una senda descendente sostenida y estabilizada."
-                      labels={graph5Data.labels}
-                      values={graph5Data.values}
-                      stats={graph5Data.stats}
-                    />
-                    <div className="bg-[#0D0D0D] border-l-4 border-l-[#60A5FA] border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-                      <div className="text-[#60A5FA] font-mono font-bold uppercase tracking-widest mb-2 text-xs">
-                        Dinámica de Despidos y Solicitudes de Desempleo
-                      </div>
-                      <p className="text-slate-300">
-                        Existe una sólida tendencia a la baja en reclamos de desocupación involuntaria, estabilizado en torno a un óptimo de <span className="text-[#F8FAFC] font-bold">~215K</span> a <span className="text-[#F8FAFC] font-bold">221.9K</span> solicitudes en promedio móvil. El egreso global de personas se asocia más a transiciones demográficas ordinarias (como jubilaciones) que a despidos corporativos masivos, indicando alta seguridad en el puesto laboral actual.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Card 2: Total de Personas Empleadas (CE16OV) */}
-                  <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
-                    <MacroeconomicChart
-                      id="employment_level_chart"
-                      title="Total de Personas Empleadas (CE16OV)"
-                      description="Volumen acumulado en millones de habitantes con empleo en EE. UU. (Serie CE16OV de la BLS)."
-                      labels={graph6Data.labels}
-                      values={graph6Data.values}
-                      stats={graph6Data.stats}
-                    />
-                    <div className="bg-[#0D0D0D] border-l-4 border-l-emerald-500 border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-                      <div className="text-emerald-400 font-mono font-bold uppercase tracking-widest mb-2 text-xs">
-                        Análisis del Nivel de Empleo Total Estructural
-                      </div>
-                      <p className="text-slate-300">
-                        El empleo total en los Estados Unidos (Serie FRED: CE16OV) refleja un mercado laboral extraordinariamente robusto. Durante el período Biden, ascendió de un mínimo inicial de <span className="text-[#F8FAFC] font-bold">149.8M</span> en enero de 2021 hasta culminar estable en <span className="text-[#F8FAFC] font-bold">163.83M</span>. En la presente administración, se ha estabilizado en niveles históricamente elevados con un promedio consolidado de <span className="text-[#F8FAFC] font-bold">163.35M</span>, registrando un pico máximo de <span className="text-[#F8FAFC] font-bold">163.99M</span>. Esta ocupación extendida ratifica que la capacidad de empleo total del país conserva una fortaleza estructural formidable de largo plazo.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Card 3: Empleados del Gobierno Federal */}
-                  <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
-                    <MacroeconomicChart
-                      id="5"
-                      title="Empleados del Gobierno Federal"
-                      description="Volumen acumulado en millones de burócratas federales. Refleja un recorte sustancial del gasto estatal."
-                      labels={graph7Data.labels}
-                      values={graph7Data.values}
-                      stats={graph7Data.stats}
-                    />
-                    <div className="bg-[#0D0D0D] border-l-4 border-l-[#FB7185] border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-                      <div className="text-[#FB7185] font-mono font-bold uppercase tracking-widest mb-2 text-xs">
-                        Eficiencia de la Nómina y Reducción del Gasto Público
-                      </div>
-                      <p className="text-slate-300">
-                        La nómina del gobierno federal muestra una compresión drástica y sin precedentes, disminuyendo de 3.021 millones (pico) a <span className="text-[#FB7185] font-bold">2.679 millones</span> de posiciones públicas activas. Esta reestructuración incide de forma favorable y directo en la reducción del déficit estatal, liberando presiones sobre el mercado laboral privado y mitigando raíces de inflación fiscal.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Card 4: Trabajos Disponibles */}
-                  <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
-                    <MacroeconomicChart
-                      id="6"
-                      title="Trabajos Disponibles en EE. UU. (JOLTS)"
-                      description="Métrica total en millones de puestos laborales libres y no cubiertos en todos los sectores productivos no agrícolas."
-                      labels={graph8Data.labels}
-                      values={graph8Data.values}
-                      stats={graph8Data.stats}
-                    />
-                    <div className="bg-[#0D0D0D] border-l-4 border-l-emerald-500 border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-                      <div className="text-emerald-400 font-mono font-bold uppercase tracking-widest mb-2 text-xs">
-                        Equilibrio de Oferta Laboral y Vacantes Disponibles
-                      </div>
-                      <p className="text-slate-300">
-                        La demanda de fuerza de trabajo se mantiene sumamente saludable y robusta, consolidando más de <span className="text-emerald-400 font-bold">7.6 millones</span> de puestos de trabajo vacantes y listos para contratar. Esta sobreabundancia de vacantes pendientes actúa como un colchón o amortiguador macroeconómico contra la desocupación involuntaria, garantizando un margen de reempleo extraordinariamente ágil.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            )}
-
-            {/* Section 5: Consumo y Comportamiento Financiero */}
-            {activeTab === "05" && (
-              <section className="mb-14 animate-fade-in">
-                <div className="flex items-center gap-3 mb-6">
-                  <span className="text-xl font-mono text-[#60A5FA] font-bold">05.</span>
-                  <h3 className="text-2xl font-semibold text-[#F8FAFC] tracking-tight font-sans">
-                    Consumo y Comportamiento Financiero de los Hogares
-                  </h3>
-                  <div className="flex-1 border-b border-dashed border-[#262626]"></div>
-                </div>
-
-                <div className="bg-[#0D0D0D] border-l-4 border-l-[#60A5FA] border-y border-r border-[#262626] rounded-r-xl p-6 mb-8 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-                  <div className="text-[#60A5FA] font-mono font-bold uppercase tracking-widest mb-3 text-xs flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#60A5FA] animate-pulse"></span>
-                    Fundamento de Estudio • Consumo y Finanzas
-                  </div>
-                  <p className="text-slate-300">
-                    Cuando la coyuntura financiera aprieta de manera sofocante, el reacomodo presupuestario se nota primero en recortes en áreas de ocio discrecional: el gasto en restaurantes y viajes de vacaciones suelen ser los primeros objetivos a prescindir. Contrastemos el estado de estos rubros cruciales:
-                  </p>
-                </div>
-
-                <div className="space-y-8">
-                  {/* Card 1: Gasto en Restaurantes y Viajes */}
-                  <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
-                    <MacroeconomicChart
-                      id="7"
-                      title="PCE: Servicios de Alimentación y Alojamiento"
-                      description="Gasto acumulado trimestral medido en miles de millones. Récords en turismo y gastronomía sugieren liquidez latente."
-                      labels={graph9Data.labels}
-                      values={graph9Data.values}
-                      stats={graph9Data.stats}
-                      isQuarterly={true}
-                    />
-                    <div className="bg-[#0D0D0D] border-l-4 border-l-emerald-500 border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-                      <div className="text-emerald-400 font-mono font-bold uppercase tracking-widest mb-2 text-xs">
-                        Tendencia y Dinámica del Consumo en Ocio Discrecional
-                      </div>
-                      <p className="text-slate-300">
-                        La resiliencia y el deseo de consumo del hogar norteamericano continúan escalando firmemente. En lugar de experimentar recortes, la actividad de ocio en gastronomía y turismo ha registrado un hito histórico de <span className="text-emerald-400 font-bold">$1.52 billones (USD)</span> en tasa anual. Esto denota solidez presupuestaria y una holgura latente que aleja la hipótesis de un consumidor estrangulado financieramente.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Card 2: Deuda y Morosidad Tarjetas */}
-                  <div className="bg-[#141414] border border-[#262626] rounded-2xl p-6 shadow-xl space-y-5">
-                    <MacroeconomicChart
-                      id="8"
-                      title="Volumen Estimado Moroso en Tarjetas Personales"
-                      description="Monto en mora estimado en miles de millones de dólares. Obtenido cruzando el saldo total (CCLACBW027SBOG) con la tasa de morosidad (DRCCLACBS)."
-                      labels={graph10Data.labels}
-                      values={graph10Data.values}
-                      stats={graph10Data.stats}
-                      isQuarterly={true}
-                    />
-                    <div className="bg-[#0D0D0D] border-l-4 border-l-[#60A5FA] border-y border-r border-[#262626] rounded-r-xl p-6 shadow-inner text-sm md:text-base text-[#E2E8F0] leading-relaxed font-sans">
-                      <div className="text-[#60A5FA] font-mono font-bold uppercase tracking-widest mb-2 text-xs">
-                        Evaluación y Sostenibilidad de la Deuda Personal
-                      </div>
-                      <p className="text-slate-300">
-                        El volumen delincuencial estimado de tarjetas de crédito comerciales (fórmula personalizada cruzando saldo y tasa de impago) acumuló un incremento constante desde el mínimo de <span className="text-[#60A5FA] font-bold">$11.65 mil millones</span> en el tercer trimestre de 2021 hasta alcanzar un máximo de <span className="text-[#60A5FA] font-bold">$34.05 mil millones</span> a mediados de 2024. No obstante, bajo la gestión Trump II, se ha consolidado un cambio de tendencia con una reducción hacia los <span className="text-[#60A5FA] font-bold">$31.13 mil millones</span> en el primer trimestre de 2026. Esta trayectoria decreciente ratifica un reordenamiento o saneamiento proactivo de los pasivos por parte de los hogares.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            )}
-
-            {/* Section 6: Balance y Conclusión */}
-            {activeTab === "06" && (
-              <section className="mb-14 animate-fade-in">
-                <div className="flex items-center gap-3 mb-6">
-                  <span className="text-xl font-mono text-[#60A5FA] font-bold">06.</span>
-                  <h3 className="text-2xl font-semibold text-[#F8FAFC] tracking-tight font-sans">
-                    Resumen de Hallazgos y Tabla de Balance
-                  </h3>
-                  <div className="flex-1 border-b border-dashed border-[#262626]"></div>
-                </div>
-
-                {/* Interactive Checklist Balance Dashboard */}
-                <div className="bg-[#141414] border border-[#262626] rounded-xl p-6 shadow-2xl relative overflow-hidden">
-                  <div className="border-b border-[#262626] pb-6 mb-6">
-                    <h4 className="text-xl font-bold text-[#F8FAFC] font-sans">
-                      Balance General de Indicadores
-                    </h4>
-                  </div>
-
-                  {/* List of interactive lines */}
-                  <div className="space-y-4">
-                    {indicators.map((ind) => {
-                      const isGreen = ind.status === "Positivo" || ind.status === "Excelente" || ind.status === "Favorable";
-                      return (
-                        <div
-                          key={ind.id}
-                          onClick={() => toggleIndicator(ind.id)}
-                          className={`flex flex-col md:flex-row md:items-stretch justify-between p-5 md:p-6 rounded-xl border transition-all cursor-pointer ${
-                            ind.checked
-                              ? isGreen
-                                ? "bg-[#0E0E0E] border-emerald-500/30 hover:border-emerald-500/50 shadow-inner"
-                                : "bg-[#0E0E0E] border-amber-500/30 hover:border-amber-500/50 shadow-inner"
-                              : "bg-[#0A0A0A]/50 border-[#262626] hover:border-[#404040] opacity-50"
-                          }`}
-                        >
-                          <div className="w-full md:w-1/2 flex items-start gap-4 pr-0 md:pr-6">
-                            <div className="mt-1 shrink-0">
-                              <div className={`w-6 h-6 rounded-md flex items-center justify-center border transition-all ${
-                                ind.checked 
-                                  ? isGreen
-                                    ? "bg-emerald-500 border-emerald-500 text-black shadow-lg shadow-emerald-500/20" 
-                                    : "bg-amber-500 border-amber-500 text-black shadow-lg shadow-amber-500/20"
-                                  : "border-slate-600 bg-transparent text-transparent"
-                              }`}>
-                                <CheckCircle2 className="w-4 h-4 stroke-[2.5]" />
-                              </div>
-                            </div>
-                            <div className="flex-1">
-                              <div className="flex items-center gap-3 flex-wrap mb-2">
-                                <span className={`text-base font-bold tracking-tight transition-colors font-sans ${
-                                  ind.checked 
-                                    ? isGreen 
-                                      ? "text-emerald-400" 
-                                      : "text-amber-400" 
-                                    : "text-slate-400"
-                                }`}>
-                                  {ind.title}
-                                </span>
-                                <span className={`text-[10px] sm:text-xs font-mono font-bold tracking-wider px-2.5 py-0.5 rounded-full border ${
-                                  ind.checked 
-                                    ? isGreen 
-                                      ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" 
-                                      : "bg-amber-500/10 text-amber-400 border-amber-500/20"
-                                    : "bg-slate-900/80 text-slate-500 border-slate-800"
-                                }`}>
-                                  {ind.status}
-                                </span>
-                              </div>
-                              <p className={`text-sm md:text-base text-slate-300 leading-relaxed font-sans transition-colors ${
-                                ind.checked ? "" : "text-slate-500"
-                              }`}>
-                                {ind.desc}
-                              </p>
-                            </div>
-                          </div>
-
-                          {/* Secondary Metrics display */}
-                          <div className="w-full md:w-1/2 mt-4 md:mt-0 pl-10 md:pl-8 border-t md:border-t-0 md:border-l border-[#262626] pt-4 md:pt-0 flex flex-col justify-start">
-                            <span className="text-[10px] text-slate-500 uppercase tracking-widest font-bold block mb-2 leading-none font-mono">
-                              Métrica de Respaldo
-                            </span>
-                            <span className={`text-sm md:text-base font-medium tracking-normal block leading-relaxed ${
-                              ind.checked 
-                                ? isGreen 
-                                  ? "text-emerald-400" 
-                                  : "text-amber-400" 
-                                : "text-slate-500"
-                            }`}>
-                              {ind.metric}
-                            </span>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-
-                  {/* Ending editorial note */}
-                  <div className="mt-8 pt-6 border-t border-[#262626] text-center max-w-2xl mx-auto">
-                    <span className="font-serif italic text-base text-slate-300">
-                      &ldquo;Esto es una visión parcial de cómo vamos y luce positiva. ¿Tenemos una crisis de affordability? En el próximo artículo, el 2 de Julio, seguiremos agregando dimensiones.&rdquo;
-                    </span>
-                    <div className="mt-4 flex items-center justify-center gap-3">
-                      <div className="w-8 h-px bg-[#262626]"></div>
-                      <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">Hilmer Castillo Bescanza</p>
-                      <div className="w-8 h-px bg-[#262626]"></div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            )}
-          </>
-        ) : activePart === "P2" ? (
-          <MacroPart2 activeTab={activeTab} />
-        ) : activePart === "P3" ? (
-          <MacroPart3 activeTab={activeTab} />
-        ) : (
-          <MacroPart4 activeTab={activeTab} />
+        {activeView === "intro" && (
+          <IntroView
+            fontSizeClass={getFontSizeClass()}
+            onNavigateNext={handleNavigateNext}
+            onOpenContents={() => setIsContentsOpen(true)}
+          />
         )}
 
-        {/* --------------------- SEQUENTIAL READING NAVIGATION FOR TABS --------------------- */}
-        <div className="mt-12 pt-6 border-t border-[#262626] flex items-center justify-between gap-4">
-          {activeTab !== "01" ? (
-            <button
-              onClick={() => {
-                const prevId = String(Number(activeTab) - 1).padStart(2, "0");
-                setActiveTab(prevId);
-                // Scroll beautifully up to the tab focus element
-                const scrollTarget = document.getElementById("navigation-tabs-section");
-                if (scrollTarget) {
-                  scrollTarget.scrollIntoView({ behavior: "smooth" });
-                }
-              }}
-              className="flex items-center gap-2 text-xs font-mono font-semibold text-[#94A3B8] hover:text-[#F8FAFC] py-2 px-4 rounded-xl border border-[#262626] bg-[#0A0A0A]/50 hover:bg-[#141414] transition-all cursor-pointer"
-            >
-              &larr; Volver a la Sección {String(Number(activeTab) - 1).padStart(2, "0")}
-            </button>
-          ) : (
-            <div />
-          )}
+        {activeView === "cap1" && (
+          <Chapter1View
+            fontSizeClass={getFontSizeClass()}
+            onSelectFootnote={(fn) => setSelectedFootnote(fn)}
+          />
+        )}
 
-          {((activePart === "P1" && activeTab !== "06") || (activePart === "P2" && activeTab !== "07") || (activePart === "P3" && activeTab !== "11") || (activePart === "P4" && activeTab !== "08")) ? (
-            <button
-              onClick={() => {
-                const nextId = String(Number(activeTab) + 1).padStart(2, "0");
-                setActiveTab(nextId);
-                // Scroll beautifully up to the tab focus element
-                const scrollTarget = document.getElementById("navigation-tabs-section");
-                if (scrollTarget) {
-                  scrollTarget.scrollIntoView({ behavior: "smooth" });
-                }
-              }}
-              className={`flex items-center gap-2 text-xs font-mono font-semibold py-2 px-5 rounded-xl border transition-all cursor-pointer ml-auto ${
-                activePart === "P1"
-                  ? "text-[#60A5FA] bg-[#60A5FA]/10 border-[#60A5FA]/30 hover:border-[#60A5FA]"
-                  : activePart === "P2"
-                  ? "text-[#FB7185] bg-[#FB7185]/10 border-[#FB7185]/30 hover:border-[#FB7185]"
-                  : activePart === "P3"
-                  ? "text-emerald-400 bg-emerald-500/10 border-emerald-500/30 hover:border-emerald-500"
-                  : "text-indigo-400 bg-indigo-500/10 border-indigo-500/30 hover:border-indigo-500"
-              }`}
-            >
-              Avanzar a la Sección {String(Number(activeTab) + 1).padStart(2, "0")} &rarr;
-            </button>
-          ) : (
-            <div />
-          )}
-        </div>
+        {activeView === "cap2" && (
+          <Chapter2View
+            fontSizeClass={getFontSizeClass()}
+            onSelectFootnote={(fn) => setSelectedFootnote(fn)}
+          />
+        )}
+
+        {activeView === "estructura" && (
+          <StructureView
+            onSelectChapter={(v) => handleSelectView(v)}
+          />
+        )}
+
+        {/* Footer Navigation Bar at the end of each chapter with "Contenidos" and "Próximo Capítulo" */}
+        <ChapterFooterNav
+          currentView={activeView}
+          onOpenContents={() => setIsContentsOpen(true)}
+          onNavigateNext={getNextView() ? handleNavigateNext : undefined}
+          onNavigatePrev={getPrevView() ? handleNavigatePrev : undefined}
+          nextChapterLabel={getNextLabel()}
+          prevChapterLabel={getPrevLabel()}
+        />
 
       </main>
 
-      {/* Corporate footer */}
-      <footer className="border-t border-[#262626] bg-[#0A0A0A] py-8 px-4 text-center text-xs text-slate-500 font-mono">
-        <p>© 2026 Hilmer Castillo Bescanza. Todos los derechos reservados.</p>
-        <p className="mt-1.5 opacity-65 leading-relaxed font-mono">
-          Diseñado cumpliendo estrictos criterios de refinamiento Japandi-Slate. <br />
-          Datos obtenidos e interpolados fielmente desde la base de datos de la Reserva Federal de San Luis (FRED) y la Oficina de Estadísticas Laborales (BLS).
+      {/* Footer Branding */}
+      <footer className="border-t border-[#262626] bg-[#0A0A0A] py-10 text-center text-xs text-slate-500 font-mono space-y-2">
+        <p className="font-serif text-sm text-slate-400">
+          ARQUITECTURA DEL APRENDIZAJE — Hilmer Castillo Bescanza
         </p>
+        <p>Borrador de trabajo para revisión académica • Versión 0.1</p>
       </footer>
+
+      {/* Table of Contents Modal/Drawer */}
+      <TableOfContentsModal
+        isOpen={isContentsOpen}
+        onClose={() => setIsContentsOpen(false)}
+        activeView={activeView}
+        onSelectView={handleSelectView}
+      />
+
+      {/* Footnote Note Detail Modal */}
+      <FootnoteModal
+        footnote={selectedFootnote}
+        onClose={() => setSelectedFootnote(null)}
+      />
+
+      {/* Search Modal */}
+      <SearchModal
+        isOpen={isSearchOpen}
+        onClose={() => setIsSearchOpen(false)}
+        onNavigate={handleSelectView}
+      />
 
     </div>
   );
