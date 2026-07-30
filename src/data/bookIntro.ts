@@ -4,7 +4,7 @@ export const bookMetadata = {
   subtitle: "Un nuevo marco para diseñar escuelas, universidades y organizaciones en la era de la inteligencia artificial",
   type: "Borrador de trabajo para revisión académica",
   version: "Versión 0.1",
-  totalPages: 65,
+  totalPages: 83,
 };
 
 export const invitationText = {
@@ -44,15 +44,10 @@ export const purposeText = {
 export const scopeText = {
   title: "Alcance de este manuscrito",
   paragraphs: [
-    "El documento que acompaña esta introducción corresponde únicamente al Capítulo 1.",
-    "Su objetivo no es desarrollar toda la teoría, sino responder tres preguntas fundamentales:",
+    "Este es un documento vivo. Siempre se podrá acceder con la misma dirección URL. A medida que publique cada capítulo podrá verse al hacer click en el botón llamado Contenidos que se encuentra al principio del libro",
   ],
-  bullets: [
-    "¿Por qué los enfoques tradicionales de innovación educativa resultan insuficientes?",
-    "¿Cómo surgió la investigación que dio origen al concepto de Arquitectura del Aprendizaje?",
-    "¿Por qué es necesario un nuevo marco para comprender el diseño de organizaciones en la era de la inteligencia artificial?",
-  ],
-  footer: "Los capítulos posteriores desarrollarán los fundamentos conceptuales, los principios de diseño, los componentes de la arquitectura y sus aplicaciones prácticas.",
+  bullets: [],
+  footer: "",
 };
 
 export const bookStructure = [
@@ -85,7 +80,7 @@ export const bookStructure = [
         number: "Capítulo 3",
         title: "El fracaso de las reformas aisladas",
         description: "Por qué la mayoría de las innovaciones educativas producen cambios visibles, pero pocas consiguen transformaciones sostenibles.",
-        available: false,
+        available: true,
       },
     ],
   },

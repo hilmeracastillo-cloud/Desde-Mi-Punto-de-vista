@@ -74,6 +74,7 @@ export const StructureView: React.FC<StructureViewProps> = ({ onSelectChapter })
                       onClick={() => {
                         if (ch.number === "Capítulo 1") onSelectChapter("cap1");
                         else if (ch.number === "Capítulo 2") onSelectChapter("cap2");
+                        else if (ch.number === "Capítulo 3") onSelectChapter("cap3");
                       }}
                       className="shrink-0 px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-sans font-bold text-xs flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-md group"
                     >

@@ -8,7 +8,7 @@ import {
   bookStructure,
   feedbackAreas,
 } from "../data/bookIntro";
-import { BookOpen, Sparkles, MessageSquare, Check, ChevronRight, Layers, Award } from "lucide-react";
+import { BookOpen, Sparkles, MessageSquare, Check, ChevronRight, Layers, Award, Compass } from "lucide-react";
 import { ViewTab } from "../types";
 
 interface IntroViewProps {
@@ -123,20 +123,29 @@ export const IntroView: React.FC<IntroViewProps> = ({
 
       {/* Alcance del manuscrito */}
       <section className="bg-[#141414] border border-[#262626] rounded-2xl p-6 sm:p-8 space-y-4 shadow-xl">
-        <h2 className="text-2xl font-serif font-bold text-white border-b border-[#262626] pb-4">{scopeText.title}</h2>
+        <div className="flex items-center gap-3 border-b border-[#262626] pb-4">
+          <div className="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold">
+            <Compass className="w-4 h-4" />
+          </div>
+          <h2 className="text-2xl font-serif font-bold text-white">{scopeText.title}</h2>
+        </div>
         <div className={`space-y-4 text-slate-300 font-sans ${fontSizeClass}`}>
           {scopeText.paragraphs.map((p, idx) => (
             <p key={idx}>{p}</p>
           ))}
-          <ul className="space-y-2.5 my-3 pl-2">
-            {scopeText.bullets.map((b, idx) => (
-              <li key={idx} className="flex items-start gap-3 bg-[#0A0A0A] border border-[#262626] p-3 rounded-xl">
-                <Check className="w-4 h-4 text-indigo-400 mt-1 shrink-0" />
-                <span>{b}</span>
-              </li>
-            ))}
-          </ul>
-          <p className="text-sm italic text-slate-400">{scopeText.footer}</p>
+          {scopeText.bullets && scopeText.bullets.length > 0 && (
+            <ul className="space-y-2.5 my-3 pl-2">
+              {scopeText.bullets.map((b, idx) => (
+                <li key={idx} className="flex items-start gap-3 bg-[#0A0A0A] border border-[#262626] p-3 rounded-xl">
+                  <Check className="w-4 h-4 text-indigo-400 mt-1 shrink-0" />
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+          {scopeText.footer && (
+            <p className="text-sm italic text-slate-400">{scopeText.footer}</p>
+          )}
         </div>
       </section>
 

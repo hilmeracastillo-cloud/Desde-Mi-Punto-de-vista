@@ -3,6 +3,7 @@ import { X, BookOpen, ChevronRight, CheckCircle2, Bookmark, FileText } from "luc
 import { ViewTab } from "../types";
 import { chapter1Sections } from "../data/chapter1";
 import { chapter2Sections } from "../data/chapter2";
+import { chapter3Sections } from "../data/chapter3";
 import { bookStructure } from "../data/bookIntro";
 
 interface TableOfContentsModalProps {
@@ -182,6 +183,59 @@ export const TableOfContentsModal: React.FC<TableOfContentsModalProps> = ({
                 className="w-full text-left py-1.5 px-2.5 rounded-lg text-xs text-indigo-400 hover:text-indigo-300 hover:bg-[#18181C] transition-all font-mono flex items-center justify-between cursor-pointer"
               >
                 <span>• Referencias del Capítulo 2</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Section: Capítulo 3 */}
+          <div className="space-y-3">
+            <div className="flex items-center justify-between border-b border-[#262626] pb-1">
+              <span className="text-xs font-mono uppercase text-indigo-400 tracking-wider font-semibold">
+                Capítulo 3
+              </span>
+              <span className="text-[10px] font-mono text-emerald-400 bg-emerald-950/40 border border-emerald-500/30 px-2 py-0.5 rounded-full">
+                Disponible
+              </span>
+            </div>
+
+            <button
+              onClick={() => handleNavigate("cap3")}
+              className={`w-full flex items-center justify-between p-3.5 rounded-xl border text-left transition-all cursor-pointer group ${
+                activeView === "cap3"
+                  ? "bg-indigo-950/40 border-indigo-500 text-white shadow-lg shadow-indigo-500/10"
+                  : "bg-[#141414] border-[#262626] text-slate-300 hover:border-slate-600 hover:text-white"
+              }`}
+            >
+              <div>
+                <div className="text-sm font-bold font-serif">El fracaso de las reformas aisladas</div>
+                <div className="text-xs text-slate-400 font-sans mt-0.5">Por qué las innovaciones producen cambios visibles pero pocas transformaciones sostenibles.</div>
+              </div>
+              <ChevronRight className={`w-4 h-4 shrink-0 transition-transform ${activeView === "cap3" ? "text-indigo-400 translate-x-0.5" : "text-slate-500 group-hover:translate-x-0.5"}`} />
+            </button>
+
+            {/* Chapter 3 Sub-sections */}
+            <div className="pl-3 border-l-2 border-[#262626] space-y-1.5 pt-1">
+              {chapter3Sections.map((sec) => (
+                <button
+                  key={sec.id}
+                  onClick={() => handleNavigate("cap3", sec.id)}
+                  className="w-full text-left py-1.5 px-2.5 rounded-lg text-xs text-slate-400 hover:text-indigo-300 hover:bg-[#18181C] transition-all flex items-center justify-between group cursor-pointer"
+                >
+                  <span className="truncate pr-2">• {sec.title}</span>
+                  <ChevronRight className="w-3 h-3 opacity-0 group-hover:opacity-100 text-indigo-400 shrink-0 transition-opacity" />
+                </button>
+              ))}
+              <button
+                onClick={() => handleNavigate("cap3", "notas-cap3")}
+                className="w-full text-left py-1.5 px-2.5 rounded-lg text-xs text-indigo-400 hover:text-indigo-300 hover:bg-[#18181C] transition-all font-mono flex items-center justify-between cursor-pointer"
+              >
+                <span>• Notas del Capítulo 3 (34 al 43)</span>
+              </button>
+              <button
+                onClick={() => handleNavigate("cap3", "referencias-cap3")}
+                className="w-full text-left py-1.5 px-2.5 rounded-lg text-xs text-indigo-400 hover:text-indigo-300 hover:bg-[#18181C] transition-all font-mono flex items-center justify-between cursor-pointer"
+              >
+                <span>• Referencias del Capítulo 3</span>
               </button>
             </div>
           </div>
