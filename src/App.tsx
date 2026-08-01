@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Header } from "./components/Header";
+import { Header, ReadingTheme } from "./components/Header";
 import { TableOfContentsModal } from "./components/TableOfContentsModal";
 import { FootnoteModal } from "./components/FootnoteModal";
 import { SearchModal } from "./components/SearchModal";
@@ -14,9 +14,16 @@ import { ViewTab, Footnote } from "./types";
 export default function App() {
   const [activeView, setActiveView] = useState<ViewTab>("intro");
   const [fontSizeLevel, setFontSizeLevel] = useState<number>(0);
+  const [theme, setTheme] = useState<ReadingTheme>(() => {
+    return (localStorage.getItem("reading_theme") as ReadingTheme) || "dark";
+  });
   const [isContentsOpen, setIsContentsOpen] = useState<boolean>(false);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [selectedFootnote, setSelectedFootnote] = useState<Footnote | null>(null);
+
+  useEffect(() => {
+    localStorage.setItem("reading_theme", theme);
+  }, [theme]);
 
   // Font size classes
   const getFontSizeClass = () => {
@@ -93,14 +100,16 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-[#F8FAFC] font-sans selection:bg-indigo-500/30 selection:text-white transition-all overflow-x-hidden">
+    <div className={`min-h-screen theme-${theme} bg-[#0A0A0A] text-[#F8FAFC] font-sans selection:bg-indigo-500/30 selection:text-white transition-all overflow-x-hidden`}>
       
-      {/* Header Bar with Single "Contenidos" Button */}
+      {/* Header Bar with Theme Switcher & "Contenidos" Button */}
       <Header
         activeView={activeView}
         onOpenContents={() => setIsContentsOpen(true)}
         fontSizeLevel={fontSizeLevel}
         onChangeFontSize={(lvl) => setFontSizeLevel(lvl)}
+        theme={theme}
+        onChangeTheme={(t) => setTheme(t)}
         onOpenSearch={() => setIsSearchOpen(true)}
       />
 

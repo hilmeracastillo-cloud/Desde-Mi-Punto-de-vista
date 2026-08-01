@@ -1,12 +1,16 @@
 import React from "react";
-import { BookOpen, Type, BookmarkCheck, Search } from "lucide-react";
+import { BookOpen, Type, BookmarkCheck, Search, Sun, Moon, Eye } from "lucide-react";
 import { ViewTab } from "../types";
+
+export type ReadingTheme = "dark" | "light" | "sepia";
 
 interface HeaderProps {
   activeView: ViewTab;
   onOpenContents: () => void;
   fontSizeLevel: number; // 0: base, 1: medium, 2: large
   onChangeFontSize: (level: number) => void;
+  theme: ReadingTheme;
+  onChangeTheme: (theme: ReadingTheme) => void;
   onOpenSearch?: () => void;
 }
 
@@ -15,6 +19,8 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenContents,
   fontSizeLevel,
   onChangeFontSize,
+  theme,
+  onChangeTheme,
   onOpenSearch,
 }) => {
   const getViewTitle = () => {
@@ -104,6 +110,46 @@ export const Header: React.FC<HeaderProps> = ({
               <span className="hidden md:inline">Buscar</span>
             </button>
           )}
+
+          {/* Theme Selector (Oscuro / Claro / Sepia) - Placed next to Contenidos */}
+          <div className="flex items-center bg-[#141414] border border-[#262626] rounded-xl p-0.5 sm:p-1 gap-0.5" title="Cambiar color de fondo y texto">
+            <button
+              onClick={() => onChangeTheme("dark")}
+              className={`p-1.5 sm:px-2.5 sm:py-1 rounded-lg text-xs font-sans font-medium flex items-center gap-1 transition-all cursor-pointer ${
+                theme === "dark"
+                  ? "bg-indigo-600 text-white shadow-sm"
+                  : "text-slate-400 hover:text-white"
+              }`}
+              title="Modo Oscuro (Fondo negro, letras blancas)"
+            >
+              <Moon className="w-3.5 h-3.5" />
+              <span className="hidden md:inline">Oscuro</span>
+            </button>
+            <button
+              onClick={() => onChangeTheme("light")}
+              className={`p-1.5 sm:px-2.5 sm:py-1 rounded-lg text-xs font-sans font-medium flex items-center gap-1 transition-all cursor-pointer ${
+                theme === "light"
+                  ? "bg-indigo-600 text-white shadow-sm"
+                  : "text-slate-400 hover:text-white"
+              }`}
+              title="Modo Claro (Fondo blanco, letras oscuras)"
+            >
+              <Sun className="w-3.5 h-3.5" />
+              <span className="hidden md:inline">Claro</span>
+            </button>
+            <button
+              onClick={() => onChangeTheme("sepia")}
+              className={`p-1.5 sm:px-2.5 sm:py-1 rounded-lg text-xs font-sans font-medium flex items-center gap-1 transition-all cursor-pointer ${
+                theme === "sepia"
+                  ? "bg-amber-700 text-white shadow-sm"
+                  : "text-slate-400 hover:text-white"
+              }`}
+              title="Modo Sepia (Fondo cálido, lectura descansada)"
+            >
+              <Eye className="w-3.5 h-3.5" />
+              <span className="hidden md:inline">Sepia</span>
+            </button>
+          </div>
 
           {/* SINGLE CONTENIDOS BUTTON */}
           <button
