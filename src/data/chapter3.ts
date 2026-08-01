@@ -121,7 +121,7 @@ export const chapter3Sections = [
     id: "cementerio-innovaciones",
     title: "El cementerio de las innovaciones",
     paragraphs: [
-      "Existe una imagen que vuelve una y otra vez a mi memoria cuando recuerdo las instituciones educativas con las que he interactuado.",
+      "Existe una imagen recurrente al analizar las instituciones educativas.",
       "No es un aula. No es una biblioteca. No es un laboratorio de inteligencia artificial.",
       "Es una bodega.",
       "En casi todas las instituciones existe una.",
@@ -195,7 +195,7 @@ export const chapter3Sections = [
       "¿Qué ocurrirá cuando esa persona ya no esté?",
       "Las organizaciones verdaderamente extraordinarias no dependen de individuos extraordinarios.",
       "Dependen de arquitecturas capaces de producir resultados extraordinarios incluso cuando cambian las personas.",
-      "Durante mi visita a varias instituciones innovadoras comencé a observar precisamente ese fenómeno.",
+      "Al analizar e investigar diversas instituciones innovadoras fue posible observar precisamente ese fenómeno.",
       "Los mejores resultados no aparecían porque existiera un profesor excepcional.",
       "Aparecían porque la organización había sido diseñada para que muchos profesores pudieran actuar de manera extraordinaria.",
       "Los estudiantes no dependían exclusivamente de la motivación personal.",

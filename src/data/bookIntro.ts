@@ -4,7 +4,7 @@ export const bookMetadata = {
   subtitle: "Un nuevo marco para diseñar escuelas, universidades y organizaciones en la era de la inteligencia artificial",
   type: "Borrador de trabajo para revisión académica",
   version: "Versión 0.1",
-  totalPages: 83,
+  totalPages: 127,
 };
 
 export const invitationText = {
@@ -89,9 +89,9 @@ export const bookStructure = [
     chapters: [
       {
         number: "Capítulo 4",
-        title: "Un nuevo marco conceptual",
+        title: "Un nuevo marco conceptual (Arquitectura del Aprendizaje)",
         description: "Fundamentos de la Arquitectura del Aprendizaje y su relación con la teoría de sistemas, el diseño organizacional y las ciencias del aprendizaje.",
-        available: false,
+        available: true,
       },
       {
         number: "Capítulo 5",

@@ -33,6 +33,8 @@ export const Header: React.FC<HeaderProps> = ({
         return "Capítulo 2 • Cuando el diseño deja de responder al propósito";
       case "cap3":
         return "Capítulo 3 • El fracaso de las reformas aisladas";
+      case "cap4":
+        return "Capítulo 4 • Arquitectura del Aprendizaje";
       case "estructura":
         return "Estructura Preliminar de la Obra";
       default:

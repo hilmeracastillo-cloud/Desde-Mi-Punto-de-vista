@@ -4,6 +4,7 @@ import { ViewTab } from "../types";
 import { chapter1Sections } from "../data/chapter1";
 import { chapter2Sections } from "../data/chapter2";
 import { chapter3Sections } from "../data/chapter3";
+import { chapter4Sections } from "../data/chapter4";
 import { invitationText, whyThisBookText, purposeText } from "../data/bookIntro";
 
 interface SearchModalProps {
@@ -78,6 +79,20 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onNav
             view: "cap3",
             sectionId: sec.id,
             sectionTitle: `Capítulo 3 • ${sec.title}`,
+            snippet: p,
+          });
+        }
+      });
+    });
+
+    // Search Chapter 4
+    chapter4Sections.forEach((sec) => {
+      sec.paragraphs.forEach((p) => {
+        if (p.toLowerCase().includes(q)) {
+          results.push({
+            view: "cap4",
+            sectionId: sec.id,
+            sectionTitle: `Capítulo 4 • ${sec.title}`,
             snippet: p,
           });
         }

@@ -7,6 +7,7 @@ import { IntroView } from "./components/IntroView";
 import { Chapter1View } from "./components/Chapter1View";
 import { Chapter2View } from "./components/Chapter2View";
 import { Chapter3View } from "./components/Chapter3View";
+import { Chapter4View } from "./components/Chapter4View";
 import { StructureView } from "./components/StructureView";
 import { ChapterFooterNav } from "./components/ChapterFooterNav";
 import { ViewTab, Footnote } from "./types";
@@ -57,7 +58,8 @@ export default function App() {
     if (activeView === "intro") return "cap1";
     if (activeView === "cap1") return "cap2";
     if (activeView === "cap2") return "cap3";
-    if (activeView === "cap3") return "estructura";
+    if (activeView === "cap3") return "cap4";
+    if (activeView === "cap4") return "estructura";
     return null;
   };
 
@@ -65,7 +67,8 @@ export default function App() {
     if (activeView === "cap1") return "intro";
     if (activeView === "cap2") return "cap1";
     if (activeView === "cap3") return "cap2";
-    if (activeView === "estructura") return "cap3";
+    if (activeView === "cap4") return "cap3";
+    if (activeView === "estructura") return "cap4";
     return null;
   };
 
@@ -73,7 +76,8 @@ export default function App() {
     if (activeView === "intro") return "Capítulo 1: La arquitectura invisible";
     if (activeView === "cap1") return "Capítulo 2: Cuando el diseño deja...";
     if (activeView === "cap2") return "Capítulo 3: El fracaso de las reformas aisladas";
-    if (activeView === "cap3") return "Estructura general del libro";
+    if (activeView === "cap3") return "Capítulo 4: Arquitectura del Aprendizaje";
+    if (activeView === "cap4") return "Estructura general del libro";
     return "Próximo Capítulo";
   };
 
@@ -81,7 +85,8 @@ export default function App() {
     if (activeView === "cap1") return "Presentación e Introducción";
     if (activeView === "cap2") return "Capítulo 1: La arquitectura invisible";
     if (activeView === "cap3") return "Capítulo 2: Cuando el diseño deja...";
-    if (activeView === "estructura") return "Capítulo 3: El fracaso de las reformas...";
+    if (activeView === "cap4") return "Capítulo 3: El fracaso de las reformas...";
+    if (activeView === "estructura") return "Capítulo 4: Arquitectura del Aprendizaje";
     return "Capítulo Anterior";
   };
 
@@ -140,6 +145,13 @@ export default function App() {
 
         {activeView === "cap3" && (
           <Chapter3View
+            fontSizeClass={getFontSizeClass()}
+            onSelectFootnote={(fn) => setSelectedFootnote(fn)}
+          />
+        )}
+
+        {activeView === "cap4" && (
+          <Chapter4View
             fontSizeClass={getFontSizeClass()}
             onSelectFootnote={(fn) => setSelectedFootnote(fn)}
           />

@@ -19,7 +19,7 @@ export interface ChapterSection {
   paragraphs: string[]; // Can include markdown or footnote markers like (1)
 }
 
-export type ViewTab = 'intro' | 'cap1' | 'cap2' | 'cap3' | 'estructura';
+export type ViewTab = 'intro' | 'cap1' | 'cap2' | 'cap3' | 'cap4' | 'estructura';
 
 export interface ReadingPosition {
   chapter: ViewTab;
