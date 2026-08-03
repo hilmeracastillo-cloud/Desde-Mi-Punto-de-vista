@@ -3,6 +3,7 @@ import { Header, ReadingTheme } from "./components/Header";
 import { TableOfContentsModal } from "./components/TableOfContentsModal";
 import { FootnoteModal } from "./components/FootnoteModal";
 import { SearchModal } from "./components/SearchModal";
+import { ExportPdfModal } from "./components/ExportPdfModal";
 import { IntroView } from "./components/IntroView";
 import { Chapter1View } from "./components/Chapter1View";
 import { Chapter2View } from "./components/Chapter2View";
@@ -20,6 +21,7 @@ export default function App() {
   });
   const [isContentsOpen, setIsContentsOpen] = useState<boolean>(false);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
+  const [isPdfOpen, setIsPdfOpen] = useState<boolean>(false);
   const [selectedFootnote, setSelectedFootnote] = useState<Footnote | null>(null);
 
   useEffect(() => {
@@ -116,6 +118,7 @@ export default function App() {
         theme={theme}
         onChangeTheme={(t) => setTheme(t)}
         onOpenSearch={() => setIsSearchOpen(true)}
+        onOpenPdf={() => setIsPdfOpen(true)}
       />
 
       {/* Main Reading Container */}
@@ -202,6 +205,13 @@ export default function App() {
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}
         onNavigate={handleSelectView}
+      />
+
+      {/* PDF Export Modal */}
+      <ExportPdfModal
+        isOpen={isPdfOpen}
+        onClose={() => setIsPdfOpen(false)}
+        activeView={activeView}
       />
 
     </div>

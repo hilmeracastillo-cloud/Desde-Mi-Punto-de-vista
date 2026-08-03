@@ -1,5 +1,5 @@
 import React from "react";
-import { BookOpen, Type, BookmarkCheck, Search, Sun, Moon, Eye } from "lucide-react";
+import { BookOpen, Type, BookmarkCheck, Search, Sun, Moon, Eye, FileText } from "lucide-react";
 import { ViewTab } from "../types";
 
 export type ReadingTheme = "dark" | "light" | "sepia";
@@ -12,6 +12,7 @@ interface HeaderProps {
   theme: ReadingTheme;
   onChangeTheme: (theme: ReadingTheme) => void;
   onOpenSearch?: () => void;
+  onOpenPdf?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -22,6 +23,7 @@ export const Header: React.FC<HeaderProps> = ({
   theme,
   onChangeTheme,
   onOpenSearch,
+  onOpenPdf,
 }) => {
   const getViewTitle = () => {
     switch (activeView) {
@@ -110,6 +112,18 @@ export const Header: React.FC<HeaderProps> = ({
             >
               <Search className="w-4 h-4 text-indigo-400" />
               <span className="hidden md:inline">Buscar</span>
+            </button>
+          )}
+
+          {/* PDF Export Button */}
+          {onOpenPdf && (
+            <button
+              onClick={onOpenPdf}
+              className="p-2 sm:px-3 sm:py-2 rounded-xl bg-[#141414] hover:bg-[#202020] text-slate-300 hover:text-white border border-[#262626] text-xs font-sans font-medium flex items-center gap-1.5 transition-all cursor-pointer min-h-[36px]"
+              title="Exportar o guardar como documento PDF"
+            >
+              <FileText className="w-4 h-4 text-emerald-400" />
+              <span className="inline font-bold text-emerald-400">PDF</span>
             </button>
           )}
 
