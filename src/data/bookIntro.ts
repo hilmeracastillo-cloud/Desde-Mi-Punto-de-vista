@@ -4,7 +4,7 @@ export const bookMetadata = {
   subtitle: "Un nuevo marco para diseñar escuelas, universidades y organizaciones en la era de la inteligencia artificial",
   type: "Borrador de trabajo para revisión académica",
   version: "Versión 0.1",
-  totalPages: 127,
+  totalPages: 184,
 };
 
 export const invitationText = {
@@ -95,9 +95,9 @@ export const bookStructure = [
       },
       {
         number: "Capítulo 5",
-        title: "Los principios de una organización que aprende",
-        description: "Los patrones estructurales que distinguen a las organizaciones capaces de aprender, adaptarse e innovar de manera continua.",
-        available: false,
+        title: "El liderazgo como disciplina de diseño",
+        description: "Arquitectos antes que administradores: dimensiones, principios y prueba definitiva del liderazgo.",
+        available: true,
       },
       {
         number: "Capítulo 6",

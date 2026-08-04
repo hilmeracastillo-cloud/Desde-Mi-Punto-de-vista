@@ -4,6 +4,7 @@ import { chapter1Header, chapter1Sections, chapter1Footnotes, chapter1References
 import { chapter2Header, chapter2Sections, chapter2Footnotes, chapter2References } from "../data/chapter2";
 import { chapter3Header, chapter3Sections, chapter3Footnotes, chapter3References } from "../data/chapter3";
 import { chapter4Header, chapter4Sections, chapter4Footnotes, chapter4References } from "../data/chapter4";
+import { chapter5Header, chapter5Sections, chapter5Footnotes, chapter5References } from "../data/chapter5";
 import { Footnote, ReferenceItem } from "../types";
 
 function sanitize(text: string): string {
@@ -17,7 +18,7 @@ function sanitize(text: string): string {
 }
 
 export async function generateBookPdf(
-  scope: "all" | "intro" | "cap1" | "cap2" | "cap3" | "cap4" | "estructura",
+  scope: "all" | "intro" | "cap1" | "cap2" | "cap3" | "cap4" | "cap5" | "estructura",
   onProgress?: (status: string, percent: number) => void
 ): Promise<void> {
   if (onProgress) onProgress("Iniciando generación de PDF...", 10);
@@ -283,6 +284,7 @@ export async function generateBookPdf(
       { title: "Capítulo 2: Cuando el diseño deja de responder al propósito", desc: "De la era industrial a la era de la inteligencia artificial" },
       { title: "Capítulo 3: El fracaso de las reformas aisladas", desc: "Por qué las iniciativas fragmentadas no transforman las instituciones" },
       { title: "Capítulo 4: Arquitectura del Aprendizaje", desc: "Aprender a diseñar organizaciones que aprenden, sus leyes y principios" },
+      { title: "Capítulo 5: El liderazgo como disciplina de diseño", desc: "Arquitectos antes que administradores: dimensiones, principios y prueba definitiva del liderazgo" },
       { title: "Estructura Preliminar de la Obra", desc: "Visión sistemática de las Partes I, II, III y IV" },
     ];
 
@@ -395,11 +397,26 @@ export async function generateBookPdf(
 
   // 5. CAPÍTULO 4
   if (scope === "all" || scope === "cap4") {
-    if (onProgress) onProgress("Procesando Capítulo 4...", 90);
+    if (onProgress) onProgress("Procesando Capítulo 4...", 88);
 
     renderSectionHeader(chapter4Header.number, chapter4Header.title, chapter4Header.subtitle, chapter4Header.epigraph);
     renderSections(chapter4Sections);
     renderFootnotesAndReferences(chapter4Footnotes, chapter4References);
+
+    if (scope === "all") {
+      doc.addPage();
+      y = marginTop;
+      addHeaderFooter();
+    }
+  }
+
+  // 6. CAPÍTULO 5
+  if (scope === "all" || scope === "cap5") {
+    if (onProgress) onProgress("Procesando Capítulo 5...", 93);
+
+    renderSectionHeader(chapter5Header.number, chapter5Header.title, chapter5Header.subtitle, chapter5Header.epigraph);
+    renderSections(chapter5Sections);
+    renderFootnotesAndReferences(chapter5Footnotes, chapter5References);
 
     if (scope === "all") {
       doc.addPage();
