@@ -6,6 +6,7 @@ import { chapter2Sections } from "../data/chapter2";
 import { chapter3Sections } from "../data/chapter3";
 import { chapter4Sections } from "../data/chapter4";
 import { chapter5Sections } from "../data/chapter5";
+import { chapter6Sections } from "../data/chapter6";
 import { invitationText, whyThisBookText, purposeText } from "../data/bookIntro";
 
 interface SearchModalProps {
@@ -108,6 +109,20 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onNav
             view: "cap5",
             sectionId: sec.id,
             sectionTitle: `Capítulo 5 • ${sec.title}`,
+            snippet: p,
+          });
+        }
+      });
+    });
+
+    // Search Chapter 6
+    chapter6Sections.forEach((sec) => {
+      sec.paragraphs.forEach((p) => {
+        if (p.toLowerCase().includes(q)) {
+          results.push({
+            view: "cap6",
+            sectionId: sec.id,
+            sectionTitle: `Capítulo 6 • ${sec.title}`,
             snippet: p,
           });
         }

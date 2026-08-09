@@ -5,6 +5,7 @@ import { chapter2Header, chapter2Sections, chapter2Footnotes, chapter2References
 import { chapter3Header, chapter3Sections, chapter3Footnotes, chapter3References } from "../data/chapter3";
 import { chapter4Header, chapter4Sections, chapter4Footnotes, chapter4References } from "../data/chapter4";
 import { chapter5Header, chapter5Sections, chapter5Footnotes, chapter5References } from "../data/chapter5";
+import { chapter6Header, chapter6Sections, chapter6Footnotes, chapter6References } from "../data/chapter6";
 import { Footnote, ReferenceItem } from "../types";
 
 function sanitize(text: string): string {
@@ -18,7 +19,7 @@ function sanitize(text: string): string {
 }
 
 export async function generateBookPdf(
-  scope: "all" | "intro" | "cap1" | "cap2" | "cap3" | "cap4" | "cap5" | "estructura",
+  scope: "all" | "intro" | "cap1" | "cap2" | "cap3" | "cap4" | "cap5" | "cap6" | "estructura",
   onProgress?: (status: string, percent: number) => void
 ): Promise<void> {
   if (onProgress) onProgress("Iniciando generación de PDF...", 10);
@@ -285,6 +286,7 @@ export async function generateBookPdf(
       { title: "Capítulo 3: El fracaso de las reformas aisladas", desc: "Por qué las iniciativas fragmentadas no transforman las instituciones" },
       { title: "Capítulo 4: Arquitectura del Aprendizaje", desc: "Aprender a diseñar organizaciones que aprenden, sus leyes y principios" },
       { title: "Capítulo 5: El liderazgo como disciplina de diseño", desc: "Arquitectos antes que administradores: dimensiones, principios y prueba definitiva del liderazgo" },
+      { title: "Capítulo 6: La organización que aprende de sí misma", desc: "Mecanismos de reflexión, rediseño y desarrollo de capacidades" },
       { title: "Estructura Preliminar de la Obra", desc: "Visión sistemática de las Partes I, II, III y IV" },
     ];
 
@@ -412,11 +414,26 @@ export async function generateBookPdf(
 
   // 6. CAPÍTULO 5
   if (scope === "all" || scope === "cap5") {
-    if (onProgress) onProgress("Procesando Capítulo 5...", 93);
+    if (onProgress) onProgress("Procesando Capítulo 5...", 90);
 
     renderSectionHeader(chapter5Header.number, chapter5Header.title, chapter5Header.subtitle, chapter5Header.epigraph);
     renderSections(chapter5Sections);
     renderFootnotesAndReferences(chapter5Footnotes, chapter5References);
+
+    if (scope === "all") {
+      doc.addPage();
+      y = marginTop;
+      addHeaderFooter();
+    }
+  }
+
+  // 7. CAPÍTULO 6
+  if (scope === "all" || scope === "cap6") {
+    if (onProgress) onProgress("Procesando Capítulo 6...", 94);
+
+    renderSectionHeader(chapter6Header.number, chapter6Header.title, chapter6Header.subtitle, chapter6Header.epigraph);
+    renderSections(chapter6Sections);
+    renderFootnotesAndReferences(chapter6Footnotes, chapter6References);
 
     if (scope === "all") {
       doc.addPage();

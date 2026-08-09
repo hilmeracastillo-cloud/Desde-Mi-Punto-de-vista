@@ -39,6 +39,8 @@ export const Header: React.FC<HeaderProps> = ({
         return "Capítulo 4 • Arquitectura del Aprendizaje";
       case "cap5":
         return "Capítulo 5 • El liderazgo como disciplina de diseño";
+      case "cap6":
+        return "Capítulo 6 • La organización que aprende de sí misma";
       case "estructura":
         return "Estructura Preliminar de la Obra";
       default:

@@ -4,7 +4,7 @@ export const bookMetadata = {
   subtitle: "Un nuevo marco para diseñar escuelas, universidades y organizaciones en la era de la inteligencia artificial",
   type: "Borrador de trabajo para revisión académica",
   version: "Versión 0.1",
-  totalPages: 184,
+  totalPages: 216,
 };
 
 export const invitationText = {
@@ -101,9 +101,9 @@ export const bookStructure = [
       },
       {
         number: "Capítulo 6",
-        title: "Los componentes de la arquitectura",
-        description: "El papel del propósito, la cultura, el liderazgo, el currículo, la evaluación, la tecnología, los espacios y los incentivos como elementos de un sistema integrado.",
-        available: false,
+        title: "La organización que aprende de sí misma",
+        description: "Mecanismos de reflexión, rediseño y desarrollo de capacidades en un sistema integrado.",
+        available: true,
       },
     ],
   },

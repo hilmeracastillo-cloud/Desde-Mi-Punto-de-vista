@@ -35,6 +35,8 @@ export const ExportPdfModal: React.FC<ExportPdfModalProps> = ({
         return "Capítulo 4: Arquitectura del Aprendizaje";
       case "cap5":
         return "Capítulo 5: El liderazgo como disciplina de diseño";
+      case "cap6":
+        return "Capítulo 6: La organización que aprende de sí misma";
       case "estructura":
         return "Estructura Preliminar de la Obra";
       default:
@@ -139,7 +141,7 @@ export const ExportPdfModal: React.FC<ExportPdfModalProps> = ({
                         Descargar Libro Completo (PDF)
                       </div>
                       <p className="text-xs text-slate-400 font-sans mt-0.5">
-                        Portada, Presentación, Capítulos 1 al 5, Notas al pie, Bibliografía y Estructura.
+                        Portada, Presentación, Capítulos 1 al 6, Notas al pie, Bibliografía y Estructura.
                       </p>
                     </div>
                   </div>
