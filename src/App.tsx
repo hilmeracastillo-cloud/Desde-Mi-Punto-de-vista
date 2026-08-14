@@ -11,6 +11,7 @@ import { Chapter3View } from "./components/Chapter3View";
 import { Chapter4View } from "./components/Chapter4View";
 import { Chapter5View } from "./components/Chapter5View";
 import { Chapter6View } from "./components/Chapter6View";
+import { Chapter7View } from "./components/Chapter7View";
 import { StructureView } from "./components/StructureView";
 import { ChapterFooterNav } from "./components/ChapterFooterNav";
 import { ViewTab, Footnote } from "./types";
@@ -65,7 +66,8 @@ export default function App() {
     if (activeView === "cap3") return "cap4";
     if (activeView === "cap4") return "cap5";
     if (activeView === "cap5") return "cap6";
-    if (activeView === "cap6") return "estructura";
+    if (activeView === "cap6") return "cap7";
+    if (activeView === "cap7") return "estructura";
     return null;
   };
 
@@ -76,7 +78,8 @@ export default function App() {
     if (activeView === "cap4") return "cap3";
     if (activeView === "cap5") return "cap4";
     if (activeView === "cap6") return "cap5";
-    if (activeView === "estructura") return "cap6";
+    if (activeView === "cap7") return "cap6";
+    if (activeView === "estructura") return "cap7";
     return null;
   };
 
@@ -87,7 +90,8 @@ export default function App() {
     if (activeView === "cap3") return "Capítulo 4: Arquitectura del Aprendizaje";
     if (activeView === "cap4") return "Capítulo 5: El liderazgo como disciplina de diseño";
     if (activeView === "cap5") return "Capítulo 6: La organización que aprende de sí misma";
-    if (activeView === "cap6") return "Estructura general del libro";
+    if (activeView === "cap6") return "Capítulo 7: Aprender a observar antes de diseñar";
+    if (activeView === "cap7") return "Estructura general del libro";
     return "Próximo Capítulo";
   };
 
@@ -98,7 +102,8 @@ export default function App() {
     if (activeView === "cap4") return "Capítulo 3: El fracaso de las reformas...";
     if (activeView === "cap5") return "Capítulo 4: Arquitectura del Aprendizaje";
     if (activeView === "cap6") return "Capítulo 5: El liderazgo como disciplina de diseño";
-    if (activeView === "estructura") return "Capítulo 6: La organización que aprende de sí misma";
+    if (activeView === "cap7") return "Capítulo 6: La organización que aprende de sí misma";
+    if (activeView === "estructura") return "Capítulo 7: Aprender a observar antes de diseñar";
     return "Capítulo Anterior";
   };
 
@@ -179,6 +184,13 @@ export default function App() {
 
         {activeView === "cap6" && (
           <Chapter6View
+            fontSizeClass={getFontSizeClass()}
+            onSelectFootnote={(fn) => setSelectedFootnote(fn)}
+          />
+        )}
+
+        {activeView === "cap7" && (
+          <Chapter7View
             fontSizeClass={getFontSizeClass()}
             onSelectFootnote={(fn) => setSelectedFootnote(fn)}
           />

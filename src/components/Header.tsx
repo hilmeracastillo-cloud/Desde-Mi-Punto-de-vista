@@ -41,6 +41,8 @@ export const Header: React.FC<HeaderProps> = ({
         return "Capítulo 5 • El liderazgo como disciplina de diseño";
       case "cap6":
         return "Capítulo 6 • La organización que aprende de sí misma";
+      case "cap7":
+        return "Capítulo 7 • Aprender a observar antes de diseñar";
       case "estructura":
         return "Estructura Preliminar de la Obra";
       default:

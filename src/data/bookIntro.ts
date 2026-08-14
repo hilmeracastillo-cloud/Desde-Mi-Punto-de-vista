@@ -4,7 +4,7 @@ export const bookMetadata = {
   subtitle: "Un nuevo marco para diseñar escuelas, universidades y organizaciones en la era de la inteligencia artificial",
   type: "Borrador de trabajo para revisión académica",
   version: "Versión 0.1",
-  totalPages: 216,
+  totalPages: 211,
 };
 
 export const invitationText = {
@@ -112,9 +112,9 @@ export const bookStructure = [
     chapters: [
       {
         number: "Capítulo 7",
-        title: "Del diagnóstico al diseño",
-        description: "Cómo analizar una organización y rediseñar su arquitectura de aprendizaje.",
-        available: false,
+        title: "Aprender a observar antes de diseñar",
+        description: "ENTREGA 1 — Diagnóstico y cartografía de la arquitectura existente antes de intervenir.",
+        available: true,
       },
       {
         number: "Capítulo 8",

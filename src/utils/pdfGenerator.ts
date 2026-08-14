@@ -6,6 +6,7 @@ import { chapter3Header, chapter3Sections, chapter3Footnotes, chapter3References
 import { chapter4Header, chapter4Sections, chapter4Footnotes, chapter4References } from "../data/chapter4";
 import { chapter5Header, chapter5Sections, chapter5Footnotes, chapter5References } from "../data/chapter5";
 import { chapter6Header, chapter6Sections, chapter6Footnotes, chapter6References } from "../data/chapter6";
+import { chapter7Header, chapter7Sections, chapter7Footnotes, chapter7References } from "../data/chapter7";
 import { Footnote, ReferenceItem } from "../types";
 
 function sanitize(text: string): string {
@@ -19,7 +20,7 @@ function sanitize(text: string): string {
 }
 
 export async function generateBookPdf(
-  scope: "all" | "intro" | "cap1" | "cap2" | "cap3" | "cap4" | "cap5" | "cap6" | "estructura",
+  scope: "all" | "intro" | "cap1" | "cap2" | "cap3" | "cap4" | "cap5" | "cap6" | "cap7" | "estructura",
   onProgress?: (status: string, percent: number) => void
 ): Promise<void> {
   if (onProgress) onProgress("Iniciando generación de PDF...", 10);
@@ -434,6 +435,21 @@ export async function generateBookPdf(
     renderSectionHeader(chapter6Header.number, chapter6Header.title, chapter6Header.subtitle, chapter6Header.epigraph);
     renderSections(chapter6Sections);
     renderFootnotesAndReferences(chapter6Footnotes, chapter6References);
+
+    if (scope === "all") {
+      doc.addPage();
+      y = marginTop;
+      addHeaderFooter();
+    }
+  }
+
+  // 8. CAPÍTULO 7
+  if (scope === "all" || scope === "cap7") {
+    if (onProgress) onProgress("Procesando Capítulo 7...", 96);
+
+    renderSectionHeader(chapter7Header.number, chapter7Header.title, chapter7Header.subtitle, chapter7Header.epigraph);
+    renderSections(chapter7Sections);
+    renderFootnotesAndReferences(chapter7Footnotes, chapter7References);
 
     if (scope === "all") {
       doc.addPage();
