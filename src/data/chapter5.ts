@@ -4,7 +4,7 @@ export const chapter5Header = {
   number: "Capítulo 5",
   title: "El liderazgo como disciplina de diseño",
   subtitle: "Arquitectos antes que administradores",
-  pages: "Páginas 137 - 184",
+  pages: "Páginas 98 - 121",
   epigraph: "Toda transformación profunda comienza mucho antes de que una organización incorpore una nueva tecnología, reforme su currículo o modifique sus procesos internos. Comienza cuando cambia la manera de comprender aquello que realmente debe diseñarse.",
 };
 

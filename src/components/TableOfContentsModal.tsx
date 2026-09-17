@@ -158,8 +158,8 @@ export const TableOfContentsModal: React.FC<TableOfContentsModalProps> = ({
               }`}
             >
               <div>
-                <div className="text-sm font-bold font-serif">Cuando el diseño deja de responder al propósito</div>
-                <div className="text-xs text-slate-400 font-sans mt-0.5">La herencia invisible de la Revolución Industrial y la crisis del paradigma tradicional.</div>
+                <div className="text-sm font-bold font-serif">La crisis del paradigma industrial</div>
+                <div className="text-xs text-slate-400 font-sans mt-0.5">Por qué muchas instituciones siguen diseñadas para un mundo que ya no existe.</div>
               </div>
               <ChevronRight className={`w-4 h-4 shrink-0 transition-transform ${activeView === "cap2" ? "text-indigo-400 translate-x-0.5" : "text-slate-500 group-hover:translate-x-0.5"}`} />
             </button>

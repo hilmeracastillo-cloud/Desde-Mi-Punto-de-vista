@@ -32,7 +32,7 @@ export const Header: React.FC<HeaderProps> = ({
       case "cap1":
         return "Capítulo 1 • La arquitectura invisible";
       case "cap2":
-        return "Capítulo 2 • Cuando el diseño deja de responder al propósito";
+        return "Capítulo 2 • La crisis del paradigma industrial";
       case "cap3":
         return "Capítulo 3 • El fracaso de las reformas aisladas";
       case "cap4":

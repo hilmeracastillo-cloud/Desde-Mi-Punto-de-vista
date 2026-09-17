@@ -4,7 +4,7 @@ export const chapter6Header = {
   number: "Capítulo 6",
   title: "La organización que aprende de sí misma",
   subtitle: "Mecanismos de reflexión, rediseño y desarrollo de capacidades",
-  pages: "Páginas 185 - 216",
+  pages: "Páginas 122 - 143",
   epigraph: "Las organizaciones no aprenden porque acumulan experiencia. Aprenden cuando desarrollan una arquitectura capaz de transformar sistemáticamente la experiencia en comprensión, la comprensión en rediseño y el rediseño en nuevas capacidades institucionales.",
 };
 

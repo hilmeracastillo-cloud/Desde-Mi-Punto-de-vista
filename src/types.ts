@@ -16,7 +16,8 @@ export interface ChapterSection {
   title: string;
   subtitle?: string;
   quote?: string;
-  paragraphs: string[]; // Can include markdown or footnote markers like (1)
+  epigraph?: string;
+  paragraphs: string[]; // Can include markdown or footnote markers like [1] or (1)
 }
 
 export type ViewTab = 'intro' | 'cap1' | 'cap2' | 'cap3' | 'cap4' | 'cap5' | 'cap6' | 'cap7' | 'estructura';

@@ -4,7 +4,7 @@ export const chapter7Header = {
   number: "Capítulo 7",
   title: "Aprender a observar antes de diseñar",
   subtitle: "ENTREGA 1 — Diagnóstico y cartografía de la arquitectura existente",
-  pages: "Páginas 187 - 211",
+  pages: "Páginas 144 - 165",
   epigraph: "Antes de intervenir, observa. Antes de construir, comprende. Antes de transformar, aprende a leer la realidad sobre la cual actuará.",
 };
 

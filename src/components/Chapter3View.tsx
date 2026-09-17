@@ -35,7 +35,7 @@ export const Chapter3View: React.FC<Chapter3ViewProps> = ({
   };
 
   const renderInlineText = (text: string) => {
-    const regex = /\((\d+)\)/g;
+    const regex = /(?:\[|\()(\d+)(?:\]|\))/g;
     const parts = [];
     let lastIndex = 0;
     let match;
@@ -54,9 +54,9 @@ export const Chapter3View: React.FC<Chapter3ViewProps> = ({
             key={`fn-${match.index}`}
             onClick={() => onSelectFootnote(footnote)}
             className="inline-flex items-center px-1.5 py-0.5 mx-0.5 rounded-md bg-indigo-950/80 border border-indigo-500/40 text-indigo-300 hover:text-white hover:bg-indigo-600 font-mono text-xs font-bold transition-all cursor-pointer shadow-sm hover:scale-105"
-            title={`Ver nota (${num}): ${footnote.title}`}
+            title={`Ver nota [${num}]: ${footnote.title}`}
           >
-            ({num})
+            [{num}]
           </button>
         );
       } else {
@@ -84,7 +84,7 @@ export const Chapter3View: React.FC<Chapter3ViewProps> = ({
           <span className="px-3 py-1 rounded-full bg-indigo-950/80 border border-indigo-500/30 text-indigo-400 font-mono text-xs font-bold tracking-wider">
             {chapter3Header.number}
           </span>
-          <span className="text-xs font-mono text-slate-400">Páginas 66 - 83</span>
+          <span className="text-xs font-mono text-slate-400">{chapter3Header.pages}</span>
         </div>
 
         <h1 className="text-3xl sm:text-5xl font-serif font-bold text-white tracking-tight leading-tight">

@@ -85,7 +85,7 @@ export default function App() {
 
   const getNextLabel = (): string => {
     if (activeView === "intro") return "Capítulo 1: La arquitectura invisible";
-    if (activeView === "cap1") return "Capítulo 2: Cuando el diseño deja...";
+    if (activeView === "cap1") return "Capítulo 2: La crisis del paradigma industrial";
     if (activeView === "cap2") return "Capítulo 3: El fracaso de las reformas aisladas";
     if (activeView === "cap3") return "Capítulo 4: Arquitectura del Aprendizaje";
     if (activeView === "cap4") return "Capítulo 5: El liderazgo como disciplina de diseño";
@@ -98,8 +98,8 @@ export default function App() {
   const getPrevLabel = (): string => {
     if (activeView === "cap1") return "Presentación e Introducción";
     if (activeView === "cap2") return "Capítulo 1: La arquitectura invisible";
-    if (activeView === "cap3") return "Capítulo 2: Cuando el diseño deja...";
-    if (activeView === "cap4") return "Capítulo 3: El fracaso de las reformas...";
+    if (activeView === "cap3") return "Capítulo 2: La crisis del paradigma industrial";
+    if (activeView === "cap4") return "Capítulo 3: El fracaso de las reformas aisladas";
     if (activeView === "cap5") return "Capítulo 4: Arquitectura del Aprendizaje";
     if (activeView === "cap6") return "Capítulo 5: El liderazgo como disciplina de diseño";
     if (activeView === "cap7") return "Capítulo 6: La organización que aprende de sí misma";

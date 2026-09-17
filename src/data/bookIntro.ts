@@ -4,7 +4,7 @@ export const bookMetadata = {
   subtitle: "Un nuevo marco para diseñar escuelas, universidades y organizaciones en la era de la inteligencia artificial",
   type: "Borrador de trabajo para revisión académica",
   version: "Versión 0.1",
-  totalPages: 211,
+  totalPages: 165,
 };
 
 export const invitationText = {

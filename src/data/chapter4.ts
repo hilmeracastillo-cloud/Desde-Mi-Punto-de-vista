@@ -4,6 +4,7 @@ export const chapter4Header = {
   number: "CAPÍTULO 4",
   title: "Arquitectura del Aprendizaje",
   subtitle: "Cuando el problema deja de estar en las respuestas",
+  pages: "Páginas 63 - 97",
   epigraph: "Las organizaciones no diseñan actividades; diseñan capacidades. Las actividades producen resultados; las capacidades producen futuro.",
 };
 
