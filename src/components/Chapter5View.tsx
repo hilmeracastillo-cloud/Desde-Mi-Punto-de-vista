@@ -1,16 +1,24 @@
 import React from "react";
 import { chapter5Header, chapter5Sections, chapter5Footnotes, chapter5References } from "../data/chapter5";
+import { chapterInfographics, ChapterInfographicData } from "../data/infographics";
+import { notebookInfographics, NotebookInfographicData } from "../data/notebookInfographics";
+import { ChapterInfographic } from "./ChapterInfographic";
+import { NotebookLMInfographic } from "./NotebookLMInfographic";
 import { Footnote } from "../types";
-import { BookOpen, ExternalLink, Hash, Bookmark } from "lucide-react";
+import { BookOpen, ExternalLink, Hash, Bookmark, Sparkles, Layers, Image as ImageIcon } from "lucide-react";
 
 interface Chapter5ViewProps {
   fontSizeClass: string;
   onSelectFootnote: (footnote: Footnote) => void;
+  onOpenInfographicModal?: (data: ChapterInfographicData) => void;
+  onOpenNotebookInfographicModal?: (data: NotebookInfographicData) => void;
 }
 
 export const Chapter5View: React.FC<Chapter5ViewProps> = ({
   fontSizeClass,
   onSelectFootnote,
+  onOpenInfographicModal,
+  onOpenNotebookInfographicModal,
 }) => {
   // Helper to render paragraph with clickable footnote numbers like (52), (53)...
   const renderParagraphWithFootnotes = (text: string, pIdx: number) => {
@@ -104,6 +112,30 @@ export const Chapter5View: React.FC<Chapter5ViewProps> = ({
             </p>
           </div>
         )}
+
+        <div className="pt-2 flex flex-wrap items-center gap-2">
+          <a
+            href="#infografia-visual-cap5"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-mono font-bold transition-all shadow-md"
+          >
+            <ImageIcon className="w-3.5 h-3.5" />
+            <span>Infografía Visual (NotebookLM)</span>
+          </a>
+          <a
+            href="#sintesis-conceptos-cap5"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyan-950/70 border border-cyan-500/40 text-cyan-300 hover:text-white hover:bg-cyan-600/80 text-xs font-mono font-medium transition-all shadow-sm"
+          >
+            <Layers className="w-3.5 h-3.5 text-cyan-400" />
+            <span>Síntesis de Conceptos</span>
+          </a>
+          <a
+            href="#notas-cap5"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#1a1a1a] border border-[#333] text-slate-300 hover:text-white hover:border-slate-500 text-xs font-mono transition-colors"
+          >
+            <Bookmark className="w-3.5 h-3.5 text-slate-400" />
+            <span>Notas (54 a 61)</span>
+          </a>
+        </div>
       </div>
 
       {/* Chapter Sections */}
@@ -129,6 +161,22 @@ export const Chapter5View: React.FC<Chapter5ViewProps> = ({
           </section>
         ))}
       </div>
+
+      {/* Chapter 5 Visual Infographic - NotebookLM Style */}
+      {notebookInfographics.cap5 && (
+        <NotebookLMInfographic
+          data={notebookInfographics.cap5}
+          onOpenModal={onOpenNotebookInfographicModal}
+        />
+      )}
+
+      {/* Chapter 5 Concept Synthesis - Structured Analytical Schema */}
+      {chapterInfographics.cap5 && (
+        <ChapterInfographic
+          data={chapterInfographics.cap5}
+          onOpenModal={onOpenInfographicModal}
+        />
+      )}
 
       {/* Chapter Footnotes Section */}
       <div id="notas-cap5" className="bg-[#111111] border border-[#222222] rounded-2xl p-6 sm:p-8 space-y-6 shadow-lg scroll-mt-24">

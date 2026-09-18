@@ -14,6 +14,10 @@ import { Chapter6View } from "./components/Chapter6View";
 import { Chapter7View } from "./components/Chapter7View";
 import { StructureView } from "./components/StructureView";
 import { ChapterFooterNav } from "./components/ChapterFooterNav";
+import { InfographicModal } from "./components/InfographicModal";
+import { NotebookLMInfographicModal } from "./components/NotebookLMInfographicModal";
+import { ChapterInfographicData } from "./data/infographics";
+import { NotebookInfographicData } from "./data/notebookInfographics";
 import { ViewTab, Footnote } from "./types";
 
 export default function App() {
@@ -26,6 +30,8 @@ export default function App() {
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [isPdfOpen, setIsPdfOpen] = useState<boolean>(false);
   const [selectedFootnote, setSelectedFootnote] = useState<Footnote | null>(null);
+  const [selectedInfographic, setSelectedInfographic] = useState<ChapterInfographicData | null>(null);
+  const [selectedNotebookInfographic, setSelectedNotebookInfographic] = useState<NotebookInfographicData | null>(null);
 
   useEffect(() => {
     localStorage.setItem("reading_theme", theme);
@@ -151,6 +157,8 @@ export default function App() {
           <Chapter1View
             fontSizeClass={getFontSizeClass()}
             onSelectFootnote={(fn) => setSelectedFootnote(fn)}
+            onOpenInfographicModal={(data) => setSelectedInfographic(data)}
+            onOpenNotebookInfographicModal={(data) => setSelectedNotebookInfographic(data)}
           />
         )}
 
@@ -158,6 +166,8 @@ export default function App() {
           <Chapter2View
             fontSizeClass={getFontSizeClass()}
             onSelectFootnote={(fn) => setSelectedFootnote(fn)}
+            onOpenInfographicModal={(data) => setSelectedInfographic(data)}
+            onOpenNotebookInfographicModal={(data) => setSelectedNotebookInfographic(data)}
           />
         )}
 
@@ -165,6 +175,8 @@ export default function App() {
           <Chapter3View
             fontSizeClass={getFontSizeClass()}
             onSelectFootnote={(fn) => setSelectedFootnote(fn)}
+            onOpenInfographicModal={(data) => setSelectedInfographic(data)}
+            onOpenNotebookInfographicModal={(data) => setSelectedNotebookInfographic(data)}
           />
         )}
 
@@ -172,6 +184,8 @@ export default function App() {
           <Chapter4View
             fontSizeClass={getFontSizeClass()}
             onSelectFootnote={(fn) => setSelectedFootnote(fn)}
+            onOpenInfographicModal={(data) => setSelectedInfographic(data)}
+            onOpenNotebookInfographicModal={(data) => setSelectedNotebookInfographic(data)}
           />
         )}
 
@@ -179,6 +193,8 @@ export default function App() {
           <Chapter5View
             fontSizeClass={getFontSizeClass()}
             onSelectFootnote={(fn) => setSelectedFootnote(fn)}
+            onOpenInfographicModal={(data) => setSelectedInfographic(data)}
+            onOpenNotebookInfographicModal={(data) => setSelectedNotebookInfographic(data)}
           />
         )}
 
@@ -186,6 +202,8 @@ export default function App() {
           <Chapter6View
             fontSizeClass={getFontSizeClass()}
             onSelectFootnote={(fn) => setSelectedFootnote(fn)}
+            onOpenInfographicModal={(data) => setSelectedInfographic(data)}
+            onOpenNotebookInfographicModal={(data) => setSelectedNotebookInfographic(data)}
           />
         )}
 
@@ -193,6 +211,8 @@ export default function App() {
           <Chapter7View
             fontSizeClass={getFontSizeClass()}
             onSelectFootnote={(fn) => setSelectedFootnote(fn)}
+            onOpenInfographicModal={(data) => setSelectedInfographic(data)}
+            onOpenNotebookInfographicModal={(data) => setSelectedNotebookInfographic(data)}
           />
         )}
 
@@ -248,6 +268,18 @@ export default function App() {
         isOpen={isPdfOpen}
         onClose={() => setIsPdfOpen(false)}
         activeView={activeView}
+      />
+
+      {/* Fullscreen Interactive Visual Infographic Modal (NotebookLM Style) */}
+      <NotebookLMInfographicModal
+        data={selectedNotebookInfographic}
+        onClose={() => setSelectedNotebookInfographic(null)}
+      />
+
+      {/* Fullscreen Interactive Concept Synthesis Modal */}
+      <InfographicModal
+        data={selectedInfographic}
+        onClose={() => setSelectedInfographic(null)}
       />
 
     </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { X, BookOpen, ChevronRight, CheckCircle2, Bookmark, FileText } from "lucide-react";
+import { X, BookOpen, ChevronRight, CheckCircle2, Bookmark, FileText, Sparkles, Layers, Image as ImageIcon } from "lucide-react";
 import { ViewTab } from "../types";
 import { chapter1Sections } from "../data/chapter1";
 import { chapter2Sections } from "../data/chapter2";
@@ -124,6 +124,26 @@ export const TableOfContentsModal: React.FC<TableOfContentsModalProps> = ({
                 </button>
               ))}
               <button
+                onClick={() => handleNavigate("cap1", "infografia-visual-cap1")}
+                className="w-full text-left py-1.5 px-2.5 rounded-lg text-xs text-amber-300 hover:text-white hover:bg-amber-950/40 transition-all font-mono flex items-center justify-between cursor-pointer border border-amber-500/30 bg-amber-950/20"
+              >
+                <span className="flex items-center gap-1.5">
+                  <ImageIcon className="w-3.5 h-3.5 text-amber-400" />
+                  <span className="font-semibold">Infografía Visual (NotebookLM)</span>
+                </span>
+                <ChevronRight className="w-3 h-3 text-amber-400" />
+              </button>
+              <button
+                onClick={() => handleNavigate("cap1", "sintesis-conceptos-cap1")}
+                className="w-full text-left py-1.5 px-2.5 rounded-lg text-xs text-indigo-300 hover:text-white hover:bg-indigo-950/40 transition-all font-mono flex items-center justify-between cursor-pointer border border-indigo-500/20 bg-indigo-950/20"
+              >
+                <span className="flex items-center gap-1.5">
+                  <Layers className="w-3.5 h-3.5 text-indigo-400" />
+                  <span>Síntesis de Conceptos</span>
+                </span>
+                <ChevronRight className="w-3 h-3 text-indigo-400" />
+              </button>
+              <button
                 onClick={() => handleNavigate("cap1", "notas-cap1")}
                 className="w-full text-left py-1.5 px-2.5 rounded-lg text-xs text-indigo-400 hover:text-indigo-300 hover:bg-[#18181C] transition-all font-mono flex items-center justify-between cursor-pointer"
               >
@@ -176,6 +196,26 @@ export const TableOfContentsModal: React.FC<TableOfContentsModalProps> = ({
                   <ChevronRight className="w-3 h-3 opacity-0 group-hover:opacity-100 text-indigo-400 shrink-0 transition-opacity" />
                 </button>
               ))}
+              <button
+                onClick={() => handleNavigate("cap2", "infografia-visual-cap2")}
+                className="w-full text-left py-1.5 px-2.5 rounded-lg text-xs text-amber-300 hover:text-white hover:bg-amber-950/40 transition-all font-mono flex items-center justify-between cursor-pointer border border-amber-500/30 bg-amber-950/20"
+              >
+                <span className="flex items-center gap-1.5">
+                  <ImageIcon className="w-3.5 h-3.5 text-amber-400" />
+                  <span className="font-semibold">Infografía Visual (NotebookLM)</span>
+                </span>
+                <ChevronRight className="w-3 h-3 text-amber-400" />
+              </button>
+              <button
+                onClick={() => handleNavigate("cap2", "sintesis-conceptos-cap2")}
+                className="w-full text-left py-1.5 px-2.5 rounded-lg text-xs text-amber-200/90 hover:text-white hover:bg-amber-950/40 transition-all font-mono flex items-center justify-between cursor-pointer border border-amber-500/20 bg-amber-950/20"
+              >
+                <span className="flex items-center gap-1.5">
+                  <Layers className="w-3.5 h-3.5 text-amber-400" />
+                  <span>Síntesis de Conceptos</span>
+                </span>
+                <ChevronRight className="w-3 h-3 text-amber-400" />
+              </button>
               <button
                 onClick={() => handleNavigate("cap2", "notas-cap2")}
                 className="w-full text-left py-1.5 px-2.5 rounded-lg text-xs text-indigo-400 hover:text-indigo-300 hover:bg-[#18181C] transition-all font-mono flex items-center justify-between cursor-pointer"
@@ -230,6 +270,26 @@ export const TableOfContentsModal: React.FC<TableOfContentsModalProps> = ({
                 </button>
               ))}
               <button
+                onClick={() => handleNavigate("cap3", "infografia-visual-cap3")}
+                className="w-full text-left py-1.5 px-2.5 rounded-lg text-xs text-amber-300 hover:text-white hover:bg-amber-950/40 transition-all font-mono flex items-center justify-between cursor-pointer border border-amber-500/30 bg-amber-950/20"
+              >
+                <span className="flex items-center gap-1.5">
+                  <ImageIcon className="w-3.5 h-3.5 text-amber-400" />
+                  <span className="font-semibold">Infografía Visual (NotebookLM)</span>
+                </span>
+                <ChevronRight className="w-3 h-3 text-amber-400" />
+              </button>
+              <button
+                onClick={() => handleNavigate("cap3", "sintesis-conceptos-cap3")}
+                className="w-full text-left py-1.5 px-2.5 rounded-lg text-xs text-rose-300 hover:text-white hover:bg-rose-950/40 transition-all font-mono flex items-center justify-between cursor-pointer border border-rose-500/20 bg-rose-950/20"
+              >
+                <span className="flex items-center gap-1.5">
+                  <Layers className="w-3.5 h-3.5 text-rose-400" />
+                  <span>Síntesis de Conceptos</span>
+                </span>
+                <ChevronRight className="w-3 h-3 text-rose-400" />
+              </button>
+              <button
                 onClick={() => handleNavigate("cap3", "notas-cap3")}
                 className="w-full text-left py-1.5 px-2.5 rounded-lg text-xs text-indigo-400 hover:text-indigo-300 hover:bg-[#18181C] transition-all font-mono flex items-center justify-between cursor-pointer"
               >
@@ -282,6 +342,26 @@ export const TableOfContentsModal: React.FC<TableOfContentsModalProps> = ({
                   <ChevronRight className="w-3 h-3 opacity-0 group-hover:opacity-100 text-indigo-400 shrink-0 transition-opacity" />
                 </button>
               ))}
+              <button
+                onClick={() => handleNavigate("cap4", "infografia-visual-cap4")}
+                className="w-full text-left py-1.5 px-2.5 rounded-lg text-xs text-amber-300 hover:text-white hover:bg-amber-950/40 transition-all font-mono flex items-center justify-between cursor-pointer border border-amber-500/30 bg-amber-950/20"
+              >
+                <span className="flex items-center gap-1.5">
+                  <ImageIcon className="w-3.5 h-3.5 text-amber-400" />
+                  <span className="font-semibold">Infografía Visual (NotebookLM)</span>
+                </span>
+                <ChevronRight className="w-3 h-3 text-amber-400" />
+              </button>
+              <button
+                onClick={() => handleNavigate("cap4", "sintesis-conceptos-cap4")}
+                className="w-full text-left py-1.5 px-2.5 rounded-lg text-xs text-emerald-300 hover:text-white hover:bg-emerald-950/40 transition-all font-mono flex items-center justify-between cursor-pointer border border-emerald-500/20 bg-emerald-950/20"
+              >
+                <span className="flex items-center gap-1.5">
+                  <Layers className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>Síntesis de Conceptos</span>
+                </span>
+                <ChevronRight className="w-3 h-3 text-emerald-400" />
+              </button>
               <button
                 onClick={() => handleNavigate("cap4", "notas-cap4")}
                 className="w-full text-left py-1.5 px-2.5 rounded-lg text-xs text-indigo-400 hover:text-indigo-300 hover:bg-[#18181C] transition-all font-mono flex items-center justify-between cursor-pointer"
@@ -336,6 +416,26 @@ export const TableOfContentsModal: React.FC<TableOfContentsModalProps> = ({
                 </button>
               ))}
               <button
+                onClick={() => handleNavigate("cap5", "infografia-visual-cap5")}
+                className="w-full text-left py-1.5 px-2.5 rounded-lg text-xs text-amber-300 hover:text-white hover:bg-amber-950/40 transition-all font-mono flex items-center justify-between cursor-pointer border border-amber-500/30 bg-amber-950/20"
+              >
+                <span className="flex items-center gap-1.5">
+                  <ImageIcon className="w-3.5 h-3.5 text-amber-400" />
+                  <span className="font-semibold">Infografía Visual (NotebookLM)</span>
+                </span>
+                <ChevronRight className="w-3 h-3 text-amber-400" />
+              </button>
+              <button
+                onClick={() => handleNavigate("cap5", "sintesis-conceptos-cap5")}
+                className="w-full text-left py-1.5 px-2.5 rounded-lg text-xs text-cyan-300 hover:text-white hover:bg-cyan-950/40 transition-all font-mono flex items-center justify-between cursor-pointer border border-cyan-500/20 bg-cyan-950/20"
+              >
+                <span className="flex items-center gap-1.5">
+                  <Layers className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>Síntesis de Conceptos</span>
+                </span>
+                <ChevronRight className="w-3 h-3 text-cyan-400" />
+              </button>
+              <button
                 onClick={() => handleNavigate("cap5", "notas-cap5")}
                 className="w-full text-left py-1.5 px-2.5 rounded-lg text-xs text-indigo-400 hover:text-indigo-300 hover:bg-[#18181C] transition-all font-mono flex items-center justify-between cursor-pointer"
               >
@@ -389,6 +489,26 @@ export const TableOfContentsModal: React.FC<TableOfContentsModalProps> = ({
                 </button>
               ))}
               <button
+                onClick={() => handleNavigate("cap6", "infografia-visual-cap6")}
+                className="w-full text-left py-1.5 px-2.5 rounded-lg text-xs text-amber-300 hover:text-white hover:bg-amber-950/40 transition-all font-mono flex items-center justify-between cursor-pointer border border-amber-500/30 bg-amber-950/20"
+              >
+                <span className="flex items-center gap-1.5">
+                  <ImageIcon className="w-3.5 h-3.5 text-amber-400" />
+                  <span className="font-semibold">Infografía Visual (NotebookLM)</span>
+                </span>
+                <ChevronRight className="w-3 h-3 text-amber-400" />
+              </button>
+              <button
+                onClick={() => handleNavigate("cap6", "sintesis-conceptos-cap6")}
+                className="w-full text-left py-1.5 px-2.5 rounded-lg text-xs text-purple-300 hover:text-white hover:bg-purple-950/40 transition-all font-mono flex items-center justify-between cursor-pointer border border-purple-500/20 bg-purple-950/20"
+              >
+                <span className="flex items-center gap-1.5">
+                  <Layers className="w-3.5 h-3.5 text-purple-400" />
+                  <span>Síntesis de Conceptos</span>
+                </span>
+                <ChevronRight className="w-3 h-3 text-purple-400" />
+              </button>
+              <button
                 onClick={() => handleNavigate("cap6", "notas-cap6")}
                 className="w-full text-left py-1.5 px-2.5 rounded-lg text-xs text-indigo-400 hover:text-indigo-300 hover:bg-[#18181C] transition-all font-mono flex items-center justify-between cursor-pointer"
               >
@@ -441,6 +561,26 @@ export const TableOfContentsModal: React.FC<TableOfContentsModalProps> = ({
                   <ChevronRight className="w-3 h-3 opacity-0 group-hover:opacity-100 text-indigo-400 shrink-0 transition-opacity" />
                 </button>
               ))}
+              <button
+                onClick={() => handleNavigate("cap7", "infografia-visual-cap7")}
+                className="w-full text-left py-1.5 px-2.5 rounded-lg text-xs text-amber-300 hover:text-white hover:bg-amber-950/40 transition-all font-mono flex items-center justify-between cursor-pointer border border-amber-500/30 bg-amber-950/20"
+              >
+                <span className="flex items-center gap-1.5">
+                  <ImageIcon className="w-3.5 h-3.5 text-amber-400" />
+                  <span className="font-semibold">Infografía Visual (NotebookLM)</span>
+                </span>
+                <ChevronRight className="w-3 h-3 text-amber-400" />
+              </button>
+              <button
+                onClick={() => handleNavigate("cap7", "sintesis-conceptos-cap7")}
+                className="w-full text-left py-1.5 px-2.5 rounded-lg text-xs text-amber-200/90 hover:text-white hover:bg-amber-950/40 transition-all font-mono flex items-center justify-between cursor-pointer border border-amber-500/20 bg-amber-950/20"
+              >
+                <span className="flex items-center gap-1.5">
+                  <Layers className="w-3.5 h-3.5 text-amber-400" />
+                  <span>Síntesis de Conceptos</span>
+                </span>
+                <ChevronRight className="w-3 h-3 text-amber-400" />
+              </button>
               <button
                 onClick={() => handleNavigate("cap7", "notas-cap7")}
                 className="w-full text-left py-1.5 px-2.5 rounded-lg text-xs text-indigo-400 hover:text-indigo-300 hover:bg-[#18181C] transition-all font-mono flex items-center justify-between cursor-pointer"
