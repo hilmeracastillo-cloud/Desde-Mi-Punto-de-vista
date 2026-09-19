@@ -1,17 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { chapter6Header, chapter6Sections, chapter6Footnotes, chapter6References } from "../data/chapter6";
 import { chapterInfographics, ChapterInfographicData } from "../data/infographics";
 import { notebookInfographics, NotebookInfographicData } from "../data/notebookInfographics";
-import { ChapterInfographic } from "./ChapterInfographic";
-import { NotebookLMInfographic } from "./NotebookLMInfographic";
+import { ChapterVisualSection } from "./ChapterVisualSection";
 import { Footnote } from "../types";
-import { BookOpen, ExternalLink, Hash, Bookmark, Sparkles, Layers, Image as ImageIcon } from "lucide-react";
+import { BookOpen, ExternalLink, Hash, Bookmark, Sparkles, Layers, Image as ImageIcon, ArrowUpLeft } from "lucide-react";
 
 interface Chapter6ViewProps {
   fontSizeClass: string;
-  onSelectFootnote: (footnote: Footnote) => void;
+  onSelectFootnote: (footnote: Footnote, citationId?: string) => void;
   onOpenInfographicModal?: (data: ChapterInfographicData) => void;
   onOpenNotebookInfographicModal?: (data: NotebookInfographicData) => void;
+  targetSectionId?: string;
 }
 
 export const Chapter6View: React.FC<Chapter6ViewProps> = ({
@@ -19,7 +19,38 @@ export const Chapter6View: React.FC<Chapter6ViewProps> = ({
   onSelectFootnote,
   onOpenInfographicModal,
   onOpenNotebookInfographicModal,
+  targetSectionId,
 }) => {
+  const [activeVisualTab, setActiveVisualTab] = useState<'notebook' | 'synthesis' | null>(null);
+  const [returnScrollY, setReturnScrollY] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (targetSectionId?.startsWith("infografia-visual")) {
+      setActiveVisualTab("notebook");
+    } else if (targetSectionId?.startsWith("sintesis-conceptos")) {
+      setActiveVisualTab("synthesis");
+    }
+  }, [targetSectionId]);
+
+  const handleOpenVisualResource = (type: 'notebook' | 'synthesis') => {
+    setReturnScrollY(window.scrollY);
+    setActiveVisualTab(type);
+    setTimeout(() => {
+      const targetId = type === 'notebook' ? 'infografia-visual-cap6' : 'sintesis-conceptos-cap6';
+      const el = document.getElementById(targetId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
+  };
+
+  const handleReturnToReading = () => {
+    if (returnScrollY !== null) {
+      window.scrollTo({ top: returnScrollY, behavior: 'smooth' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
   // Helper to render paragraph with clickable footnote numbers like (68), (69)...
   const renderParagraphWithFootnotes = (text: string, pIdx: number) => {
     if (text.includes("\n")) {
@@ -57,11 +88,13 @@ export const Chapter6View: React.FC<Chapter6ViewProps> = ({
       }
 
       if (footnote) {
+        const citationId = `cita-nota-${num}`;
         parts.push(
           <button
             key={`fn-${match.index}`}
-            onClick={() => onSelectFootnote(footnote)}
-            className="inline-flex items-center px-1.5 py-0.5 mx-0.5 rounded-md bg-indigo-950/80 border border-indigo-500/40 text-indigo-300 hover:text-white hover:bg-indigo-600 font-mono text-xs font-bold transition-all cursor-pointer shadow-sm hover:scale-105"
+            id={citationId}
+            onClick={() => onSelectFootnote(footnote, citationId)}
+            className="inline-flex items-center px-1.5 py-0.5 mx-0.5 rounded-md bg-indigo-950/80 border border-indigo-500/40 text-indigo-300 hover:text-white hover:bg-indigo-600 font-mono text-xs font-bold transition-all cursor-pointer shadow-sm hover:scale-105 scroll-mt-32"
             title={`Ver nota [${num}]: ${footnote.title}`}
           >
             [{num}]
@@ -114,26 +147,26 @@ export const Chapter6View: React.FC<Chapter6ViewProps> = ({
         )}
 
         <div className="pt-2 flex flex-wrap items-center gap-2">
-          <a
-            href="#infografia-visual-cap6"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-mono font-bold transition-all shadow-md"
+          <button
+            onClick={() => handleOpenVisualResource('notebook')}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-mono font-bold transition-all shadow-md cursor-pointer hover:scale-[1.02]"
           >
             <ImageIcon className="w-3.5 h-3.5" />
             <span>Infografía Visual (NotebookLM)</span>
-          </a>
-          <a
-            href="#sintesis-conceptos-cap6"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-purple-950/70 border border-purple-500/40 text-purple-300 hover:text-white hover:bg-purple-600/80 text-xs font-mono font-medium transition-all shadow-sm"
+          </button>
+          <button
+            onClick={() => handleOpenVisualResource('synthesis')}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-purple-950/70 border border-purple-500/40 text-purple-300 hover:text-white hover:bg-purple-600/80 text-xs font-mono font-medium transition-all shadow-sm cursor-pointer hover:scale-[1.02]"
           >
             <Layers className="w-3.5 h-3.5 text-purple-400" />
             <span>Síntesis de Conceptos</span>
-          </a>
+          </button>
           <a
             href="#notas-cap6"
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#1a1a1a] border border-[#333] text-slate-300 hover:text-white hover:border-slate-500 text-xs font-mono transition-colors"
           >
             <Bookmark className="w-3.5 h-3.5 text-slate-400" />
-            <span>Notas (62 a 67)</span>
+            <span>Notas (77 a 90)</span>
           </a>
         </div>
       </div>
@@ -162,56 +195,89 @@ export const Chapter6View: React.FC<Chapter6ViewProps> = ({
         ))}
       </div>
 
-      {/* Chapter 6 Visual Infographic - NotebookLM Style */}
-      {notebookInfographics.cap6 && (
-        <NotebookLMInfographic
-          data={notebookInfographics.cap6}
-          onOpenModal={onOpenNotebookInfographicModal}
-        />
-      )}
-
-      {/* Chapter 6 Concept Synthesis - Structured Analytical Schema */}
-      {chapterInfographics.cap6 && (
-        <ChapterInfographic
-          data={chapterInfographics.cap6}
-          onOpenModal={onOpenInfographicModal}
-        />
-      )}
+      {/* Chapter 6 Visual Resource Section (renders strictly one at a time, never sequentially) */}
+      <ChapterVisualSection
+        chapterId="cap6"
+        chapterNumber="Capítulo 6"
+        notebookData={notebookInfographics.cap6}
+        synthesisData={chapterInfographics.cap6}
+        activeTab={activeVisualTab}
+        onTabChange={(tab) => {
+          if (tab && activeVisualTab === null) {
+            setReturnScrollY(window.scrollY);
+          }
+          setActiveVisualTab(tab);
+        }}
+        onReturnToReading={handleReturnToReading}
+        onOpenNotebookModal={onOpenNotebookInfographicModal}
+        onOpenSynthesisModal={onOpenInfographicModal}
+      />
 
       {/* Chapter Footnotes Section */}
-      <div id="notas-cap6" className="bg-[#111111] border border-[#222222] rounded-2xl p-6 sm:p-8 space-y-6 shadow-lg scroll-mt-24">
-        <div className="flex items-center gap-3 border-b border-[#222222] pb-4">
-          <div className="w-8 h-8 rounded-lg bg-indigo-950 border border-indigo-500/30 flex items-center justify-center text-indigo-400">
-            <Bookmark className="w-4 h-4" />
+      <div id="notas-cap6" className="bg-[#141414] border border-[#262626] rounded-2xl p-6 sm:p-8 space-y-6 shadow-xl scroll-mt-24">
+        <div className="flex items-center justify-between border-b border-[#262626] pb-4 flex-wrap gap-3">
+          <div className="flex items-center gap-3">
+            <Bookmark className="w-5 h-5 text-indigo-400" />
+            <div>
+              <h2 className="text-xl sm:text-2xl font-serif font-bold text-white">Notas del Capítulo 6 (77 a 90)</h2>
+              <p className="text-xs text-slate-400 font-mono mt-0.5">
+                Haz clic en "Volver al texto" en cualquier nota para regresar al párrafo exacto de lectura
+              </p>
+            </div>
           </div>
-          <div>
-            <span className="text-xs font-mono uppercase text-indigo-400 tracking-wider font-semibold block">Aparato Crítico</span>
-            <h2 className="text-2xl font-serif font-bold text-white">Notas del Capítulo 6</h2>
-          </div>
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-white bg-[#1c1c1c] border border-[#333] px-3 py-1.5 rounded-lg transition-colors cursor-pointer"
+          >
+            <ArrowUpLeft className="w-3.5 h-3.5" />
+            <span>Inicio del capítulo</span>
+          </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="space-y-6">
           {chapter6Footnotes.map((fn) => (
             <div
               key={fn.id}
-              onClick={() => onSelectFootnote(fn)}
-              className="p-4 rounded-xl bg-[#161616] border border-[#262626] hover:border-indigo-500/50 hover:bg-[#1A1A20] transition-all cursor-pointer space-y-2 group"
+              id={`nota-${fn.id}`}
+              className="bg-[#0A0A0A] border border-[#262626] rounded-xl p-5 space-y-3 scroll-mt-28 transition-all hover:border-indigo-500/30"
             >
-              <div className="flex items-center gap-2">
-                <span className="px-2 py-0.5 rounded bg-indigo-950 border border-indigo-500/40 text-indigo-300 font-mono text-xs font-bold">
-                  ({fn.id})
-                </span>
-                <h3 className="font-serif font-bold text-slate-200 text-sm group-hover:text-indigo-300 transition-colors">
-                  {fn.title}
-                </h3>
+              <div className="flex items-start justify-between gap-4 flex-wrap sm:flex-nowrap">
+                <div className="flex items-center gap-2.5">
+                  <span className="w-8 h-8 rounded-lg bg-indigo-950/80 border border-indigo-500/40 text-indigo-300 font-mono font-bold flex items-center justify-center text-xs">
+                    [{fn.id}]
+                  </span>
+                  <h3 className="text-base font-bold font-serif text-white">{fn.title}</h3>
+                </div>
+
+                <div className="flex items-center gap-2 shrink-0">
+                  <button
+                    onClick={() => {
+                      const el = document.getElementById(`cita-nota-${fn.id}`);
+                      if (el) {
+                        el.scrollIntoView({ behavior: "smooth", block: "center" });
+                        el.classList.add("ring-4", "ring-indigo-400", "ring-offset-2", "ring-offset-black");
+                        setTimeout(() => {
+                          el.classList.remove("ring-4", "ring-indigo-400", "ring-offset-2", "ring-offset-black");
+                        }, 2500);
+                      }
+                    }}
+                    className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-indigo-300 hover:text-white bg-indigo-950/60 hover:bg-indigo-600 border border-indigo-500/40 px-3 py-1.5 rounded-lg transition-all shadow-sm cursor-pointer"
+                    title={`Regresar al texto donde se cita la nota [${fn.id}]`}
+                  >
+                    <ArrowUpLeft className="w-3.5 h-3.5" />
+                    <span>Volver al texto</span>
+                  </button>
+                  <button
+                    onClick={() => onSelectFootnote(fn, `cita-nota-${fn.id}`)}
+                    className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-[#222] transition-colors cursor-pointer"
+                    title="Abrir nota ampliada"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
-              <p className="text-xs text-slate-400 line-clamp-3 leading-relaxed font-sans">
-                {fn.description}
-              </p>
-              <div className="text-[11px] text-indigo-400 font-mono pt-1 flex items-center gap-1">
-                <span>Ver detalle de la nota</span>
-                <span>→</span>
-              </div>
+
+              <p className="text-sm text-slate-300 leading-relaxed font-sans">{fn.description}</p>
             </div>
           ))}
         </div>

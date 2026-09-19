@@ -39,17 +39,20 @@ import {
   RotateCcw,
   Brain,
   Compass,
-  BookOpen
+  BookOpen,
+  ArrowLeft
 } from 'lucide-react';
 
 interface NotebookLMInfographicProps {
   data: NotebookInfographicData;
   onOpenModal?: (data: NotebookInfographicData) => void;
+  onReturnToReading?: () => void;
 }
 
 export const NotebookLMInfographic: React.FC<NotebookLMInfographicProps> = ({
   data,
   onOpenModal,
+  onReturnToReading,
 }) => {
   const [copied, setCopied] = useState(false);
 
@@ -108,6 +111,9 @@ export const NotebookLMInfographic: React.FC<NotebookLMInfographicProps> = ({
         return <Landmark className="w-6 h-6 text-slate-900" />;
       case 'shield':
         return <Shield className="w-6 h-6 text-slate-900" />;
+      case 'scale':
+      case 'law':
+        return <Scale className="w-6 h-6 text-slate-900" />;
       case 'ship':
         return <Globe className="w-6 h-6 text-slate-900" />;
       case 'graduation':
@@ -141,6 +147,7 @@ export const NotebookLMInfographic: React.FC<NotebookLMInfographicProps> = ({
       case 'book-open':
       case 'school':
       case 'book-ai':
+      case 'graduation':
         return <GraduationCap className="w-5 h-5 text-slate-800" />;
       case 'hand-money':
       case 'coins':
@@ -148,6 +155,7 @@ export const NotebookLMInfographic: React.FC<NotebookLMInfographicProps> = ({
       case 'chart':
         return <BarChart3 className="w-5 h-5 text-slate-800" />;
       case 'law':
+      case 'scale':
         return <Scale className="w-5 h-5 text-slate-800" />;
       case 'drill':
         return <Zap className="w-5 h-5 text-amber-600" />;
@@ -250,6 +258,17 @@ export const NotebookLMInfographic: React.FC<NotebookLMInfographicProps> = ({
 
         {/* Action buttons */}
         <div className="flex items-center gap-2">
+          {onReturnToReading && (
+            <button
+              onClick={onReturnToReading}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-mono font-bold transition-all cursor-pointer shadow-md hover:scale-[1.02]"
+              title="Regresar al punto de donde estaba leyendo"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>Regresar a donde estaba</span>
+            </button>
+          )}
+
           <button
             onClick={handleCopy}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-mono text-slate-200 transition-colors cursor-pointer"
@@ -581,6 +600,18 @@ export const NotebookLMInfographic: React.FC<NotebookLMInfographicProps> = ({
             <span>Formato Infografía NotebookLM • Alta Fidelidad Gráfica</span>
           </div>
         </div>
+
+        {onReturnToReading && (
+          <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-end">
+            <button
+              onClick={onReturnToReading}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-amber-400 hover:text-amber-300 text-xs font-mono font-bold transition-all shadow-md cursor-pointer hover:scale-[1.02]"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Regresar a donde estaba leyendo</span>
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

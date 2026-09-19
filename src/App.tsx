@@ -12,6 +12,7 @@ import { Chapter4View } from "./components/Chapter4View";
 import { Chapter5View } from "./components/Chapter5View";
 import { Chapter6View } from "./components/Chapter6View";
 import { Chapter7View } from "./components/Chapter7View";
+import { Chapter8View } from "./components/Chapter8View";
 import { StructureView } from "./components/StructureView";
 import { ChapterFooterNav } from "./components/ChapterFooterNav";
 import { InfographicModal } from "./components/InfographicModal";
@@ -30,12 +31,33 @@ export default function App() {
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [isPdfOpen, setIsPdfOpen] = useState<boolean>(false);
   const [selectedFootnote, setSelectedFootnote] = useState<Footnote | null>(null);
+  const [returnCitationId, setReturnCitationId] = useState<string | null>(null);
   const [selectedInfographic, setSelectedInfographic] = useState<ChapterInfographicData | null>(null);
   const [selectedNotebookInfographic, setSelectedNotebookInfographic] = useState<NotebookInfographicData | null>(null);
+  const [targetSectionId, setTargetSectionId] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     localStorage.setItem("reading_theme", theme);
   }, [theme]);
+
+  const handleSelectFootnote = (fn: Footnote, citationId?: string) => {
+    setSelectedFootnote(fn);
+    setReturnCitationId(citationId || null);
+  };
+
+  const handleNavigateToNoteSection = (footnoteId: number) => {
+    setSelectedFootnote(null);
+    setTimeout(() => {
+      const el = document.getElementById(`nota-${footnoteId}`);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        el.classList.add("ring-4", "ring-indigo-400", "ring-offset-2", "ring-offset-black");
+        setTimeout(() => {
+          el.classList.remove("ring-4", "ring-indigo-400", "ring-offset-2", "ring-offset-black");
+        }, 2500);
+      }
+    }, 100);
+  };
 
   // Font size classes
   const getFontSizeClass = () => {
@@ -52,13 +74,14 @@ export default function App() {
   // Scroll to section when requested
   const handleSelectView = (view: ViewTab, sectionId?: string) => {
     setActiveView(view);
+    setTargetSectionId(sectionId);
     if (sectionId) {
       setTimeout(() => {
         const el = document.getElementById(sectionId);
         if (el) {
           el.scrollIntoView({ behavior: "smooth" });
         }
-      }, 100);
+      }, 150);
     } else {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
@@ -73,7 +96,8 @@ export default function App() {
     if (activeView === "cap4") return "cap5";
     if (activeView === "cap5") return "cap6";
     if (activeView === "cap6") return "cap7";
-    if (activeView === "cap7") return "estructura";
+    if (activeView === "cap7") return "cap8";
+    if (activeView === "cap8") return "estructura";
     return null;
   };
 
@@ -85,7 +109,8 @@ export default function App() {
     if (activeView === "cap5") return "cap4";
     if (activeView === "cap6") return "cap5";
     if (activeView === "cap7") return "cap6";
-    if (activeView === "estructura") return "cap7";
+    if (activeView === "cap8") return "cap7";
+    if (activeView === "estructura") return "cap8";
     return null;
   };
 
@@ -93,11 +118,12 @@ export default function App() {
     if (activeView === "intro") return "Capítulo 1: La arquitectura invisible";
     if (activeView === "cap1") return "Capítulo 2: La crisis del paradigma industrial";
     if (activeView === "cap2") return "Capítulo 3: El fracaso de las reformas aisladas";
-    if (activeView === "cap3") return "Capítulo 4: Arquitectura del Aprendizaje";
-    if (activeView === "cap4") return "Capítulo 5: El liderazgo como disciplina de diseño";
-    if (activeView === "cap5") return "Capítulo 6: La organización que aprende de sí misma";
-    if (activeView === "cap6") return "Capítulo 7: Aprender a observar antes de diseñar";
-    if (activeView === "cap7") return "Estructura general del libro";
+    if (activeView === "cap3") return "Capítulo 4: La anatomía del núcleo instruccional";
+    if (activeView === "cap4") return "Capítulo 5: Las cinco dimensiones de la Arquitectura del Aprendizaje";
+    if (activeView === "cap5") return "Capítulo 6: Patrones de diseño institucional";
+    if (activeView === "cap6") return "Capítulo 7: La Matriz de Diagnóstico y los niveles de madurez";
+    if (activeView === "cap7") return "Capítulo 8: La Arquitectura del Aprendizaje en la era de la Inteligencia Artificial";
+    if (activeView === "cap8") return "Estructura general del libro";
     return "Próximo Capítulo";
   };
 
@@ -106,10 +132,11 @@ export default function App() {
     if (activeView === "cap2") return "Capítulo 1: La arquitectura invisible";
     if (activeView === "cap3") return "Capítulo 2: La crisis del paradigma industrial";
     if (activeView === "cap4") return "Capítulo 3: El fracaso de las reformas aisladas";
-    if (activeView === "cap5") return "Capítulo 4: Arquitectura del Aprendizaje";
-    if (activeView === "cap6") return "Capítulo 5: El liderazgo como disciplina de diseño";
-    if (activeView === "cap7") return "Capítulo 6: La organización que aprende de sí misma";
-    if (activeView === "estructura") return "Capítulo 7: Aprender a observar antes de diseñar";
+    if (activeView === "cap5") return "Capítulo 4: La anatomía del núcleo instruccional";
+    if (activeView === "cap6") return "Capítulo 5: Las cinco dimensiones de la Arquitectura del Aprendizaje";
+    if (activeView === "cap7") return "Capítulo 6: Patrones de diseño institucional";
+    if (activeView === "cap8") return "Capítulo 7: La Matriz de Diagnóstico y los niveles de madurez";
+    if (activeView === "estructura") return "Capítulo 8: La Arquitectura del Aprendizaje en la era de la Inteligencia Artificial";
     return "Capítulo Anterior";
   };
 
@@ -156,63 +183,80 @@ export default function App() {
         {activeView === "cap1" && (
           <Chapter1View
             fontSizeClass={getFontSizeClass()}
-            onSelectFootnote={(fn) => setSelectedFootnote(fn)}
+            onSelectFootnote={handleSelectFootnote}
             onOpenInfographicModal={(data) => setSelectedInfographic(data)}
             onOpenNotebookInfographicModal={(data) => setSelectedNotebookInfographic(data)}
+            targetSectionId={targetSectionId}
           />
         )}
 
         {activeView === "cap2" && (
           <Chapter2View
             fontSizeClass={getFontSizeClass()}
-            onSelectFootnote={(fn) => setSelectedFootnote(fn)}
+            onSelectFootnote={handleSelectFootnote}
             onOpenInfographicModal={(data) => setSelectedInfographic(data)}
             onOpenNotebookInfographicModal={(data) => setSelectedNotebookInfographic(data)}
+            targetSectionId={targetSectionId}
           />
         )}
 
         {activeView === "cap3" && (
           <Chapter3View
             fontSizeClass={getFontSizeClass()}
-            onSelectFootnote={(fn) => setSelectedFootnote(fn)}
+            onSelectFootnote={handleSelectFootnote}
             onOpenInfographicModal={(data) => setSelectedInfographic(data)}
             onOpenNotebookInfographicModal={(data) => setSelectedNotebookInfographic(data)}
+            targetSectionId={targetSectionId}
           />
         )}
 
         {activeView === "cap4" && (
           <Chapter4View
             fontSizeClass={getFontSizeClass()}
-            onSelectFootnote={(fn) => setSelectedFootnote(fn)}
+            onSelectFootnote={handleSelectFootnote}
             onOpenInfographicModal={(data) => setSelectedInfographic(data)}
             onOpenNotebookInfographicModal={(data) => setSelectedNotebookInfographic(data)}
+            targetSectionId={targetSectionId}
           />
         )}
 
         {activeView === "cap5" && (
           <Chapter5View
             fontSizeClass={getFontSizeClass()}
-            onSelectFootnote={(fn) => setSelectedFootnote(fn)}
+            onSelectFootnote={handleSelectFootnote}
             onOpenInfographicModal={(data) => setSelectedInfographic(data)}
             onOpenNotebookInfographicModal={(data) => setSelectedNotebookInfographic(data)}
+            targetSectionId={targetSectionId}
           />
         )}
 
         {activeView === "cap6" && (
           <Chapter6View
             fontSizeClass={getFontSizeClass()}
-            onSelectFootnote={(fn) => setSelectedFootnote(fn)}
+            onSelectFootnote={handleSelectFootnote}
             onOpenInfographicModal={(data) => setSelectedInfographic(data)}
             onOpenNotebookInfographicModal={(data) => setSelectedNotebookInfographic(data)}
+            targetSectionId={targetSectionId}
           />
         )}
 
         {activeView === "cap7" && (
           <Chapter7View
             fontSizeClass={getFontSizeClass()}
-            onSelectFootnote={(fn) => setSelectedFootnote(fn)}
+            onSelectFootnote={handleSelectFootnote}
             onOpenInfographicModal={(data) => setSelectedInfographic(data)}
             onOpenNotebookInfographicModal={(data) => setSelectedNotebookInfographic(data)}
+            targetSectionId={targetSectionId}
+          />
+        )}
+
+        {activeView === "cap8" && (
+          <Chapter8View
+            fontSizeClass={getFontSizeClass()}
+            onSelectFootnote={handleSelectFootnote}
+            onOpenInfographicModal={(data) => setSelectedInfographic(data)}
+            onOpenNotebookInfographicModal={(data) => setSelectedNotebookInfographic(data)}
+            targetSectionId={targetSectionId}
           />
         )}
 
@@ -254,6 +298,8 @@ export default function App() {
       <FootnoteModal
         footnote={selectedFootnote}
         onClose={() => setSelectedFootnote(null)}
+        returnCitationId={returnCitationId}
+        onNavigateToNoteSection={handleNavigateToNoteSection}
       />
 
       {/* Search Modal */}

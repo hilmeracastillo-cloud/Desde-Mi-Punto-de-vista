@@ -30,13 +30,18 @@ import {
   Quote,
   CheckCircle2,
   Workflow,
-  Scale
+  Scale,
+  Brain,
+  GraduationCap,
+  Target,
+  ArrowLeft
 } from 'lucide-react';
 import { ChapterInfographicData } from '../data/infographics';
 
 interface ChapterInfographicProps {
   data: ChapterInfographicData;
   onOpenModal?: (data: ChapterInfographicData) => void;
+  onReturnToReading?: () => void;
 }
 
 const renderIcon = (name: string, className: string = 'w-5 h-5') => {
@@ -83,6 +88,16 @@ const renderIcon = (name: string, className: string = 'w-5 h-5') => {
       return <MapPin className={className} />;
     case 'ClipboardCheck':
       return <ClipboardCheck className={className} />;
+    case 'Scale':
+      return <Scale className={className} />;
+    case 'Brain':
+      return <Brain className={className} />;
+    case 'Workflow':
+      return <Workflow className={className} />;
+    case 'GraduationCap':
+      return <GraduationCap className={className} />;
+    case 'Target':
+      return <Target className={className} />;
     default:
       return <BookOpen className={className} />;
   }
@@ -91,6 +106,7 @@ const renderIcon = (name: string, className: string = 'w-5 h-5') => {
 export const ChapterInfographic: React.FC<ChapterInfographicProps> = ({
   data,
   onOpenModal,
+  onReturnToReading,
 }) => {
   const [copied, setCopied] = useState(false);
 
@@ -129,6 +145,17 @@ export const ChapterInfographic: React.FC<ChapterInfographicProps> = ({
         </div>
 
         <div className="flex items-center gap-2">
+          {onReturnToReading && (
+            <button
+              onClick={onReturnToReading}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-mono font-bold transition-all shadow-md cursor-pointer hover:scale-[1.02]"
+              title="Regresar al punto de donde estaba leyendo"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>Regresar a donde estaba</span>
+            </button>
+          )}
+
           <button
             onClick={handleCopySummary}
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900/90 border border-slate-700/70 hover:border-slate-500 text-slate-300 hover:text-white text-xs font-mono transition-all shadow-sm cursor-pointer hover:scale-[1.02]"
@@ -415,6 +442,18 @@ export const ChapterInfographic: React.FC<ChapterInfographicProps> = ({
             </span>
           </div>
         </footer>
+
+        {onReturnToReading && (
+          <div className="relative z-10 mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-end">
+            <button
+              onClick={onReturnToReading}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-mono font-bold transition-all shadow-md cursor-pointer hover:scale-[1.02]"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Regresar a donde estaba leyendo</span>
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

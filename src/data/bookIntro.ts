@@ -4,7 +4,7 @@ export const bookMetadata = {
   subtitle: "Un nuevo marco para diseñar escuelas, universidades y organizaciones en la era de la inteligencia artificial",
   type: "Borrador de trabajo para revisión académica",
   version: "Versión 0.1",
-  totalPages: 165,
+  totalPages: 158,
 };
 
 export const invitationText = {
@@ -44,10 +44,15 @@ export const purposeText = {
 export const scopeText = {
   title: "Alcance de este manuscrito",
   paragraphs: [
-    "Este es un documento vivo. Siempre se podrá acceder con la misma dirección URL. A medida que publique cada capítulo podrá verse al hacer click en el botón llamado Contenidos que se encuentra al principio del libro",
+    "El documento que acompaña esta introducción corresponde a los capítulos desarrollados para revisión académica.",
+    "Su objetivo no es desarrollar toda la teoría, sino responder tres preguntas fundamentales:",
   ],
-  bullets: [],
-  footer: "",
+  bullets: [
+    "¿Por qué los enfoques tradicionales de innovación educativa resultan insuficientes?",
+    "¿Cómo surgió la investigación que dio origen al concepto de Arquitectura del Aprendizaje?",
+    "¿Por qué es necesario un nuevo marco para comprender el diseño de organizaciones en la era de la inteligencia artificial?",
+  ],
+  footer: "Los capítulos posteriores desarrollarán los fundamentos conceptuales, los principios de diseño, los componentes de la arquitectura y sus aplicaciones prácticas.",
 };
 
 export const bookStructure = [
@@ -89,20 +94,20 @@ export const bookStructure = [
     chapters: [
       {
         number: "Capítulo 4",
-        title: "Un nuevo marco conceptual (Arquitectura del Aprendizaje)",
-        description: "Fundamentos de la Arquitectura del Aprendizaje y su relación con la teoría de sistemas, el diseño organizacional y las ciencias del aprendizaje.",
+        title: "La anatomía del núcleo instruccional",
+        description: "El triángulo pedagógico y las fuerzas invisibles que determinan la calidad del aprendizaje.",
         available: true,
       },
       {
         number: "Capítulo 5",
-        title: "El liderazgo como disciplina de diseño",
-        description: "Arquitectos antes que administradores: dimensiones, principios y prueba definitiva del liderazgo.",
+        title: "Las cinco dimensiones de la Arquitectura del Aprendizaje",
+        description: "Propósito, Tiempo, Espacio, Relaciones y Evaluación como pilares estructurales.",
         available: true,
       },
       {
         number: "Capítulo 6",
-        title: "La organización que aprende de sí misma",
-        description: "Mecanismos de reflexión, rediseño y desarrollo de capacidades en un sistema integrado.",
+        title: "Patrones de diseño institucional",
+        description: "Configuraciones arquitectónicas para la emancipación o la domesticación cognitiva.",
         available: true,
       },
     ],
@@ -112,15 +117,15 @@ export const bookStructure = [
     chapters: [
       {
         number: "Capítulo 7",
-        title: "Aprender a observar antes de diseñar",
-        description: "ENTREGA 1 — Diagnóstico y cartografía de la arquitectura existente antes de intervenir.",
+        title: "La Matriz de Diagnóstico y los niveles de madurez",
+        description: "Cartografía para evaluar y rediseñar la arquitectura institucional.",
         available: true,
       },
       {
         number: "Capítulo 8",
-        title: "Inteligencia artificial y aprendizaje",
-        description: "Cómo la IA transforma el papel de estudiantes, docentes, líderes y organizaciones.",
-        available: false,
+        title: "La Arquitectura del Aprendizaje en la era de la Inteligencia Artificial",
+        description: "Diseñar instituciones formativas cuando las máquinas también aprenden.",
+        available: true,
       },
       {
         number: "Capítulo 9",
@@ -148,7 +153,7 @@ export const bookStructure = [
       {
         number: "Capítulo 12",
         title: "Empresas y organizaciones",
-        description: "Aplicaciones del marco conceptual en entornos corporativos e institucionales.",
+        description: "Aplicaciones prácticas del marco conceptual en distintos contextos institucionales.",
         available: false,
       },
     ],

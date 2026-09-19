@@ -8,6 +8,7 @@ import { chapter4Sections } from "../data/chapter4";
 import { chapter5Sections } from "../data/chapter5";
 import { chapter6Sections } from "../data/chapter6";
 import { chapter7Sections } from "../data/chapter7";
+import { chapter8Sections } from "../data/chapter8";
 import { bookStructure } from "../data/bookIntro";
 
 interface TableOfContentsModalProps {
@@ -439,7 +440,7 @@ export const TableOfContentsModal: React.FC<TableOfContentsModalProps> = ({
                 onClick={() => handleNavigate("cap5", "notas-cap5")}
                 className="w-full text-left py-1.5 px-2.5 rounded-lg text-xs text-indigo-400 hover:text-indigo-300 hover:bg-[#18181C] transition-all font-mono flex items-center justify-between cursor-pointer"
               >
-                <span>• Notas del Capítulo 5 (52 al 67)</span>
+                <span>• Notas del Capítulo 5 (61 al 76)</span>
               </button>
               <button
                 onClick={() => handleNavigate("cap5", "referencias-cap5")}
@@ -512,7 +513,7 @@ export const TableOfContentsModal: React.FC<TableOfContentsModalProps> = ({
                 onClick={() => handleNavigate("cap6", "notas-cap6")}
                 className="w-full text-left py-1.5 px-2.5 rounded-lg text-xs text-indigo-400 hover:text-indigo-300 hover:bg-[#18181C] transition-all font-mono flex items-center justify-between cursor-pointer"
               >
-                <span>• Notas del Capítulo 6 (68 al 94)</span>
+                <span>• Notas del Capítulo 6 (77 al 90)</span>
               </button>
               <button
                 onClick={() => handleNavigate("cap6", "referencias-cap6")}
@@ -543,8 +544,8 @@ export const TableOfContentsModal: React.FC<TableOfContentsModalProps> = ({
               }`}
             >
               <div>
-                <div className="text-sm font-bold font-serif">Aprender a observar antes de diseñar</div>
-                <div className="text-xs text-slate-400 font-sans mt-0.5">Diagnóstico y cartografía de la arquitectura existente antes de intervenir.</div>
+                <div className="text-sm font-bold font-serif">La Matriz de Diagnóstico y los niveles de madurez</div>
+                <div className="text-xs text-slate-400 font-sans mt-0.5">Cartografía para evaluar y rediseñar la arquitectura institucional</div>
               </div>
               <ChevronRight className={`w-4 h-4 shrink-0 transition-transform ${activeView === "cap7" ? "text-indigo-400 translate-x-0.5" : "text-slate-500 group-hover:translate-x-0.5"}`} />
             </button>
@@ -585,13 +586,82 @@ export const TableOfContentsModal: React.FC<TableOfContentsModalProps> = ({
                 onClick={() => handleNavigate("cap7", "notas-cap7")}
                 className="w-full text-left py-1.5 px-2.5 rounded-lg text-xs text-indigo-400 hover:text-indigo-300 hover:bg-[#18181C] transition-all font-mono flex items-center justify-between cursor-pointer"
               >
-                <span>• Notas del Capítulo 7 (104 al 129)</span>
+                <span>• Notas del Capítulo 7 (91 al 101)</span>
               </button>
               <button
                 onClick={() => handleNavigate("cap7", "referencias-cap7")}
                 className="w-full text-left py-1.5 px-2.5 rounded-lg text-xs text-indigo-400 hover:text-indigo-300 hover:bg-[#18181C] transition-all font-mono flex items-center justify-between cursor-pointer"
               >
                 <span>• Referencias del Capítulo 7</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Section: Capítulo 8 */}
+          <div className="space-y-3">
+            <div className="flex items-center justify-between border-b border-[#262626] pb-1">
+              <span className="text-xs font-mono uppercase text-purple-400 tracking-wider font-semibold">
+                Capítulo 8
+              </span>
+              <span className="text-[10px] font-mono text-emerald-400 bg-emerald-950/40 border border-emerald-500/30 px-2 py-0.5 rounded-full">
+                Disponible
+              </span>
+            </div>
+
+            <button
+              onClick={() => handleNavigate("cap8")}
+              className={`w-full flex items-center justify-between p-3.5 rounded-xl border text-left transition-all cursor-pointer group ${
+                activeView === "cap8"
+                  ? "bg-purple-950/40 border-purple-500 text-white shadow-lg shadow-purple-500/10"
+                  : "bg-[#141414] border-[#262626] text-slate-300 hover:border-purple-600 hover:text-white"
+              }`}
+            >
+              <div className="flex items-center gap-3">
+                <Bookmark className={`w-4 h-4 ${activeView === "cap8" ? "text-purple-400" : "text-slate-500"}`} />
+                <div>
+                  <div className="text-sm font-bold font-serif">La Arquitectura del Aprendizaje en la era de la Inteligencia Artificial</div>
+                  <div className="text-xs text-slate-400 font-sans">Diseñar instituciones formativas cuando las máquinas también aprenden</div>
+                </div>
+              </div>
+              <ChevronRight className={`w-4 h-4 transition-transform ${activeView === "cap8" ? "text-purple-400 translate-x-0.5" : "text-slate-500 group-hover:translate-x-0.5"}`} />
+            </button>
+
+            {/* Sub-sections list for Chapter 8 */}
+            <div className="pl-4 border-l border-[#262626] space-y-1.5 pt-1">
+              {chapter8Sections.map((sec, idx) => (
+                <button
+                  key={sec.id || idx}
+                  onClick={() => handleNavigate("cap8", sec.id)}
+                  className="w-full text-left py-1 px-2 rounded-lg text-xs text-slate-400 hover:text-purple-300 hover:bg-[#18181C] transition-all font-sans flex items-center justify-between group cursor-pointer"
+                >
+                  <span className="truncate flex-1">
+                    {idx + 1}. {sec.title}
+                  </span>
+                  <ChevronRight className="w-3 h-3 opacity-0 group-hover:opacity-100 text-purple-400 shrink-0 ml-1 transition-opacity" />
+                </button>
+              ))}
+
+              <button
+                onClick={() => handleNavigate("cap8", "infografia-visual-cap8")}
+                className="w-full text-left py-1.5 px-2.5 rounded-lg text-xs text-purple-400 hover:text-purple-300 bg-purple-950/20 border border-purple-500/20 hover:bg-purple-950/40 transition-all font-mono flex items-center justify-between cursor-pointer mt-2"
+              >
+                <span className="flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-purple-400" />
+                  <span>Infografía Visual (NotebookLM)</span>
+                </span>
+                <ChevronRight className="w-3 h-3 text-purple-400" />
+              </button>
+              <button
+                onClick={() => handleNavigate("cap8", "notas-cap8")}
+                className="w-full text-left py-1.5 px-2.5 rounded-lg text-xs text-purple-400 hover:text-purple-300 hover:bg-[#18181C] transition-all font-mono flex items-center justify-between cursor-pointer"
+              >
+                <span>• Notas del Capítulo 8 (102 al 112)</span>
+              </button>
+              <button
+                onClick={() => handleNavigate("cap8", "referencias-cap8")}
+                className="w-full text-left py-1.5 px-2.5 rounded-lg text-xs text-purple-400 hover:text-purple-300 hover:bg-[#18181C] transition-all font-mono flex items-center justify-between cursor-pointer"
+              >
+                <span>• Referencias del Capítulo 8</span>
               </button>
             </div>
           </div>

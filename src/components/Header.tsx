@@ -36,13 +36,15 @@ export const Header: React.FC<HeaderProps> = ({
       case "cap3":
         return "Capítulo 3 • El fracaso de las reformas aisladas";
       case "cap4":
-        return "Capítulo 4 • Arquitectura del Aprendizaje";
+        return "Capítulo 4 • La anatomía del núcleo instruccional";
       case "cap5":
-        return "Capítulo 5 • El liderazgo como disciplina de diseño";
+        return "Capítulo 5 • Las cinco dimensiones de la Arquitectura del Aprendizaje";
       case "cap6":
-        return "Capítulo 6 • La organización que aprende de sí misma";
+        return "Capítulo 6 • Patrones de diseño institucional";
       case "cap7":
-        return "Capítulo 7 • Aprender a observar antes de diseñar";
+        return "Capítulo 7 • La Matriz de Diagnóstico y los niveles de madurez";
+      case "cap8":
+        return "Capítulo 8 • La Arquitectura del Aprendizaje en la era de la IA";
       case "estructura":
         return "Estructura Preliminar de la Obra";
       default:

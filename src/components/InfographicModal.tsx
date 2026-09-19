@@ -8,7 +8,8 @@ import {
   Copy,
   Check,
   Sparkles,
-  Maximize2
+  Maximize2,
+  ArrowLeft
 } from 'lucide-react';
 import { ChapterInfographicData } from '../data/infographics';
 import { ChapterInfographic } from './ChapterInfographic';
@@ -116,7 +117,16 @@ export const InfographicModal: React.FC<InfographicModalProps> = ({
 
             <button
               onClick={onClose}
-              className="p-2 rounded-lg bg-slate-800/80 hover:bg-rose-950/80 hover:text-rose-400 text-slate-400 transition-colors ml-1"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-mono font-bold transition-all cursor-pointer shadow-md ml-1 hover:scale-[1.02]"
+              title="Regresar al punto de donde estaba leyendo"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Regresar a la lectura</span>
+            </button>
+
+            <button
+              onClick={onClose}
+              className="p-2 rounded-lg bg-slate-800/80 hover:bg-rose-950/80 hover:text-rose-400 text-slate-400 transition-colors ml-1 cursor-pointer"
               title="Cerrar (Esc)"
             >
               <X className="w-5 h-5" />

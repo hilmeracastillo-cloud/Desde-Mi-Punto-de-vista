@@ -4,7 +4,7 @@ export const chapter2Header = {
   number: "Capítulo 2",
   title: "Cuando el diseño deja de responder al propósito",
   subtitle: "La herencia invisible de la Revolución Industrial",
-  pages: "Páginas 23 - 47",
+  pages: "Páginas 20 - 39",
   epigraph: "Toda arquitectura responde a un propósito. Cuando el propósito cambia y la arquitectura permanece, el sistema comienza a generar resultados cada vez más alejados de las necesidades de la sociedad.",
 };
 
@@ -13,12 +13,10 @@ export const chapter2Sections: ChapterSection[] = [
     id: "la-escuela-que-conocia-el-futuro",
     title: "La escuela que conocía el futuro",
     paragraphs: [
-      "Existe un experimento mental que suelo proponer cuando intento comprender una organización. No requiere datos, estadísticas ni modelos matemáticos. Solo exige un poco de imaginación. Consiste en traer al presente a una persona que conoció una institución hace más de un siglo y pedirle que la visite nuevamente. Imaginemos, entonces, a un maestro de escuela del año 1908. No un gran reformador. No un ministro de educación. No un filósofo. Simplemente un buen maestro de una escuela pública. Una persona comprometida con enseñar a leer, escribir y formar ciudadanos en una época en la que la escolarización masiva apenas comenzaba a consolidarse en gran parte del mundo occidental.[11]",
+      "La escena que sigue utiliza deliberadamente un experimento mental conocido en la conversación educativa: trasladar al presente a un maestro de comienzos del siglo XX. Su utilidad no reside en afirmar que la escuela haya permanecido inmóvil ni en repetir la caricatura de una institución creada exclusivamente para producir obreros. Consiste en examinar el ajuste estructural entre propósito y diseño. Imaginemos, entonces, a un maestro de escuela del año 1908: no un gran reformador, un ministro o un filósofo, sino un buen maestro de escuela pública, comprometido con enseñar a leer, escribir y formar ciudadanos cuando la escolarización masiva apenas comenzaba a consolidarse en gran parte del mundo occidental.[11]",
       "Por alguna circunstancia imposible de explicar, ese maestro despierta en el año 2026. Sale a la calle. Lo primero que observa son automóviles que circulan impulsados por baterías en lugar de caballos o motores de vapor. Después ve personas hablando con alguien que no está físicamente presente. Descubre que llevan en el bolsillo un dispositivo más potente que los computadores que décadas atrás ocuparían edificios enteros. Entra en un hospital. Encuentra máquinas capaces de reconstruir el cuerpo humano en tres dimensiones. Observa una cirugía asistida por robots. Escucha que un algoritmo puede detectar ciertos tipos de cáncer con una precisión comparable a la de especialistas experimentados.[12]",
       "Más tarde aborda un avión que atraviesa un océano en pocas horas. Ve satélites orbitando la Tierra. Escucha conversaciones sobre inteligencia artificial, edición genética y computación cuántica. Todo le resulta extraordinario. El mundo parece haber cambiado más durante ese siglo que en muchos de los siglos anteriores juntos. Entonces alguien le propone visitar una escuela. Acepta con entusiasmo. Después de todo, si todas las instituciones evolucionaron tanto, seguramente la educación habrá experimentado una transformación todavía mayor. Cruza la puerta del edificio. Camina lentamente por los pasillos. Entra en varias aulas. Observa con atención. Y poco a poco comienza a sonreír. Reconoce casi todo. Los estudiantes continúan agrupados según su edad.[13]",
-      "Cada grupo permanece durante un período fijo dentro del aula. Una campana organiza el tiempo. Las materias continúan separadas en compartimentos relativamente independientes. Existe un docente responsable del grupo. Los estudiantes son evaluados periódicamente. Al finalizar el año avanzan al siguiente grado. Naturalmente encuentra diferencias. Las pizarras son digitales. Hay computadores portátiles. Las bibliotecas conviven con recursos en línea. En algunas aulas aparece una inteligencia artificial respondiendo preguntas. Pero, después de recorrer el edificio durante una hora, probablemente pronunciaría una frase tan sencilla como inquietante.",
-      "—La escuela ha cambiado mucho menos de lo que imaginaba.",
-      "Y tendría razón.",
+      "Cada grupo permanece durante un período fijo dentro del aula. Una campana organiza el tiempo. Las materias continúan separadas en compartimentos relativamente independientes. Existe un docente responsable del grupo. Los estudiantes son evaluados periódicamente. Al finalizar el año avanzan al siguiente grado. Naturalmente encuentra diferencias. Las pizarras son digitales. Hay computadores portátiles. Las bibliotecas conviven con recursos en línea. En algunas aulas aparece una inteligencia artificial respondiendo preguntas. Pero, después de recorrer el edificio durante una hora, probablemente pronunciaría una frase tan sencilla como inquietante. —La escuela ha cambiado mucho menos de lo que imaginaba. Y tendría razón.",
     ],
   },
   {
@@ -26,72 +24,70 @@ export const chapter2Sections: ChapterSection[] = [
     title: "Una permanencia extraordinaria",
     paragraphs: [
       "Durante poco más de un siglo prácticamente todas las organizaciones transformaron radicalmente su forma de operar. La medicina pasó de los primeros rayos X a la resonancia magnética, la cirugía robótica, la secuenciación del genoma y los tratamientos personalizados.[14] La industria abandonó las cadenas de producción mecánicas para incorporar automatización, sensores, robots colaborativos e inteligencia artificial.[15] Las comunicaciones evolucionaron desde el telégrafo hasta Internet, las videoconferencias y las redes digitales que conectan a miles de millones de personas en tiempo real.[16] Las empresas dejaron de ser organizaciones nacionales relativamente aisladas para convertirse en redes globales capaces de coordinar operaciones simultáneas en decenas de países.[17]",
-      "Incluso el concepto mismo de trabajo comenzó a transformarse. Una proporción creciente de la riqueza dejó de depender principalmente de la fuerza física y pasó a depender del conocimiento, la creatividad y la capacidad para resolver problemas complejos.[18] Sin embargo, cuando observamos la escuela moderna, descubrimos algo sorprendente. Su arquitectura fundamental permanece extraordinariamente estable. No es idéntica. Ha incorporado tecnologías. Ha ampliado sus funciones sociales. Ha diversificado sus metodologías. Pero sus principios organizacionales esenciales continúan siendo notablemente parecidos a los que existían hace más de un siglo. Este hecho suele interpretarse como una evidencia del fracaso del sistema educativo. Sin embargo, esa conclusión resulta apresurada.",
-      "Antes de juzgar una arquitectura conviene comprender el problema para el cual fue diseñada. Ningún ingeniero evaluaría un puente únicamente observando su apariencia. Primero preguntaría qué río debía cruzar. Qué carga debía soportar. Qué materiales existían cuando fue construido. Qué presupuesto estaba disponible. Qué riesgos naturales debía enfrentar. Solo después emitiría un juicio sobre su diseño. Con las organizaciones ocurre exactamente lo mismo. Una arquitectura solo puede evaluarse correctamente cuando entendemos el contexto histórico que le dio origen.[19]",
+      "Incluso el concepto mismo de trabajo comenzó a transformarse. Una proporción creciente de la riqueza dejó de depender principalmente de la fuerza física y pasó a depender del conocimiento, la creatividad y la capacidad para resolver problemas complejos.[18] Sin embargo, cuando observamos la escuela moderna, descubrimos algo sorprendente. Su arquitectura fundamental permanece extraordinariamente estable. No es idéntica. Ha incorporado tecnologías. Ha ampliado sus funciones sociales. Ha diversificado sus metodologías. Pero sus principios organizacionales esenciales continúan siendo notablemente parecidos a los que existían hace más de un siglo. Este hecho suele interpretarse como una evidencia del fracaso del sistema educativo. Sin embargo, esa conclusión resulta apresurada. Antes de juzgar una arquitectura conviene comprender el problema para el cual fue diseñada. Ningún ingeniero evaluaría un puente únicamente observando su apariencia.",
+      "Primero preguntaría qué río debía cruzar. Qué carga debía soportar. Qué materiales existían cuando fue construido. Qué presupuesto estaba disponible. Qué riesgos naturales debía enfrentar. Solo después emitiría un juicio sobre su diseño. Con las organizaciones ocurre exactamente lo mismo. Una arquitectura solo puede evaluarse correctamente cuando entendemos el contexto histórico que le dio origen.[19]",
     ],
   },
   {
     id: "la-trampa-del-presentismo",
     title: "La trampa del presentismo",
     paragraphs: [
-      "Existe un error frecuente cuando analizamos instituciones del pasado. Lo llamaremos presentismo. Consiste en evaluar decisiones históricas utilizando únicamente los valores, conocimientos y tecnologías disponibles en el presente. Desde esa perspectiva resulta fácil afirmar que las escuelas deberían haber utilizado inteligencia artificial, aprendizaje personalizado o plataformas digitales. Pero esas posibilidades simplemente no existían. Los arquitectos de la educación del siglo XIX enfrentaban un problema completamente distinto. No intentaban diseñar la mejor experiencia individual posible para cada estudiante. Intentaban responder una pregunta infinitamente más urgente. ¿Cómo alfabetizar a millones de niños en sociedades que nunca antes habían intentado educar simultáneamente a toda su población? Hoy esa pregunta parece obvia. Hace doscientos años era revolucionaria.",
-      "Durante siglos, la educación formal había sido un privilegio reservado para minorías. Las familias acomodadas contrataban tutores privados. Las iglesias enseñaban a determinados grupos. Las universidades formaban élites administrativas, religiosas o profesionales. Pero la idea de que prácticamente todos los niños debían asistir durante años a una escuela financiada o regulada por el Estado constituía una innovación histórica de enormes proporciones.[20] La Revolución Industrial aceleró ese cambio. Las ciudades crecieron. Las fábricas concentraron miles de trabajadores. Los Estados nacionales comenzaron a expandirse. La alfabetización dejó de ser un lujo cultural para convertirse en una necesidad económica, política y administrativa.[21] Un ciudadano incapaz de leer difícilmente podía comprender una ley.",
-      "Un obrero incapaz de interpretar instrucciones tenía menos posibilidades de incorporarse a procesos industriales cada vez más complejos. Un ejército moderno necesitaba soldados capaces de seguir órdenes escritas. Una administración pública requería funcionarios alfabetizados. La escuela comenzó entonces a resolver un problema que ninguna otra institución podía enfrentar con la misma escala. Educar a millones. Y hacerlo con recursos extraordinariamente limitados.",
+      "Existe un error frecuente cuando analizamos instituciones del pasado. Lo llamaremos presentismo. Consiste en evaluar decisiones históricas utilizando únicamente los valores, conocimientos y tecnologías disponibles en el presente. Desde esa perspectiva resulta fácil afirmar que las escuelas deberían haber utilizado inteligencia artificial, aprendizaje personalizado o plataformas digitales. Pero esas posibilidades simplemente no existían. Los arquitectos de la educación del siglo XIX enfrentaban un problema completamente distinto. No intentaban diseñar la mejor experiencia individual posible para cada estudiante. Intentaban responder una pregunta infinitamente más urgente. ¿Cómo alfabetizar a millones de niños en sociedades que nunca antes habían intentado educar simultáneamente a toda su población? Hoy esa pregunta parece obvia. Hace doscientos años era revolucionaria. Durante siglos, la educación formal había sido un privilegio reservado para minorías.",
+      "Las familias acomodadas contrataban tutores privados. Las iglesias enseñaban a determinados grupos. Las universidades formaban élites administrativas, religiosas o profesionales. Pero la idea de que prácticamente todos los niños debían asistir durante años a una escuela financiada o regulada por el Estado constituía una innovación histórica de enormes proporciones.[20] La Revolución Industrial aceleró ese cambio. Las ciudades crecieron. Las fábricas concentraron miles de trabajadores. Los Estados nacionales comenzaron a expandirse. La alfabetización dejó de ser un lujo cultural para convertirse en una necesidad económica, política y administrativa.[21]",
+      "Un ciudadano incapaz de leer difícilmente podía comprender una ley. Un obrero incapaz de interpretar instrucciones tenía menos posibilidades de incorporarse a procesos industriales cada vez más complejos. Un ejército moderno necesitaba soldados capaces de seguir órdenes escritas. Una administración pública requería funcionarios alfabetizados. La escuela comenzó entonces a resolver un problema que ninguna otra institución podía enfrentar con la misma escala. Educar a millones. Y hacerlo con recursos extraordinariamente limitados.",
     ],
   },
   {
     id: "la-verdadera-innovacion",
     title: "La verdadera innovación",
     paragraphs: [
-      "Cuando pensamos en innovación educativa solemos imaginar nuevas metodologías, nuevas tecnologías o nuevas teorísticas del aprendizaje. Sin embargo, la mayor innovación educativa de los siglos XVIII y XIX no fue pedagógica. Fue organizacional. La verdadera revolución consistió en descubrir una arquitectura capaz de llevar educación básica a poblaciones enteras. Visto desde esa perspectiva, muchas decisiones que hoy parecen arbitrarias adquieren una lógica completamente distinta. Agrupar estudiantes por edades simplificaba la organización del sistema. Dividir el conocimiento en asignaturas permitía distribuir el trabajo docente. Establecer horarios comunes hacía posible coordinar cientos de escuelas. Crear grados facilitaba la administración del progreso escolar. Estandarizar evaluaciones permitía decidir quién avanzaba y quién necesitaba repetir contenidos.",
-      "Cada una de esas decisiones implicaba renuncias. Pero también resolvía problemas concretos. Y, sobre todo, permitía que la escolarización masiva dejara de ser una aspiración filosófica para convertirse en una realidad administrativa. Ese fue el verdadero genio de la escuela moderna. No consistió únicamente en enseñar. Consistió en descubrir cómo organizar el aprendizaje de millones de personas de manera suficientemente eficiente como para sostenerlo durante generaciones. Precisamente por eso su arquitectura sobrevivió tanto tiempo. No porque fuera perfecta. Sino porque durante décadas resolvió extraordinariamente bien el problema para el cual había sido concebida. Y ahí reside una de las ideas centrales de este libro.",
-      "Las organizaciones no permanecen estables porque las personas se resistan al cambio. Permanecen estables porque su arquitectura continúa resolviendo, al menos parcialmente, el problema que les dio origen. Solo cuando ese problema cambia de manera profunda comienzan a aparecer tensiones que ninguna mejora incremental consigue resolver. La historia de la educación durante los últimos cincuenta años puede entenderse precisamente desde esa perspectiva. No asistimos simplemente a una sucesión de reformas. Asistimos al momento en que el propósito histórico de una arquitectura comenzó a separarse, lentamente, de las necesidades del mundo que intentaba servir. Y esa separación es el verdadero punto de partida de la Arquitectura del Aprendizaje.",
+      "Cuando pensamos en innovación educativa solemos imaginar nuevas metodologías, nuevas tecnologías o nuevas teorísticas del aprendizaje. Sin embargo, la mayor innovación educativa de los siglos XVIII y XIX no fue pedagógica. Fue organizacional. La verdadera revolución consistió en descubrir una arquitectura capaz de llevar educación básica a poblaciones enteras. Visto desde esa perspectiva, muchas decisiones que hoy parecen arbitrarias adquieren una lógica completamente distinta. Agrupar estudiantes por edades simplificaba la organización del sistema. Dividir el conocimiento en asignaturas permitía distribuir el trabajo docente. Establecer horarios comunes hacía posible coordinar cientos de escuelas. Crear grados facilitaba la administración del progreso escolar. Estandarizar evaluaciones permitía decidir quién avanzaba y quién necesitaba repetir contenidos. Cada una de esas decisiones implicaba renuncias. Pero también resolvía problemas concretos. Y, sobre todo, permitía que la escolarización masiva dejara de ser una aspiración filosófica para convertirse en una realidad administrativa.",
+      "Ese fue el verdadero genio de la escuela moderna. No consistió únicamente en enseñar. Consistió en descubrir cómo organizar el aprendizaje de millones de personas de manera suficientemente eficiente como para sostenerlo durante generaciones. Precisamente por eso su arquitectura sobrevivió tanto tiempo. No porque fuera perfecta. Sino porque durante décadas resolvió extraordinariamente bien el problema para el cual había sido concebida. Y ahí reside una de las ideas centrales de este libro. Las organizaciones no permanecen estables porque las personas se resistan al cambio. Permanecen estables porque su arquitectura continúa resolviendo, al menos parcialmente, el problema que les dio origen. Solo cuando ese problema cambia de manera profunda comienzan a aparecer tensiones que ninguna mejora incremental consigue resolver. La historia de la educación durante los últimos cincuenta años puede entenderse precisamente desde esa perspectiva.",
+      "No asistimos simplemente a una sucesión de reformas. Asistimos al momento en que el propósito histórico de una arquitectura comenzó a separarse, lentamente, de las necesidades del mundo que intentaba servir. Y esa separación es el verdadero punto de partida de la Arquitectura del Aprendizaje.",
     ],
   },
   {
     id: "el-mundo-que-necesitaba-una-nueva-escuela",
     title: "El mundo que necesitaba una nueva escuela",
     paragraphs: [
-      "Toda gran arquitectura nace porque existe un problema que nadie sabe resolver. Las pirámides no aparecieron simplemente porque los egipcios aprendieron a mover piedras gigantescas. Las catedrales medievales no surgieron únicamente porque la ingeniería avanzó. Los hospitales modernos no son consecuencia exclusiva del descubrimiento de nuevos tratamientos médicos. Cada una de esas arquitecturas respondió a una necesidad histórica concreta. Las sociedades cambian. Los problemas cambian. Y, cuando los problemas cambian, aparecen nuevas formas de organizar el trabajo humano. La escuela moderna no constituye una excepción. Con frecuencia se afirma que fue diseñada para producir trabajadores obedientes para las fábricas. La frase resulta atractiva. Es sencilla. Fácil de recordar. Y contiene una parte de verdad.",
-      "Pero, como ocurre con muchas explicaciones excesivamente simples, termina ocultando una realidad mucho más interesante. La historia muestra que el origen de la escuela pública moderna no puede atribuirse a una única causa.[22] No existió una reunión secreta de industriales diseñando el currículo escolar. No apareció un documento que definiera cómo fabricar trabajadores mediante la educación. Lo que realmente ocurrió fue mucho más complejo. Y precisamente por ello mucho más revelador. Durante el siglo XIX convergieron varias transformaciones históricas que cambiaron para siempre la relación entre la sociedad y el conocimiento. La Revolución Industrial modificó la economía. Los Estados nacionales comenzaron a consolidarse. Las ciudades crecieron de forma acelerada. La movilidad social aumentó.",
-      "La alfabetización pasó de ser una ventaja cultural a convertirse en una necesidad económica y política.[23] De pronto, millones de personas que nunca habían recibido educación comenzaron a necesitarla simultáneamente. Nunca antes la humanidad había intentado enseñar a tantos niños al mismo tiempo. Ese era el verdadero desafío. No cómo enseñar mejor. Sino cómo enseñar a todos. La diferencia parece sutil. En realidad cambia completamente la historia. Hasta entonces la educación podía organizarse alrededor del individuo. Un tutor enseñaba a un estudiante. Un sacerdote instruía a un pequeño grupo. Un maestro artesano transmitía su oficio a uno o dos aprendices. La escala era reducida. La organización podía adaptarse fácilmente a cada persona.",
-      "Pero cuando un país decide escolarizar a millones de niños ocurre algo completamente distinto. El problema deja de ser exclusivamente pedagógico. Se convierte en un problema de diseño organizacional. ¿Cómo coordinar miles de escuelas? ¿Cómo formar decenas de miles de maestros? ¿Cómo distribuir recursos escasos? ¿Cómo garantizar un nivel mínimo de calidad? ¿Cómo administrar presupuestos limitados? ¿Cómo saber quién había aprendido lo suficiente para continuar? Todas esas preguntas pertenecen tanto a la administración como a la pedagogía. Y la respuesta no podía consistir únicamente en mejores métodos de enseñanza. Era necesario inventar una arquitectura completamente nueva.",
+      "Toda gran arquitectura nace porque existe un problema que nadie sabe resolver. Las pirámides no aparecieron simplemente porque los egipcios aprendieron a mover piedras gigantescas. Las catedrales medievales no surgieron únicamente porque la ingeniería avanzó. Los hospitales modernos no son consecuencia exclusiva del descubrimiento de nuevos tratamientos médicos. Cada una de esas arquitecturas respondió a una necesidad histórica concreta. Las sociedades cambian. Los problemas cambian. Y, cuando los problemas cambian, aparecen nuevas formas de organizar el trabajo humano. La escuela moderna no constituye una excepción. Con frecuencia se afirma que fue diseñada para producir trabajadores obedientes para las fábricas. La frase resulta atractiva. Es sencilla. Fácil de recordar. Y contiene una parte de verdad. Pero, como ocurre con muchas explicaciones excesivamente simples, termina ocultando una realidad mucho más interesante.",
+      "La historia muestra que el origen de la escuela pública moderna no puede atribuirse a una única causa.[22] No existió una reunión secreta de industriales diseñando el currículo escolar. No apareció un documento que definiera cómo fabricar trabajadores mediante la educación. Lo que realmente ocurrió fue mucho más complejo. Y precisamente por ello mucho más revelador. Durante el siglo XIX convergieron varias transformaciones históricas que cambiaron para siempre la relación entre la sociedad y el conocimiento. La Revolución Industrial modificó la economía. Los Estados nacionales comenzaron a consolidarse. Las ciudades crecieron de forma acelerada. La movilidad social aumentó. La alfabetización pasó de ser una ventaja cultural a convertirse en una necesidad económica y política.[23]",
+      "De pronto, millones de personas que nunca habían recibido educación comenzaron a necesitarla simultáneamente. Nunca antes la humanidad había intentado enseñar a tantos niños al mismo tiempo. Ese era el verdadero desafío. No cómo enseñar mejor. Sino cómo enseñar a todos. La diferencia parece sutil. En realidad cambia completamente la historia. Hasta entonces la educación podía organizarse alrededor del individuo. Un tutor enseñaba a un estudiante. Un sacerdote instruía a un pequeño grupo. Un maestro artesano transmitía su oficio a uno o dos aprendices. La escala era reducida. La organización podía adaptarse fácilmente a cada persona. Pero cuando un país decide escolarizar a millones de niños ocurre algo completamente distinto. El problema deja de ser exclusivamente pedagógico. Se convierte en un problema de diseño organizacional.",
+      "¿Cómo coordinar miles de escuelas? ¿Cómo formar decenas de miles de maestros? ¿Cómo distribuir recursos escasos? ¿Cómo garantizar un nivel mínimo de calidad? ¿Cómo administrar presupuestos limitados? ¿Cómo saber quién había aprendido lo suficiente para continuar? Todas esas preguntas pertenecen tanto a la administración como a la pedagogía. Y la respuesta no podía consistir únicamente en mejores métodos de enseñanza. Era necesario inventar una arquitectura completamente nueva.",
     ],
   },
   {
     id: "la-aparicion-de-una-nueva-logica",
     title: "La aparición de una nueva lógica",
     paragraphs: [
-      "Cuando observamos retrospectivamente esa arquitectura, tendemos a interpretar cada uno de sus componentes como si hubiera surgido de manera independiente. El horario escolar parece una decisión aislada. Los grados escolares otra. Las asignaturas otra. Las evaluaciones otra. Sin embargo, ninguna de ellas puede comprenderse por separado. Todas forman parte de un mismo sistema. Christopher Alexander sostenía que una arquitectura no puede entenderse estudiando únicamente sus componentes, porque el verdadero diseño reside en las relaciones que existen entre ellos.[24] La escuela moderna constituye un ejemplo extraordinario de esa idea. Agrupar estudiantes por edad no simplificaba únicamente el trabajo del profesor. También permitía diseñar libros de texto comunes. Facilitaba establecer un currículo progresivo.",
-      "Reducía la complejidad administrativa. Permitía planificar edificios. Hacía posible estimar el número de docentes necesarios. Estandarizaba la formación del profesorado. Cada decisión reforzaba a las demás. Los horarios coordinaban las asignaturas. Las asignaturas organizaban el currículo. El currículo definía los libros. Los libros facilitaban la preparación docente. Las evaluaciones permitían administrar el paso entre grados. Los grados justificaban nuevamente la agrupación por edades. Era un sistema extraordinariamente coherente. Vista desde el siglo XXI, esa arquitectura puede parecer rígida. Vista desde el siglo XIX, representaba una innovación organizacional de enorme sofisticación. La pregunta correcta no es por qué era tan estructurada. La pregunta es cómo habría sido posible escolarizar a millones de estudiantes sin una estructura semejante.",
+      "Cuando observamos retrospectivamente esa arquitectura, tendemos a interpretar cada uno de sus componentes como si hubiera surgido de manera independiente. El horario escolar parece una decisión aislada. Los grados escolares otra. Las asignaturas otra. Las evaluaciones otra. Sin embargo, ninguna de ellas puede comprenderse por separado. Todas forman parte de un mismo sistema. Christopher Alexander sostenía que una arquitectura no puede entenderse estudiando únicamente sus componentes, porque el verdadero diseño reside en las relaciones que existen entre ellos.[24] La escuela moderna constituye un ejemplo extraordinario de esa idea. Agrupar estudiantes por edad no simplificaba únicamente el trabajo del profesor. También permitía diseñar libros de texto comunes. Facilitaba establecer un currículo progresivo. Reducía la complejidad administrativa. Permitía planificar edificios. Hacía posible estimar el número de docentes necesarios.",
+      "Estandarizaba la formación del profesorado. Cada decisión reforzaba a las demás. Los horarios coordinaban las asignaturas. Las asignaturas organizaban el currículo. El currículo definía los libros. Los libros facilitaban la preparación docente. Las evaluaciones permitían administrar el paso entre grados. Los grados justificaban nuevamente la agrupación por edades. Era un sistema extraordinariamente coherente. Vista desde el siglo XXI, esa arquitectura puede parecer rígida. Vista desde el siglo XIX, representaba una innovación organizacional de enorme sofisticación. La pregunta correcta no es por qué era tan estructurada. La pregunta es cómo habría sido posible escolarizar a millones de estudiantes sin una estructura semejante.",
     ],
   },
   {
     id: "cuando-la-eficiencia-era-una-virtud",
     title: "Cuando la eficiencia era una virtud",
     paragraphs: [
-      "Hoy solemos asociar la palabra eficiencia con fábricas, procesos industriales o reducción de costos. Sin embargo, para quienes diseñaban los sistemas educativos nacionales durante el siglo XIX, la eficiencia tenía un significado profundamente humano. Cada mejora administrativa permitía que miles de niños adicionales pudieran acceder por primera vez a la educación. Cada procedimiento estandarizado hacía posible abrir nuevas escuelas. Cada reducción en los costos operativos significaba contratar más maestros. Resulta difícil comprender esta lógica desde la abundancia tecnológica actual. Pero los primeros sistemas nacionales de educación funcionaban con recursos extremadamente limitados. Los edificios eran escasos. Los docentes también. Los materiales impresos tenían costos elevados. Las comunicaciones entre regiones podían tardar semanas.",
-      "En ese contexto, una arquitectura organizada no constituía una limitación. Era la condición necesaria para que el sistema pudiera existir. Por esa razón, conceptos como estandarización, secuenciación del currículo o promoción anual no eran considerados enemigos del aprendizaje. Eran herramientas para hacerlo posible a gran escala. Con el paso del tiempo ocurrió algo curioso. Aquellas soluciones organizacionales dejaron de percibirse como soluciones. Se transformaron en tradiciones. Generaciones enteras crecieron creyendo que una escuela necesariamente debía funcionar mediante grados, horarios, asignaturas y exámenes. La arquitectura dejó de verse. Simplemente pasó a formar parte del paisaje. Y cuando una arquitectura se vuelve invisible, también deja de cuestionarse.",
-      "Ese fenómeno explica por qué tantas reformas educativas terminan modificando elementos superficiales sin alterar la estructura profunda del sistema. Cambian los libros. Cambian las metodologías. Cambian las tecnologías. Pero la lógica organizacional permanece prácticamente intacta. Y mientras esa lógica permanezca inalterada, los resultados tenderán a conservar muchas de sus características originales. La siguiente pregunta es inevitable. Si aquella arquitectura resolvió de manera brillante el problema de la educación masiva durante más de un siglo, ¿qué cambió para que hoy comencemos a percibir sus límites? La respuesta no se encuentra, como suele afirmarse, en la aparición de nuevas metodologías pedagógicas. Se encuentra en una transformación mucho más profunda.",
-      "Cambió el propósito para el cual la sociedad necesita aprender. Y cuando cambia el propósito, toda arquitectura comienza a ser puesta a prueba.",
+      "Hoy solemos asociar la palabra eficiencia con fábricas, procesos industriales o reducción de costos. Sin embargo, para quienes diseñaban los sistemas educativos nacionales durante el siglo XIX, la eficiencia tenía un significado profundamente humano. Cada mejora administrativa permitía que miles de niños adicionales pudieran acceder por primera vez a la educación. Cada procedimiento estandarizado hacía posible abrir nuevas escuelas. Cada reducción en los costos operativos significaba contratar más maestros. Resulta difícil comprender esta lógica desde la abundancia tecnológica actual. Pero los primeros sistemas nacionales de educación funcionaban con recursos extremadamente limitados. Los edificios eran escasos. Los docentes también. Los materiales impresos tenían costos elevados. Las comunicaciones entre regiones podían tardar semanas. En ese contexto, una arquitectura organizada no constituía una limitación. Era la condición necesaria para que el sistema pudiera existir.",
+      "Por esa razón, conceptos como estandarización, secuenciación del currículo o promoción anual no eran considerados enemigos del aprendizaje. Eran herramientas para hacerlo posible a gran escala. Con el paso del tiempo ocurrió algo curioso. Aquellas soluciones organizacionales dejaron de percibirse como soluciones. Se transformaron en tradiciones. Generaciones enteras crecieron creyendo que una escuela necesariamente debía funcionar mediante grados, horarios, asignaturas y exámenes. La arquitectura dejó de verse. Simplemente pasó a formar parte del paisaje. Y cuando una arquitectura se vuelve invisible, también deja de cuestionarse. Ese fenómeno explica por qué tantas reformas educativas terminan modificando elementos superficiales sin alterar la estructura profunda del sistema. Cambian los libros. Cambian las metodologías. Cambian las tecnologías. Pero la lógica organizacional permanece prácticamente intacta. Y mientras esa lógica permanezca inalterada, los resultados tenderán a conservar muchas de sus características originales.",
+      "La siguiente pregunta es inevitable. Si aquella arquitectura resolvió de manera brillante el problema de la educación masiva durante más de un siglo, ¿qué cambió para que hoy comencemos a percibir sus límites? La respuesta no se encuentra, como suele afirmarse, en la aparición de nuevas metodologías pedagógicas. Se encuentra en una transformación mucho más profunda. Cambió el propósito para el cual la sociedad necesita aprender. Y cuando cambia el propósito, toda arquitectura comienza a ser puesta a prueba.",
     ],
   },
   {
     id: "cuando-el-problema-cambia",
     title: "Cuando el problema cambia",
     paragraphs: [
-      "Las grandes arquitecturas no dejan de funcionar de un día para otro. No existe un momento preciso en el que una ciudad deja de ser adecuada para sus habitantes. No hay una fecha exacta en la que un hospital deja de responder a las necesidades de una población. Tampoco existe un instante concreto en el que una escuela deja de cumplir su propósito. Las arquitecturas envejecen lentamente. Durante un tiempo continúan ofreciendo buenos resultados. Después comienzan a mostrar pequeñas tensiones. Al principio esas tensiones parecen excepciones. Más tarde se convierten en problemas recurrentes. Finalmente descubrimos que ya no se trata de fallas aisladas.",
-      "Es el diseño completo el que empieza a perder correspondencia con la realidad. Christopher Alexander describía este fenómeno afirmando que toda arquitectura existe para mantener un cierto grado de \"ajuste\" (fit) entre una forma y el contexto para el cual fue creada.[25] Mientras ese ajuste permanece, la arquitectura funciona. Cuando el contexto cambia profundamente, el ajuste comienza a deteriorarse. No porque la arquitectura haya empeorado. Sino porque el problema dejó de ser el mismo. Esa idea, extraordinariamente sencilla, explica gran parte de la historia de las organizaciones. Los bancos del siglo XIX fueron magníficas respuestas a una economía basada en dinero físico.",
-      "Las oficinas diseñadas durante los años cincuenta respondían perfectamente a una época sin computadores personales. Las cadenas de montaje revolucionaron la producción industrial mientras el principal desafío consistía en fabricar grandes cantidades de productos estandarizados. Ninguna de esas arquitecturas era incorrecta. Simplemente respondían a un mundo distinto. La pregunta relevante, por tanto, no es si la escuela moderna funciona. La pregunta es otra. ¿Sigue enfrentando el mismo problema para el cual fue diseñada? Si la respuesta fuera afirmativa, bastaría con perfeccionar algunos componentes. Un mejor currículo. Más tecnología. Mejor formación docente. Nuevos libros. Mayor inversión. Pero si el problema cambió... entonces quizá el desafío no consista en mejorar la arquitectura existente.",
-      "Quizá consista en diseñar una nueva.",
+      "Las grandes arquitecturas no dejan de funcionar de un día para otro. No existe un momento preciso en el que una ciudad deja de ser adecuada para sus habitantes. No hay una fecha exacta en la que un hospital deja de responder a las necesidades de una población. Tampoco existe un instante concreto en el que una escuela deja de cumplir su propósito. Las arquitecturas envejecen lentamente. Durante un tiempo continúan ofreciendo buenos resultados. Después comienzan a mostrar pequeñas tensiones. Al principio esas tensiones parecen excepciones. Más tarde se convierten en problemas recurrentes. Finalmente descubrimos que ya no se trata de fallas aisladas. Es el diseño completo el que empieza a perder correspondencia con la realidad. Christopher Alexander describía este fenómeno afirmando que toda arquitectura existe para mantener un cierto grado de \"ajuste\" (fit) entre una forma y el contexto para el cual fue creada.[25]",
+      "Mientras ese ajuste permanece, la arquitectura funciona. Cuando el contexto cambia profundamente, el ajuste comienza a deteriorarse. No porque la arquitectura haya empeorado. Sino porque el problema dejó de ser el mismo. Esa idea, extraordinariamente sencilla, explica gran parte de la historia de las organizaciones. Los bancos del siglo XIX fueron magníficas respuestas a una economía basada en dinero físico. Las oficinas diseñadas durante los años cincuenta respondían perfectamente a una época sin computadores personales. Las cadenas de montaje revolucionaron la producción industrial mientras el principal desafío consistía en fabricar grandes cantidades de productos estandarizados. Ninguna de esas arquitecturas era incorrecta. Simplemente respondían a un mundo distinto. La pregunta relevante, por tanto, no es si la escuela moderna funciona. La pregunta es otra. ¿Sigue enfrentando el mismo problema para el cual fue diseñada?",
+      "Si la respuesta fuera afirmativa, bastaría con perfeccionar algunos componentes. Un mejor currículo. Más tecnología. Mejor formación docente. Nuevos libros. Mayor inversión. Pero si el problema cambió... entonces quizá el desafío no consista en mejorar la arquitectura existente. Quizá consista en diseñar una nueva.",
     ],
   },
   {
     id: "del-trabajo-repetitivo-al-trabajo-cognitivo",
     title: "Del trabajo repetitivo al trabajo cognitivo",
     paragraphs: [
-      "Durante gran parte de la historia económica, la productividad dependía principalmente de la capacidad para organizar el trabajo físico. La agricultura exigía fuerza y experiencia. La manufactura requería precisión manual. Las primeras fábricas necesitaban trabajadores capaces de repetir procedimientos con consistencia durante largas jornadas. Incluso profesiones altamente calificadas descansaban sobre un volumen considerable de conocimiento estable. Un ingeniero aprendía principios que probablemente utilizaría durante toda su vida profesional. Un médico ejercía durante décadas apoyándose en un cuerpo de conocimientos que evolucionaba lentamente. Un contador podía desarrollar toda su carrera utilizando procedimientos relativamente constantes. La escuela moderna fue extraordinariamente eficaz preparando personas para ese mundo.",
-      "No porque enseñara obediencia, como a veces se afirma de manera simplista. Sino porque enseñaba algo mucho más importante. Enseñaba a dominar conocimientos relativamente estables. Ese detalle suele pasar inadvertido. Durante siglos, el principal desafío educativo consistía en transmitir el conocimiento acumulado por generaciones anteriores. El volumen de información crecía lentamente. Los libros permanecían vigentes durante décadas. Las profesiones cambiaban poco. El aprendizaje inicial podía sostener una carrera completa. Peter Drucker observó que la gran transformación de finales del siglo XX consistió precisamente en la aparición del trabajador del conocimiento, cuya principal herramienta de producción dejó de ser la fuerza física para convertirse en la capacidad de aprender, interpretar información y resolver problemas nuevos.[26]",
+      "Durante gran parte de la historia económica, la productividad dependía principalmente de la capacidad para organizar el trabajo físico. La agricultura exigía fuerza y experiencia. La manufactura requería precisión manual. Las primeras fábricas necesitaban trabajadores capaces de repetir procedimientos con consistencia durante largas jornadas. Incluso profesiones altamente calificadas descansaban sobre un volumen considerable de conocimiento estable. Un ingeniero aprendía principios que probablemente utilizaría durante toda su vida profesional. Un médico ejercía durante décadas apoyándose en un cuerpo de conocimientos que evolucionaba lentamente. Un contador podía desarrollar toda su carrera utilizando procedimientos relativamente constantes. La escuela moderna fue extraordinariamente eficaz preparando personas para ese mundo. No porque enseñara obediencia, como a veces se afirma de manera simplista. Sino porque enseñaba algo mucho más importante. Enseñaba a dominar conocimientos relativamente estables.",
+      "Ese detalle suele pasar inadvertido. Durante siglos, el principal desafío educativo consistía en transmitir el conocimiento acumulado por generaciones anteriores. El volumen de información crecía lentamente. Los libros permanecían vigentes durante décadas. Las profesiones cambiaban poco. El aprendizaje inicial podía sostener una carrera completa. Peter Drucker observó que la gran transformación de finales del siglo XX consistió precisamente en la aparición del trabajador del conocimiento, cuya principal herramienta de producción dejó de ser la fuerza física para convertirse en la capacidad de aprender, interpretar información y resolver problemas nuevos.[26]",
       "Ese cambio alteró silenciosamente el propósito mismo de la educación. La pregunta dejó de ser: ¿Qué conocimientos debe dominar una persona? Y comenzó a transformarse en otra mucho más difícil. ¿Cómo aprende una persona durante toda su vida? La diferencia parece semántica. En realidad modifica completamente la arquitectura del aprendizaje. Cuando el conocimiento permanece estable, la prioridad consiste en transmitirlo eficientemente. Cuando el conocimiento cambia continuamente, la prioridad consiste en desarrollar la capacidad para seguir aprendiendo. Son dos problemas completamente distintos. Y problemas distintos suelen requerir arquitecturas diferentes.",
     ],
   },
@@ -99,60 +95,79 @@ export const chapter2Sections: ChapterSection[] = [
     id: "el-conocimiento-dejo-de-ser-escaso",
     title: "El conocimiento dejó de ser escaso",
     paragraphs: [
-      "Existe otra transformación aún más profunda. Durante la mayor parte de la historia humana, el conocimiento era un recurso extraordinariamente escaso. Los libros eran costosos. Las bibliotecas limitadas. Los profesores representaban una de las pocas fuentes accesibles de información organizada. En ese contexto, la escuela cumplía una función evidente. Concentraba el conocimiento allí donde los estudiantes podían acceder a él. El aula era, en cierto sentido, una tecnología para distribuir información. Hoy esa realidad ha cambiado radicalmente. Nunca antes en la historia tantas personas habían tenido acceso inmediato a tanto conocimiento.",
-      "Un estudiante puede consultar artículos científicos, asistir a cursos universitarios abiertos, interactuar con modelos de inteligencia artificial y colaborar con personas ubicadas en cualquier parte del mundo. La escasez ya no reside en la información. Reside en la capacidad para distinguir, interpretar, integrar y aplicar esa información de manera inteligente. Herbert Simon anticipó este fenómeno varias décadas antes de Internet al afirmar que una abundancia de información produce inevitablemente una escasez de atención.[27] La frase resulta hoy más vigente que nunca. Durante siglos la educación respondió al problema de la escasez del conocimiento. Ahora debe responder al problema exactamente contrario. La sobreabundancia. Ese cambio modifica profundamente el papel del profesor.",
-      "No porque deje de ser necesario. Sino porque su función cambia. El profesor ya no constituye únicamente una fuente de información. Se convierte, cada vez más, en arquitecto de experiencias de aprendizaje, diseñador de contextos intelectuales y guía del desarrollo cognitivo de sus estudiantes. La diferencia es enorme. Y, sin embargo, muchas veces seguimos organizando las instituciones como si el principal desafío continuara siendo distribuir información.",
+      "Existe otra transformación aún más profunda. Durante la mayor parte de la historia humana, el conocimiento era un recurso extraordinariamente escaso. Los libros eran costosos. Las bibliotecas limitadas. Los profesores representaban una de las pocas fuentes accesibles de información organizada. En ese contexto, la escuela cumplía una función evidente. Concentraba el conocimiento allí donde los estudiantes podían acceder a él. El aula era, en cierto sentido, una tecnología para distribuir información. Hoy esa realidad ha cambiado radicalmente. Nunca antes en la historia tantas personas habían tenido acceso inmediato a tanto conocimiento. Un estudiante puede consultar artículos científicos, asistir a cursos universitarios abiertos, interactuar con modelos de inteligencia artificial y colaborar con personas ubicadas en cualquier parte del mundo. La escasez ya no reside en la información.",
+      "Reside en la capacidad para distinguir, interpretar, integrar y aplicar esa información de manera inteligente. Herbert Simon anticipó este fenómeno varias décadas antes de Internet al afirmar que una abundancia de información produce inevitablemente una escasez de atención.[27] La frase resulta hoy más vigente que nunca. Durante siglos la educación respondió al problema de la escasez del conocimiento. Ahora debe responder al problema exactamente contrario. La sobreabundancia. Ese cambio modifica profundamente el papel del profesor. No porque deje de ser necesario. Sino porque su función cambia. El profesor ya no constituye únicamente una fuente de información. Se convierte, cada vez más, en arquitecto de experiencias de aprendizaje, diseñador de contextos intelectuales y guía del desarrollo cognitivo de sus estudiantes. La diferencia es enorme. Y, sin embargo, muchas veces seguimos organizando las instituciones como si el principal desafío continuara siendo distribuir información.",
     ],
   },
   {
     id: "la-velocidad-del-cambio",
     title: "La velocidad del cambio",
     paragraphs: [
-      "Existe una última transformación que completa este panorama. No solo cambió el trabajo. No solo cambió el conocimiento. Cambió también la velocidad con la que ambos evolucionan. Durante buena parte del siglo XX una innovación podía tardar décadas en difundirse globalmente. Hoy ese proceso puede ocurrir en cuestión de meses. Las tecnologías aparecen, maduran y son reemplazadas con una rapidez sin precedentes. Nuevas profesiones emergen mientras otras desaparecen. Las organizaciones deben aprender continuamente simplemente para mantenerse competitivas. La educación ya no prepara únicamente para el primer empleo. Debe preparar para profesiones que todavía no existen, utilizando tecnologías que aún no han sido inventadas, para resolver problemas que todavía desconocemos.",
-      "Esa frase, repetida con frecuencia en conferencias educativas, suele interpretarse como un eslogan. En realidad describe un problema de diseño organizacional. Porque ninguna arquitectura concebida para transmitir conocimientos relativamente estables puede adaptarse automáticamente a un mundo cuya característica principal es el cambio permanente. Y aquí aparece la pregunta que conducirá el resto de este libro. Si cambió la naturaleza del trabajo, cambió la naturaleza del conocimiento y cambió la naturaleza del aprendizaje... ¿por qué seguimos suponiendo que la arquitectura diseñada para un mundo diferente seguirá produciendo los mejores resultados? Esa no es una crítica a la escuela. Es una invitación a volver a pensar su diseño. Y esa diferencia cambiará completamente la conversación.",
+      "Existe una última transformación que completa este panorama. No solo cambió el trabajo. No solo cambió el conocimiento. Cambió también la velocidad con la que ambos evolucionan. Durante buena parte del siglo XX una innovación podía tardar décadas en difundirse globalmente. Hoy ese proceso puede ocurrir en cuestión de meses. Las tecnologías aparecen, maduran y son reemplazadas con una rapidez sin precedentes. Nuevas profesiones emergen mientras otras desaparecen. Las organizaciones deben aprender continuamente simplemente para mantenerse competitivas. La educación ya no prepara únicamente para el primer empleo. Debe preparar para profesiones que todavía no existen, utilizando tecnologías que aún no han sido inventadas, para resolver problemas que todavía desconocemos. Esa frase, repetida con frecuencia en conferencias educativas, suele interpretarse como un eslogan. En realidad describe un problema de diseño organizacional.",
+      "Porque ninguna arquitectura concebida para transmitir conocimientos relativamente estables puede adaptarse automáticamente a un mundo cuya característica principal es el cambio permanente. Y aquí aparece la pregunta que conducirá el resto de este libro. Si cambió la naturaleza del trabajo, cambió la naturaleza del conocimiento y cambió la naturaleza del aprendizaje... ¿por qué seguimos suponiendo que la arquitectura diseñada para un mundo diferente seguirá produciendo los mejores resultados? Esa no es una crítica a la escuela. Es una invitación a volver a pensar su diseño. Y esa diferencia cambiará completamente la conversación.",
     ],
   },
   {
     id: "lo-que-realmente-produce-una-organizacion",
     title: "Lo que realmente produce una organización",
     paragraphs: [
-      "Cuando preguntamos cuál es el producto de una fábrica de automóviles, la respuesta parece evidente. Produce automóviles. Una empresa de transporte produce movilidad. Un hospital produce salud. Una universidad produce profesionales. Una escuela produce aprendizaje. O eso creemos. Sin embargo, cuando observamos las organizaciones con mayor detenimiento descubrimos que esa respuesta resulta demasiado superficial. Las organizaciones nunca producen únicamente aquello que dicen producir. También producen comportamientos. Producen hábitos. Producen formas de pensar. Producen relaciones. Producen culturas. Y, sobre todo, producen maneras específicas de aprender. Esa afirmación constituye uno de los pilares de este libro. Una organización no enseña solamente mediante su currículo, sus procedimientos o sus discursos. Enseña, sobre todo, mediante su arquitectura.",
-      "Los seres humanos aprendemos continuamente del entorno en el que vivimos. Aprendemos qué comportamientos son premiados. Qué errores son castigados. Qué decisiones pueden tomarse. Quién posee la autoridad. Cómo circula la información. Quién puede hacer preguntas. Quién puede cuestionar una idea. Qué significa tener éxito. Qué significa fracasar. Con el tiempo, todas esas experiencias terminan formando un aprendizaje mucho más profundo que cualquier contenido explícito. Chris Argyris denominó este fenómeno aprendizaje organizacional: las personas no solo aprenden dentro de las organizaciones; aprenden la lógica con la que las organizaciones funcionan.[28] Ese aprendizaje rara vez aparece en el currículo. Sin embargo, suele ser el más duradero.",
+      "Cuando preguntamos cuál es el producto de una fábrica de automóviles, la respuesta parece evidente. Produce automóviles. Una empresa de transporte produce movilidad. Un hospital produce salud. Una universidad produce profesionales. Una escuela produce aprendizaje. O eso creemos. Sin embargo, cuando observamos las organizaciones con mayor detenimiento descubrimos que esa respuesta resulta demasiado superficial. Las organizaciones nunca producen únicamente aquello que dicen producir. También producen comportamientos. Producen hábitos. Producen formas de pensar. Producen relaciones. Producen culturas. Y, sobre todo, producen maneras específicas de aprender. Esa afirmación constituye uno de los pilares de este libro. Una organización no enseña solamente mediante su currículo, sus procedimientos o sus discursos. Enseña, sobre todo, mediante su arquitectura. Los seres humanos aprendemos continuamente del entorno en el que vivimos. Aprendemos qué comportamientos son premiados.",
+      "Qué errores son castigados. Qué decisiones pueden tomarse. Quién posee la autoridad. Cómo circula la información. Quién puede hacer preguntas. Quién puede cuestionar una idea. Qué significa tener éxito. Qué significa fracasar. Con el tiempo, todas esas experiencias terminan formando un aprendizaje mucho más profundo que cualquier contenido explícito. Chris Argyris denominó este fenómeno aprendizaje organizacional: las personas no solo aprenden dentro de las organizaciones; aprenden la lógica con la que las organizaciones funcionan.[28] Ese aprendizaje rara vez aparece en el currículo. Sin embargo, suele ser el más duradero.",
     ],
   },
   {
     id: "el-curriculo-invisible",
     title: "El currículo invisible",
     paragraphs: [
-      "Durante décadas los investigadores en educación han hablado del currículo oculto. Philip Jackson observó que los estudiantes aprendían muchas cosas que nunca aparecían en los libros de texto.[29] Aprendían a esperar. Aprendían a pedir permiso. Aprendían cuándo hablar y cuándo permanecer en silencio. Aprendían cómo reaccionaban los adultos frente al error. Aprendían qué conductas eran valoradas. Con el tiempo, Michael Apple, Henry Giroux y otros autores ampliaron esa discusión mostrando que toda institución transmite valores culturales mucho más allá de los contenidos académicos.[30] Comparto esa observación. Pero creo que podemos ir un paso más allá. No se trata únicamente de un currículo oculto. Existe algo todavía más profundo. Existe una arquitectura oculta.",
-      "El currículo oculto explica qué aprenden las personas sin que nadie lo enseñe explícitamente. La arquitectura del aprendizaje intenta explicar por qué terminan aprendiéndolo. Y la respuesta no se encuentra únicamente en los profesores. Se encuentra en el diseño mismo de la organización. Un ejemplo puede ayudar. Imaginemos dos escuelas. Ambas afirman que desean formar estudiantes creativos. Ambas colocan esa palabra en su misión institucional. Ambas organizan talleres sobre creatividad. Ambas invitan conferencistas. Sin embargo, en la primera escuela todas las decisiones importantes son tomadas exclusivamente por los adultos. Los horarios son completamente rígidos. Cada actividad tiene una única respuesta correcta. Los errores reducen inmediatamente la calificación. Los estudiantes nunca participan en decisiones reales.",
-      "En la segunda escuela ocurre algo distinto. Los estudiantes diseñan proyectos. Pueden reorganizar parte de su tiempo. Trabajan con problemas abiertos. Experimentan. Fracasan. Reflexionan. Vuelven a intentarlo. Las dos escuelas hablan de creatividad. Pero únicamente una de ellas está organizada para producirla. La diferencia no reside en el discurso. Reside en la arquitectura.",
+      "Durante décadas los investigadores en educación han hablado del currículo oculto. Philip Jackson observó que los estudiantes aprendían muchas cosas que nunca aparecían en los libros de texto.[29] Aprendían a esperar. Aprendían a pedir permiso. Aprendían cuándo hablar y cuándo permanecer en silencio. Aprendían cómo reaccionaban los adultos frente al error. Aprendían qué conductas eran valoradas. Con el tiempo, Michael Apple, Henry Giroux y otros autores ampliaron esa discusión mostrando que toda institución transmite valores culturales mucho más allá de los contenidos académicos.[30] Comparto esa observación. Pero creo que podemos ir un paso más allá. No se trata únicamente de un currículo oculto. Existe algo todavía más profundo. Existe una arquitectura oculta. El currículo oculto explica qué aprenden las personas sin que nadie lo enseñe explícitamente.",
+      "La arquitectura del aprendizaje intenta explicar por qué terminan aprendiéndolo. Y la respuesta no se encuentra únicamente en los profesores. Se encuentra en el diseño mismo de la organización. Un ejemplo puede ayudar. Imaginemos dos escuelas. Ambas afirman que desean formar estudiantes creativos. Ambas colocan esa palabra en su misión institucional. Ambas organizan talleres sobre creatividad. Ambas invitan conferencistas. Sin embargo, en la primera escuela todas las decisiones importantes son tomadas exclusivamente por los adultos. Los horarios son completamente rígidos. Cada actividad tiene una única respuesta correcta. Los errores reducen inmediatamente la calificación. Los estudiantes nunca participan en decisiones reales. En la segunda escuela ocurre algo distinto. Los estudiantes diseñan proyectos. Pueden reorganizar parte de su tiempo. Trabajan con problemas abiertos. Experimentan. Fracasan. Reflexionan. Vuelven a intentarlo.",
+      "Las dos escuelas hablan de creatividad. Pero únicamente una de ellas está organizada para producirla. La diferencia no reside en el discurso. Reside en la arquitectura.",
+    ],
+  },
+  {
+    id: "del-curriculo-oculto-a-la-arquitectura-invisible",
+    title: "Del currículo oculto a la arquitectura invisible",
+    paragraphs: [
+      "El currículo oculto permite reconocer que una institución enseña también mediante normas, jerarquías, premios, silencios y expectativas. La arquitectura invisible amplía esa observación: pregunta cómo se relacionan esas señales con la distribución del espacio y del tiempo, la especialización del conocimiento, la autoridad para decidir y los mecanismos que determinan qué cuenta como evidencia válida. Una jornada fragmentada en períodos breves no sólo ordena horarios; favorece determinadas formas de atención. Una universidad organizada en departamentos no sólo distribuye puestos; facilita ciertos intercambios y dificulta otros. Una evaluación externa no sólo mide; modifica prioridades, conversaciones y márgenes de autonomía. El poder institucional no actúa fuera del aprendizaje, sino a través de las relaciones que establecen quién puede preguntar, qué conocimiento circula y qué riesgos resulta legítimo asumir.",
     ],
   },
   {
     id: "el-aprendizaje-siempre-es-coherente-con-el-diseno",
     title: "El aprendizaje siempre es coherente con el diseño",
     paragraphs: [
-      "Peter Senge afirma que la estructura de un sistema determina, en gran medida, el comportamiento que emerge de él.[31] La misma idea aparece en la teoría de sistemas de Donella Meadows. Cuando observamos repetidamente un determinado comportamiento, la explicación rara vez se encuentra únicamente en las personas. Con frecuencia se encuentra en la estructura que condiciona sus decisiones.[32] Las organizaciones educativas no escapan a esta regla. Si una escuela recompensa principalmente la memorización, los estudiantes terminarán dedicando una enorme cantidad de energía a memorizar. No porque sean incapaces de pensar críticamente. Sino porque el sistema les enseña qué comportamientos generan mejores resultados.",
-      "Si la evaluación privilegia respuestas correctas sobre preguntas interesantes, la curiosidad comenzará a disminuir. No porque los estudiantes pierdan curiosidad espontáneamente. Sino porque aprenden rápidamente cuál es la estrategia más eficiente para tener éxito dentro del sistema. Aquí aparece una de las ideas más importantes del libro. Toda organización produce exactamente el tipo de aprendizaje para el cual fue diseñada, aunque ese diseño nunca haya sido explícito. No se trata de una metáfora. Es una consecuencia lógica de la arquitectura. Cuando el diseño recompensa determinadas conductas, esas conductas aumentan. Cuando ignora otras, esas tienden a desaparecer. El aprendizaje emerge de la interacción entre las personas y la estructura.",
-      "No únicamente de las intenciones de quienes dirigen la organización.",
+      "Peter Senge afirma que la estructura de un sistema determina, en gran medida, el comportamiento que emerge de él.[31] La misma idea aparece en la teoría de sistemas de Donella Meadows. Cuando observamos repetidamente un determinado comportamiento, la explicación rara vez se encuentra únicamente en las personas. Con frecuencia se encuentra en la estructura que condiciona sus decisiones.[32] Las organizaciones educativas no escapan a esta regla. Si una escuela recompensa principalmente la memorización, los estudiantes terminarán dedicando una enorme cantidad de energía a memorizar. No porque sean incapaces de pensar críticamente. Sino porque el sistema les enseña qué comportamientos generan mejores resultados. Si la evaluación privilegia respuestas correctas sobre preguntas interesantes, la curiosidad comenzará a disminuir. No porque los estudiantes pierdan curiosidad espontáneamente. Sino porque aprenden rápidamente cuál es la estrategia más eficiente para tener éxito dentro del sistema.",
+      "Aquí aparece una de las ideas más importantes del libro. Toda organización produce exactamente el tipo de aprendizaje para el cual fue diseñada, aunque ese diseño nunca haya sido explícito. No se trata de una metáfora. Es una consecuencia lógica de la arquitectura. Cuando el diseño recompensa determinadas conductas, esas conductas aumentan. Cuando ignora otras, esas tienden a desaparecer. El aprendizaje emerge de la interacción entre las personas y la estructura. No únicamente de las intenciones de quienes dirigen la organización.",
     ],
   },
   {
     id: "la-ilusion-de-las-reformas",
     title: "La ilusión de las reformas",
     paragraphs: [
-      "Esta idea permite comprender un fenómeno que ha desconcertado durante décadas a responsables políticos, directores escolares y ministros de educación. ¿Por qué tantas reformas producen resultados tan modestos? Se cambian los libros. No mejora significativamente el aprendizaje. Se modifican los estándares. Los resultados apenas varían. Se incorpora tecnología. Los cambios son menores de lo esperado. Se capacita a los docentes. Algunas prácticas mejoran, pero el sistema permanece sorprendentemente parecido. La explicación habitual consiste en afirmar que las reformas fueron insuficientes. Que faltó presupuesto. Que hubo resistencia al cambio. Que la implementación fue deficiente. Todas esas explicaciones pueden ser parcialmente ciertas. Pero existe otra posibilidad.",
-      "Quizá muchas reformas fracasan porque intentan modificar componentes sin alterar la arquitectura que produce los resultados. Christopher Alexander advertía que cambiar elementos aislados rara vez modifica el comportamiento global de un sistema cuando las relaciones fundamentales permanecen intactas.[33] Algo semejante ocurre con las organizaciones. Cambiar un componente puede mejorar temporalmente algunos indicadores. Pero mientras la arquitectura permanezca igual, el sistema tenderá a reorganizarse alrededor de la misma lógica. Es un fenómeno conocido en teoría de sistemas. Los sistemas complejos poseen una enorme capacidad para conservar su comportamiento general aun cuando cambian algunos de sus componentes. Por eso muchas reformas educativas producen inicialmente entusiasmo. Después adaptación. Finalmente regresión hacia patrones conocidos.",
-      "No porque las personas rechacen las mejoras. Sino porque la arquitectura continúa enseñando exactamente el mismo aprendizaje organizacional.",
+      "Esta idea permite comprender un fenómeno que ha desconcertado durante décadas a responsables políticos, directores escolares y ministros de educación. ¿Por qué tantas reformas producen resultados tan modestos? Se cambian los libros. No mejora significativamente el aprendizaje. Se modifican los estándares. Los resultados apenas varían. Se incorpora tecnología. Los cambios son menores de lo esperado. Se capacita a los docentes. Algunas prácticas mejoran, pero el sistema permanece sorprendentemente parecido. La explicación habitual consiste en afirmar que las reformas fueron insuficientes. Que faltó presupuesto. Que hubo resistencia al cambio. Que la implementación fue deficiente. Todas esas explicaciones pueden ser parcialmente ciertas. Pero existe otra posibilidad. Quizá muchas reformas fracasan porque intentan modificar componentes sin alterar la arquitectura que produce los resultados. Christopher Alexander advertía que cambiar elementos aislados rara vez modifica el comportamiento global de un sistema cuando las relaciones fundamentales permanecen intactas.[33]",
+      "Algo semejante ocurre con las organizaciones. Cambiar un componente puede mejorar temporalmente algunos indicadores. Pero mientras la arquitectura permanezca igual, el sistema tenderá a reorganizarse alrededor de la misma lógica. Es un fenómeno conocido en teoría de sistemas. Los sistemas complejos poseen una enorme capacidad para conservar su comportamiento general aun cuando cambian algunos de sus componentes. Por eso muchas reformas educativas producen inicialmente entusiasmo. Después adaptación. Finalmente regresión hacia patrones conocidos. No porque las personas rechacen las mejoras. Sino porque la arquitectura continúa enseñando exactamente el mismo aprendizaje organizacional.",
+    ],
+  },
+  {
+    id: "cuando-la-abundancia-automatizada-cambia-la-escasez",
+    title: "Cuando la abundancia automatizada cambia la escasez",
+    paragraphs: [
+      "La inteligencia artificial vuelve más visible este desplazamiento histórico. Si una explicación, un ejemplo o una práctica guiada pueden generarse con rapidez, la escasez deja de concentrarse únicamente en el acceso al contenido. Se desplaza hacia la capacidad de formular propósitos, discriminar calidad, sostener la atención, integrar conocimientos y responder por las decisiones. La tutoría automatizada puede ampliar oportunidades, pero también puede multiplicar respuestas sin comprensión. Por eso el problema no consiste en añadir un sistema inteligente a una organización diseñada para otra economía del conocimiento. Consiste en revisar qué relaciones humanas y profesionales deben fortalecerse precisamente porque la producción de información se vuelve más abundante.",
+    ],
+  },
+  {
+    id: "la-fragmentacion-compite-ahora-por-la-atencion",
+    title: "La fragmentación compite ahora por la atención",
+    paragraphs: [
+      "La campana, la división rígida por asignaturas y la sucesión de tareas breves no operan hoy en un vacío cultural. Conviven con medios digitales diseñados para interrumpir, recomendar y renovar estímulos de manera continua. Esta coincidencia puede producir una arquitectura de la dispersión: la escuela fragmenta el tiempo al mismo ritmo con que el entorno fragmenta la atención. El problema no reside en atribuir a la tecnología una causalidad única, sino en reconocer que una organización que aspira a desarrollar comprensión profunda necesita proteger períodos de concentración, conversación extensa y elaboración sin interrupciones.",
+      "La evolución del propósito puede leerse como un desplazamiento de énfasis. La escuela de expansión masiva respondió a la alfabetización, el orden y la transmisión de un cuerpo relativamente estable de conocimientos; la organización contemporánea debe conservar esas responsabilidades y, al mismo tiempo, desarrollar pensamiento de orden superior, criterio frente a información abundante y capacidades adaptativas. El propósito anterior no desaparece, pero deja de ser suficiente. Cuando el propósito se amplía y el diseño permanece intacto, el desajuste se vuelve estructural.",
     ],
   },
   {
     id: "una-pregunta-incomoda",
     title: "Una pregunta incómoda",
     paragraphs: [
-      "Llegados a este punto conviene formular una pregunta que puede resultar incómoda para cualquier institución. No solo para las escuelas. También para universidades, empresas, hospitales, organizaciones sociales e incluso gobiernos. La pregunta es sencilla. ¿Qué está aprendiendo realmente la gente como consecuencia del diseño de esta organización? No de sus discursos. No de sus valores declarados. No de su misión institucional. Del diseño cotidiano con el que funciona. Responder honestamente esa pregunta exige un ejercicio poco frecuente. Obliga a mirar más allá de los indicadores tradicionales. Implica observar conversaciones. Rutinas. Espacios. Flujos de información. Procesos de decisión. Sistemas de incentivos. Relaciones de autoridad. En otras palabras, obliga a observar la arquitectura.",
-      "Y quizá esa sea la principal diferencia entre administrar una organización y diseñarla. El administrador intenta mejorar el funcionamiento de la estructura existente. El arquitecto comienza preguntándose si esa estructura sigue siendo la adecuada para el propósito que desea alcanzar. Durante demasiado tiempo hemos administrado escuelas. Tal vez haya llegado el momento de volver a diseñarlas. Y esa posibilidad abre la puerta al siguiente capítulo de nuestra investigación. Porque una vez que aprendemos a observar la arquitectura, descubrimos algo aún más sorprendente. La mayoría de las reformas fracasan no porque las ideas sean malas, sino porque intentan cambiar el comportamiento sin modificar la estructura que lo produce. Ese será precisamente el tema del próximo capítulo.",
+      "Llegados a este punto conviene formular una pregunta que puede resultar incómoda para cualquier institución. No solo para las escuelas. También para universidades, empresas, hospitales, organizaciones sociales e incluso gobiernos. La pregunta es sencilla. ¿Qué está aprendiendo realmente la gente como consecuencia del diseño de esta organización? No de sus discursos. No de sus valores declarados. No de su misión institucional. Del diseño cotidiano con el que funciona. Responder honestamente esa pregunta exige un ejercicio poco frecuente. Obliga a mirar más allá de los indicadores tradicionales. Implica observar conversaciones. Rutinas. Espacios. Flujos de información. Procesos de decisión. Sistemas de incentivos. Relaciones de autoridad. En otras palabras, obliga a observar la arquitectura. Y quizá esa sea la principal diferencia entre administrar una organización y diseñarla. El administrador intenta mejorar el funcionamiento de la estructura existente.",
+      "El arquitecto comienza preguntándose si esa estructura sigue siendo la adecuada para el propósito que desea alcanzar. Durante demasiado tiempo hemos administrado escuelas. Tal vez haya llegado el momento de volver a diseñarlas. Y esa posibilidad abre la puerta al siguiente capítulo de nuestra investigación. Porque una vez que aprendemos a observar la arquitectura, descubrimos algo aún más sorprendente. La mayoría de las reformas fracasan no porque las ideas sean malas, sino porque intentan cambiar el comportamiento sin modificar la estructura que lo produce. Ese será precisamente el tema del próximo capítulo.",
     ],
   },
 ];
@@ -179,7 +194,7 @@ export const chapter2Footnotes: Footnote[] = [
   {
     id: 13,
     title: "Horace Mann",
-    description: "Horace Mann desempeñó un papel central en la consolidación del movimiento de common schools en Estados Unidos durante el siglo XIX. Su defensa de una educación pública ampliamente accesible contribuyó a establecer la idea de que proporcionar educación no era solamente una responsabilidad familiar o privada, sino también una responsabilidad pública.\n\nSu importancia para este libro reside en el cambio de escala que representa. Cuando una sociedad decide proporcionar educación a prácticamente toda su población infantil, aparecen necesariamente problemas de financiación, administración, formación docente, currículo, infraestructura y organización.\n\nDesde la perspectiva de la Arquitectura del Aprendizaje, Mann representa así una transición decisiva: la educación deja de ser solamente un problema pedagógico y se convierte también en un problema de diseño institucional.",
+    description: "Horace Mann desempeñó un papel central en la consolidación del movimiento de common schools en Estados Unidos durante el siglo XIX. Su defensa de una educación pública ampliamente accesible contribuyó a establecer la idea de que proporcionar educación no era solamente una responsabilidad familiar o privada, sino también una responsabilidad pública.\n\nSu importancia para este libro reside en el cambio de escala que representa. Cuando una sociedad decide proporcionar educación a prácticamente toda su población infantil, aparecen necesariamente problemas de financiación, administración, formación docente, currículo, infraestructura y organización. Desde la perspectiva de la Arquitectura del Aprendizaje, Mann representa así una transición decisiva: la educación deja de ser solamente un problema pedagógico y se convierte también en un problema de diseño institucional.",
     readings: ["Horace Mann"],
     links: [
       { label: "Library of Congress – Horace Mann resources", url: "https://www.loc.gov/" },
@@ -188,7 +203,7 @@ export const chapter2Footnotes: Footnote[] = [
   {
     id: 14,
     title: "John Dewey",
-    description: "John Dewey cuestionó una concepción de la educación basada exclusivamente en transmisión de información y defendió una visión en la que aprender implica experiencia, participación, reflexión y reconstrucción continua del conocimiento.\n\nEn Democracy and Education, Dewey analiza explícitamente la educación como proceso social y advierte sobre la separación que puede producirse entre la experiencia adquirida directamente y aquello que se aprende formalmente en la escuela. (Project Gutenberg)\n\nLa Arquitectura del Aprendizaje comparte esa atención al entorno, pero extiende la pregunta desde la pedagogía hacia la organización. No basta con introducir actividades experienciales dentro del aula. Es necesario analizar si horarios, espacios, evaluación, autoridad y cultura institucional permiten que esas experiencias prosperen.",
+    description: "John Dewey cuestionó una concepción de la educación basada exclusivamente en transmisión de información y defendió una visión en la que aprender implica experiencia, participación, reflexión y reconstrucción continua del conocimiento. En Democracy and Education, Dewey analiza explícitamente la educación como proceso social y advierte sobre la separación que puede producirse entre la experiencia adquirida directamente y aquello que se aprende formalmente en la escuela. (Project Gutenberg)\n\nLa Arquitectura del Aprendizaje comparte esa atención al entorno, pero extiende la pregunta desde la pedagogía hacia la organización. No basta con introducir actividades experienciales dentro del aula. Es necesario analizar si horarios, espacios, evaluación, autoridad y cultura institucional permiten que esas experiencias prosperen.",
     readings: ["John Dewey (1916)", "John Dewey (1938)"],
     links: [
       { label: "Project Gutenberg – Democracy and Education", url: "https://www.gutenberg.org/ebooks/852" },
@@ -197,7 +212,7 @@ export const chapter2Footnotes: Footnote[] = [
   {
     id: 15,
     title: "Paulo Freire",
-    description: "Paulo Freire cuestionó los modelos educativos centrados exclusivamente en la transmisión de contenidos y desarrolló una concepción basada en diálogo, reflexión crítica y participación activa del estudiante.\n\nSu obra mostró que la relación educativa contiene también relaciones de autoridad, participación y construcción de significado. UNESCO reconoce su influencia internacional en pedagogía crítica, educación popular y alfabetización de adultos. (UNESCO)\n\nDesde la perspectiva de la Arquitectura del Aprendizaje, Freire permite reconocer que el diseño institucional nunca es completamente neutral. La manera en que se distribuye la palabra, se toman decisiones y se organiza la autoridad condiciona también aquello que las personas aprenden acerca de su propio papel dentro de la organización.",
+    description: "Paulo Freire cuestionó los modelos educativos centrados exclusivamente en la transmisión de contenidos y desarrolló una concepción basada en diálogo, reflexión crítica y participación activa del estudiante. Su obra mostró que la relación educativa contiene también relaciones de autoridad, participación y construcción de significado. UNESCO reconoce su influencia internacional en pedagogía crítica, educación popular y alfabetización de adultos. (UNESCO)\n\nDesde la perspectiva de la Arquitectura del Aprendizaje, Freire permite reconocer que el diseño institucional nunca es completamente neutral. La manera en que se distribuye la palabra, se toman decisiones y se organiza la autoridad condiciona también aquello que las personas aprenden acerca de su propio papel dentro de la organización.",
     readings: ["Paulo Freire (1970)", "Paulo Freire (1992)"],
     links: [
       { label: "UNESCO – Acervo del educador Paulo Freire", url: "https://www.unesco.org/" },
@@ -206,7 +221,7 @@ export const chapter2Footnotes: Footnote[] = [
   {
     id: 16,
     title: "Ken Robinson",
-    description: "Sir Ken Robinson contribuyó a colocar creatividad, diversidad del talento y transformación educativa en el centro de la discusión pública internacional.\n\nSu conocida conferencia Do Schools Kill Creativity?, presentada en TED en 2006, argumentó a favor de sistemas educativos capaces de cultivar la creatividad en lugar de debilitarla. (TED)\n\nPara la Arquitectura del Aprendizaje, esta discusión conduce a una pregunta estructural. No basta con pedir a profesores y estudiantes que sean creativos: hay que analizar qué características de currículo, evaluación, horarios, incentivos y cultura institucional favorecen o dificultan realmente esa creatividad.",
+    description: "Sir Ken Robinson contribuyó a colocar creatividad, diversidad del talento y transformación educativa en el centro de la discusión pública internacional. Su conocida conferencia Do Schools Kill Creativity?, presentada en TED en 2006, argumentó a favor de sistemas educativos capaces de cultivar la creatividad en lugar de debilitarla. (TED)\n\nPara la Arquitectura del Aprendizaje, esta discusión conduce a una pregunta estructural. No basta con pedir a profesores y estudiantes que sean creativos: hay que analizar qué características de currículo, evaluación, horarios, incentivos y cultura institucional favorecen o dificultan realmente esa creatividad.",
     readings: ["Sir Ken Robinson (2006)"],
     links: [
       { label: "TED – Do Schools Kill Creativity?", url: "https://www.ted.com/talks/sir_ken_robinson_do_schools_kill_creativity" },
@@ -215,7 +230,7 @@ export const chapter2Footnotes: Footnote[] = [
   {
     id: 17,
     title: "Andreas Schleicher y PISA",
-    description: "Andreas Schleicher ha desempeñado un papel central en el desarrollo y utilización de PISA como instrumento internacional para comparar resultados y características de diferentes sistemas educativos.\n\nSu trabajo amplió la discusión desde la comparación de resultados hacia el análisis de las características institucionales de sistemas educativos y las capacidades que los estudiantes necesitan desarrollar frente a sociedades y economías cambiantes. Su libro World Class fue publicado oficialmente por OECD en 2018. (OECD)\n\nPara la Arquitectura del Aprendizaje, la comparación internacional resulta útil cuando permite identificar relaciones y principios estructurales. Su utilidad disminuye cuando se intenta copiar una práctica aislada sin comprender la arquitectura dentro de la cual funciona.",
+    description: "Andreas Schleicher ha desempeñado un papel central en el desarrollo y utilización de PISA como instrumento internacional para comparar resultados y características de diferentes sistemas educativos. Su trabajo amplió la discusión desde la comparación de resultados hacia el análisis de las características institucionales de sistemas educativos y las capacidades que los estudiantes necesitan desarrollar frente a sociedades y economías cambiantes. Su libro World Class fue publicado oficialmente por OECD en 2018. (OECD)\n\nPara la Arquitectura del Aprendizaje, la comparación internacional resulta útil cuando permite identificar relaciones y principios estructurales. Su utilidad disminuye cuando se intenta copiar una práctica aislada sin comprender la arquitectura dentro de la cual funciona.",
     readings: ["Andreas Schleicher (2018)"],
     links: [
       { label: "OECD – World Class", url: "https://doi.org/10.1787/9789264300002-en" },
@@ -225,16 +240,16 @@ export const chapter2Footnotes: Footnote[] = [
   {
     id: 18,
     title: "Yong Zhao",
-    description: "Yong Zhao ha desarrollado una crítica sostenida a los sistemas educativos excesivamente orientados hacia estandarización y resultados uniformes, destacando creatividad, iniciativa, emprendimiento y diversidad de capacidades.\n\nSu trabajo académico se concentra especialmente en las implicaciones de globalización y tecnología para la educación y comprende obras como World Class Learners y Who’s Afraid of the Big Bad Dragon?. (Epsy)\n\nPara la Arquitectura del Aprendizaje, su aportación plantea una cuestión de coherencia: una organización que declara valorar diversidad y creatividad debe construir estructuras de currículo, evaluación y autonomía compatibles con esos objetivos.",
+    description: "Yong Zhao ha desarrollado una crítica sostenida a los sistemas educativos excesivamente orientados hacia estandarización y resultados uniformes, destacando creatividad, iniciativa, emprendimiento y diversidad de capacidades. Su trabajo académico se concentra especialmente en las implicaciones de globalización y tecnología para la educación y comprende obras como World Class Learners y Who’s Afraid of the Big Bad Dragon?. (Epsy)\n\nPara la Arquitectura del Aprendizaje, su aportación plantea una cuestión de coherencia: una organización que declara valorar diversidad y creatividad debe construir estructuras de currículo, evaluación y autonomía compatibles con esos objetivos.",
     readings: ["Yong Zhao"],
     links: [
-      { label: "University of Kansas – Yong Zhao", url: "https://epsy.ku.edu/" },
+      { label: "University of Kansas – Yong Zhao", url: "https://soe.ku.edu/" },
     ],
   },
   {
     id: 19,
     title: "Howard Gardner",
-    description: "Howard Gardner desarrolló la teoría de las inteligencias múltiples, cuestionando la reducción de la capacidad humana a una única dimensión de inteligencia.\n\nSu trabajo tuvo una influencia considerable en la discusión educativa sobre diversidad de capacidades y formas de aprendizaje. Gardner continúa vinculado académicamente con Harvard Graduate School of Education y Project Zero. (Harvard Graduate School of Education)\n\nPara la Arquitectura del Aprendizaje, la cuestión fundamental es la coherencia institucional: si reconocemos diversidad entre estudiantes, debemos preguntarnos hasta qué punto una arquitectura basada en experiencias, ritmos y evaluaciones uniformes puede responder adecuadamente a esa diversidad.",
+    description: "Howard Gardner desarrolló la teoría de las inteligencias múltiples, cuestionando la reducción de la capacidad humana a una única dimensión de inteligencia. Su trabajo tuvo una influencia considerable en la discusión educativa sobre diversidad de capacidades y formas de aprendizaje. Gardner continúa vinculado académicamente con Harvard Graduate School of Education y Project Zero. (Harvard Graduate School of Education)\n\nPara la Arquitectura del Aprendizaje, la cuestión fundamental es la coherencia institucional: si reconocemos diversidad entre estudiantes, debemos preguntarnos hasta qué punto una arquitectura basada en experiencias, ritmos y evaluaciones uniformes puede responder adecuadamente a esa diversidad.",
     readings: ["Howard Gardner (1983)"],
     links: [
       { label: "Harvard Graduate School of Education – Howard Gardner", url: "https://www.gse.harvard.edu/" },
@@ -243,7 +258,7 @@ export const chapter2Footnotes: Footnote[] = [
   {
     id: 20,
     title: "Daniel Kahneman",
-    description: "Daniel Kahneman, junto con Amos Tversky, transformó el estudio contemporáneo del juicio y la toma de decisiones. Su investigación mostró que el razonamiento humano está sujeto a patrones sistemáticos, heurísticas y sesgos.\n\nEl Nobel de Ciencias Económicas de 2002 reconoció específicamente su integración de conocimientos provenientes de la psicología en el estudio del juicio y la toma de decisiones bajo incertidumbre. (Nobel Prize)\n\nPara la Arquitectura del Aprendizaje, estas investigaciones recuerdan que las instituciones deben diseñarse alrededor de las capacidades y limitaciones cognitivas reales de las personas, no alrededor de una representación idealizada de cómo pensamos y decidimos.",
+    description: "Daniel Kahneman, junto con Amos Tversky, transformó el estudio contemporáneo del juicio y la toma de decisiones. Su investigación mostró que el razonamiento humano está sujeto a patrones sistemáticos, heurísticas y sesgos. El Nobel de Ciencias Económicas de 2002 reconoció específicamente su integración de conocimientos provenientes de la psicología en el estudio del juicio y la toma de decisiones bajo incertidumbre. (Nobel Prize)\n\nPara la Arquitectura del Aprendizaje, estas investigaciones recuerdan que las instituciones deben diseñarse alrededor de las capacidades y limitaciones cognitivas reales de las personas, no alrededor de una representación idealizada de cómo pensamos y decidimos.",
     readings: ["Daniel Kahneman"],
     links: [
       { label: "Nobel Prize – Daniel Kahneman", url: "https://www.nobelprize.org/prizes/economic-sciences/2002/kahneman/facts/" },
@@ -252,7 +267,7 @@ export const chapter2Footnotes: Footnote[] = [
   {
     id: 21,
     title: "Carol S. Dweck",
-    description: "Carol Dweck desarrolló una extensa línea de investigación sobre las concepciones que las personas mantienen acerca de sus propias capacidades y cómo esas concepciones afectan motivación, autorregulación y logro. (Stanford Profiles)\n\nLa denominada growth mindset describe, en términos generales, una orientación hacia la posibilidad de desarrollar capacidades mediante aprendizaje, estrategias, práctica y retroalimentación.\n\nDesde la perspectiva de la Arquitectura del Aprendizaje, una cultura de crecimiento no puede depender exclusivamente de mensajes motivacionales. Debe estar acompañada por oportunidades reales de practicar, equivocarse, recibir retroalimentación, revisar y demostrar progreso.",
+    description: "Carol Dweck desarrolló una extensa línea de investigación sobre las concepciones que las personas mantienen acerca de sus propias capacidades y cómo esas concepciones afectan motivación, autorregulación y logro. (Stanford Profiles) La denominada growth mindset describe, en términos generales, una orientación hacia la posibilidad de desarrollar capacidades mediante aprendizaje, estrategias, práctica y retroalimentación.\n\nDesde la perspectiva de la Arquitectura del Aprendizaje, una cultura de crecimiento no puede depender exclusivamente de mensajes motivacionales. Debe estar acompañada por oportunidades reales de practicar, equivocarse, recibir retroalimentación, revisar y demostrar progreso.",
     readings: ["Carol S. Dweck"],
     links: [
       { label: "Stanford University – Carol Dweck", url: "https://profiles.stanford.edu/carol-dweck" },
@@ -261,7 +276,7 @@ export const chapter2Footnotes: Footnote[] = [
   {
     id: 22,
     title: "K. Anders Ericsson",
-    description: "K. Anders Ericsson investigó durante décadas el desarrollo del desempeño experto y la importancia de la denominada práctica deliberada.\n\nLa práctica deliberada no equivale simplemente a repetir una actividad. Implica objetivos definidos, esfuerzo concentrado, identificación de limitaciones y mecanismos de retroalimentación que permitan modificar progresivamente el desempeño. Cambridge University Press documenta esta línea de investigación directamente en la obra de Ericsson sobre adquisición de desempeño experto. (Cambridge University Press)\n\nDesde la Arquitectura del Aprendizaje, la pregunta pasa a ser estructural: ¿ofrece la organización suficientes ciclos de práctica, evidencia, retroalimentación y corrección para permitir una mejora sostenida?",
+    description: "K. Anders Ericsson investigó durante décadas el desarrollo del desempeño experto y la importancia de la denominada práctica deliberada. La práctica deliberada no equivale simplemente a repetir una actividad. Implica objetivos definidos, esfuerzo concentrado, identificación de limitaciones y mecanismos de retroalimentación que permitan modificar progresivamente el desempeño. Cambridge University Press documenta esta línea de investigación directamente en la obra de Ericsson sobre adquisición de desempeño experto. (Cambridge University Press)\n\nDesde la Arquitectura del Aprendizaje, la pregunta pasa a ser estructural: ¿ofrece la organización suficientes ciclos de práctica, evidencia, retroalimentación y corrección para permitir una mejora sostenida?",
     readings: ["K. Anders Ericsson"],
     links: [
       { label: "Cambridge University Press – Ericsson on Deliberate Practice", url: "https://www.cambridge.org/" },
@@ -270,23 +285,25 @@ export const chapter2Footnotes: Footnote[] = [
   {
     id: 23,
     title: "Benjamin Bloom",
-    description: "Benjamin Bloom y sus colaboradores desarrollaron una taxonomía destinada a clasificar diferentes niveles de objetivos cognitivos en educación.\n\nLa taxonomía original permitió distinguir entre diferentes tipos de actividad cognitiva y ejerció una influencia considerable sobre diseño curricular y evaluación. Harvard señala que el trabajo de Bloom y sus colaboradores dio origen en la década de 1950 al marco posteriormente conocido como Taxonomía de Bloom. (Derek Bok Center)\n\nPara la Arquitectura del Aprendizaje, esta distinción permite detectar una posible contradicción: una institución puede declarar que busca pensamiento complejo mientras sus experiencias y evaluaciones continúan concentrándose principalmente en recordar información.",
+    description: "Benjamin Bloom y sus colaboradores desarrollaron una taxonomía destinada a clasificar diferentes niveles de objetivos cognitivos en educación. La taxonomía original permitió distinguir entre diferentes tipos de actividad cognitiva y ejerció una influencia considerable sobre diseño curricular y evaluación. Harvard señala que el trabajo de Bloom y sus colaboradores dio origen en la década de 1950 al marco posteriormente conocido como Taxonomía de Bloom. (Derek Bok Center)\n\nPara la Arquitectura del Aprendizaje, esta distinción permite detectar una posible contradicción: una institución puede declarar que busca pensamiento complejo mientras sus experiencias y evaluaciones continúan concentrándose principalmente en recordar información.",
     readings: ["Benjamin S. Bloom (1956)"],
     links: [
-      { label: "Harvard University – Taxonomies of Learning", url: "https://bokcenter.harvard.edu/taxonomies-learning" },
+      { label: "Harvard University – Taxonomies of Learning", url: "https://bokcenter.harvard.edu/" },
     ],
   },
   {
     id: 24,
     title: "Lev Vygotsky",
-    description: "Lev Vygotsky desarrolló una concepción del aprendizaje profundamente vinculada con interacción social, lenguaje y mediación cultural.\n\nConceptos asociados con su obra, particularmente la Zona de Desarrollo Próximo, ayudaron a comprender la diferencia entre aquello que una persona puede realizar independientemente y aquello que puede alcanzar mediante apoyo adecuado.\n\nPara la Arquitectura del Aprendizaje, esta perspectiva convierte las relaciones en parte del diseño. Quién interactúa con quién, cuándo aparece ayuda, qué herramientas están disponibles y cómo evoluciona el acompañamiento afectan las posibilidades de aprendizaje.",
+    description: "Lev Vygotsky desarrolló una concepción del aprendizaje profundamente vinculada con interacción social, lenguaje y mediación cultural. Conceptos asociados con su obra, particularmente la Zona de Desarrollo Próximo, ayudaron a comprender la diferencia entre aquello que una persona puede realizar independientemente y aquello que puede alcanzar mediante apoyo adecuado.\n\nPara la Arquitectura del Aprendizaje, esta perspectiva convierte las relaciones en parte del diseño. Quién interactúa con quién, cuándo aparece ayuda, qué herramientas están disponibles y cómo evoluciona el acompañamiento afectan las posibilidades de aprendizaje.",
     readings: ["Lev S. Vygotsky"],
-    links: [],
+    links: [
+      { label: "Harvard University Press – Mind in Society", url: "https://www.hup.harvard.edu/" },
+    ],
   },
   {
     id: 25,
     title: "Jean Piaget",
-    description: "Jean Piaget transformó la psicología del desarrollo mediante sus investigaciones sobre la construcción progresiva del conocimiento.\n\nSu trabajo contribuyó a comprender al niño como participante activo en el desarrollo de estructuras cognitivas y no simplemente como receptor de información. La Jean Piaget Society continúa dedicada específicamente al estudio interdisciplinario del conocimiento y el desarrollo inspirado por sus contribuciones teóricas y empíricas. (Piaget Society)\n\nPara la Arquitectura del Aprendizaje, esta perspectiva refuerza la necesidad de crear experiencias que permitan interacción, exploración y construcción activa de conocimiento.",
+    description: "Jean Piaget transformó la psicología del desarrollo mediante sus investigaciones sobre la construcción progresiva del conocimiento. Su trabajo contribuyó a comprender al niño como participante activo en el desarrollo de estructuras cognitivas y no simplemente como receptor de información. La Jean Piaget Society continúa dedicada específicamente al estudio interdisciplinario del conocimiento y el desarrollo inspirado por sus contribuciones teóricas y empíricas. (Piaget Society)\n\nPara la Arquitectura del Aprendizaje, esta perspectiva refuerza la necesidad de crear experiencias que permitan interacción, exploración y construcción activa de conocimiento.",
     readings: ["Jean Piaget"],
     links: [
       { label: "Jean Piaget Society – About Piaget and the Society", url: "https://piaget.org/" },
@@ -295,14 +312,16 @@ export const chapter2Footnotes: Footnote[] = [
   {
     id: 26,
     title: "Jerome Bruner",
-    description: "Jerome Bruner defendió que las ideas fundamentales de una disciplina pueden presentarse a estudiantes de diferentes edades siempre que se representen de manera apropiada.\n\nSu propuesta del currículo en espiral plantea que conceptos importantes pueden ser revisitados repetidamente con niveles crecientes de profundidad y sofisticación.\n\nPara la Arquitectura del Aprendizaje, esta idea cuestiona currículos construidos únicamente como largas secuencias de contenidos que aparecen una vez y desaparecen. Una arquitectura orientada al dominio puede incorporar retorno, conexión y profundización progresiva.",
+    description: "Jerome Bruner defendió que las ideas fundamentales de una disciplina pueden presentarse a estudiantes de diferentes edades siempre que se representen de manera apropiada. Su propuesta del currículo en espiral plantea que conceptos importantes pueden ser revisitados repetidamente con niveles crecientes de profundidad y sofisticación.\n\nPara la Arquitectura del Aprendizaje, esta idea cuestiona currículos construidos únicamente como largas secuencias de contenidos que aparecen una vez y desaparecen. Una arquitectura orientada al dominio puede incorporar retorno, conexión y profundización progresiva.",
     readings: ["Jerome S. Bruner (1960)"],
-    links: [],
+    links: [
+      { label: "Harvard University Press – The Process of Education", url: "https://www.hup.harvard.edu/" },
+    ],
   },
   {
     id: 27,
     title: "Seymour Papert",
-    description: "Seymour Papert fue uno de los pioneros en explorar cómo la informática podía convertirse en una herramienta para pensar, crear y aprender.\n\nEn Mindstorms desarrolló ideas fundamentales sobre niños, computadores y aprendizaje que posteriormente formarían parte del construccionismo. MIT Press reconoce la importancia de esta obra dentro de su legado intelectual. (MIT Press)\n\nPara la Arquitectura del Aprendizaje, Papert permite distinguir entre dos usos radicalmente diferentes de la tecnología: automatizar una arquitectura educativa existente o utilizar la tecnología para crear experiencias de aprendizaje que antes resultaban difíciles o imposibles.",
+    description: "Seymour Papert fue uno de los pioneros en explorar cómo la informática podía convertirse en una herramienta para pensar, crear y aprender. En Mindstorms desarrolló ideas fundamentales sobre niños, computadores y aprendizaje que posteriormente formarían parte del construccionismo. MIT Press reconoce la importancia de esta obra dentro de su legado intelectual. (MIT Press)\n\nPara la Arquitectura del Aprendizaje, Papert permite distinguir entre dos usos radicalmente diferentes de la tecnología: automatizar una arquitectura educativa existente o utilizar la tecnología para crear experiencias de aprendizaje que antes resultaban difíciles o imposibles.",
     readings: ["Seymour Papert (1980)"],
     links: [
       { label: "MIT Press – A Tribute to Seymour Papert", url: "https://mitpress.mit.edu/" },
@@ -311,7 +330,7 @@ export const chapter2Footnotes: Footnote[] = [
   {
     id: 28,
     title: "Sugata Mitra",
-    description: "Sugata Mitra alcanzó reconocimiento internacional por sus experimentos Hole in the Wall y por su trabajo posterior sobre entornos de aprendizaje autoorganizados.\n\nEstas experiencias exploraron cómo grupos de niños podían utilizar acceso a tecnología, colaboración y preguntas estimulantes para desarrollar procesos de aprendizaje con una intervención adulta diferente de la enseñanza convencional.\n\nDesde la perspectiva de la Arquitectura del Aprendizaje, el interés del trabajo de Mitra reside en observar cómo cambios en acceso a información, organización de grupos y papel del adulto pueden modificar la dinámica del aprendizaje.",
+    description: "Sugata Mitra alcanzó reconocimiento internacional por sus experimentos Hole in the Wall y por su trabajo posterior sobre entornos de aprendizaje autoorganizados. Estas experiencias exploraron cómo grupos de niños podían utilizar acceso a tecnología, colaboración y preguntas estimulantes para desarrollar procesos de aprendizaje con una intervención adulta diferente de la enseñanza convencional.\n\nDesde la perspectiva de la Arquitectura del Aprendizaje, el interés del trabajo de Mitra reside en observar cómo cambios en acceso a información, organización de grupos y papel del adulto pueden modificar la dinámica del aprendizaje.",
     readings: ["Sugata Mitra"],
     links: [
       { label: "TED – Sugata Mitra", url: "https://www.ted.com/speakers/sugata_mitra" },
@@ -320,7 +339,7 @@ export const chapter2Footnotes: Footnote[] = [
   {
     id: 29,
     title: "Salman Khan",
-    description: "Salman Khan impulsó una nueva etapa de la educación digital mediante Khan Academy, ampliando el acceso gratuito a recursos educativos y desarrollando herramientas que permiten a estudiantes avanzar con mayor autonomía.\n\nSu importancia para la Arquitectura del Aprendizaje no reside simplemente en colocar lecciones en video. El cambio más relevante consiste en separar parcialmente la transmisión de determinados contenidos del tiempo presencial, permitiendo reconsiderar qué actividades justifican la presencia simultánea de estudiantes y educadores.\n\nEsta separación abre posibilidades para reorganizar ritmo, práctica, retroalimentación y utilización del tiempo educativo.",
+    description: "Salman Khan impulsó una nueva etapa de la educación digital mediante Khan Academy, ampliando el acceso gratuito a recursos educativos y desarrollando herramientas que permiten a estudiantes avanzar con mayor autonomía.\n\nSu importancia para la Arquitectura del Aprendizaje no reside simplemente en colocar lecciones en video. El cambio más relevante consiste en separar parcialmente la transmisión de determinados contenidos del tiempo presencial, permitiendo reconsiderar qué actividades justifican la presencia simultánea de estudiantes y educadores. Esta separación abre posibilidades para reorganizar ritmo, práctica, retroalimentación y utilización del tiempo educativo.",
     readings: ["Salman Khan"],
     links: [
       { label: "Khan Academy", url: "https://www.khanacademy.org/" },
@@ -329,16 +348,16 @@ export const chapter2Footnotes: Footnote[] = [
   {
     id: 30,
     title: "Richard Elmore",
-    description: "Richard Elmore desarrolló el concepto de instructional core, centrando la atención en la interacción entre estudiante, docente y contenido.\n\nLa relevancia de esta perspectiva consiste en recordar que modificar estructuras administrativas externas al proceso de aprendizaje no garantiza por sí mismo una transformación de aquello que ocurre en el núcleo educativo.\n\nPara la Arquitectura del Aprendizaje, la conexión es directa: los resultados emergen de relaciones entre componentes. Una reforma sostenible necesita modificar las relaciones que producen la experiencia educativa, no solamente aquello que la rodea.",
+    description: "Richard Elmore desarrolló el concepto de instructional core, centrando la atención en la interacción entre estudiante, docente y contenido. La relevancia de esta perspectiva consiste en recordar que modificar estructuras administrativas externas al proceso de aprendizaje no garantiza por sí mismo una transformación de aquello que ocurre en el núcleo educativo.\n\nPara la Arquitectura del Aprendizaje, la conexión es directa: los resultados emergen de relaciones entre componentes. Una reforma sostenible necesita modificar las relaciones que producen la experiencia educativa, no solamente aquello que la rodea.",
     readings: ["Richard F. Elmore (2004)"],
     links: [
-      { label: "Harvard Education Press", url: "https://www.hepg.org/" },
+      { label: "Harvard Education Press – School Reform from the Inside Out", url: "https://www.hepg.org/" },
     ],
   },
   {
     id: 31,
     title: "Michael Fullan",
-    description: "Michael Fullan ha dedicado buena parte de su trabajo al estudio de cómo escuelas y sistemas educativos implementan, escalan y sostienen procesos de cambio.\n\nSus investigaciones destacan la importancia de liderazgo, construcción de capacidades, colaboración, cultura institucional y coherencia.\n\nPara la Arquitectura del Aprendizaje, Fullan ayuda a distinguir entre introducir una innovación y transformar una organización. Una innovación puede aparecer rápidamente; modificar las relaciones, capacidades y comportamientos que permiten sostenerla constituye un problema arquitectónico mucho más profundo.",
+    description: "Michael Fullan ha dedicado buena parte de su trabajo al estudio de cómo escuelas y sistemas educativos implementan, escalan y sostienen procesos de cambio. Sus investigaciones destacan la importancia de liderazgo, construcción de capacidades, colaboración, cultura institucional y coherencia.\n\nPara la Arquitectura del Aprendizaje, Fullan ayuda a distinguir entre introducir una innovación y transformar una organización. Una innovación puede aparecer rápidamente; modificar las relaciones, capacidades y comportamientos que permiten sostenerla constituye un problema arquitectónico mucho más profundo.",
     readings: ["Michael Fullan"],
     links: [
       { label: "Michael Fullan – Official Site", url: "https://michaelfullan.ca/" },
@@ -347,7 +366,7 @@ export const chapter2Footnotes: Footnote[] = [
   {
     id: 32,
     title: "OECD Learning Compass 2030",
-    description: "El OECD Learning Compass 2030 presenta una visión del aprendizaje que integra conocimientos, habilidades, actitudes, valores, agencia y bienestar.\n\nLa metáfora de la brújula es deliberada: OECD plantea que los estudiantes necesitan aprender a orientarse por sí mismos en contextos desconocidos en lugar de limitarse a seguir instrucciones fijas. (OECD)\n\nPara la Arquitectura del Aprendizaje, la implicación resulta fundamental. Si agencia, responsabilidad y capacidad de navegación constituyen resultados educativos deseados, la organización debe proporcionar oportunidades reales para ejercerlos.",
+    description: "El OECD Learning Compass 2030 presenta una visión del aprendizaje que integra conocimientos, habilidades, actitudes, valores, agencia y bienestar. La metáfora de la brújula es deliberada: OECD plantea que los estudiantes necesitan aprender a orientarse por sí mismos en contextos desconocidos en lugar de limitarse a seguir instrucciones fijas. (OECD)\n\nPara la Arquitectura del Aprendizaje, la implicación resulta fundamental. Si agencia, responsabilidad y capacidad de navegación constituyen resultados educativos deseados, la organización debe proporcionar oportunidades reales para ejercerlos.",
     readings: ["OECD Learning Compass 2030"],
     links: [
       { label: "OECD – Learning Compass 2030", url: "https://www.oecd.org/education/2030-project/teaching-and-learning/learning/" },
@@ -356,7 +375,7 @@ export const chapter2Footnotes: Footnote[] = [
   {
     id: 33,
     title: "UNESCO y los futuros de la educación",
-    description: "La International Commission on the Futures of Education publicó en 2021 Reimagining Our Futures Together: A New Social Contract for Education, proponiendo reconsiderar el papel de la educación frente a transformaciones sociales, tecnológicas y ambientales. (UNESCO)\n\nEl informe fue resultado de una consulta internacional y plantea la necesidad de construir un nuevo contrato social para la educación orientado hacia futuros pacíficos, justos y sostenibles. UNESCO mantiene además los materiales y versiones lingüísticas oficiales del informe. (UNESCO)\n\nDesde la perspectiva de la Arquitectura del Aprendizaje, su importancia consiste en situar la transformación educativa más allá de una discusión exclusivamente tecnológica. Repensar el futuro de la educación exige reconsiderar propósitos, relaciones e instituciones.",
+    description: "La International Commission on the Futures of Education publicó en 2021 Reimagining Our Futures Together: A New Social Contract for Education, proponiendo reconsiderar el papel de la educación frente a transformaciones sociales, tecnológicas y ambientales. (UNESCO) El informe fue resultado de una consulta internacional y plantea la necesidad de construir un nuevo contrato social para la educación orientado hacia futuros pacíficos, justos y sostenibles. UNESCO mantiene además los materiales y versiones lingüísticas oficiales del informe. (UNESCO)\n\nDesde la perspectiva de la Arquitectura del Aprendizaje, su importancia consiste en situar la transformación educativa más allá de una discusión exclusivamente tecnológica. Repensar el futuro de la educación exige reconsiderar propósitos, relaciones e instituciones.",
     readings: ["International Commission on the Futures of Education – UNESCO (2021)"],
     links: [
       { label: "UNESCO – Reimagining Our Futures Together", url: "https://unesdoc.unesco.org/ark:/48223/pf0000379707" },
@@ -365,31 +384,230 @@ export const chapter2Footnotes: Footnote[] = [
 ];
 
 export const chapter2References: ReferenceItem[] = [
-  { citation: "Green, A. (1990). Education and State Formation: The Rise of Education Systems in England, France and the USA. Palgrave Macmillan. DOI: 10.1007/978-1-349-12853-2.", url: "https://doi.org/10.1007/978-1-349-12853-2" },
-  { citation: "Landes, D. S. (2003). The Unbound Prometheus: Technological Change and Industrial Development in Western Europe from 1750 to the Present. Cambridge University Press. DOI: 10.1017/CBO9780511819957.", url: "https://doi.org/10.1017/CBO9780511819957" },
-  { citation: "Mann, H. Annual Reports of the Secretary of the Massachusetts Board of Education. Library of Congress – Horace Mann resources.", url: "https://www.loc.gov/" },
-  { citation: "Dewey, J. (1916). Democracy and Education: An Introduction to the Philosophy of Education. Macmillan.", url: "https://www.gutenberg.org/ebooks/852" },
-  { citation: "Dewey, J. (1938). Experience and Education. Kappa Delta Pi." },
-  { citation: "Freire, P. (1970). Pedagogy of the Oppressed." },
-  { citation: "Freire, P. (1992). Pedagogia da esperança: Um reencontro com a pedagogia do oprimido. UNESCO – Acervo del educador Paulo Freire.", url: "https://www.unesco.org/" },
-  { citation: "Robinson, K. (2006). Do Schools Kill Creativity? TED2006.", url: "https://www.ted.com/talks/sir_ken_robinson_do_schools_kill_creativity" },
-  { citation: "Schleicher, A. (2018). World Class: How to Build a 21st-Century School System. OECD Publishing. DOI: 10.1787/9789264300002-en.", url: "https://doi.org/10.1787/9789264300002-en" },
-  { citation: "Zhao, Y. (2012). World Class Learners: Educating Creative and Entrepreneurial Students. Corwin." },
-  { citation: "Zhao, Y. (2014). Who’s Afraid of the Big Bad Dragon? Why China Has the Best (and Worst) Education System in the World. Jossey-Bass.", url: "https://epsy.ku.edu/" },
-  { citation: "Gardner, H. (1983). Frames of Mind: The Theory of Multiple Intelligences. Basic Books.", url: "https://www.gse.harvard.edu/" },
-  { citation: "Kahneman, D. (2011). Thinking, Fast and Slow. Farrar, Straus and Giroux.", url: "https://www.nobelprize.org/prizes/economic-sciences/2002/kahneman/facts/" },
-  { citation: "Dweck, C. S. (2006). Mindset: The New Psychology of Success. Random House." },
-  { citation: "Dweck, C. S. (1999). Self-Theories: Their Role in Motivation, Personality, and Development. Psychology Press.", url: "https://profiles.stanford.edu/carol-dweck" },
-  { citation: "Ericsson, K. A. Investigación sobre desempeño experto y práctica deliberada. Cambridge University Press.", url: "https://www.cambridge.org/" },
-  { citation: "Bloom, B. S. (Ed.). (1956). Taxonomy of Educational Objectives: Handbook I: Cognitive Domain. Longmans, Green.", url: "https://bokcenter.harvard.edu/taxonomies-learning" },
-  { citation: "Vygotsky, L. S. (1978). Mind in Society: The Development of Higher Psychological Processes. Harvard University Press." },
-  { citation: "Piaget, J. Obras sobre desarrollo cognitivo y construcción del conocimiento. Jean Piaget Society.", url: "https://piaget.org/" },
-  { citation: "Bruner, J. S. (1960). The Process of Education. Harvard University Press." },
-  { citation: "Papert, S. (1980). Mindstorms: Children, Computers, and Powerful Ideas. Basic Books.", url: "https://mitpress.mit.edu/" },
-  { citation: "Mitra, S. Trabajo sobre Hole in the Wall y Self-Organized Learning Environments.", url: "https://www.ted.com/speakers/sugata_mitra" },
-  { citation: "Khan, S. (2012). The One World Schoolhouse: Education Reimagined. Twelve.", url: "https://www.khanacademy.org/" },
-  { citation: "Elmore, R. F. (2004). School Reform from the Inside Out: Policy, Practice, and Performance. Harvard Education Press.", url: "https://www.hepg.org/" },
-  { citation: "Fullan, M. (2001). Leading in a Culture of Change. Jossey-Bass.", url: "https://michaelfullan.ca/" },
-  { citation: "Organisation for Economic Co-operation and Development. (2019). OECD Learning Compass 2030. OECD Future of Education and Skills 2030.", url: "https://www.oecd.org/education/2030-project/teaching-and-learning/learning/" },
-  { citation: "International Commission on the Futures of Education. (2021). Reimagining Our Futures Together: A New Social Contract for Education. UNESCO.", url: "https://unesdoc.unesco.org/ark:/48223/pf0000379707" },
+  {
+    id: 11,
+    authors: "Green, A.",
+    year: 1990,
+    title: "Education and State Formation: The Rise of Education Systems in England, France and the USA",
+    publisher: "Palgrave Macmillan. DOI: 10.1007/978-1-349-12853-2",
+    links: [
+      { label: "Springer Nature – Education and State Formation", url: "https://doi.org/10.1007/978-1-349-12853-2" },
+    ],
+  },
+  {
+    id: 12,
+    authors: "Landes, D. S.",
+    year: 2003,
+    title: "The Unbound Prometheus: Technological Change and Industrial Development in Western Europe from 1750 to the Present",
+    publisher: "Cambridge University Press. DOI: 10.1017/CBO9780511819957",
+    links: [
+      { label: "Cambridge University Press – The Unbound Prometheus", url: "https://doi.org/10.1017/CBO9780511819957" },
+    ],
+  },
+  {
+    id: 13,
+    authors: "Mann, H.",
+    title: "Annual Reports of the Secretary of the Massachusetts Board of Education",
+    publisher: "Fuente histórica primaria sobre el movimiento de common schools",
+    links: [
+      { label: "Library of Congress – Horace Mann resources", url: "https://www.loc.gov/" },
+    ],
+  },
+  {
+    id: 14,
+    authors: "Dewey, J.",
+    year: 1916,
+    title: "Democracy and Education: An Introduction to the Philosophy of Education",
+    publisher: "Macmillan",
+    links: [
+      { label: "Project Gutenberg – Democracy and Education", url: "https://www.gutenberg.org/ebooks/852" },
+    ],
+  },
+  {
+    id: 15,
+    authors: "Freire, P.",
+    year: 1970,
+    title: "Pedagogy of the Oppressed / Pedagogia da esperança (1992)",
+    publisher: "UNESCO Acervo documental Memory of the World",
+    links: [
+      { label: "UNESCO – Acervo del educador Paulo Freire", url: "https://www.unesco.org/" },
+    ],
+  },
+  {
+    id: 16,
+    authors: "Robinson, K.",
+    year: 2006,
+    title: "Do Schools Kill Creativity?",
+    publisher: "TED2006",
+    links: [
+      { label: "TED – Do Schools Kill Creativity?", url: "https://www.ted.com/talks/sir_ken_robinson_do_schools_kill_creativity" },
+    ],
+  },
+  {
+    id: 17,
+    authors: "Schleicher, A.",
+    year: 2018,
+    title: "World Class: How to Build a 21st-Century School System",
+    publisher: "OECD Publishing. DOI: 10.1787/9789264300002-en",
+    links: [
+      { label: "OECD – World Class", url: "https://doi.org/10.1787/9789264300002-en" },
+    ],
+  },
+  {
+    id: 18,
+    authors: "Zhao, Y.",
+    year: 2012,
+    title: "World Class Learners: Educating Creative and Entrepreneurial Students / Who's Afraid of the Big Bad Dragon? (2014)",
+    publisher: "Corwin / Jossey-Bass. Universidad de Kansas",
+    links: [
+      { label: "University of Kansas – Yong Zhao", url: "https://soe.ku.edu/" },
+    ],
+  },
+  {
+    id: 19,
+    authors: "Gardner, H.",
+    year: 1983,
+    title: "Frames of Mind: The Theory of Multiple Intelligences",
+    publisher: "Basic Books. Harvard Graduate School of Education / Project Zero",
+    links: [
+      { label: "Harvard Graduate School of Education – Howard Gardner", url: "https://www.gse.harvard.edu/" },
+    ],
+  },
+  {
+    id: 20,
+    authors: "Kahneman, D.",
+    year: 2011,
+    title: "Thinking, Fast and Slow",
+    publisher: "Farrar, Straus and Giroux. Nobel Prize in Economic Sciences 2002",
+    links: [
+      { label: "Nobel Prize – Daniel Kahneman", url: "https://www.nobelprize.org/prizes/economic-sciences/2002/kahneman/facts/" },
+    ],
+  },
+  {
+    id: 21,
+    authors: "Dweck, C. S.",
+    year: 2006,
+    title: "Mindset: The New Psychology of Success / Self-Theories (1999)",
+    publisher: "Random House / Psychology Press. Stanford University",
+    links: [
+      { label: "Stanford University – Carol Dweck", url: "https://profiles.stanford.edu/carol-dweck" },
+    ],
+  },
+  {
+    id: 22,
+    authors: "Ericsson, K. A.",
+    title: "Investigación sobre desempeño experto y práctica deliberada",
+    publisher: "Cambridge University Press",
+    links: [
+      { label: "Cambridge University Press – Ericsson on Deliberate Practice", url: "https://www.cambridge.org/" },
+    ],
+  },
+  {
+    id: 23,
+    authors: "Bloom, B. S. (Ed.)",
+    year: 1956,
+    title: "Taxonomy of Educational Objectives: Handbook I: Cognitive Domain",
+    publisher: "Longmans, Green. Derek Bok Center, Harvard University",
+    links: [
+      { label: "Harvard University – Taxonomies of Learning", url: "https://bokcenter.harvard.edu/" },
+    ],
+  },
+  {
+    id: 24,
+    authors: "Vygotsky, L. S.",
+    year: 1978,
+    title: "Mind in Society: The Development of Higher Psychological Processes",
+    publisher: "Harvard University Press",
+    links: [
+      { label: "Harvard University Press – Mind in Society", url: "https://www.hup.harvard.edu/" },
+    ],
+  },
+  {
+    id: 25,
+    authors: "Piaget, J.",
+    title: "Obras sobre desarrollo cognitivo y construcción del conocimiento",
+    publisher: "Jean Piaget Society",
+    links: [
+      { label: "Jean Piaget Society – About Piaget and the Society", url: "https://piaget.org/" },
+    ],
+  },
+  {
+    id: 26,
+    authors: "Bruner, J. S.",
+    year: 1960,
+    title: "The Process of Education",
+    publisher: "Harvard University Press",
+    links: [
+      { label: "Harvard University Press – The Process of Education", url: "https://www.hup.harvard.edu/" },
+    ],
+  },
+  {
+    id: 27,
+    authors: "Papert, S.",
+    year: 1980,
+    title: "Mindstorms: Children, Computers, and Powerful Ideas",
+    publisher: "Basic Books. MIT Press",
+    links: [
+      { label: "MIT Press – A Tribute to Seymour Papert", url: "https://mitpress.mit.edu/" },
+    ],
+  },
+  {
+    id: 28,
+    authors: "Mitra, S.",
+    title: "Trabajo sobre Hole in the Wall y Self-Organized Learning Environments",
+    publisher: "TED",
+    links: [
+      { label: "TED – Sugata Mitra", url: "https://www.ted.com/speakers/sugata_mitra" },
+    ],
+  },
+  {
+    id: 29,
+    authors: "Khan, S.",
+    year: 2012,
+    title: "The One World Schoolhouse: Education Reimagined",
+    publisher: "Twelve. Khan Academy",
+    links: [
+      { label: "Khan Academy", url: "https://www.khanacademy.org/" },
+    ],
+  },
+  {
+    id: 30,
+    authors: "Elmore, R. F.",
+    year: 2004,
+    title: "School Reform from the Inside Out: Policy, Practice, and Performance",
+    publisher: "Harvard Education Press",
+    links: [
+      { label: "Harvard Education Press – School Reform from the Inside Out", url: "https://www.hepg.org/" },
+    ],
+  },
+  {
+    id: 31,
+    authors: "Fullan, M.",
+    year: 2001,
+    title: "Leading in a Culture of Change",
+    publisher: "Jossey-Bass. Michael Fullan – Official Site",
+    links: [
+      { label: "Michael Fullan – Official Site", url: "https://michaelfullan.ca/" },
+    ],
+  },
+  {
+    id: 32,
+    authors: "Organisation for Economic Co-operation and Development",
+    year: 2019,
+    title: "OECD Learning Compass 2030. OECD Future of Education and Skills 2030",
+    publisher: "OECD",
+    links: [
+      { label: "OECD – Learning Compass 2030", url: "https://www.oecd.org/education/2030-project/teaching-and-learning/learning/" },
+    ],
+  },
+  {
+    id: 33,
+    authors: "International Commission on the Futures of Education",
+    year: 2021,
+    title: "Reimagining Our Futures Together: A New Social Contract for Education",
+    publisher: "UNESCO",
+    links: [
+      { label: "UNESCO – Reimagining Our Futures Together", url: "https://unesdoc.unesco.org/ark:/48223/pf0000379707" },
+    ],
+  },
 ];

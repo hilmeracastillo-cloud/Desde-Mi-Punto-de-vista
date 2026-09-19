@@ -7,6 +7,7 @@ import { chapter4Header, chapter4Sections, chapter4Footnotes, chapter4References
 import { chapter5Header, chapter5Sections, chapter5Footnotes, chapter5References } from "../data/chapter5";
 import { chapter6Header, chapter6Sections, chapter6Footnotes, chapter6References } from "../data/chapter6";
 import { chapter7Header, chapter7Sections, chapter7Footnotes, chapter7References } from "../data/chapter7";
+import { chapter8Header, chapter8Sections, chapter8Footnotes, chapter8References } from "../data/chapter8";
 import { Footnote, ReferenceItem } from "../types";
 
 function sanitize(text: string): string {
@@ -20,7 +21,7 @@ function sanitize(text: string): string {
 }
 
 export async function generateBookPdf(
-  scope: "all" | "intro" | "cap1" | "cap2" | "cap3" | "cap4" | "cap5" | "cap6" | "cap7" | "estructura",
+  scope: "all" | "intro" | "cap1" | "cap2" | "cap3" | "cap4" | "cap5" | "cap6" | "cap7" | "cap8" | "estructura",
   onProgress?: (status: string, percent: number) => void
 ): Promise<void> {
   if (onProgress) onProgress("Iniciando generación de PDF...", 10);
@@ -458,7 +459,22 @@ export async function generateBookPdf(
     }
   }
 
-  // 6. ESTRUCTURA GENERAL DE LA OBRA
+  // 9. CAPÍTULO 8
+  if (scope === "all" || scope === "cap8") {
+    if (onProgress) onProgress("Procesando Capítulo 8...", 97);
+
+    renderSectionHeader(chapter8Header.chapterNumber, chapter8Header.title, chapter8Header.subtitle, chapter8Header.epigraph?.quote);
+    renderSections(chapter8Sections);
+    renderFootnotesAndReferences(chapter8Footnotes, chapter8References);
+
+    if (scope === "all") {
+      doc.addPage();
+      y = marginTop;
+      addHeaderFooter();
+    }
+  }
+
+  // 10. ESTRUCTURA GENERAL DE LA OBRA
   if (scope === "all" || scope === "estructura") {
     if (onProgress) onProgress("Procesando Estructura de la Obra...", 95);
 

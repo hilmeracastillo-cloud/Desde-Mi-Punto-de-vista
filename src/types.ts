@@ -7,8 +7,15 @@ export interface Footnote {
 }
 
 export interface ReferenceItem {
-  citation: string;
+  id?: number;
+  authors?: string;
+  year?: number | string;
+  title?: string;
+  edition?: string;
+  publisher?: string;
+  citation?: string;
   url?: string;
+  links?: { label: string; url: string }[];
 }
 
 export interface ChapterSection {
@@ -20,7 +27,7 @@ export interface ChapterSection {
   paragraphs: string[]; // Can include markdown or footnote markers like [1] or (1)
 }
 
-export type ViewTab = 'intro' | 'cap1' | 'cap2' | 'cap3' | 'cap4' | 'cap5' | 'cap6' | 'cap7' | 'estructura';
+export type ViewTab = 'intro' | 'cap1' | 'cap2' | 'cap3' | 'cap4' | 'cap5' | 'cap6' | 'cap7' | 'cap8' | 'estructura';
 
 export interface ReadingPosition {
   chapter: ViewTab;

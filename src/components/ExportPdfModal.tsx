@@ -39,6 +39,8 @@ export const ExportPdfModal: React.FC<ExportPdfModalProps> = ({
         return "Capítulo 6: La organización que aprende de sí misma";
       case "cap7":
         return "Capítulo 7: Aprender a observar antes de diseñar";
+      case "cap8":
+        return "Capítulo 8: La inteligencia artificial como decisión arquitectónica";
       case "estructura":
         return "Estructura Preliminar de la Obra";
       default:

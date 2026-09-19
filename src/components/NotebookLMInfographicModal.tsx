@@ -8,7 +8,8 @@ import {
   Copy,
   Check,
   Sparkles,
-  Maximize2
+  Maximize2,
+  ArrowLeft
 } from 'lucide-react';
 import { NotebookInfographicData } from '../data/notebookInfographics';
 import { NotebookLMInfographic } from './NotebookLMInfographic';
@@ -118,6 +119,15 @@ export const NotebookLMInfographicModal: React.FC<NotebookLMInfographicModalProp
             >
               <Printer className="w-4 h-4" />
               <span className="hidden md:inline">Imprimir / PDF</span>
+            </button>
+
+            <button
+              onClick={onClose}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-mono font-bold transition-all cursor-pointer shadow-md ml-1 hover:scale-[1.02]"
+              title="Regresar al punto de donde estaba leyendo"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Regresar a la lectura</span>
             </button>
 
             <button
